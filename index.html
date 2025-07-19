@@ -1382,11 +1382,21 @@
             
             // Handle current language click to toggle dropdown
             currentLang.addEventListener('click', (e) => {
+                console.log('=== Language switcher click event triggered ===');
+                console.log('Event target:', e.target);
+                console.log('Current target:', e.currentTarget);
+                console.log('Event type:', e.type);
+                
                 e.preventDefault();
                 e.stopPropagation();
+                
                 console.log('Language switcher clicked, toggling active state');
+                console.log('Before toggle - active:', languageSwitcher.classList.contains('active'));
+                
                 languageSwitcher.classList.toggle('active');
-                console.log('Language switcher active:', languageSwitcher.classList.contains('active'));
+                
+                console.log('After toggle - active:', languageSwitcher.classList.contains('active'));
+                console.log('Language switcher classes:', languageSwitcher.className);
             });
             
             // Handle language option clicks
@@ -2395,6 +2405,16 @@
                 testLanguageDropdown();
             };
             document.body.appendChild(testButton);
+            
+            // Add visual indicator to show the element is clickable
+            setTimeout(() => {
+                const currentLang = document.querySelector('.current-lang');
+                if (currentLang) {
+                    currentLang.style.border = '2px solid red';
+                    currentLang.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
+                    console.log('Added visual indicator to current-lang element');
+                }
+            }, 1000);
         });
     </script>
 </body>
