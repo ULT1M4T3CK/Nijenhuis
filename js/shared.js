@@ -2,6 +2,11 @@
 
 // Language Switcher Functionality
 function setupLanguageSwitcher() {
+    // Skip language switcher setup for index.html (it has its own implementation)
+    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+        return;
+    }
+    
     const languageSwitcher = document.querySelector('.language-switcher');
     const currentLang = document.querySelector('.current-lang');
     const langDropdown = document.querySelector('.lang-dropdown');
