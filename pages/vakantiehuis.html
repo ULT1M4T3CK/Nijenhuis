@@ -651,42 +651,15 @@
         function initLanguageSwitcher() {
             const languageSwitcher = document.querySelector('.language-switcher');
             const currentLangBtn = document.querySelector('.current-lang');
-            const langOptions = document.querySelectorAll('.lang-option');
 
             if (languageSwitcher && currentLangBtn) {
-                // Remove any previous event listeners (avoid duplicate toggling)
-                const newCurrentLangBtn = currentLangBtn.cloneNode(true);
-                currentLangBtn.parentNode.replaceChild(newCurrentLangBtn, currentLangBtn);
-
-                newCurrentLangBtn.addEventListener('click', function(e) {
+                // Add click handler to current language button
+                currentLangBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     languageSwitcher.classList.toggle('active');
                 });
-
-                // Close dropdown when clicking outside
-                if (!document.body._langSwitcherClickHandler) {
-                    document.body._langSwitcherClickHandler = function(e) {
-                        if (!languageSwitcher.contains(e.target)) {
-                            languageSwitcher.classList.remove('active');
-                        }
-                    };
-                    document.addEventListener('click', document.body._langSwitcherClickHandler);
-                }
             }
-
-            // Remove possible duplicate handlers on lang-options
-            langOptions.forEach(option => {
-                const newOption = option.cloneNode(true);
-                option.parentNode.replaceChild(newOption, option);
-
-                newOption.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    languageSwitcher.classList.remove('active');
-                });
-            });
         }
 
         // GET CURRENT LANGUAGE
@@ -726,13 +699,43 @@
             initLanguageSwitcher();
         }
 
+        // Global event delegation for language switcher
+        function setupLanguageSwitcherEvents() {
+            // Handle clicks on language options (event delegation)
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.lang-option')) {
+                    e.preventDefault();
+                    const langOption = e.target.closest('.lang-option');
+                    const lang = langOption.getAttribute('href').split('=')[1];
+                    switchLanguage(lang);
+                    
+                    // Close dropdown
+                    const languageSwitcher = document.querySelector('.language-switcher');
+                    if (languageSwitcher) {
+                        languageSwitcher.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                const languageSwitcher = document.querySelector('.language-switcher');
+                if (languageSwitcher && !languageSwitcher.contains(e.target)) {
+                    languageSwitcher.classList.remove('active');
+                }
+            });
+        }
+
         // --- DOM READY LOGIC ---
         document.addEventListener('DOMContentLoaded', function() {
             const currentLang = getCurrentLanguage();
             updatePageContent(currentLang);
 
-            // Always (re-)initialize language switcher on load
+            // Initialize language switcher
             initLanguageSwitcher();
+            
+            // Set up global event delegation for language switcher
+            setupLanguageSwitcherEvents();
             
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');
