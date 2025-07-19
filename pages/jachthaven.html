@@ -7,6 +7,9 @@
     <meta name="description" content="Professionele marina diensten in het natuurgebied Weerribben. Veilige ligplaatsen en onderhoud.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.0.0/css/flag-icons.min.css">
     <link rel="stylesheet" href="../styles.css">
+    
+    <!-- Shared JavaScript -->
+    <script src="../js/shared.js" defer></script>
 </head>
 <body>
     <!-- Top Bar -->
@@ -43,23 +46,23 @@
                     <li><a href="vaarkaart.html">Vaarkaart</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li class="language-switcher">
-                        <a href="#" class="current-lang" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="current-lang">
                             <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
                         </a>
-                        <ul class="lang-dropdown" role="menu">
-                            <li><a href="?lang=nl" class="lang-option active" role="menuitem">
+                        <div class="lang-dropdown">
+                            <a href="?lang=nl" class="lang-option active" data-lang="nl">
                                 <span class="flag-circle"><span class="fi fi-nl"></span></span>
                                 Nederlands
-                            </a></li>
-                            <li><a href="?lang=en" class="lang-option" role="menuitem">
+                            </a>
+                            <a href="?lang=en" class="lang-option" data-lang="en">
                                 <span class="flag-circle"><span class="fi fi-gb"></span></span>
                                 English
-                            </a></li>
-                            <li><a href="?lang=de" class="lang-option" role="menuitem">
+                            </a>
+                            <a href="?lang=de" class="lang-option" data-lang="de">
                                 <span class="flag-circle"><span class="fi fi-de"></span></span>
                                 Deutsch
-                            </a></li>
-                        </ul>
+                            </a>
+                        </div>
                     </li>
                 </ul>
                 
