@@ -1364,7 +1364,20 @@
             }
         });
 
-        // Language switcher functionality is now handled by shared.js
+        // --- Language Switcher Initialization ---
+        function initLanguageSwitcher() {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const currentLangBtn = document.querySelector('.current-lang');
+
+            if (languageSwitcher && currentLangBtn) {
+                // Add click handler to current language button
+                currentLangBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    languageSwitcher.classList.toggle('active');
+                });
+            }
+        }
 
         // GET CURRENT LANGUAGE
         function getCurrentLanguage() {
@@ -2296,10 +2309,39 @@
             const currentLang = getCurrentLanguage();
             translatePage(currentLang);
 
-            // Language switcher is now handled by shared.js
+            // Initialize language switcher
+            initLanguageSwitcher();
+            
+            // Set up global event delegation for language switcher
+            setupLanguageSwitcherEvents();
         });
         
-        // Language switcher events are now handled by shared.js
+        // Global event delegation for language switcher
+        function setupLanguageSwitcherEvents() {
+            // Handle clicks on language options (event delegation)
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.lang-option')) {
+                    e.preventDefault();
+                    const langOption = e.target.closest('.lang-option');
+                    const lang = langOption.getAttribute('href').split('=')[1];
+                    switchLanguage(lang);
+                    
+                    // Close dropdown
+                    const languageSwitcher = document.querySelector('.language-switcher');
+                    if (languageSwitcher) {
+                        languageSwitcher.classList.remove('active');
+                    }
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                const languageSwitcher = document.querySelector('.language-switcher');
+                if (languageSwitcher && !languageSwitcher.contains(e.target)) {
+                    languageSwitcher.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>

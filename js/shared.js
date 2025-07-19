@@ -12,7 +12,6 @@ function setupLanguageSwitcher() {
     // Toggle dropdown on current language click
     currentLang?.addEventListener('click', (e) => {
         e.preventDefault();
-        e.stopPropagation();
         languageSwitcher.classList.toggle('active');
     });
 
@@ -24,6 +23,7 @@ function setupLanguageSwitcher() {
             if (lang) {
                 // Update current language display
                 const flagSpan = option.querySelector('.flag-circle').innerHTML;
+                const langText = option.textContent.trim();
                 currentLang.innerHTML = `<span class="flag-circle">${flagSpan}</span> ${lang.toUpperCase()}`;
                 
                 // Update active state
@@ -36,10 +36,8 @@ function setupLanguageSwitcher() {
                 // Store language preference
                 localStorage.setItem('preferred-language', lang);
                 
-                // Call translation function if it exists
-                if (typeof switchLanguage === 'function') {
-                    switchLanguage(lang);
-                }
+                // Optional: Reload page with new language
+                // window.location.href = `?lang=${lang}`;
             }
         });
     });
