@@ -1376,12 +1376,35 @@
             const urlParams = new URLSearchParams(window.location.search);
             const currentLanguage = urlParams.get('lang') || 'nl';
             
-            // Update current language display and translate page
-            updateCurrentLanguage(currentLanguage);
+            // Translate the page content
             translatePage(currentLanguage);
             
+            // Initialize event listeners (this will also update the current language display)
+            initLanguageSwitcher();
+        }
+
+        function initLanguageSwitcher() {
+            const currentLang = document.querySelector('.current-lang');
+            const languageSwitcher = document.querySelector('.language-switcher');
+            
+            if (!currentLang || !languageSwitcher) {
+                console.error('Language switcher elements not found in initLanguageSwitcher');
+                return;
+            }
+            
+            // Get current language from URL or default to Dutch
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentLanguage = urlParams.get('lang') || 'nl';
+            
+            // Update current language display without re-initializing
+            updateCurrentLanguage(currentLanguage, true);
+            
+            // Remove existing event listeners to prevent duplicates
+            const newCurrentLang = currentLang.cloneNode(true);
+            currentLang.parentNode.replaceChild(newCurrentLang, currentLang);
+            
             // Handle current language click to toggle dropdown
-            currentLang.addEventListener('click', (e) => {
+            newCurrentLang.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('Language switcher clicked, toggling active state');
@@ -1392,11 +1415,15 @@
             // Handle language option clicks
             const langOptions = document.querySelectorAll('.lang-option');
             langOptions.forEach(option => {
-                option.addEventListener('click', (e) => {
+                // Remove existing listeners to prevent duplicates
+                const newOption = option.cloneNode(true);
+                option.parentNode.replaceChild(newOption, option);
+                
+                newOption.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
                     // Use data attribute for robustness
-                    const lang = option.dataset.lang || (option.getAttribute('href') ? option.getAttribute('href').split('=')[1] : null);
+                    const lang = newOption.dataset.lang || (newOption.getAttribute('href') ? newOption.getAttribute('href').split('=')[1] : null);
                     if (lang) {
                         console.log('Language option clicked:', lang);
                         switchLanguage(lang);
@@ -1405,15 +1432,18 @@
                 });
             });
             
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
+            // Close dropdown when clicking outside (only add once)
+            if (!languageSwitcher.hasAttribute('data-outside-listener')) {
+                languageSwitcher.setAttribute('data-outside-listener', 'true');
+                document.addEventListener('click', (e) => {
+                    if (!languageSwitcher.contains(e.target)) {
+                        languageSwitcher.classList.remove('active');
+                    }
+                });
+            }
         }
 
-        function updateCurrentLanguage(lang) {
+        function updateCurrentLanguage(lang, skipReinit = false) {
             const currentLang = document.querySelector('.current-lang');
             const langOptions = document.querySelectorAll('.lang-option');
             const flagClasses = {
@@ -1434,6 +1464,11 @@
                     option.classList.add('active');
                 }
             });
+            
+            // Re-attach event listeners after updating the element (unless called from initLanguageSwitcher)
+            if (!skipReinit) {
+                initLanguageSwitcher();
+            }
         }
 
         function switchLanguage(lang) {

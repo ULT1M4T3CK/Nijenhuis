@@ -617,23 +617,76 @@
             updatePageContent(lang);
             
             // Update the current language display
-            const currentLang = document.querySelector('.current-lang');
-            const flagCircle = currentLang.querySelector('.flag-circle .fi');
+            updateCurrentLanguage(lang);
             
-            // Update flag and text based on selected language
-            switch(lang) {
-                case 'nl':
-                    flagCircle.className = 'fi fi-nl';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
-                    break;
-                case 'en':
-                    flagCircle.className = 'fi fi-gb';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
-                    break;
-                case 'de':
-                    flagCircle.className = 'fi fi-de';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
-                    break;
+            // Re-attach event listeners after updating the element
+            initLanguageSwitcher();
+        }
+
+        function updateCurrentLanguage(lang) {
+            const currentLang = document.querySelector('.current-lang');
+            const flagClasses = {
+                'nl': 'fi-nl',
+                'en': 'fi-gb',
+                'de': 'fi-de'
+            };
+            const langText = {
+                'nl': 'NL',
+                'en': 'EN',
+                'de': 'DE'
+            };
+            currentLang.innerHTML = `<span class="flag-circle"><span class="fi ${flagClasses[lang] || flagClasses['nl']}"></span></span> ${langText[lang] || langText['nl']}`;
+        }
+
+        function initLanguageSwitcher() {
+            const currentLang = document.querySelector('.current-lang');
+            const languageSwitcher = document.querySelector('.language-switcher');
+            
+            if (!currentLang || !languageSwitcher) {
+                console.error('Language switcher elements not found in initLanguageSwitcher');
+                return;
+            }
+            
+            // Remove existing event listeners to prevent duplicates
+            const newCurrentLang = currentLang.cloneNode(true);
+            currentLang.parentNode.replaceChild(newCurrentLang, currentLang);
+            
+            // Handle current language click to toggle dropdown
+            newCurrentLang.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Language switcher clicked, toggling active state');
+                languageSwitcher.classList.toggle('active');
+                console.log('Language switcher active:', languageSwitcher.classList.contains('active'));
+            });
+            
+            // Handle language option clicks
+            const langOptions = document.querySelectorAll('.lang-option');
+            langOptions.forEach(option => {
+                // Remove existing listeners to prevent duplicates
+                const newOption = option.cloneNode(true);
+                option.parentNode.replaceChild(newOption, option);
+                
+                newOption.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const lang = newOption.getAttribute('href').split('=')[1];
+                    if (lang) {
+                        console.log('Language option clicked:', lang);
+                        switchLanguage(lang);
+                        languageSwitcher.classList.remove('active');
+                    }
+                });
+            });
+            
+            // Close dropdown when clicking outside (only add once)
+            if (!languageSwitcher.hasAttribute('data-outside-listener')) {
+                languageSwitcher.setAttribute('data-outside-listener', 'true');
+                document.addEventListener('click', (e) => {
+                    if (!languageSwitcher.contains(e.target)) {
+                        languageSwitcher.classList.remove('active');
+                    }
+                });
             }
         }
 
@@ -642,35 +695,8 @@
             const currentLang = getCurrentLanguage();
             updatePageContent(currentLang);
             
-            // Language Switcher Functionality
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLangBtn = document.querySelector('.current-lang');
-            
-            if (currentLangBtn) {
-                currentLangBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    languageSwitcher.classList.toggle('active');
-                });
-        }
-
-        // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
-
-            // Handle language option clicks
-            const langOptions = document.querySelectorAll('.lang-option');
-            langOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    languageSwitcher.classList.remove('active');
-                });
-            });
+            // Initialize language switcher with robust event handling
+            initLanguageSwitcher();
             
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');
