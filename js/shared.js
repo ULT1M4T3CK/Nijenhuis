@@ -62,39 +62,57 @@ function setupMobileMenu() {
     const mobileToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.querySelector('.nav-menu');
 
-    if (!mobileToggle || !navMenu) return;
+    if (!mobileToggle || !navMenu) {
+        console.log('Mobile menu elements not found:', { mobileToggle: !!mobileToggle, navMenu: !!navMenu });
+        return;
+    }
+
+    console.log('Setting up mobile menu...');
 
     // Handle both click and touch events for better mobile support
     const toggleMenu = (e) => {
+        console.log('Toggle menu called', e.type);
         e.preventDefault();
         e.stopPropagation();
         const isActive = navMenu.classList.contains('active');
         navMenu.classList.toggle('active');
         mobileToggle.setAttribute('aria-expanded', !isActive);
         updateMobileMenuIcon();
+        console.log('Menu toggled, active:', !isActive);
     };
 
-    // Add multiple event listeners for better mobile support
-    mobileToggle.addEventListener('click', toggleMenu);
-    mobileToggle.addEventListener('touchend', toggleMenu);
+    // Remove any existing event listeners by cloning the element
+    const newMobileToggle = mobileToggle.cloneNode(true);
+    mobileToggle.parentNode.replaceChild(newMobileToggle, mobileToggle);
+    
+    // Add event listeners to the new element
+    newMobileToggle.addEventListener('click', toggleMenu);
+    newMobileToggle.addEventListener('touchend', toggleMenu);
+    
+    // Also add touchstart to prevent any issues
+    newMobileToggle.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+    });
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        if (!newMobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
-            mobileToggle.setAttribute('aria-expanded', 'false');
+            newMobileToggle.setAttribute('aria-expanded', 'false');
             updateMobileMenuIcon();
         }
     });
 
     // Close menu when touching outside (for mobile)
     document.addEventListener('touchend', (e) => {
-        if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        if (!newMobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
-            mobileToggle.setAttribute('aria-expanded', 'false');
+            newMobileToggle.setAttribute('aria-expanded', 'false');
             updateMobileMenuIcon();
         }
     });
+
+    console.log('Mobile menu setup complete');
 }
 
 function updateMobileMenuIcon() {
@@ -103,14 +121,19 @@ function updateMobileMenuIcon() {
 
     if (!mobileToggle || !navMenu) return;
 
+    // Find the existing SVG element
+    const existingSvg = mobileToggle.querySelector('svg');
+    
     if (navMenu.classList.contains('active')) {
-        mobileToggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </svg>`;
+        // Change to close icon (X)
+        if (existingSvg) {
+            existingSvg.innerHTML = `<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>`;
+        }
     } else {
-        mobileToggle.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-        </svg>`;
+        // Change to hamburger icon
+        if (existingSvg) {
+            existingSvg.innerHTML = `<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>`;
+        }
     }
 }
 
@@ -223,22 +246,35 @@ function setupForms() {
     });
 }
 
-// Initialize all functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    setupLanguageSwitcher();
-    setupMobileMenu();
-    setupChatWidget();
-    setupForms();
-    
-    // Load preferred language
-    const preferredLang = localStorage.getItem('preferred-language');
-    if (preferredLang) {
-        const langOption = document.querySelector(`[data-lang="${preferredLang}"]`);
-        if (langOption) {
-            langOption.click();
+    // Initialize all functionality when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded, setting up mobile menu...');
+        setupLanguageSwitcher();
+        setupMobileMenu();
+        setupChatWidget();
+        setupForms();
+        
+        // Load preferred language
+        const preferredLang = localStorage.getItem('preferred-language');
+        if (preferredLang) {
+            const langOption = document.querySelector(`[data-lang="${preferredLang}"]`);
+            if (langOption) {
+                langOption.click();
+            }
         }
-    }
-});
+        
+        // Test mobile menu functionality
+        setTimeout(() => {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.nav-menu');
+            console.log('Mobile menu test:', {
+                mobileToggle: mobileToggle,
+                navMenu: navMenu,
+                mobileToggleVisible: mobileToggle ? window.getComputedStyle(mobileToggle).display : 'not found',
+                navMenuVisible: navMenu ? window.getComputedStyle(navMenu).display : 'not found'
+            });
+        }, 1000);
+    });
 
 // Export functions for use in other scripts
 window.NijenhuisShared = {

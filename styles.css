@@ -1146,7 +1146,10 @@ section:nth-child(even) {
         flex-direction: column;
         padding: var(--spacing-lg);
         box-shadow: var(--shadow-lg);
-        z-index: var(--z-dropdown);
+        z-index: 9999;
+        /* Ensure it's visible */
+        border: 2px solid red;
+        min-height: 200px;
     }
     
     .nav-menu.active {
