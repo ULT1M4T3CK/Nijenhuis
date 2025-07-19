@@ -61,7 +61,7 @@
     }
     </script>
     <!-- Flag Icons CSS -->
-    <link rel="stylesheet" href="node_modules/flag-icons/css/flag-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css">
 </head>
 <body>
     <!-- Top Bar -->
@@ -1333,6 +1333,13 @@
             const langOptions = document.querySelectorAll('.lang-option');
             const languageSwitcher = document.querySelector('.language-switcher');
             
+            console.log('Setting up language switcher:', { currentLang, langOptions, languageSwitcher });
+            
+            if (!currentLang || !languageSwitcher) {
+                console.error('Language switcher elements not found');
+                return;
+            }
+            
             // Get current language from URL or default to Dutch
             const urlParams = new URLSearchParams(window.location.search);
             const currentLanguage = urlParams.get('lang') || 'nl';
@@ -1343,8 +1350,11 @@
             
             // Handle current language click to toggle dropdown
             currentLang.addEventListener('click', (e) => {
+                e.preventDefault();
                 e.stopPropagation();
+                console.log('Language switcher clicked, toggling active state');
                 languageSwitcher.classList.toggle('active');
+                console.log('Language switcher active:', languageSwitcher.classList.contains('active'));
             });
             
             // Handle language option clicks
@@ -1353,6 +1363,7 @@
                     e.preventDefault();
                     e.stopPropagation();
                     const lang = option.getAttribute('href').split('=')[1];
+                    console.log('Language option clicked:', lang);
                     switchLanguage(lang);
                     languageSwitcher.classList.remove('active');
                 });
@@ -2299,64 +2310,10 @@
             }
         });
 
-        // Language Switcher Functionality
+        // Initialize language switcher
         document.addEventListener('DOMContentLoaded', function() {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLang = document.querySelector('.current-lang');
-            
-            if (currentLang) {
-                currentLang.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    languageSwitcher.classList.toggle('active');
-                });
-            }
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
-
-            // Handle language option clicks
-            const langOptions = document.querySelectorAll('.lang-option');
-            langOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const lang = this.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    languageSwitcher.classList.remove('active');
-                });
-            });
+            setupLanguageSwitcher();
         });
-
-        function switchLanguage(lang) {
-            // Update the current language display
-            const currentLang = document.querySelector('.current-lang');
-            const flagCircle = currentLang.querySelector('.flag-circle .fi');
-            const langText = currentLang.textContent.split(' ')[1];
-            
-            // Update flag and text based on selected language
-            switch(lang) {
-                case 'nl':
-                    flagCircle.className = 'fi fi-nl';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
-                    break;
-                case 'en':
-                    flagCircle.className = 'fi fi-gb';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
-                    break;
-                case 'de':
-                    flagCircle.className = 'fi fi-de';
-                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
-                    break;
-            }
-            
-            // Here you would typically redirect to the language-specific page
-            // For now, we'll just update the display
-            console.log('Language switched to:', lang);
-        }
     </script>
 </body>
 </html>

@@ -1301,6 +1301,7 @@ section:nth-child(even) {
     display: inline-block;
     margin-left: 20px;
     z-index: 10001;
+    cursor: pointer;
 }
 
 .current-lang {
@@ -1355,6 +1356,7 @@ section:nth-child(even) {
     visibility: visible;
     transform: translateY(0);
     display: block !important;
+    pointer-events: auto;
 }
 
 .lang-option {
