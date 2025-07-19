@@ -1361,136 +1361,83 @@
             }
         });
 
-        function setupLanguageSwitcher() {
-            const currentLang = document.querySelector('.current-lang');
-            const languageSwitcher = document.querySelector('.language-switcher');
-            
-            console.log('Setting up language switcher:', { currentLang, languageSwitcher });
-            
-            if (!currentLang || !languageSwitcher) {
-                console.error('Language switcher elements not found');
-                return;
-            }
-            
-            // Get current language from URL or default to Dutch
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentLanguage = urlParams.get('lang') || 'nl';
-            
-            // Translate the page content
-            translatePage(currentLanguage);
-            
-            // Initialize event listeners (this will also update the current language display)
-            initLanguageSwitcher();
-        }
-
+        // --- Language Switcher Initialization ---
         function initLanguageSwitcher() {
-            const currentLang = document.querySelector('.current-lang');
             const languageSwitcher = document.querySelector('.language-switcher');
-            
-            if (!currentLang || !languageSwitcher) {
-                console.error('Language switcher elements not found in initLanguageSwitcher');
-                return;
-            }
-            
-            // Get current language from URL or default to Dutch
-            const urlParams = new URLSearchParams(window.location.search);
-            const currentLanguage = urlParams.get('lang') || 'nl';
-            
-            // Update current language display without re-initializing
-            updateCurrentLanguage(currentLanguage, true);
-            
-            // Remove existing event listeners to prevent duplicates
-            const newCurrentLang = currentLang.cloneNode(true);
-            currentLang.parentNode.replaceChild(newCurrentLang, currentLang);
-            
-            // Handle current language click to toggle dropdown
-            newCurrentLang.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Language switcher clicked, toggling active state');
-                languageSwitcher.classList.toggle('active');
-                console.log('Language switcher active:', languageSwitcher.classList.contains('active'));
-            });
-            
-            // Handle language option clicks
+            const currentLangBtn = document.querySelector('.current-lang');
             const langOptions = document.querySelectorAll('.lang-option');
-            langOptions.forEach(option => {
-                // Remove existing listeners to prevent duplicates
-                const newOption = option.cloneNode(true);
-                option.parentNode.replaceChild(newOption, option);
-                
-                newOption.addEventListener('click', (e) => {
+
+            if (languageSwitcher && currentLangBtn) {
+                // Remove any previous event listeners (avoid duplicate toggling)
+                const newCurrentLangBtn = currentLangBtn.cloneNode(true);
+                currentLangBtn.parentNode.replaceChild(newCurrentLangBtn, currentLangBtn);
+
+                newCurrentLangBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    // Use data attribute for robustness
-                    const lang = newOption.dataset.lang || (newOption.getAttribute('href') ? newOption.getAttribute('href').split('=')[1] : null);
-                    if (lang) {
-                        console.log('Language option clicked:', lang);
-                        switchLanguage(lang);
-                        languageSwitcher.classList.remove('active');
-                    }
+                    languageSwitcher.classList.toggle('active');
                 });
-            });
-            
-            // Close dropdown when clicking outside (only add once)
-            if (!languageSwitcher.hasAttribute('data-outside-listener')) {
-                languageSwitcher.setAttribute('data-outside-listener', 'true');
-                document.addEventListener('click', (e) => {
-                    if (!languageSwitcher.contains(e.target)) {
-                        languageSwitcher.classList.remove('active');
-                    }
-                });
-            }
-        }
 
-        function updateCurrentLanguage(lang, skipReinit = false) {
-            const currentLang = document.querySelector('.current-lang');
-            const langOptions = document.querySelectorAll('.lang-option');
-            const flagClasses = {
-                'nl': 'fi-nl',
-                'en': 'fi-gb',
-                'de': 'fi-de'
-            };
-            const flagAlts = {
-                'nl': 'Nederlands',
-                'en': 'English',
-                'de': 'Deutsch'
-            };
-            currentLang.innerHTML = `<span class='flag-circle'><span class='fi ${flagClasses[lang] || flagClasses['nl']}'></span></span> ${lang.toUpperCase()}`;
-            // Update active state
-            langOptions.forEach(option => {
-                option.classList.remove('active');
-                if (option.getAttribute('href').includes(`lang=${lang}`)) {
-                    option.classList.add('active');
+                // Close dropdown when clicking outside
+                if (!document.body._langSwitcherClickHandler) {
+                    document.body._langSwitcherClickHandler = function(e) {
+                        if (!languageSwitcher.contains(e.target)) {
+                            languageSwitcher.classList.remove('active');
+                        }
+                    };
+                    document.addEventListener('click', document.body._langSwitcherClickHandler);
                 }
-            });
-            
-            // Re-attach event listeners after updating the element (unless called from initLanguageSwitcher)
-            if (!skipReinit) {
-                initLanguageSwitcher();
             }
+
+            // Remove possible duplicate handlers on lang-options
+            langOptions.forEach(option => {
+                const newOption = option.cloneNode(true);
+                option.parentNode.replaceChild(newOption, option);
+
+                newOption.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('href').split('=')[1];
+                    switchLanguage(lang);
+                    languageSwitcher.classList.remove('active');
+                });
+            });
         }
 
+        // GET CURRENT LANGUAGE
+        function getCurrentLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            return lang && translations[lang] ? lang : 'nl';
+        }
+
+        // SWITCH LANGUAGE (now calls re-initializer)
         function switchLanguage(lang) {
-            // Update URL without page reload
+            // Update URL
             const url = new URL(window.location);
             url.searchParams.set('lang', lang);
-            window.history.pushState({}, '', url);
-            
-            // Update current language display
-            updateCurrentLanguage(lang);
-            
-            // Translate the page content
+            window.history.replaceState({}, '', url);
+
+            // Update page content
             translatePage(lang);
-            
-            // Show notification
-            if (typeof window.nijenhuisWebsite !== 'undefined') {
-                window.nijenhuisWebsite.showNotification(
-                    lang === 'nl' ? 'Taal gewijzigd naar Nederlands' :
-                    lang === 'en' ? 'Language changed to English' :
-                    'Sprache zu Deutsch geändert'
-                );
+
+            // Update the current language display
+            const currentLang = document.querySelector('.current-lang');
+            if (currentLang) {
+                switch(lang) {
+                    case 'nl':
+                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
+                        break;
+                    case 'en':
+                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
+                        break;
+                    case 'de':
+                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
+                        break;
+                }
             }
+
+            // --- CRITICAL: Re-initialize event listeners on the replaced node
+            initLanguageSwitcher();
         }
 
         function translatePage(lang) {
@@ -2381,67 +2328,13 @@
             }
         });
 
-        // Initialize language switcher
+        // --- DOM READY LOGIC ---
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded - initializing language switcher');
-            
-            // Debug: Check if elements exist
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLang = document.querySelector('.current-lang');
-            const langOptions = document.querySelectorAll('.lang-option');
-            
-            console.log('Elements found:', {
-                languageSwitcher: !!languageSwitcher,
-                currentLang: !!currentLang,
-                langOptions: langOptions.length
-            });
-            
-            if (languageSwitcher) {
-                console.log('Language switcher HTML:', languageSwitcher.outerHTML);
-            }
-            
-            setupLanguageSwitcher();
-        });
+            const currentLang = getCurrentLanguage();
+            translatePage(currentLang);
 
-        // Also try immediate initialization
-        if (document.readyState === 'loading') {
-            console.log('Document still loading, waiting for DOMContentLoaded');
-        } else {
-            console.log('Document already loaded, initializing immediately');
-            setupLanguageSwitcher();
-        }
-
-        // Add a test function to manually trigger the dropdown
-        window.testLanguageDropdown = function() {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            if (languageSwitcher) {
-                languageSwitcher.classList.toggle('active');
-                console.log('Language dropdown toggled manually. Active:', languageSwitcher.classList.contains('active'));
-            } else {
-                console.error('Language switcher not found');
-            }
-        };
-
-        // Add a simple test button for debugging
-        document.addEventListener('DOMContentLoaded', function() {
-            const testButton = document.createElement('button');
-            testButton.textContent = 'Test Language Dropdown';
-            testButton.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 10000; background: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;';
-            testButton.onclick = function() {
-                console.log('Test button clicked');
-                testLanguageDropdown();
-            };
-            document.body.appendChild(testButton);
-            
-            // Add visual indicator to show the element is clickable
-            setTimeout(() => {
-                const currentLang = document.querySelector('.current-lang');
-                if (currentLang) {
-                    currentLang.style.border = '2px solid red';
-                    currentLang.style.backgroundColor = 'rgba(255, 0, 0, 0.1)';
-                    console.log('Added visual indicator to current-lang element');
-                }
-            }, 1000);
+            // Always (re-)initialize language switcher on load
+            initLanguageSwitcher();
         });
     </script>
 </body>
