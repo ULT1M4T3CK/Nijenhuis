@@ -35,33 +35,34 @@
                 </a>
                 
                 <ul class="nav-menu">
-                    <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                    <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                    <li><a href="te-koop.html">Te Koop</a></li>
-                    <li><a href="camping.html">Camping</a></li>
-                    <li><a href="jachthaven.html" class="active">Marina</a></li>
-                    <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <!-- ...other list items... -->
                     <li class="language-switcher">
-                        <a href="#" class="current-lang">
+                        <a href="#" class="current-lang" aria-haspopup="true" aria-expanded="false">
                             <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
                         </a>
-                        <div class="lang-dropdown">
-                            <a href="?lang=nl" class="lang-option active">
+                        <ul class="lang-dropdown" role="menu">
+                            <li><a href="?lang=nl" class="lang-option active" role="menuitem">
                                 <span class="flag-circle"><span class="fi fi-nl"></span></span>
                                 Nederlands
-                            </a>
-                            <a href="?lang=en" class="lang-option">
+                            </a></li>
+                            <li><a href="?lang=en" class="lang-option" role="menuitem">
                                 <span class="flag-circle"><span class="fi fi-gb"></span></span>
                                 English
-                            </a>
-                            <a href="?lang=de" class="lang-option">
+                            </a></li>
+                            <li><a href="?lang=de" class="lang-option" role="menuitem">
                                 <span class="flag-circle"><span class="fi fi-de"></span></span>
                                 Deutsch
-                            </a>
-                        </div>
+                            </a></li>
+                        </ul>
                     </li>
                 </ul>
+                
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -569,8 +570,8 @@
                     }
                 }
             });
-            
-            // Close dropdown when clicking outside
+
+        // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
                 const languageSwitcher = document.querySelector('.language-switcher');
                 if (languageSwitcher && !languageSwitcher.contains(e.target)) {
@@ -580,6 +581,44 @@
         }
 
         // Initialize page with current language
+        // Mobile menu functionality
+        function setupMobileMenu() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            mobileToggle?.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                updateMobileMenuIcon();
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileToggle?.contains(e.target) && !navMenu?.contains(e.target)) {
+                    navMenu?.classList.remove('active');
+                    updateMobileMenuIcon();
+                }
+            });
+        }
+
+        function updateMobileMenuIcon() {
+            const mobileToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navMenu?.classList.contains('active')) {
+                mobileToggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                `;
+            } else {
+                mobileToggle.innerHTML = `
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                `;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const currentLang = getCurrentLanguage();
             updatePageContent(currentLang);
@@ -589,6 +628,9 @@
             
             // Set up global event delegation for language switcher
             setupLanguageSwitcherEvents();
+            
+            // Set up mobile menu
+            setupMobileMenu();
 
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');

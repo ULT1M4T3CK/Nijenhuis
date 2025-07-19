@@ -1064,7 +1064,21 @@ section:nth-child(even) {
     }
     
     .mobile-menu-toggle {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: var(--primary-color);
+        border: none;
+        border-radius: var(--radius-md);
+        color: white;
+        cursor: pointer;
+        transition: var(--transition-fast);
+    }
+    
+    .mobile-menu-toggle:hover {
+        background: var(--primary-dark);
     }
     
     .nav-menu {
@@ -1902,17 +1916,117 @@ section:nth-child(even) {
 /* Mobile responsive chat widget */
 @media (max-width: 768px) {
     .chat-window {
-        width: calc(100vw - 40px);
-        height: 60vh;
+        width: 95vw;
+        height: 70vh;
         bottom: 80px;
-        right: 20px;
-        left: 20px;
+        right: 2.5vw;
+        left: 2.5vw;
+        max-width: 400px;
     }
     
     .chat-button {
         width: 50px;
         height: 50px;
         font-size: 20px;
+        right: 15px;
+        bottom: 15px;
+    }
+    
+    /* Improve booking form mobile layout */
+    .hero-layout {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .booking-form {
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    
+    .hero-content {
+        order: 1;
+        text-align: center;
+        width: 100%;
+    }
+    
+    /* Better mobile navigation */
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .mobile-menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: var(--primary-color);
+        border: none;
+        border-radius: var(--radius-md);
+        color: white;
+        cursor: pointer;
+        transition: var(--transition-fast);
+    }
+    
+    .mobile-menu-toggle:hover {
+        background: var(--primary-dark);
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+    
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .nav-menu li {
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nav-menu a {
+        padding: 1rem 1.5rem;
+        display: block;
+        font-size: 1.1rem;
+    }
+    
+    .nav-menu .language-switcher {
+        border-bottom: none;
+    }
+    
+    .nav-menu .language-switcher .current-lang {
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .nav-menu .language-switcher .lang-dropdown {
+        position: static;
+        box-shadow: none;
+        border-top: 1px solid #eee;
+        background: #f8f9fa;
+    }
+    
+    .nav-menu .language-switcher.active .lang-dropdown {
+        display: block;
     }
 } /* Shared Styles for Nijenhuis Website */
 :root {
