@@ -64,15 +64,34 @@ function setupMobileMenu() {
 
     if (!mobileToggle || !navMenu) return;
 
-    mobileToggle.addEventListener('click', () => {
+    // Handle both click and touch events for better mobile support
+    const toggleMenu = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isActive = navMenu.classList.contains('active');
         navMenu.classList.toggle('active');
+        mobileToggle.setAttribute('aria-expanded', !isActive);
         updateMobileMenuIcon();
-    });
+    };
+
+    // Add multiple event listeners for better mobile support
+    mobileToggle.addEventListener('click', toggleMenu);
+    mobileToggle.addEventListener('touchend', toggleMenu);
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            updateMobileMenuIcon();
+        }
+    });
+
+    // Close menu when touching outside (for mobile)
+    document.addEventListener('touchend', (e) => {
+        if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
             updateMobileMenuIcon();
         }
     });

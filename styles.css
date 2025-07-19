@@ -319,6 +319,8 @@ section:nth-child(even) {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-md) 0;
+    position: relative;
+    z-index: var(--z-sticky);
 }
 
 .logo {
@@ -375,6 +377,15 @@ section:nth-child(even) {
     padding: var(--spacing-xs);
     border-radius: var(--radius-md);
     transition: var(--transition-fast);
+    /* Ensure proper touch handling */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    /* Ensure it's clickable */
+    position: relative;
+    z-index: var(--z-fixed);
+    /* Minimum touch target size */
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .mobile-menu-toggle:hover {
@@ -1091,10 +1102,38 @@ section:nth-child(even) {
         color: white;
         cursor: pointer;
         transition: var(--transition-fast);
+        /* Ensure proper touch handling */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        /* Ensure it's clickable */
+        position: relative;
+        z-index: var(--z-fixed);
+        /* Prevent text selection */
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        /* Ensure proper focus */
+        outline: none;
     }
     
     .mobile-menu-toggle:hover {
         background: var(--primary-dark);
+    }
+    
+    .mobile-menu-toggle:focus {
+        background: var(--primary-dark);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+    
+    .mobile-menu-toggle:active {
+        background: var(--secondary-color);
+        transform: scale(0.95);
+    }
+    
+    .mobile-menu-toggle:active {
+        background: var(--secondary-color);
+        transform: scale(0.95);
     }
     
     .nav-menu {
