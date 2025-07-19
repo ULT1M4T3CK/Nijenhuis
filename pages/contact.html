@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nijenhuis Botenverhuur</title>
+    <meta name="description" content="Neem contact op met Nijenhuis Botenverhuur. Adres, telefoon en contactformulier.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.0.0/css/flag-icons.min.css">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <span>Openingstijden: 9:00 - 18:00 | </span>
+                    <a href="tel:+31522281528">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        0522 - 281 528
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="../index.html" class="logo-link">
+                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
+                </a>
+                
+                <ul class="nav-menu">
+                    <li><a href="botenverhuur.html">Botenverhuur</a></li>
+                    <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
+                    <li><a href="te-koop.html">Te Koop</a></li>
+                    <li><a href="camping.html">Camping</a></li>
+                    <li><a href="jachthaven.html">Marina</a></li>
+                    <li><a href="vaarkaart.html">Vaarkaart</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li class="language-switcher">
+                        <span class="current-lang">
+                            <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
+                        </span>
+                        <div class="lang-dropdown">
+                            <a href="?lang=nl" class="lang-option active">
+                                <span class="flag-circle"><span class="fi fi-nl"></span></span>
+                            Nederlands
+                        </a>
+                            <a href="?lang=en" class="lang-option">
+                                <span class="flag-circle"><span class="fi fi-gb"></span></span>
+                            English
+                        </a>
+                            <a href="?lang=de" class="lang-option">
+                                <span class="flag-circle"><span class="fi fi-de"></span></span>
+                            Deutsch
+                        </a>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Contact</h1>
+            <p>Neem contact met ons op voor vragen, reserveringen of meer informatie</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Contact Information -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contactgegevens</h2>
+                    <p>Wij staan klaar om u te helpen</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Informatie</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h4>Adres</h4>
+                                <p>Veneweg 199<br>7946 LP Wanneperveen<br>Nederland</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div class="contact-details">
+                                <h4>Telefoon</h4>
+                                <p>0522 281 528</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>info@nijenhuis-botenverhuur.nl</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-details">
+                                <h4>Openingstijden</h4>
+                                <p>Dagelijks: 09:00 - 18:00 uur<br>Seizoen: 1 april - 1 november</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div class="contact-details">
+                                <h4>Bedrijfsgegevens</h4>
+                                <p>Kvk: 6769 7097<br>Btw nr: NL 195153637 B01</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Stuur ons een bericht</h3>
+                        <form id="contactForm" action="https://formspree.io/f/xpzgwqjq" method="POST">
+                            <div class="form-group">
+                                <label for="name">Naam *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefoon</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Onderwerp *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Selecteer een onderwerp</option>
+                                    <option value="botenverhuur">Botenverhuur</option>
+                                    <option value="vakantiehuis">Vakantiehuis</option>
+                                    <option value="camping">Camping</option>
+                                    <option value="marina">Marina</option>
+                                    <option value="reservering">Reservering</option>
+                                    <option value="algemeen">Algemene vraag</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Bericht *</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+
+                            <input type="hidden" name="_next" value="https://nijenhuis-botenverhuur.nl/pages/contact.html?success=true">
+                            <input type="hidden" name="_subject" value="Nieuw contactformulier bericht - Nijenhuis Botenverhuur">
+                            <input type="hidden" name="_replyto" value="info@nijenhuis-botenverhuur.nl">
+
+                            <button type="submit" class="btn">Verstuur Bericht</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map -->
+        <section class="content-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Waar vindt u ons</h2>
+                    <p>Bekijk onze locatie op de kaart</p>
+                </div>
+
+                <div class="map-section">
+                    <div class="map-container">
+                        <iframe 
+                            class="map-frame"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77373.91668916645!2d6.077958504433576!3d52.69726901355547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c871953a3891e5%3A0x1a70802adc308067!2sVeneweg+199%2C+7946+LP+Wanneperveen!5e0!3m2!1sen!2snl!4v1552921192864" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="height: 60px; margin-bottom: 15px;">
+                    <p>Uw toegangspoort tot het prachtige natuurgebied Weerribben.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li>Nijenhuis Botenverhuur</li>
+                        <li>Camping & Jachthaven</li>
+                        <li>Veneweg 199</li>
+                        <li>7946 LP Wanneperveen</li>
+                        <li>Tel: 0522 281 528</li>
+                        <li>Kvk: 6769 7097</li>
+                        <li>Btw nr: NL 195153637 B01</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="botenverhuur.html">Botenverhuur</a></li>
+                        <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
+                        <li><a href="te-koop.html">Te Koop</a></li>
+                        <li><a href="camping.html">Camping</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="jachthaven.html">Marina</a></li>
+                        <li><a href="vaarkaart.html">Vaarkaart</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton" aria-label="Open chat">
+            💬
+        </button>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Nijenhuis Support</h3>
+                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500">
+                <button class="chat-send" id="chatSend" aria-label="Send message">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('Script loaded successfully!');
+        
+        // Basic translation system
+        const translations = {
+            nl: {
+                'boat-hire': 'Botenverhuur',
+                'holiday-home': 'Vakantiehuis',
+                'for-sale': 'Te Koop',
+                'camping': 'Camping',
+                'marina': 'Marina',
+                'sailing-map': 'Vaarkaart',
+                'contact': 'Contact',
+                'hero-title': 'Contact',
+                'hero-subtitle': 'Neem contact met ons op voor meer informatie en reserveringen',
+                'contact-info': 'Contactgegevens',
+                'services': 'Diensten',
+                'more-information': 'Meer Informatie',
+                'all-rights-reserved': 'Alle rechten voorbehouden'
+            },
+            en: {
+                'boat-hire': 'Boat Rental',
+                'holiday-home': 'Holiday Home',
+                'for-sale': 'For Sale',
+                'camping': 'Camping',
+                'marina': 'Marina',
+                'sailing-map': 'Sailing Map',
+                'contact': 'Contact',
+                'hero-title': 'Contact',
+                'hero-subtitle': 'Contact us for more information and reservations',
+                'contact-info': 'Contact Information',
+                'services': 'Services',
+                'more-information': 'More Information',
+                'all-rights-reserved': 'All rights reserved'
+            },
+            de: {
+                'boat-hire': 'Bootsverleih',
+                'holiday-home': 'Ferienhaus',
+                'for-sale': 'Zu Verkaufen',
+                'camping': 'Camping',
+                'marina': 'Marina',
+                'sailing-map': 'Seekarte',
+                'contact': 'Kontakt',
+                'hero-title': 'Kontakt',
+                'hero-subtitle': 'Kontaktieren Sie uns für weitere Informationen und Reservierungen',
+                'contact-info': 'Kontaktinformationen',
+                'services': 'Dienstleistungen',
+                'more-information': 'Weitere Informationen',
+                'all-rights-reserved': 'Alle Rechte vorbehalten'
+            }
+        };
+
+        function getCurrentLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            return lang && translations[lang] ? lang : 'nl';
+        }
+
+        function updatePageContent(lang) {
+            const t = translations[lang] || translations.nl;
+            
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks[0].textContent = t['boat-hire'];
+            navLinks[1].textContent = t['holiday-home'];
+            navLinks[2].textContent = t['for-sale'];
+            navLinks[3].textContent = t['camping'];
+            navLinks[4].textContent = t['marina'];
+            navLinks[5].textContent = t['sailing-map'];
+            navLinks[6].textContent = t['contact'];
+            
+            // Update hero section
+            document.querySelector('.page-header h1').textContent = t['hero-title'];
+            document.querySelector('.page-header p').textContent = t['hero-subtitle'];
+            
+            // Update footer - titles removed, no longer need to update footer section titles
+            document.querySelector('.footer-bottom p').textContent = '© 2025 Nijenhuis Botenverhuur. ' + t['all-rights-reserved'];
+        }
+
+        function switchLanguage(lang) {
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.replaceState({}, '', url);
+            updatePageContent(lang);
+            
+            // Update the current language display
+            const currentLang = document.querySelector('.current-lang');
+            const flagCircle = currentLang.querySelector('.flag-circle .fi');
+            
+            // Update flag and text based on selected language
+            switch(lang) {
+                case 'nl':
+                    flagCircle.className = 'fi fi-nl';
+                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
+                    break;
+                case 'en':
+                    flagCircle.className = 'fi fi-gb';
+                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
+                    break;
+                case 'de':
+                    flagCircle.className = 'fi fi-de';
+                    currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
+                    break;
+            }
+        }
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            // Let the form submit naturally to Formspree
+            // The form will be handled by Formspree and redirect to success page
+        });
+
+        // Check for success parameter in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.className = 'success-message';
+            successMessage.innerHTML = `
+                <div class="success-content">
+                    <h3>✅ Bericht succesvol verzonden!</h3>
+                    <p>Bedankt voor uw bericht. Wij nemen zo spoedig mogelijk contact met u op via het opgegeven emailadres.</p>
+                    <p><strong>Uw bericht is verzonden naar: info@nijenhuis-botenverhuur.nl</strong></p>
+                </div>
+            `;
+            
+            // Insert at the top of the main content
+            const main = document.querySelector('main');
+            main.insertBefore(successMessage, main.firstChild);
+            
+            // Remove success parameter from URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLang = getCurrentLanguage();
+            updatePageContent(currentLang);
+            
+            // Language Switcher Functionality
+            console.log('Looking for language elements...');
+            const languageSwitcher = document.querySelector('.language-switcher');
+            const currentLangBtn = document.querySelector('.current-lang');
+            
+            console.log('Language switcher found:', languageSwitcher);
+            console.log('Current lang button found:', currentLangBtn);
+            
+            if (currentLangBtn) {
+                console.log('Adding click listener to language button');
+                currentLangBtn.addEventListener('click', function(e) {
+                    console.log('Language button clicked!');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    languageSwitcher.classList.toggle('active');
+                    console.log('Active class added:', languageSwitcher.classList.contains('active'));
+                });
+            } else {
+                console.log('Language button not found!');
+            }
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!languageSwitcher.contains(e.target)) {
+                    languageSwitcher.classList.remove('active');
+                }
+            });
+
+            // Handle language option clicks
+            const langOptions = document.querySelectorAll('.lang-option');
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('href').split('=')[1];
+                    switchLanguage(lang);
+                    languageSwitcher.classList.remove('active');
+                });
+            });
+            
+            // Chat Widget Functionality
+            const chatButton = document.getElementById('chatButton');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatClose = document.getElementById('chatClose');
+            const chatInput = document.getElementById('chatInput');
+            const chatSend = document.getElementById('chatSend');
+            const chatMessages = document.getElementById('chatMessages');
+
+            // Toggle chat window
+            chatButton.addEventListener('click', () => {
+                chatWindow.classList.toggle('active');
+                if (chatWindow.classList.contains('active')) {
+                    chatInput.focus();
+                }
+            });
+
+            // Close chat window
+            chatClose.addEventListener('click', () => {
+                chatWindow.classList.remove('active');
+            });
+
+            // Send message on Enter key
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            // Send message on button click
+            chatSend.addEventListener('click', sendMessage);
+
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                // Add user message
+                addMessage(message, 'user');
+                chatInput.value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const responses = [
+                        'Bedankt voor uw bericht! Wij nemen zo spoedig mogelijk contact met u op.',
+                        'Hallo! Hoe kan ik u helpen met uw vraag over onze botenverhuur?',
+                        'Voor directe hulp kunt u ook bellen naar 0522 281 528.',
+                        'Wilt u meer informatie over onze boten of reserveringen?'
+                    ];
+                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                    addMessage(randomResponse, 'bot');
+                }, 1000);
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${sender}`;
+                
+                const time = new Date().toLocaleTimeString('nl-NL', { 
+                    hour: '2-digit', 
+                    minute: '2-digit' 
+                });
+                
+                messageDiv.innerHTML = `
+                    <div class="message-bubble">${text}</div>
+                    <div class="message-time">${time}</div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            // Add welcome message when chat is opened
+            chatButton.addEventListener('click', function() {
+                if (chatWindow.classList.contains('active') && chatMessages.children.length === 0) {
+                    setTimeout(() => {
+                        addMessage('Hallo! Welkom bij Nijenhuis Botenverhuur. Hoe kan ik u helpen?', 'bot');
+                    }, 500);
+                }
+            }, { once: false });
+        });
+    </script>
+</body>
+</html> 

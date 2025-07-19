@@ -1,0 +1,62 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://nijenhuis-botenverhuur.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /backup/
+
+# Allow important pages
+Allow: /en/
+Allow: /en/boat-hire/
+Allow: /en/camping-giethoorn-wanneperveen/
+Allow: /en/marina-giethoorn-wanneperveen/
+Allow: /en/holiday-home-giethoorn-wanneperveen/
+Allow: /en/contact/
+Allow: /en/sailing-map/
+
+# Allow static assets
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+
+# Specific rules for different bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Block archive.org for privacy
+User-agent: ia_archiver
+Disallow: / 
