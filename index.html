@@ -76,6 +76,24 @@
         .fi-de:before {
             content: '🇩🇪';
         }
+        
+        /* Ensure flag icons are visible */
+        .flag-circle {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .flag-circle .fi {
+            font-size: 16px;
+            line-height: 20px;
+            display: block;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -1345,10 +1363,9 @@
 
         function setupLanguageSwitcher() {
             const currentLang = document.querySelector('.current-lang');
-            const langOptions = document.querySelectorAll('.lang-option');
             const languageSwitcher = document.querySelector('.language-switcher');
             
-            console.log('Setting up language switcher:', { currentLang, langOptions, languageSwitcher });
+            console.log('Setting up language switcher:', { currentLang, languageSwitcher });
             
             if (!currentLang || !languageSwitcher) {
                 console.error('Language switcher elements not found');
@@ -1373,11 +1390,13 @@
             });
             
             // Handle language option clicks
+            const langOptions = document.querySelectorAll('.lang-option');
             langOptions.forEach(option => {
                 option.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    const lang = option.getAttribute('href').split('=')[1];
+                    const href = option.getAttribute('href');
+                    const lang = href.split('=')[1];
                     console.log('Language option clicked:', lang);
                     switchLanguage(lang);
                     languageSwitcher.classList.remove('active');
