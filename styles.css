@@ -93,6 +93,22 @@
     padding: 0;
 }
 
+/* Mobile-specific fixes */
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure proper mobile rendering */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-overflow-scrolling: touch;
+}
+
 html {
     background-color: #ffffff !important;
     scroll-behavior: smooth;
@@ -3644,5 +3660,12 @@ body {
     .modal-boats {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+    }
+}
+
+/* Hide mobile menu toggle on desktop */
+@media (min-width: 769px) {
+    .mobile-menu-toggle {
+        display: none !important;
     }
 } 
