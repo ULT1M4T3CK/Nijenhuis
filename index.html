@@ -2312,8 +2312,28 @@
 
         // Initialize language switcher
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded - initializing language switcher');
             setupLanguageSwitcher();
         });
+
+        // Also try immediate initialization
+        if (document.readyState === 'loading') {
+            console.log('Document still loading, waiting for DOMContentLoaded');
+        } else {
+            console.log('Document already loaded, initializing immediately');
+            setupLanguageSwitcher();
+        }
+
+        // Add a test function to manually trigger the dropdown
+        window.testLanguageDropdown = function() {
+            const languageSwitcher = document.querySelector('.language-switcher');
+            if (languageSwitcher) {
+                languageSwitcher.classList.toggle('active');
+                console.log('Language dropdown toggled manually. Active:', languageSwitcher.classList.contains('active'));
+            } else {
+                console.error('Language switcher not found');
+            }
+        };
     </script>
 </body>
 </html>

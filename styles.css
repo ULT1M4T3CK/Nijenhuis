@@ -1112,18 +1112,28 @@ section:nth-child(even) {
     }
     
     .nav-menu .language-switcher .lang-dropdown {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--secondary-color);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        min-width: 120px;
+        z-index: 10000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 5px;
     }
     
     .nav-menu .language-switcher.active .lang-dropdown {
-        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        display: block !important;
+        pointer-events: auto;
     }
     
     .hero {
