@@ -1223,6 +1223,23 @@ section:nth-child(even) {
     .service-card {
         padding: var(--spacing-lg);
     }
+    
+    /* Extra small screen chat widget fixes */
+    .chat-window {
+        width: calc(100vw - 20px) !important;
+        right: 10px !important;
+        left: 10px !important;
+        height: 60vh !important;
+        bottom: 70px !important;
+    }
+    
+    .chat-button {
+        right: 10px;
+        bottom: 10px;
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
 }
 
 /* Print Styles */
@@ -1915,21 +1932,27 @@ section:nth-child(even) {
 
 /* Mobile responsive chat widget */
 @media (max-width: 768px) {
+    .chat-widget {
+        right: 15px;
+        bottom: 15px;
+    }
+    
     .chat-window {
-        width: 95vw;
-        height: 70vh;
-        bottom: 80px;
-        right: 2.5vw;
-        left: 2.5vw;
-        max-width: 400px;
+        position: fixed !important;
+        width: calc(100vw - 30px) !important;
+        height: 70vh !important;
+        bottom: 80px !important;
+        right: 15px !important;
+        left: 15px !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        transform: none !important;
     }
     
     .chat-button {
         width: 50px;
         height: 50px;
         font-size: 20px;
-        right: 15px;
-        bottom: 15px;
     }
     
     /* Improve booking form mobile layout */
