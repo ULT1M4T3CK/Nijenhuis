@@ -136,15 +136,15 @@
                             <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
                         </span>
                         <div class="lang-dropdown">
-                            <a href="?lang=nl" class="lang-option active">
+                            <a href="?lang=nl" class="lang-option active" data-lang="nl">
                                 <span class="flag-circle"><span class="fi fi-nl"></span></span>
                                 Nederlands
                             </a>
-                            <a href="?lang=en" class="lang-option">
+                            <a href="?lang=en" class="lang-option" data-lang="en">
                                 <span class="flag-circle"><span class="fi fi-gb"></span></span>
                                 English
                             </a>
-                            <a href="?lang=de" class="lang-option">
+                            <a href="?lang=de" class="lang-option" data-lang="de">
                                 <span class="flag-circle"><span class="fi fi-de"></span></span>
                                 Deutsch
                             </a>
@@ -1382,21 +1382,11 @@
             
             // Handle current language click to toggle dropdown
             currentLang.addEventListener('click', (e) => {
-                console.log('=== Language switcher click event triggered ===');
-                console.log('Event target:', e.target);
-                console.log('Current target:', e.currentTarget);
-                console.log('Event type:', e.type);
-                
                 e.preventDefault();
                 e.stopPropagation();
-                
                 console.log('Language switcher clicked, toggling active state');
-                console.log('Before toggle - active:', languageSwitcher.classList.contains('active'));
-                
                 languageSwitcher.classList.toggle('active');
-                
-                console.log('After toggle - active:', languageSwitcher.classList.contains('active'));
-                console.log('Language switcher classes:', languageSwitcher.className);
+                console.log('Language switcher active:', languageSwitcher.classList.contains('active'));
             });
             
             // Handle language option clicks
@@ -1405,11 +1395,13 @@
                 option.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    const href = option.getAttribute('href');
-                    const lang = href.split('=')[1];
-                    console.log('Language option clicked:', lang);
-                    switchLanguage(lang);
-                    languageSwitcher.classList.remove('active');
+                    // Use data attribute for robustness
+                    const lang = option.dataset.lang || (option.getAttribute('href') ? option.getAttribute('href').split('=')[1] : null);
+                    if (lang) {
+                        console.log('Language option clicked:', lang);
+                        switchLanguage(lang);
+                        languageSwitcher.classList.remove('active');
+                    }
                 });
             });
             
