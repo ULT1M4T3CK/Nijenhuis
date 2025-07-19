@@ -36,8 +36,10 @@ function setupLanguageSwitcher() {
                 // Store language preference
                 localStorage.setItem('preferred-language', lang);
                 
-                // Optional: Reload page with new language
-                // window.location.href = `?lang=${lang}`;
+                // Call translation function if it exists (for index.html)
+                if (typeof switchLanguage === 'function') {
+                    switchLanguage(lang);
+                }
             }
         });
     });
