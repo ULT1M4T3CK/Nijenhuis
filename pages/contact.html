@@ -382,7 +382,7 @@
             // Let the form submit naturally to Formspree
             // The form will be handled by Formspree and redirect to success page
         });
-
+            
         // Check for success parameter in URL
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('success') === 'true') {
