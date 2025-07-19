@@ -652,9 +652,9 @@
                     e.stopPropagation();
                     languageSwitcher.classList.toggle('active');
                 });
-        }
+            }
 
-        // Close dropdown when clicking outside
+            // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
                 if (!languageSwitcher.contains(e.target)) {
                     languageSwitcher.classList.remove('active');
