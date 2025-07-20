@@ -3710,4 +3710,98 @@ body {
     .mobile-menu-toggle {
         display: none !important;
     }
+}
+
+/* Modal slideshow styles */
+.modal-boat-slideshow {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.modal-boat-slideshow .slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    margin-bottom: 0;
+}
+
+.modal-boat-slideshow .slide {
+    min-width: 100%;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-boat-slideshow .slide.active {
+    opacity: 1;
+}
+
+.modal-boat-slideshow .slideshow-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 10;
+}
+
+.modal-boat-slideshow .slideshow-btn {
+    position: static;
+    transform: none;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 14px;
+    transition: background 0.3s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-boat-slideshow .slideshow-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-boat-slideshow .slideshow-dots {
+    position: static;
+    transform: none;
+    display: flex;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.modal-boat-slideshow .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.modal-boat-slideshow .dot.active,
+.modal-boat-slideshow .dot:hover {
+    background: white;
 } 

@@ -326,24 +326,36 @@
         // Boat data for modal
         const boatData = {
             electric: [
-                { name: 'Electrosloep for 8', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloop-8.jpg' },
-                { name: 'Electrosloep for 10', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloop-10.jpg' },
-                { name: 'Electrosloep for 5', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electroboat-5.jpg' }
+                { name: 'Electrosloep for 8', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg' },
+                { name: 'Electrosloep for 10', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
+                { name: 'Electrosloep for 5', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' }
             ],
             gasoline: [
-                { name: 'Classic Tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720-10-12.jpg' },
-                { name: 'Classic Tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570-8.jpg' }
+                { name: 'Classic Tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
+                    '../Images/Boats/tender-720/104831747849501502092021.jpg',
+                    '../Images/Boats/tender-720/125324337810511502092021.jpg',
+                    '../Images/Boats/tender-720/149033913309511502092021.jpg',
+                    '../Images/Boats/tender-720/168856508710511502092021.jpg',
+                    '../Images/Boats/tender-720/168856508710511502092021 (1).jpg',
+                    '../Images/Boats/tender-720/192454903409511502092021.jpg',
+                    '../Images/Boats/tender-720/193735011109511502092021.jpg',
+                    '../Images/Boats/tender-720/24662537210511502092021.jpg',
+                    '../Images/Boats/tender-720/51263685510511502092021.jpg',
+                    '../Images/Boats/tender-720/60035623109511502092021.jpg',
+                    '../Images/Boats/tender-720/90763066509511502092021.jpg'
+                ] },
+                { name: 'Classic Tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570/tender-570-8.jpg' }
             ],
             sailing: [
-                { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot-4-5.jpg' },
-                { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot-4-5.jpg' }
+                { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
+                { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' }
             ],
             canoe: [
-                { name: 'Canadese Kano for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe-3.jpg' },
-                { name: 'Kajakk for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2.jpg' }
+                { name: 'Canadese Kano for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
+                { name: 'Kajakk for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg' }
             ],
             sup: [
-                { name: 'Sup Board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/sub-1.jpg' }
+                { name: 'Sup Board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg' }
             ]
         };
 
@@ -451,6 +463,50 @@
                 
                 document.body.appendChild(infoModal);
             }
+        }
+
+        // Slideshow functions
+        function changeSlide(slideshowId, direction) {
+            const slideshow = document.getElementById(slideshowId);
+            if (!slideshow) return;
+            
+            const slides = slideshow.querySelectorAll('.slide');
+            const dots = slideshow.querySelectorAll('.dot');
+            let currentIndex = 0;
+            
+            // Find current active slide
+            slides.forEach((slide, index) => {
+                if (slide.classList.contains('active')) {
+                    currentIndex = index;
+                }
+            });
+            
+            // Calculate new index
+            let newIndex = currentIndex + direction;
+            if (newIndex >= slides.length) newIndex = 0;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            
+            // Update slides and dots
+            slides[currentIndex].classList.remove('active');
+            slides[newIndex].classList.add('active');
+            dots[currentIndex].classList.remove('active');
+            dots[newIndex].classList.add('active');
+        }
+
+        function currentSlide(slideshowId, index) {
+            const slideshow = document.getElementById(slideshowId);
+            if (!slideshow) return;
+            
+            const slides = slideshow.querySelectorAll('.slide');
+            const dots = slideshow.querySelectorAll('.dot');
+            
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to selected slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
         }
 
         // Translation system
@@ -962,14 +1018,41 @@
                             const boatCard = document.createElement('div');
                             boatCard.className = 'modal-boat-card';
                             
-                            // Create image element with fallback
-                            const imageHtml = boat.image ? 
-                                `<div class="modal-boat-image" style="background-image: url('${boat.image}')">
-                                    <img src="${boat.image}" alt="${boat.name}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
-                                </div>` :
-                                `<div class="modal-boat-image placeholder">
-                                    <span>${boat.name}</span>
-                                </div>`;
+                            // Create image element with slideshow if available
+                            let imageHtml;
+                            if (boat.slideshow && boat.slideshow.length > 1) {
+                                // Create slideshow
+                                const slideshowId = 'slideshow-' + Math.random().toString(36).substr(2, 9);
+                                imageHtml = `
+                                    <div class="modal-boat-slideshow" id="${slideshowId}">
+                                        <div class="slideshow-container">
+                                            ${boat.slideshow.map((img, index) => `
+                                                <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${img}')">
+                                                    <img src="${img}" alt="${boat.name} - Foto ${index + 1}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="slideshow-controls">
+                                            <button class="slideshow-btn prev" onclick="changeSlide('${slideshowId}', -1)">❮</button>
+                                            <div class="slideshow-dots">
+                                                ${boat.slideshow.map((_, index) => `
+                                                    <span class="dot ${index === 0 ? 'active' : ''}" onclick="currentSlide('${slideshowId}', ${index})"></span>
+                                                `).join('')}
+                                            </div>
+                                            <button class="slideshow-btn next" onclick="changeSlide('${slideshowId}', 1)">❯</button>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                // Single image
+                                imageHtml = boat.image ? 
+                                    `<div class="modal-boat-image" style="background-image: url('${boat.image}')">
+                                        <img src="${boat.image}" alt="${boat.name}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
+                                    </div>` :
+                                    `<div class="modal-boat-image placeholder">
+                                        <span>${boat.name}</span>
+                                    </div>`;
+                            }
                             
                             boatCard.innerHTML = `
                                 ${imageHtml}
