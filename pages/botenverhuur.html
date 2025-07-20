@@ -99,6 +99,11 @@
                         <h3>Elektrische Boten</h3>
                         <p>Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.</p>
                     </div>
+                    <div class="category-card" data-category="gasoline">
+                        <div class="category-icon">⛽</div>
+                        <h3>Benzine Boten</h3>
+                        <p>Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.</p>
+                    </div>
                     <div class="category-card" data-category="sailing">
                         <div class="category-icon">⛵</div>
                         <h3>Zeilboten</h3>
@@ -333,11 +338,13 @@
         // Boat data for modal
         const boatData = {
             electric: [
-                { name: 'Tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720-10-12.jpg' },
                 { name: 'Electrosloop 10', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloop-10.jpg' },
-                { name: 'Tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570-8.jpg' },
                 { name: 'Electrosloop 8', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloop-8.jpg' },
                 { name: 'Electroboot 5', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electroboat-5.jpg' }
+            ],
+            gasoline: [
+                { name: 'Tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720-10-12.jpg' },
+                { name: 'Tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570-8.jpg' }
             ],
             sailing: [
                 { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot-4-5.jpg' },
@@ -353,6 +360,122 @@
                 { name: 'SUP Board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/sub-1.jpg' }
             ]
         };
+
+        // Function to show boat information
+        function showBoatInfo(boatName) {
+            const boatInfo = {
+                'Tender 720': {
+                    description: 'Een krachtige benzinemotor boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
+                    features: ['10-12 personen capaciteit', 'Benzinemotor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families'],
+                    specifications: 'Lengte: 7.2m, Motor: Benzine, Max snelheid: 15 km/u'
+                },
+                'Tender 570': {
+                    description: 'Een comfortabele benzinemotor boot voor middelgrote groepen. Ideaal voor dagtochten.',
+                    features: ['8 personen capaciteit', 'Benzinemotor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten'],
+                    specifications: 'Lengte: 5.7m, Motor: Benzine, Max snelheid: 12 km/u'
+                },
+                'Electrosloop 10': {
+                    description: 'Een milieuvriendelijke elektrische boot voor grotere groepen. Stil en duurzaam.',
+                    features: ['10 personen capaciteit', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Grote ruimte', 'Perfect voor natuurgebied'],
+                    specifications: 'Lengte: 6.5m, Motor: Elektrisch, Max snelheid: 8 km/u'
+                },
+                'Electrosloop 8': {
+                    description: 'Een compacte elektrische boot voor kleinere groepen. Stil en wendbaar.',
+                    features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor kleine groepen'],
+                    specifications: 'Lengte: 5.8m, Motor: Elektrisch, Max snelheid: 8 km/u'
+                },
+                'Electroboot 5': {
+                    description: 'Een kleine elektrische boot voor gezinnen. Perfect voor rustige vaartochten.',
+                    features: ['5 personen capaciteit', 'Elektrische motor', 'Stil en veilig', 'Compact', 'Geschikt voor gezinnen'],
+                    specifications: 'Lengte: 4.2m, Motor: Elektrisch, Max snelheid: 6 km/u'
+                },
+                'Zeilboot (zonder motor)': {
+                    description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
+                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers'],
+                    specifications: 'Lengte: 5.5m, Aandrijving: Zeil, Max snelheid: Afhankelijk van wind'
+                },
+                'Zeilboot (met motor)': {
+                    description: 'Een zeilboot met hulpmotor voor meer flexibiliteit. Ideaal voor beginners en ervaren zeilers.',
+                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus'],
+                    specifications: 'Lengte: 5.5m, Aandrijving: Zeil + motor, Max snelheid: 8 km/u'
+                },
+                'Zeilpunter': {
+                    description: 'Een kleine traditionele zeilboot. Perfect voor rustige vaartochten.',
+                    features: ['3-4 personen capaciteit', 'Zeilen', 'Traditioneel', 'Compact', 'Rustig'],
+                    specifications: 'Lengte: 4.8m, Aandrijving: Zeil, Max snelheid: 6 km/u'
+                },
+                'Canadese Kano': {
+                    description: 'Een stabiele kano voor sportieve activiteiten. Perfect voor het verkennen van kleinere waterwegen.',
+                    features: ['3 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen'],
+                    specifications: 'Lengte: 4.5m, Type: Kano, Gewicht: 35kg'
+                },
+                'Kajak 2-persoons': {
+                    description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
+                    features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen'],
+                    specifications: 'Lengte: 4.2m, Type: Kajak, Gewicht: 28kg'
+                },
+                'Kajak 1-persoons': {
+                    description: 'Een individuele kajak voor solo avonturen. Perfect voor rustige vaartochten.',
+                    features: ['1 persoon capaciteit', 'Individueel', 'Wendbaar', 'Compact', 'Voor solo avonturen'],
+                    specifications: 'Lengte: 3.8m, Type: Kajak, Gewicht: 22kg'
+                },
+                'SUP Board': {
+                    description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
+                    features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring'],
+                    specifications: 'Lengte: 3.2m, Type: SUP Board, Gewicht: 12kg'
+                }
+            };
+
+            const info = boatInfo[boatName];
+            if (info) {
+                const infoHtml = `
+                    <div style="background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 20px auto;">
+                        <h3 style="color: var(--primary-color); margin-bottom: 15px;">${boatName}</h3>
+                        <p style="margin-bottom: 15px; line-height: 1.6;">${info.description}</p>
+                        
+                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Kenmerken:</h4>
+                        <ul style="margin-bottom: 15px; padding-left: 20px;">
+                            ${info.features.map(feature => `<li style="margin-bottom: 5px;">${feature}</li>`).join('')}
+                        </ul>
+                        
+                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Specificaties:</h4>
+                        <p style="margin-bottom: 15px; font-weight: 600;">${info.specifications}</p>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <a href="tel:0522281528" class="btn" style="display: inline-block; padding: 10px 25px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
+                                📞 Direct Reserveren
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                // Create a modal for boat info
+                const infoModal = document.createElement('div');
+                infoModal.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                    background: rgba(0,0,0,0.8); z-index: 10000; display: flex; 
+                    align-items: center; justify-content: center; padding: 20px;
+                `;
+                infoModal.innerHTML = infoHtml;
+                
+                // Close on click outside
+                infoModal.addEventListener('click', (e) => {
+                    if (e.target === infoModal) {
+                        document.body.removeChild(infoModal);
+                    }
+                });
+                
+                // Close on escape key
+                document.addEventListener('keydown', function closeOnEscape(e) {
+                    if (e.key === 'Escape') {
+                        document.body.removeChild(infoModal);
+                        document.removeEventListener('keydown', closeOnEscape);
+                    }
+                });
+                
+                document.body.appendChild(infoModal);
+            }
+        }
 
         // Translation system
         const translations = {
@@ -386,6 +509,8 @@
                 // Categories
                 'electric-boats': 'Elektrische Boten',
                 'electric-boats-desc': 'Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.',
+                'gasoline-boats': 'Benzine Boten',
+                'gasoline-boats-desc': 'Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.',
                 'sailboats': 'Zeilboten',
                 'sailboats-desc': 'Traditionele zeilboten voor de ervaren zeiler. Geniet van de wind en de natuur.',
                 'canoes-kayaks': 'Kano\'s & Kajaks',
@@ -446,6 +571,8 @@
                 // Categories
                 'electric-boats': 'Electric Boats',
                 'electric-boats-desc': 'Environmentally friendly boats with electric propulsion, perfect for quiet cruises through the nature reserve.',
+                'gasoline-boats': 'Gasoline Boats',
+                'gasoline-boats-desc': 'Powerful boats with gasoline engines, ideal for larger groups and longer trips.',
                 'sailboats': 'Sailboats',
                 'sailboats-desc': 'Traditional sailboats for the experienced sailor. Enjoy the wind and nature.',
                 'canoes-kayaks': 'Canoes & Kayaks',
@@ -506,6 +633,8 @@
                 // Categories
                 'electric-boats': 'Elektroboote',
                 'electric-boats-desc': 'Umweltfreundliche Boote mit elektrischem Antrieb, perfekt für ruhige Fahrten durch das Naturschutzgebiet.',
+                'gasoline-boats': 'Benzinboote',
+                'gasoline-boats-desc': 'Leistungsstarke Boote mit Benzinmotoren, ideal für größere Gruppen und längere Fahrten.',
                 'sailboats': 'Segelboote',
                 'sailboats-desc': 'Traditionelle Segelboote für den erfahrenen Segler. Genießen Sie Wind und Natur.',
                 'canoes-kayaks': 'Kanus & Kajaks',
@@ -843,10 +972,11 @@
                     if (boats && boats.length > 0) {
                         // Update modal title based on category
                         const categoryNames = {
-                            electric: 'Elektrische Boten',
-                            sailing: 'Zeilboten',
-                            canoe: 'Kano\'s & Kajaks',
-                            sup: 'SUP Boards'
+                            electric: translations[currentLang]['electric-boats'] || 'Elektrische Boten',
+                            gasoline: translations[currentLang]['gasoline-boats'] || 'Benzine Boten',
+                            sailing: translations[currentLang]['sailboats'] || 'Zeilboten',
+                            canoe: translations[currentLang]['canoes-kayaks'] || 'Kano\'s & Kajaks',
+                            sup: translations[currentLang]['sup-boards'] || 'SUP Boards'
                         };
                         modalTitle.textContent = categoryNames[category];
                         
@@ -871,9 +1001,14 @@
                                 <div class="boat-capacity">${boat.capacity}</div>
                                 <div class="boat-price">${boat.price}</div>
                                 <div class="boat-status ${boat.status}">${boat.status === 'available' ? 'Beschikbaar' : 'Bezet'}</div>
-                                <a href="tel:0522281528" class="btn" style="display: inline-block; padding: 8px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; margin-top: 10px; transition: all 0.3s ease;">
-                                    📞 Reserveren
-                                </a>
+                                <div class="boat-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                                    <a href="tel:0522281528" class="btn" style="flex: 1; padding: 8px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;">
+                                        📞 Reserveren
+                                    </a>
+                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.name}')">
+                                        ℹ️ Meer Info
+                                    </button>
+                                </div>
                             `;
                             modalBoats.appendChild(boatCard);
                         });
