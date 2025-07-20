@@ -1,0 +1,195 @@
+{
+  "name": "nijenhuis-boat-rental",
+  "version": "2.0.0",
+  "description": "Modern boat rental website for Nijenhuis in the Weerribben nature reserve",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/en/",
+    "build": "npm run build:css && npm run build:js && npm run build:images",
+    "build:css": "postcss styles.css -o dist/styles.min.css",
+    "build:js": "esbuild script.js --bundle --minify --outfile=dist/script.min.js",
+    "build:images": "imagemin images/* --out-dir=dist/images",
+    "lint": "eslint script.js",
+    "lint:css": "stylelint styles.css",
+    "format": "prettier --write \"**/*.{js,css,html,json}\"",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "audit": "npm audit && npm audit fix",
+    "lighthouse": "lighthouse https://nijenhuis-botenverhuur.com/en/ --output=html --output-path=./lighthouse-report.html",
+    "pwa:generate": "pwa-asset-generator logo.svg ./images/icons",
+    "deploy": "npm run build && rsync -avz dist/ user@server:/var/www/nijenhuis/",
+    "analyze": "webpack-bundle-analyzer dist/script.min.js",
+    "performance": "npm run lighthouse && npm run analyze"
+  },
+  "keywords": [
+    "boat-rental",
+    "giethoorn",
+    "weerribben",
+    "pwa",
+    "responsive",
+    "modern-web"
+  ],
+  "author": {
+    "name": "Nijenhuis Boat Rental",
+    "email": "info@nijenhuis-botenverhuur.com",
+    "url": "https://nijenhuis-botenverhuur.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nijenhuis/boat-rental-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nijenhuis/boat-rental-website/issues"
+  },
+  "homepage": "https://nijenhuis-botenverhuur.com",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
+    "esbuild": "^0.19.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jsdoc": "^46.9.0",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-webp": "^8.0.0",
+    "jest": "^29.7.0",
+    "lighthouse": "^11.3.0",
+    "live-server": "^1.2.2",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "prettier": "^3.0.3",
+    "pwa-asset-generator": "^6.1.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0",
+    "stylelint-order": "^6.0.3",
+    "webpack-bundle-analyzer": "^4.9.1"
+  },
+  "dependencies": {
+    "flag-icons": "^7.5.0",
+    "workbox-webpack-plugin": "^7.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "postcss": {
+    "plugins": {
+      "postcss-import": {},
+      "autoprefixer": {},
+      "postcss-nested": {},
+      "cssnano": {
+        "preset": "default"
+      }
+    }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-unused-vars": "warn",
+      "prefer-const": "error"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-order"
+    ],
+    "rules": {
+      "order/properties-alphabetical-order": true,
+      "no-descending-specificity": null
+    }
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "collectCoverageFrom": [
+      "script.js",
+      "!**/node_modules/**"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "pwa": {
+    "name": "Nijenhuis Boat Rental",
+    "short_name": "Nijenhuis",
+    "description": "Boat rental in Weerribben nature reserve",
+    "start_url": "/en/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#0071BB",
+    "icons": [
+      {
+        "src": "images/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "images/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}

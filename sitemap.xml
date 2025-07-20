@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/?lang=nl"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/"/>
+    </url>
+    
+    <!-- Boat Hire -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/banner-img.jpg</image:loc>
+            <image:title>Boat rental in Weerribben nature reserve</image:title>
+            <image:caption>Electric boats, canoes, and kayaks for rent in the beautiful Weerribben</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Individual Boat Pages -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/electrosloop-8-pers/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/electroboat-5-pers/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/canadian-canoe-3-pers/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/kayak-2-persons/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/kayak-1-persons/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/boat-hire/sub-board-1-persons/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Camping -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/camping-giethoorn-wanneperveen/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/images/camping/camping-site.jpg</image:loc>
+            <image:title>Camping in Weerribben nature reserve</image:title>
+            <image:caption>Beautiful camping spots with modern facilities</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Marina -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/marina-giethoorn-wanneperveen/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/images/marina/marina-facilities.jpg</image:loc>
+            <image:title>Marina services in Wanneperveen</image:title>
+            <image:caption>Professional marina with secure moorings</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Holiday Home -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/holiday-home-giethoorn-wanneperveen/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/images/holiday-home/holiday-home.jpg</image:loc>
+            <image:title>Holiday home in Weerribben</image:title>
+            <image:caption>Comfortable accommodation for families and groups</image:caption>
+        </image:image>
+    </url>
+    
+    <!-- Sailing Map -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/sailing-map/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Contact -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/contact/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- For Sale -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/for-sale/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Shopping Cart -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/shopping-cart/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.5</priority>
+    </url>
+    
+    <!-- Dutch Language Pages -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/?lang=nl</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/?lang=nl"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/"/>
+    </url>
+    
+    <!-- German Language Pages -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/de/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/?lang=nl"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/"/>
+    </url>
+    
+    <!-- Blog/News Section (if exists) -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/blog/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- FAQ Page (if exists) -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/faq/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Terms and Conditions -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/terms/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/privacy/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Cookie Policy -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/cookies/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Accessibility Statement -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/en/accessibility/</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+    <!-- Sitemap for Images -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/sitemap-images.xml</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+    <!-- Sitemap for Videos -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/sitemap-videos.xml</loc>
+        <lastmod>2025-01-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    
+</urlset> 
