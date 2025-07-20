@@ -116,7 +116,7 @@
                     </div>
                     <div class="category-card" data-category="sup">
                         <div class="category-icon">🏄</div>
-                        <h3>SUP Boards</h3>
+                        <h3>Sup Boards</h3>
                         <p>Stand-up paddleboards voor een unieke manier om het water te ervaren.</p>
                     </div>
                 </div>
@@ -547,7 +547,7 @@
                 'sailboats-desc': 'Traditionele zeilboten voor de ervaren zeiler. Geniet van de wind en de natuur.',
                 'canoes-kayaks': 'Kano\'s & Kajaks',
                 'canoes-kayaks-desc': 'Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
-                'sup-boards': 'SUP Boards',
+                'sup-boards': 'Sup Boards',
                 'sup-boards-desc': 'Stand-up paddleboards voor een unieke manier om het water te ervaren.',
                 
                 // Pricing table
@@ -609,7 +609,7 @@
                 'sailboats-desc': 'Traditional sailboats for the experienced sailor. Enjoy the wind and nature.',
                 'canoes-kayaks': 'Canoes & Kayaks',
                 'canoes-kayaks-desc': 'Perfect for sporting activities and exploring smaller waterways.',
-                'sup-boards': 'SUP Boards',
+                'sup-boards': 'Sup Boards',
                 'sup-boards-desc': 'Stand-up paddleboards for a unique way to experience the water.',
                 
                 // Pricing table
@@ -671,7 +671,7 @@
                 'sailboats-desc': 'Traditionelle Segelboote für den erfahrenen Segler. Genießen Sie Wind und Natur.',
                 'canoes-kayaks': 'Kanus & Kajaks',
                 'canoes-kayaks-desc': 'Perfekt für sportliche Aktivitäten und das Erkunden kleinerer Wasserstraßen.',
-                'sup-boards': 'SUP Boards',
+                'sup-boards': 'Sup Boards',
                 'sup-boards-desc': 'Stand-up Paddleboards für eine einzigartige Art, das Wasser zu erleben.',
                 
                 // Pricing table
@@ -1008,7 +1008,7 @@
                             gasoline: translations[currentLang]['gasoline-boats'] || 'Benzine Boten',
                             sailing: translations[currentLang]['sailboats'] || 'Zeilboten',
                             canoe: translations[currentLang]['canoes-kayaks'] || 'Kano\'s & Kajaks',
-                            sup: translations[currentLang]['sup-boards'] || 'SUP Boards'
+                            sup: translations[currentLang]['sup-boards'] || 'Sup Boards'
                         };
                         modalTitle.textContent = categoryNames[category];
                         
@@ -1027,7 +1027,7 @@
                                     <div class="modal-boat-slideshow" id="${slideshowId}">
                                         <div class="slideshow-container">
                                             ${boat.slideshow.map((img, index) => `
-                                                <div class="slide ${index === 0 ? 'active' : ''}" style="background-image: url('${img}')">
+                                                <div class="slide ${index === 0 ? 'active' : ''}">
                                                     <img src="${img}" alt="${boat.name} - Foto ${index + 1}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
                                                 </div>
                                             `).join('')}
