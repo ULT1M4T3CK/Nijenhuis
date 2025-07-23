@@ -88,8 +88,33 @@ function setupChatWidget() {
     const chatInput = document.getElementById('chatInput');
     const chatSend = document.getElementById('chatSend');
     const chatMessages = document.getElementById('chatMessages');
+    const chatHeader = chatWindow ? chatWindow.querySelector('.chat-header') : null;
 
     if (!chatButton || !chatWindow) return;
+
+    // Remove any dark mode toggle in chat header
+    if (chatHeader) {
+        const dmBtn = chatHeader.querySelector('.dark-mode-toggle');
+        if (dmBtn) dmBtn.remove();
+    }
+
+    // Update chat close button to a modern icon
+    if (chatHeader && chatClose) {
+        chatClose.innerHTML = '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="11" stroke="#fff" fill="rgba(0,0,0,0.12)"/><line x1="15" y1="9" x2="9" y2="15" stroke="#fff"/><line x1="9" y1="9" x2="15" y2="15" stroke="#fff"/></svg>';
+    }
+
+    // On load, apply saved mode
+    if (localStorage.getItem('darkMode') === '1') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+    function getDarkModeIcon() {
+        return document.body.classList.contains('dark-mode')
+            ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.995 12c0 2.761 2.246 5.004 5.005 5.004 2.76 0 5-2.243 5-5.004 0-2.76-2.24-5-5-5-2.759 0-5.005 2.24-5.005 5zm13.705-2.705c-.391-.391-1.023-.391-1.414 0-.391.391-.391 1.023 0 1.414.391.391 1.023.391 1.414 0 .391-.391.391-1.023 0-1.414zm-15.41 0c-.391.391-.391 1.023 0 1.414.391.391 1.023.391 1.414 0 .391-.391.391-1.023 0-1.414-.391-.391-1.023-.391-1.414 0zm7.705-7.295c-.552 0-1 .447-1 1v2c0 .553.448 1 1 1s1-.447 1-1v-2c0-.553-.448-1-1-1zm0 16c-.552 0-1 .447-1 1v2c0 .553.448 1 1 1s1-.447 1-1v-2c0-.553-.448-1-1-1zm9-7h-2c-.553 0-1 .447-1 1s.447 1 1 1h2c.553 0 1-.447 1-1s-.447-1-1-1zm-16 0h-2c-.553 0-1 .447-1 1s.447 1 1 1h2c.553 0 1-.447 1-1s-.447-1-1-1zm12.364 7.364c-.391-.391-1.023-.391-1.414 0-.391.391-.391 1.023 0 1.414.391.391 1.023.391 1.414 0 .391-.391.391-1.023 0-1.414zm-10.728 0c-.391.391-.391 1.023 0 1.414.391.391 1.023.391 1.414 0 .391-.391.391-1.023 0-1.414-.391-.391-1.023-.391-1.414 0z"/></svg>'
+            : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.19V1h-1v2.19C6.16 3.72 2.72 7.16 2.19 12H1v1h2.19c.53 4.84 4.01 8.28 8.81 8.81V23h1v-2.19c4.84-.53 8.28-4.01 8.81-8.81H23v-1h-2.19c-.53-4.84-4.01-8.28-8.81-8.81zM12 21c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/></svg>';
+    }
 
     // Toggle chat window
     chatButton.addEventListener('click', () => {

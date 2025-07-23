@@ -64,57 +64,27 @@ class PerplexityChat {
         const typingIndicator = this.addTypingIndicator();
 
         try {
-            // Call Perplexity AI API
-            const response = await fetch('https://api.perplexity.ai/chat/completions', {
+            // Call backend Perplexity proxy
+            const response = await fetch('/api/perplexity', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${this.API_KEY}`,
                     'Content-Type': 'application/json'
                 },
-                                    body: JSON.stringify({
-                        model: this.MODEL,
-                        messages: [
-                            {
-                                role: 'system',
-                                content: `Je bent een korte en behulpzame assistent voor Nijenhuis Botenverhuur. 
-
-BELANGRIJKE REGELS:
-- Geef altijd KORTE antwoorden (max 2-3 zinnen)
-- Gebruik duidelijke, korte zinnen
-- Verwijs naar de website voor meer informatie
-- Wees vriendelijk maar direct
-
-BEDRIJFSINFORMATIE:
-📍 Veneweg 199, 7946 LP Wanneperveen
-📞 0522 281 528
-⏰ Dagelijks 09:00-18:00 (1 april - 1 november)
-
-DIENSTEN:
-🚤 Botenverhuur (elektrische, zeilboten, kano's)
-🏠 Vakantiehuis
-🏕️ Camping
-⚓ Jachthaven
-🗺️ Vaarkaart
-
-PRIJZEN (dagprijzen):
-- Tender 720: €230 (10-12 pers)
-- Tender 570: €200 (8 pers)
-- Electrosloep 10: €200 (10 pers)
-- Electrosloep 8: €175 (8 pers)
-- Zeilboot: €70-85 (4-5 pers)
-- Kano/Kajak: €25 (2 pers)
-- Sup Board: €35 (1 pers)
-
-Antwoord in het Nederlands, kort en behulpzaam.`
-                            },
-                            {
-                                role: 'user',
-                                content: message
-                            }
-                        ],
-                        max_tokens: 150,
-                        temperature: 0.3
-                    })
+                body: JSON.stringify({
+                    model: this.MODEL,
+                    messages: [
+                        {
+                            role: 'system',
+                            content: `Je bent een korte en behulpzame assistent voor Nijenhuis Botenverhuur. \n\nBELANGRIJKE REGELS:\n- Geef altijd KORTE antwoorden (max 2-3 zinnen)\n- Gebruik duidelijke, korte zinnen\n- Verwijs naar de website voor meer informatie\n- Wees vriendelijk maar direct\n\nBEDRIJFSINFORMATIE:\n📍 Veneweg 199, 7946 LP Wanneperveen\n📞 0522 281 528\n⏰ Dagelijks 09:00-18:00 (1 april - 1 november)\n\nDIENSTEN:\n🚤 Botenverhuur (elektrische, zeilboten, kano's)\n🏠 Vakantiehuis\n🏕️ Camping\n⚓ Jachthaven\n🗺️ Vaarkaart\n\nPRIJZEN (dagprijzen):\n- Tender 720: €230 (10-12 pers)\n- Tender 570: €200 (8 pers)\n- Electrosloep 10: €200 (10 pers)\n- Electrosloep 8: €175 (8 pers)\n- Zeilboot: €70-85 (4-5 pers)\n- Kano/Kajak: €25 (2 pers)\n- Sup Board: €35 (1 pers)\n\nAntwoord in het Nederlands, kort en behulpzaam.`
+                        },
+                        {
+                            role: 'user',
+                            content: message
+                        }
+                    ],
+                    max_tokens: 150,
+                    temperature: 0.3
+                })
             });
 
             if (!response.ok) {
