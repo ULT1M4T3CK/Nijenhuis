@@ -2090,11 +2090,7 @@
 }
 
 .house-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--spacing-lg);
+    /* Remove global flex and column styles */
 }
 
 .house-info {
@@ -2422,54 +2418,32 @@ body.dark-mode .message-time {
 /* Mobile nav-menu (already handled, but ensure .nav-menu.active is visible) */
 @media (max-width: 768px) {
     .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--bg-primary);
-        flex-direction: column;
-        padding: 1.5rem 1.2rem 1.2rem 1.2rem;
-        box-shadow: 0 8px 32px rgba(0, 113, 187, 0.10);
-        z-index: 9999;
-        border: none;
-        min-height: 200px;
-        border-radius: 0 0 18px 18px;
-        margin-top: 8px;
+        list-style: none;
+        background: rgba(0, 113, 187, 0.92);
+        backdrop-filter: blur(8px) saturate(1.2);
+        border: 1.5px solid rgba(0,113,187,0.18);
+        border-radius: 0 0 22px 22px;
+        box-shadow: 0 8px 32px rgba(0, 113, 187, 0.13);
+        margin-top: 12px;
+        padding: 2rem 1.3rem 1.3rem 1.3rem;
         transition: opacity 0.25s, transform 0.25s;
-        opacity: 0;
-        transform: translateY(-10px);
-        pointer-events: none;
-    }
-    .nav-menu.active {
-        display: flex !important;
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: auto;
-    }
-    .nav-menu li {
-        width: 100%;
-        margin-bottom: 0.7rem;
-    }
-    .nav-menu li:last-child {
-        margin-bottom: 0;
     }
     .nav-menu a {
-        display: block;
-        padding: 0.95rem 1.1rem;
-        border-radius: 12px;
-        border-bottom: none;
-        color: var(--secondary-color);
-        font-size: 1.08rem;
-        font-weight: 600;
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        border-radius: 16px;
+        padding: 1.15rem 1.3rem;
+        margin-bottom: 0.2rem;
         background: none;
+        color: #fff;
+        box-shadow: none;
+        outline: none;
         transition: background 0.18s, color 0.18s;
-        text-align: left;
-        margin: 0;
   }
   .nav-menu a:hover,
     .nav-menu a.active {
-        background: var(--primary-color);
+        background: rgba(255,255,255,0.13);
         color: #fff;
     }
 }
@@ -2708,12 +2682,14 @@ body.dark-mode .message-time {
 @media (min-width: 900px) {
   .house-details {
     display: grid;
-    grid-template-columns: 1.1fr 1.4fr;
+    grid-template-columns: minmax(320px, 1.1fr) 1.4fr;
     gap: 3rem;
     align-items: flex-start;
   }
   .house-image {
     grid-column: 1;
+    min-width: 320px;
+    max-width: 480px;
   }
   .house-info {
     grid-column: 2;
