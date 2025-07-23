@@ -3,7 +3,7 @@
 
 class PerplexityChat {
     constructor() {
-        this.API_KEY = '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';
+        this.API_KEY = '';
         this.MODEL = 'sonar';
         this.chatButton = document.getElementById('chatButton');
         this.chatWindow = document.getElementById('chatWindow');
