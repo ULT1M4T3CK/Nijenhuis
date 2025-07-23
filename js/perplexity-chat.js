@@ -63,58 +63,60 @@ class PerplexityChat {
         // Show typing indicator
         const typingIndicator = this.addTypingIndicator();
 
+        // Language detection (simple)
+        function detectLanguage(text) {
+            // Very basic: look for common words
+            const nlWords = ['de', 'het', 'een', 'en', 'ik', 'je', 'jij', 'u', 'zijn', 'niet', 'wel'];
+            const deWords = ['und', 'ist', 'ein', 'ich', 'du', 'sie', 'nicht', 'ja', 'nein'];
+            const enWords = ['the', 'and', 'is', 'are', 'you', 'your', 'not', 'yes', 'no'];
+            const lower = text.toLowerCase();
+            let nl = 0, de = 0, en = 0;
+            nlWords.forEach(w => { if (lower.includes(' ' + w + ' ')) nl++; });
+            deWords.forEach(w => { if (lower.includes(' ' + w + ' ')) de++; });
+            enWords.forEach(w => { if (lower.includes(' ' + w + ' ')) en++; });
+            if (nl >= de && nl >= en && nl > 0) return 'nl';
+            if (de > nl && de >= en) return 'de';
+            if (en > nl && en > de) return 'en';
+            // fallback to browser language
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('nl')) return 'nl';
+            if (browserLang.startsWith('de')) return 'de';
+            return 'en';
+        }
+
+        const lang = detectLanguage(message);
+
+        // System prompts for each language
+        const systemPrompts = {
+            nl: `Je bent een korte en behulpzame assistent voor Nijenhuis Botenverhuur.\n\nBELANGRIJKE REGELS:\n- Geef altijd KORTE antwoorden (max 2-3 zinnen)\n- Gebruik duidelijke, korte zinnen\n- Verwijs naar de website voor meer informatie\n- Wees vriendelijk maar direct\n\nBEDRIJFSINFORMATIE:\n📍 Veneweg 199, 7946 LP Wanneperveen\n📞 0522 281 528\n⏰ Dagelijks 09:00-18:00 (1 april - 1 november)\n\nDIENSTEN:\n🚤 Botenverhuur (elektrische, zeilboten, kano's)\n🏠 Vakantiehuis\n🏕️ Camping\n⚓ Jachthaven\n🗺️ Vaarkaart\n\nPRIJZEN (dagprijzen):\n- Tender 720: €230 (10-12 pers)\n- Tender 570: €200 (8 pers)\n- Electrosloep 10: €200 (10 pers)\n- Electrosloep 8: €175 (8 pers)\n- Zeilboot: €70-85 (4-5 pers)\n- Kano/Kajak: €25 (2 pers)\n- Sup Board: €35 (1 pers)\n\nAntwoord in het Nederlands, kort en behulpzaam.`,
+            en: `You are a brief and helpful assistant for Nijenhuis Botenverhuur.\n\nIMPORTANT RULES:\n- Always give SHORT answers (max 2-3 sentences)\n- Use clear, short sentences\n- Refer to the website for more information\n- Be friendly but direct\n\nCOMPANY INFO:\n📍 Veneweg 199, 7946 LP Wanneperveen\n📞 0522 281 528\n⏰ Daily 09:00-18:00 (April 1 - November 1)\n\nSERVICES:\n🚤 Boat rental (electric, sailboats, canoes)\n🏠 Holiday house\n🏕️ Camping\n⚓ Marina\n🗺️ Navigation map\n\nPRICES (per day):\n- Tender 720: €230 (10-12 pers)\n- Tender 570: €200 (8 pers)\n- Electrosloep 10: €200 (10 pers)\n- Electrosloep 8: €175 (8 pers)\n- Sailboat: €70-85 (4-5 pers)\n- Canoe/Kayak: €25 (2 pers)\n- Sup Board: €35 (1 pers)\n\nAnswer in English, briefly and helpfully.`,
+            de: `Du bist ein kurzer und hilfreicher Assistent für Nijenhuis Botenverhuur.\n\nWICHTIGE REGELN:\n- Gib immer KURZE Antworten (max. 2-3 Sätze)\n- Verwende klare, kurze Sätze\n- Verweise für weitere Informationen auf die Website\n- Sei freundlich, aber direkt\n\nFIRMENINFORMATIONEN:\n📍 Veneweg 199, 7946 LP Wanneperveen\n📞 0522 281 528\n⏰ Täglich 09:00-18:00 (1. April - 1. November)\n\nDIENSTLEISTUNGEN:\n🚤 Bootsverleih (elektrisch, Segelboote, Kanus)\n🏠 Ferienhaus\n🏕️ Camping\n⚓ Jachthafen\n🗺️ Fahrkarte\n\nPREISE (pro Tag):\n- Tender 720: €230 (10-12 Pers.)\n- Tender 570: €200 (8 Pers.)\n- Electrosloep 10: €200 (10 Pers.)\n- Electrosloep 8: €175 (8 Pers.)\n- Segelboot: €70-85 (4-5 Pers.)\n- Kanu/Kajak: €25 (2 Pers.)\n- Sup Board: €35 (1 Pers.)\n\nAntworte auf Deutsch, kurz und hilfsbereit.`
+        };
+
+        const systemPrompt = systemPrompts[lang] || systemPrompts['en'];
+
         try {
-            // Call Perplexity AI API
-            const response = await fetch('https://api.perplexity.ai/chat/completions', {
+            // Call backend API instead of Perplexity directly
+            const response = await fetch('/api/perplexity', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${this.API_KEY}`,
                     'Content-Type': 'application/json'
                 },
-                                    body: JSON.stringify({
-                        model: this.MODEL,
-                        messages: [
-                            {
-                                role: 'system',
-                                content: `Je bent een korte en behulpzame assistent voor Nijenhuis Botenverhuur. 
-
-BELANGRIJKE REGELS:
-- Geef altijd KORTE antwoorden (max 2-3 zinnen)
-- Gebruik duidelijke, korte zinnen
-- Verwijs naar de website voor meer informatie
-- Wees vriendelijk maar direct
-
-BEDRIJFSINFORMATIE:
-📍 Veneweg 199, 7946 LP Wanneperveen
-📞 0522 281 528
-⏰ Dagelijks 09:00-18:00 (1 april - 1 november)
-
-DIENSTEN:
-🚤 Botenverhuur (elektrische, zeilboten, kano's)
-🏠 Vakantiehuis
-🏕️ Camping
-⚓ Jachthaven
-🗺️ Vaarkaart
-
-PRIJZEN (dagprijzen):
-- Tender 720: €230 (10-12 pers)
-- Tender 570: €200 (8 pers)
-- Electrosloep 10: €200 (10 pers)
-- Electrosloep 8: €175 (8 pers)
-- Zeilboot: €70-85 (4-5 pers)
-- Kano/Kajak: €25 (2 pers)
-- Sup Board: €35 (1 pers)
-
-Antwoord in het Nederlands, kort en behulpzaam.`
-                            },
-                            {
-                                role: 'user',
-                                content: message
-                            }
-                        ],
-                        max_tokens: 150,
-                        temperature: 0.3
-                    })
+                body: JSON.stringify({
+                    model: this.MODEL,
+                    messages: [
+                        {
+                            role: 'system',
+                            content: systemPrompt
+                        },
+                        {
+                            role: 'user',
+                            content: message
+                        }
+                    ],
+                    max_tokens: 150,
+                    temperature: 0.3
+                })
             });
 
             if (!response.ok) {
@@ -122,20 +124,18 @@ Antwoord in het Nederlands, kort en behulpzaam.`
             }
 
             const data = await response.json();
-            const aiResponse = data.choices[0].message.content;
+            const aiResponse = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content
+                ? data.choices[0].message.content
+                : (lang === 'nl' ? 'Technische storing. Bel direct: 0522 281 528' : (lang === 'de' ? 'Technischer Fehler. Rufen Sie direkt an: 0522 281 528' : 'Technical error. Call directly: 0522 281 528'));
 
             // Remove typing indicator and add AI response
             this.removeTypingIndicator(typingIndicator);
             this.addMessage(aiResponse, 'bot');
 
         } catch (error) {
-            console.error('Error calling Perplexity AI:', error);
-            
-            // Remove typing indicator
+            console.error('Error calling backend API:', error);
             this.removeTypingIndicator(typingIndicator);
-            
-            // Fallback response
-            this.addMessage('Technische storing. Bel direct: 0522 281 528', 'bot');
+            this.addMessage(lang === 'nl' ? 'Technische storing. Bel direct: 0522 281 528' : (lang === 'de' ? 'Technischer Fehler. Rufen Sie direkt an: 0522 281 528' : 'Technical error. Call directly: 0522 281 528'), 'bot');
         }
     }
 
