@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Botenverhuur - Nijenhuis Botenverhuur</title>
     <meta name="description" content="Huur boten bij Nijenhuis Botenverhuur in het natuurgebied Weerribben. Elektrische boten, kano's, kajaks en meer.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.0.0/css/flag-icons.min.css">
     <link rel="stylesheet" href="../styles.css">
     
     <!-- Shared JavaScript -->
@@ -17,14 +16,15 @@
         <div class="container">
             <div class="top-bar-content">
                 <div class="contact-info">
-                    <span>Openingstijden: 9:00 - 18:00 | </span>
+                    <span data-i18n="nav_opening">Openingstijden: 9:00 - 18:00 |</span>
                     <a href="tel:+31522281528">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
-                        0522 - 281 528
+                        <span>+31522 - 281 528</span>
                     </a>
                 </div>
+                <div class="language-switcher" id="languageSwitcher"></div>
             </div>
         </div>
     </div>
@@ -33,37 +33,18 @@
     <nav class="main-nav">
         <div class="container">
             <div class="nav-container">
-                <a href="../index.html" class="logo-link">
+                <a href="./index.html" class="logo-link">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
                 </a>
                 
                 <ul class="nav-menu">
-                    <li><a href="botenverhuur.html" class="active">Botenverhuur</a></li>
-                    <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                    <li><a href="te-koop.html">Te Koop</a></li>
-                    <li><a href="camping.html">Camping</a></li>
-                    <li><a href="jachthaven.html">Marina</a></li>
-                    <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="language-switcher">
-                        <a href="#" class="current-lang">
-                            <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
-                        </a>
-                        <div class="lang-dropdown">
-                                                        <a href="?lang=nl" class="lang-option active" data-lang="nl">
-                                <span class="flag-circle"><span class="fi fi-nl"></span></span>
-                                Nederlands
-                            </a>
-                            <a href="?lang=en" class="lang-option" data-lang="en">
-                                <span class="flag-circle"><span class="fi fi-gb"></span></span>
-                                English
-                            </a>
-                            <a href="?lang=de" class="lang-option" data-lang="de">
-                                <span class="flag-circle"><span class="fi fi-de"></span></span>
-                                Deutsch
-                            </a>
-                                            </div>
-                    </li>
+                    <li><a href="botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                    <li><a href="vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                    <li><a href="te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                    <li><a href="camping.html" data-i18n="nav_camping">Camping</a></li>
+                    <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                    <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                    <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                 </ul>
                 
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
@@ -78,8 +59,8 @@
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
-            <h1>Botenverhuur</h1>
-            <p>Ontdek het prachtige natuurgebied Weerribben met onze uitgebreide vloot van boten. Van elektrische boten tot kano's en kajaks.</p>
+            <h1 data-i18n="boats_header_h1">Botenverhuur</h1>
+            <p data-i18n="boats_header_p">Stap aan boord en ontdek het mooie natuurgebied de Weerribben met onze boten, kano’s en kajaks!</p>
         </div>
     </header>
 
@@ -89,35 +70,40 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Onze Botencategorieën</h2>
-                    <p>Wij bieden een breed assortiment boten voor alle voorkeuren en ervaringsniveaus</p>
+                    <h2 data-i18n="boats_h2">Onze boten</h2>
+                    <p data-i18n="boats_intro">Wij bieden een breed assortiment boten voor alle voorkeuren en ervaringsniveaus</p>
                 </div>
 
                 <div class="boat-categories">
                     <div class="category-card" data-category="electric">
                         <div class="category-icon">🚤</div>
-                        <h3>Elektrische Boten</h3>
-                        <p>Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.</p>
+                        <h3 data-i18n="boats_cat_electric">Elektrische boten</h3>
+                        <p data-i18n="boats_cat_electric_desc">Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.</p>
                     </div>
                     <div class="category-card" data-category="gasoline">
                         <div class="category-icon">⛽</div>
-                        <h3>Benzine Boten</h3>
-                        <p>Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.</p>
+                        <h3 data-i18n="boats_cat_gasoline">Benzine boten</h3>
+                        <p data-i18n="boats_cat_gasoline_desc">Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.</p>
                     </div>
                     <div class="category-card" data-category="sailing">
                         <div class="category-icon">⛵</div>
-                        <h3>Zeilboten</h3>
-                        <p>Traditionele zeilboten voor de ervaren zeiler. Geniet van de wind en de natuur.</p>
+                        <h3 data-i18n="boats_cat_sailing">Zeilboten</h3>
+                        <p data-i18n="boats_cat_sailing_desc">Traditionele zeilboten voor de ervaren zeiler. Geniet van de wind en de natuur.</p>
                     </div>
                     <div class="category-card" data-category="canoe">
                         <div class="category-icon">🛶</div>
-                        <h3>Kano's & Kajaks</h3>
-                        <p>Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.</p>
+                        <h3 data-i18n="boats_cat_canoe">Kano's & Kajaks</h3>
+                        <p data-i18n="boats_cat_canoe_desc">Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.</p>
                     </div>
                     <div class="category-card" data-category="sup">
                         <div class="category-icon">🏄</div>
-                        <h3>Sup Boards</h3>
-                        <p>Stand-up paddleboards voor een unieke manier om het water te ervaren.</p>
+                        <h3 data-i18n="boats_cat_sup">Sup boards</h3>
+                        <p data-i18n="boats_cat_sup_desc">Stand-up paddleboards voor een unieke manier om het water te ervaren.</p>
+                    </div>
+                    <div class="category-card" data-category="all">
+                        <div class="category-icon">🔍</div>
+                        <h3 data-i18n="boats_cat_all">Alle boten</h3>
+                        <p data-i18n="boats_cat_all_desc">Bekijk alle beschikbare boten en hun details.</p>
                     </div>
                 </div>
             </div>
@@ -127,83 +113,90 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Prijzen & Beschikbaarheid</h2>
-                    <p>Alle prijzen zijn per dag inclusief veiligheidsuitrusting en instructies</p>
+                    <h2 data-i18n="prices_h2">Prijzen & Beschikbaarheid</h2>
+                    <p data-i18n="prices_intro">Alle prijzen zijn per dag inclusief veiligheidsuitrusting en instructies</p>
                 </div>
 
                 <div class="pricing-table">
                     <div class="pricing-header">
-                        <h3>Dagprijzen Botenverhuur</h3>
-                        <p>Seizoen: 1 april - 1 november 2025</p>
+                        <h3 data-i18n="prices_table_title">Dagprijzen botenverhuur</h3>
+                        <p data-i18n="prices_season">Seizoen: 1 april - 1 november 2025</p>
                     </div>
                     <div class="pricing-rows">
                         <div class="pricing-row header">
-                            <div>Boot Type</div>
-                            <div>Capaciteit</div>
-                            <div>Prijs per Dag</div>
-                            <div>Status</div>
+                            <div data-i18n="prices_th_type">Boot type</div>
+                            <div data-i18n="prices_th_capacity">Capaciteit</div>
+                            <div data-i18n="prices_th_price">Prijs per dag</div>
+                            <div data-i18n="prices_th_deposit">Borg</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Classic Tender 720</strong></div>
+                            <div><strong>Classic tender 720</strong></div>
                             <div>10-12 personen</div>
                             <div>€230</div>
-                            <div>Beschikbaar</div>
+                            <div>€100</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Electrosloep for 10</strong></div>
+                            <div><strong>Electrosloep</strong></div>
                             <div>10 personen</div>
                             <div>€200</div>
-                            <div>Beschikbaar</div>
+                            <div>€100</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Classic Tender 570</strong></div>
+                            <div><strong>Classic tender 570</strong></div>
                             <div>8 personen</div>
                             <div>€200</div>
-                            <div>Beschikbaar</div>
+                            <div>€100</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Electrosloep for 8</strong></div>
+                            <div><strong>Electrosloep</strong></div>
                             <div>8 personen</div>
                             <div>€175</div>
-                            <div>Beschikbaar</div>
+                            <div>€100</div>
                         </div>
                         <div class="pricing-row">
                             <div><strong>Zeilboot (zonder motor)</strong></div>
                             <div>4-5 personen</div>
                             <div>€70</div>
-                            <div>Beschikbaar</div>
+                            <div>€50</div>
                         </div>
                         <div class="pricing-row">
                             <div><strong>Zeilboot (met motor)</strong></div>
                             <div>4-5 personen</div>
                             <div>€85</div>
-                            <div>Beschikbaar</div>
+                            <div>€50</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Electrosloep for 5</strong></div>
+                            <div><strong>Zeilpunter</strong></div>
+                            <div>3-4 personen</div>
+                            <div>€60</div>
+                            <div>€0</div>
+                        </div>
+                        <div class="pricing-row">
+                            <div><strong>Electrosloep</strong></div>
                             <div>5 personen</div>
                             <div>€80</div>
-                            <div>Beschikbaar</div>
+                            <div>€0</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Canadese Kano for 2</strong></div>
+                            <div><strong>Canadese kano</strong></div>
                             <div>2 personen</div>
                             <div>€25</div>
-                            <div>Beschikbaar</div>
+                            <div>€0</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Kajakk for 2</strong></div>
+                            <div><strong>Kajak</strong></div>
                             <div>2 personen</div>
                             <div>€25</div>
-                            <div>Beschikbaar</div>
+                            <div>€0</div>
                         </div>
                         <div class="pricing-row">
-                            <div><strong>Sup Board</strong></div>
+                            <div><strong>SUP board</strong></div>
                             <div>1 persoon</div>
                             <div>€35</div>
-                            <div>Beschikbaar</div>
+                            <div>€0</div>
                         </div>
                     </div>
+                    <p data-i18n="multi_day_note" style="margin-top: 1.5em; text-align: center; color: var(--text-secondary);">Boten kunnen ook voor meerdere dagen worden gehuurd. Neem contact op voor meer informatie en tarieven.</p>
                 </div>
             </div>
         </section>
@@ -212,22 +205,22 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Huurinformatie</h2>
-                    <p>Alles wat u moet weten over het huren van een boot</p>
+                    <h2 data-i18n="rentinfo_h2">Huurinformatie</h2>
+                    <p data-i18n="rentinfo_intro">Alles wat u moet weten over het huren van een boot</p>
                 </div>
 
                 <div class="boat-categories">
                     <div class="category-card">
-                        <h3>📅 Reserveringen</h3>
-                        <p>Reserveringen kunnen telefonisch of online worden gemaakt. Wij raden aan om vooraf te reserveren, vooral in het hoogseizoen.</p>
+                        <h3 data-i18n="rentinfo_book_title">📅 Reserveringen</h3>
+                        <p data-i18n="rentinfo_book_desc">Reserveringen kunnen telefonisch of online worden gemaakt. Wij raden aan om vooraf te reserveren, vooral in het hoogseizoen.</p>
                     </div>
                     <div class="category-card">
-                        <h3>⏰ Openingstijden</h3>
-                        <p>Dagelijks geopend van 09:00 tot 18:00 uur tijdens het seizoen (1 april - 1 november).</p>
+                        <h3 data-i18n="rentinfo_open_title">⏰ Openingstijden</h3>
+                        <p data-i18n="rentinfo_open_desc">Dagelijks geopend van 09:00 tot 18:00 uur tijdens het seizoen (1 april - 1 november).</p>
                     </div>
                     <div class="category-card">
-                        <h3>💰 Betaling</h3>
-                        <p>Alleen contante betaling wordt geaccepteerd. Een borg van €50-€100 is vereist afhankelijk van het boottype.</p>
+                        <h3 data-i18n="rentinfo_pay_title">💰 Betaling</h3>
+                        <p data-i18n="rentinfo_pay_desc">Alleen contante betaling wordt geaccepteerd. Een borg van €50-€100 is vereist afhankelijk van het boottype. Zie de prijzentabel voor specifieke borgbedragen.</p>
                     </div>
                 </div>
             </div>
@@ -238,7 +231,7 @@
     <div id="boatModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">Boten Categorie</h2>
+                <h2 id="modalTitle" data-i18n="modal_title">Boten Categorie</h2>
                 <button class="modal-close" id="modalClose">&times;</button>
             </div>
             <div class="modal-body">
@@ -256,41 +249,44 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="height: 60px; margin-bottom: 15px;">
-                    <p>Uw toegangspoort tot het prachtige natuurgebied Weerribben.</p>
+                    <p>Hier begint jouw avontuur in de prachtige Weerribben!</p>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li>Nijenhuis Botenverhuur</li>
-                        <li>Camping & Jachthaven</li>
-                        <li>Veneweg 199</li>
-                        <li>7946 LP Wanneperveen</li>
-                        <li>Tel: 0522 281 528</li>
-                        <li>Kvk: 6769 7097</li>
-                        <li>Btw nr: NL 195153637 B01</li>
+                        <li data-i18n="footer_li1">Nijenhuis Botenverhuur</li>
+                        <li data-i18n="footer_li2">Camping & Jachthaven</li>
+                        <li data-i18n="footer_li3">Veneweg 199</li>
+                        <li data-i18n="footer_li4">7946 LP Wanneperveen</li>
+                        <li data-i18n="footer_li5">Tel: 0522 281 528</li>
+                        <li data-i18n="footer_li6">Kvk: 6769 7097</li>
+                        <li data-i18n="footer_li7">Btw nr: NL 195153637 B01</li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                        <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                        <li><a href="te-koop.html">Te Koop</a></li>
-                        <li><a href="camping.html">Camping</a></li>
+                        <li><a href="botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                        <li><a href="vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                        <li><a href="te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                        <li><a href="camping.html" data-i18n="nav_camping">Camping</a></li>
+                        <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                        <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="jachthaven.html">Marina</a></li>
-                        <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                        <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
+                <p data-i18n="footer_bottom">&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
@@ -326,12 +322,18 @@
         // Boat data for modal
         const boatData = {
             electric: [
-                { name: 'Electrosloep for 8', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg' },
-                { name: 'Electrosloep for 10', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
-                { name: 'Electrosloep for 5', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' }
+                { name: 'Electrosloep', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg', slideshow: [
+                    '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
+                    '../Images/Boats/electrosloep-8/61374455328291526032019.jpg',
+                    '../Images/Boats/electrosloep-8/92961705928291526032019.jpg',
+                    '../Images/Boats/electrosloep-8/40156326328291526032019 (1).jpg',
+                    '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
+                ] },
+                { name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
+                { name: 'Electrosloep', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' }
             ],
             gasoline: [
-                { name: 'Classic Tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
+                { name: 'Classic tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
                     '../Images/Boats/tender-720/104831747849501502092021.jpg',
                     '../Images/Boats/tender-720/125324337810511502092021.jpg',
                     '../Images/Boats/tender-720/149033913309511502092021.jpg',
@@ -344,45 +346,59 @@
                     '../Images/Boats/tender-720/60035623109511502092021.jpg',
                     '../Images/Boats/tender-720/90763066509511502092021.jpg'
                 ] },
-                { name: 'Classic Tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570/tender-570-8.jpg' }
+                { name: 'Classic tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570/209200032731061602092021 (1).jpg', slideshow: [
+                    '../Images/Boats/tender-570/209200032731061602092021 (1).jpg',
+                    '../Images/Boats/tender-570/170165100030061602092021.jpg',
+                    '../Images/Boats/tender-570/90106743031061602092021.jpg',
+                    '../Images/Boats/tender-570/27725985231061602092021.jpg',
+                    '../Images/Boats/tender-570/63307108531061602092021.jpg',
+                    '../Images/Boats/tender-570/79334617131061602092021.jpg'
+                ] }
             ],
             sailing: [
                 { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' }
+                { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
+                { name: 'Zeilpunter 3/4 pers', capacity: '3-4 personen', price: '€60', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
             ],
             canoe: [
-                { name: 'Canadese Kano for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
-                { name: 'Kajakk for 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg' }
+                { name: 'Canadese', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
+                { name: 'Kajak voor 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg', slideshow: [
+                    '../Images/Boats/kayak-2/kayak-2.jpg',
+                    '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
+                ] }
             ],
             sup: [
-                { name: 'Sup Board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg' }
+                { name: 'SUP board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg', slideshow: [
+                    '../Images/Boats/Sup/sub-1.jpg',
+                    '../Images/Boats/Sup/tender-570-8.jpg'
+                ] }
             ]
         };
 
         // Function to show boat information
         function showBoatInfo(boatName) {
             const boatInfo = {
-                'Classic Tender 720': {
+                'Classic tender 720': {
                     description: 'Een krachtige benzinemotor boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
                     features: ['10-12 personen capaciteit', 'Benzinemotor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families'],
                     specifications: 'Lengte: 7.2m, Motor: Benzine, Max snelheid: 15 km/u'
                 },
-                'Classic Tender 570': {
+                'Classic tender 570': {
                     description: 'Een comfortabele benzinemotor boot voor middelgrote groepen. Ideaal voor dagtochten.',
                     features: ['8 personen capaciteit', 'Benzinemotor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten'],
                     specifications: 'Lengte: 5.7m, Motor: Benzine, Max snelheid: 12 km/u'
                 },
-                'Electrosloep for 10': {
+                'Electrosloep': {
                     description: 'Een milieuvriendelijke elektrische boot voor grotere groepen. Stil en duurzaam.',
                     features: ['10 personen capaciteit', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Grote ruimte', 'Perfect voor natuurgebied'],
                     specifications: 'Lengte: 6.5m, Motor: Elektrisch, Max snelheid: 8 km/u'
                 },
-                'Electrosloep for 8': {
+                'Electrosloep': {
                     description: 'Een compacte elektrische boot voor kleinere groepen. Stil en wendbaar.',
                     features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor kleine groepen'],
                     specifications: 'Lengte: 5.8m, Motor: Elektrisch, Max snelheid: 8 km/u'
                 },
-                'Electrosloep for 5': {
+                'Electrosloep': {
                     description: 'Een kleine elektrische boot voor gezinnen. Perfect voor rustige vaartochten.',
                     features: ['5 personen capaciteit', 'Elektrische motor', 'Stil en veilig', 'Compact', 'Geschikt voor gezinnen'],
                     specifications: 'Lengte: 4.2m, Motor: Elektrisch, Max snelheid: 6 km/u'
@@ -397,20 +413,25 @@
                     features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus'],
                     specifications: 'Lengte: 5.5m, Aandrijving: Zeil + motor, Max snelheid: 8 km/u'
                 },
-                'Canadese Kano for 2': {
+                'Canadese kano': {
                     description: 'Een stabiele kano voor twee personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
                     features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen'],
                     specifications: 'Lengte: 4.5m, Type: Kano, Gewicht: 35kg'
                 },
-                'Kajakk for 2': {
+                'Kajak': {
                     description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
                     features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen'],
                     specifications: 'Lengte: 4.2m, Type: Kajak, Gewicht: 28kg'
                 },
-                'Sup Board': {
+                'SUP board': {
                     description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
                     features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring'],
-                    specifications: 'Lengte: 3.2m, Type: SUP Board, Gewicht: 12kg'
+                    specifications: 'Lengte: 3.2m, Type: SUP board, Gewicht: 12kg'
+                },
+                'Zeilpunter': {
+                    description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
+                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen'],
+                    specifications: 'Lengte: 4.8m, Aandrijving: Zeil, Type: Punter'
                 }
             };
 
@@ -509,353 +530,6 @@
             dots[index].classList.add('active');
         }
 
-        // Translation system
-        const translations = {
-            nl: {
-                // Page meta
-                title: 'Botenverhuur - Nijenhuis Botenverhuur',
-                description: 'Huur boten bij Nijenhuis Botenverhuur in het natuurgebied Weerribben. Elektrische boten, kano\'s, kajaks en meer.',
-                
-                // Navigation
-                'boat-hire': 'Botenverhuur',
-                'holiday-home': 'Vakantiehuis',
-                'for-sale': 'Te Koop',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Vaarkaart',
-                'contact': 'Contact',
-
-                
-                // Page content
-                'hero-title': 'Botenverhuur',
-                'hero-subtitle': 'Ontdek het prachtige natuurgebied Weerribben met onze uitgebreide vloot van boten. Van elektrische boten tot kano\'s en kajaks.',
-                
-                // Section titles
-                'boat-categories': 'Onze Botencategorieën',
-                'boat-categories-desc': 'Wij bieden een breed assortiment boten voor alle voorkeuren en ervaringsniveaus',
-                'pricing-availability': 'Prijzen & Beschikbaarheid',
-                'pricing-desc': 'Alle prijzen zijn per dag inclusief veiligheidsuitrusting en instructies',
-                'rental-info': 'Huurinformatie',
-                'rental-info-desc': 'Alles wat u moet weten over het huren van een boot',
-                
-                // Categories
-                'electric-boats': 'Elektrische Boten',
-                'electric-boats-desc': 'Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.',
-                'gasoline-boats': 'Benzine Boten',
-                'gasoline-boats-desc': 'Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.',
-                'sailboats': 'Zeilboten',
-                'sailboats-desc': 'Traditionele zeilboten voor de ervaren zeiler. Geniet van de wind en de natuur.',
-                'canoes-kayaks': 'Kano\'s & Kajaks',
-                'canoes-kayaks-desc': 'Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
-                'sup-boards': 'Sup Boards',
-                'sup-boards-desc': 'Stand-up paddleboards voor een unieke manier om het water te ervaren.',
-                
-                // Pricing table
-                'pricing-title': 'Dagprijzen Botenverhuur',
-                'season-info': 'Seizoen: 1 april - 1 november 2025',
-                'boat-type': 'Boot Type',
-                'capacity': 'Capaciteit',
-                'price-per-day': 'Prijs per Dag',
-                'status': 'Status',
-                'available': 'Beschikbaar',
-                
-                // Rental info
-                'reservations': '📅 Reserveringen',
-                'reservations-desc': 'Reserveringen kunnen telefonisch of online worden gemaakt. Wij raden aan om vooraf te reserveren, vooral in het hoogseizoen.',
-                'opening-hours': '⏰ Openingstijden',
-                'opening-hours-desc': 'Dagelijks geopend van 09:00 tot 18:00 uur tijdens het seizoen (1 april - 1 november).',
-                'payment': '💰 Betaling',
-                'payment-desc': 'Alleen contante betaling wordt geaccepteerd. Een borg van €50-€100 is vereist afhankelijk van het boottype.',
-                
-                // Footer
-                'contact-info': 'Contactgegevens',
-                'services': 'Diensten',
-                'more-information': 'Meer Informatie',
-                'all-rights-reserved': 'Alle rechten voorbehouden'
-            },
-            en: {
-                // Page meta
-                title: 'Boat Rental - Nijenhuis Botenverhuur',
-                description: 'Rent boats at Nijenhuis Botenverhuur in the Weerribben nature reserve. Electric boats, canoes, kayaks and more.',
-                
-                // Navigation
-                'boat-hire': 'Boat Rental',
-                'holiday-home': 'Holiday Home',
-                'for-sale': 'For Sale',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Sailing Map',
-                'contact': 'Contact',
-                'shopping-cart': 'Shopping Cart',
-                
-                // Page content
-                'hero-title': 'Boat Rental',
-                'hero-subtitle': 'Discover the beautiful Weerribben nature reserve with our extensive fleet of boats. From electric boats to canoes and kayaks.',
-                
-                // Section titles
-                'boat-categories': 'Our Boat Categories',
-                'boat-categories-desc': 'We offer a wide range of boats for all preferences and experience levels',
-                'pricing-availability': 'Pricing & Availability',
-                'pricing-desc': 'All prices are per day including safety equipment and instructions',
-                'rental-info': 'Rental Information',
-                'rental-info-desc': 'Everything you need to know about renting a boat',
-                
-                // Categories
-                'electric-boats': 'Electric Boats',
-                'electric-boats-desc': 'Environmentally friendly boats with electric propulsion, perfect for quiet cruises through the nature reserve.',
-                'gasoline-boats': 'Gasoline Boats',
-                'gasoline-boats-desc': 'Powerful boats with gasoline engines, ideal for larger groups and longer trips.',
-                'sailboats': 'Sailboats',
-                'sailboats-desc': 'Traditional sailboats for the experienced sailor. Enjoy the wind and nature.',
-                'canoes-kayaks': 'Canoes & Kayaks',
-                'canoes-kayaks-desc': 'Perfect for sporting activities and exploring smaller waterways.',
-                'sup-boards': 'Sup Boards',
-                'sup-boards-desc': 'Stand-up paddleboards for a unique way to experience the water.',
-                
-                // Pricing table
-                'pricing-title': 'Daily Boat Rental Prices',
-                'season-info': 'Season: April 1 - November 1, 2025',
-                'boat-type': 'Boat Type',
-                'capacity': 'Capacity',
-                'price-per-day': 'Price per Day',
-                'status': 'Status',
-                'available': 'Available',
-                
-                // Rental info
-                'reservations': '📅 Reservations',
-                'reservations-desc': 'Reservations can be made by phone or online. We recommend booking in advance, especially during high season.',
-                'opening-hours': '⏰ Opening Hours',
-                'opening-hours-desc': 'Open daily from 9:00 AM to 6:00 PM during the season (April 1 - November 1).',
-                'payment': '💰 Payment',
-                'payment-desc': 'Only cash payments are accepted. A deposit of €50-€100 is required depending on the boat type.',
-                
-                // Footer
-                'contact-info': 'Contact Information',
-                'services': 'Services',
-                'more-information': 'More Information',
-                'all-rights-reserved': 'All rights reserved'
-            },
-            de: {
-                // Page meta
-                title: 'Bootsverleih - Nijenhuis Botenverhuur',
-                description: 'Boote mieten bei Nijenhuis Botenverhuur im Naturschutzgebiet Weerribben. Elektroboote, Kanus, Kajaks und mehr.',
-                
-                // Navigation
-                'boat-hire': 'Bootsverleih',
-                'holiday-home': 'Ferienhaus',
-                'for-sale': 'Zu Verkaufen',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Seekarte',
-                'contact': 'Kontakt',
-                'shopping-cart': 'Warenkorb',
-                
-                // Page content
-                'hero-title': 'Bootsverleih',
-                'hero-subtitle': 'Entdecken Sie das wunderschöne Naturschutzgebiet Weerribben mit unserer umfangreichen Bootsflotte. Von Elektrobooten bis zu Kanus und Kajaks.',
-                
-                // Section titles
-                'boat-categories': 'Unsere Bootskategorien',
-                'boat-categories-desc': 'Wir bieten eine große Auswahl an Booten für alle Vorlieben und Erfahrungsstufen',
-                'pricing-availability': 'Preise & Verfügbarkeit',
-                'pricing-desc': 'Alle Preise sind pro Tag inklusive Sicherheitsausrüstung und Anweisungen',
-                'rental-info': 'Verleihinformationen',
-                'rental-info-desc': 'Alles was Sie über das Mieten eines Bootes wissen müssen',
-                
-                // Categories
-                'electric-boats': 'Elektroboote',
-                'electric-boats-desc': 'Umweltfreundliche Boote mit elektrischem Antrieb, perfekt für ruhige Fahrten durch das Naturschutzgebiet.',
-                'gasoline-boats': 'Benzinboote',
-                'gasoline-boats-desc': 'Leistungsstarke Boote mit Benzinmotoren, ideal für größere Gruppen und längere Fahrten.',
-                'sailboats': 'Segelboote',
-                'sailboats-desc': 'Traditionelle Segelboote für den erfahrenen Segler. Genießen Sie Wind und Natur.',
-                'canoes-kayaks': 'Kanus & Kajaks',
-                'canoes-kayaks-desc': 'Perfekt für sportliche Aktivitäten und das Erkunden kleinerer Wasserstraßen.',
-                'sup-boards': 'Sup Boards',
-                'sup-boards-desc': 'Stand-up Paddleboards für eine einzigartige Art, das Wasser zu erleben.',
-                
-                // Pricing table
-                'pricing-title': 'Tägliche Bootsverleihpreise',
-                'season-info': 'Saison: 1. April - 1. November 2025',
-                'boat-type': 'Bootstyp',
-                'capacity': 'Kapazität',
-                'price-per-day': 'Preis pro Tag',
-                'status': 'Status',
-                'available': 'Verfügbar',
-                
-                // Rental info
-                'reservations': '📅 Reservierungen',
-                'reservations-desc': 'Reservierungen können telefonisch oder online gemacht werden. Wir empfehlen eine Voranmeldung, besonders in der Hochsaison.',
-                'opening-hours': '⏰ Öffnungszeiten',
-                'opening-hours-desc': 'Täglich geöffnet von 9:00 bis 18:00 Uhr während der Saison (1. April - 1. November).',
-                'payment': '💰 Zahlung',
-                'payment-desc': 'Nur Bargeldzahlungen werden akzeptiert. Eine Kaution von €50-€100 ist je nach Bootstyp erforderlich.',
-                
-                // Footer
-                'contact-info': 'Kontaktinformationen',
-                'services': 'Dienstleistungen',
-                'more-information': 'Weitere Informationen',
-                'all-rights-reserved': 'Alle Rechte vorbehalten'
-            }
-        };
-
-        // Get current language from URL or default to Dutch
-        function getCurrentLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            return lang && translations[lang] ? lang : 'nl';
-        }
-
-        // Update page content based on language
-        function updatePageContent(lang) {
-            const t = translations[lang] || translations.nl;
-            
-            // Update page title and meta description
-            document.title = t.title;
-            document.querySelector('meta[name="description"]').setAttribute('content', t.description);
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks[0].textContent = t['boat-hire'];
-            navLinks[1].textContent = t['holiday-home'];
-            navLinks[2].textContent = t['for-sale'];
-            navLinks[3].textContent = t['camping'];
-            navLinks[4].textContent = t['marina'];
-            navLinks[5].textContent = t['sailing-map'];
-            navLinks[6].textContent = t['contact'];
-            
-            // Update hero section
-            document.querySelector('.page-header h1').textContent = t['hero-title'];
-            document.querySelector('.page-header p').textContent = t['hero-subtitle'];
-            
-            // Update section titles
-            const sectionTitles = document.querySelectorAll('.section-title h2');
-            sectionTitles[0].textContent = t['boat-categories'];
-            sectionTitles[1].textContent = t['pricing-availability'];
-            sectionTitles[2].textContent = t['rental-info'];
-            
-            const sectionDescs = document.querySelectorAll('.section-title p');
-            sectionDescs[0].textContent = t['boat-categories-desc'];
-            sectionDescs[1].textContent = t['pricing-desc'];
-            sectionDescs[2].textContent = t['rental-info-desc'];
-            
-            // Update category cards
-            const categoryCards = document.querySelectorAll('.category-card h3');
-            categoryCards[0].textContent = t['electric-boats'];
-            categoryCards[1].textContent = t['sailboats'];
-            categoryCards[2].textContent = t['canoes-kayaks'];
-            categoryCards[3].textContent = t['sup-boards'];
-            
-            const categoryDescs = document.querySelectorAll('.category-card p');
-            categoryDescs[0].textContent = t['electric-boats-desc'];
-            categoryDescs[1].textContent = t['sailboats-desc'];
-            categoryDescs[2].textContent = t['canoes-kayaks-desc'];
-            categoryDescs[3].textContent = t['sup-boards-desc'];
-            
-            // Update pricing table
-            document.querySelector('.pricing-header h3').textContent = t['pricing-title'];
-            document.querySelector('.pricing-header p').textContent = t['season-info'];
-            
-            const pricingHeaders = document.querySelectorAll('.pricing-row.header div');
-            pricingHeaders[0].textContent = t['boat-type'];
-            pricingHeaders[1].textContent = t['capacity'];
-            pricingHeaders[2].textContent = t['price-per-day'];
-            pricingHeaders[3].textContent = t['status'];
-            
-            // Update rental info cards
-            const rentalCards = document.querySelectorAll('.category-card h3');
-            rentalCards[4].textContent = t['reservations'];
-            rentalCards[5].textContent = t['opening-hours'];
-            rentalCards[6].textContent = t['payment'];
-            
-            const rentalDescs = document.querySelectorAll('.category-card p');
-            rentalDescs[4].textContent = t['reservations-desc'];
-            rentalDescs[5].textContent = t['opening-hours-desc'];
-            rentalDescs[6].textContent = t['payment-desc'];
-            
-            // Update footer - titles removed, no longer need to update footer section titles
-            document.querySelector('.footer-bottom p').textContent = '© 2025 Nijenhuis Botenverhuur. ' + t['all-rights-reserved'];
-        }
-
-        // --- Language Switcher Initialization ---
-        function initLanguageSwitcher() {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLangBtn = document.querySelector('.current-lang');
-
-            if (languageSwitcher && currentLangBtn) {
-                // Add click handler to current language button
-                currentLangBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    languageSwitcher.classList.toggle('active');
-                });
-            }
-        }
-
-        // GET CURRENT LANGUAGE
-        function getCurrentLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            return lang && translations[lang] ? lang : 'nl';
-        }
-
-        // SWITCH LANGUAGE (now calls re-initializer)
-        function switchLanguage(lang) {
-            // Update URL
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.replaceState({}, '', url);
-
-            // Update page content
-            updatePageContent(lang);
-
-            // Update the current language display
-            const currentLang = document.querySelector('.current-lang');
-            if (currentLang) {
-                switch(lang) {
-                    case 'nl':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
-                        break;
-                    case 'en':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
-                        break;
-                    case 'de':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
-                        break;
-                }
-            }
-
-            // --- CRITICAL: Re-initialize event listeners on the replaced node
-            initLanguageSwitcher();
-        }
-
-        // Global event delegation for language switcher
-        function setupLanguageSwitcherEvents() {
-            // Handle clicks on language options (event delegation)
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.lang-option')) {
-                    e.preventDefault();
-                    const langOption = e.target.closest('.lang-option');
-                    const lang = langOption.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    
-                    // Close dropdown
-                    const languageSwitcher = document.querySelector('.language-switcher');
-                    if (languageSwitcher) {
-                        languageSwitcher.classList.remove('active');
-                    }
-                }
-            });
-
-        // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                const languageSwitcher = document.querySelector('.language-switcher');
-                if (languageSwitcher && !languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
-        }
-
         // --- DOM READY LOGIC ---
         // Mobile menu functionality
         function setupMobileMenu() {
@@ -896,15 +570,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = getCurrentLanguage();
-            updatePageContent(currentLang);
-
-            // Initialize language switcher
-            initLanguageSwitcher();
-            
-            // Set up global event delegation for language switcher
-            setupLanguageSwitcherEvents();
-            
             // Set up mobile menu
             setupMobileMenu();
             
@@ -1004,16 +669,17 @@
                     if (boats && boats.length > 0) {
                         // Update modal title based on category
                         const categoryNames = {
-                            electric: translations[currentLang]['electric-boats'] || 'Elektrische Boten',
-                            gasoline: translations[currentLang]['gasoline-boats'] || 'Benzine Boten',
-                            sailing: translations[currentLang]['sailboats'] || 'Zeilboten',
-                            canoe: translations[currentLang]['canoes-kayaks'] || 'Kano\'s & Kajaks',
-                            sup: translations[currentLang]['sup-boards'] || 'Sup Boards'
+                            electric: 'Elektrische Boten',
+                            gasoline: 'Benzine Boten',
+                            sailing: 'Zeilboten',
+                            canoe: 'Kano\'s & Kajaks',
+                            sup: 'Sup Boards',
+                            all: 'Alle Boten'
                         };
-                        modalTitle.textContent = categoryNames[category];
+                        if (modalTitle) modalTitle.textContent = categoryNames[category];
                         
                         // Populate modal with boats
-                        modalBoats.innerHTML = '';
+                        if (modalBoats) modalBoats.innerHTML = '';
                         boats.forEach(boat => {
                             const boatCard = document.createElement('div');
                             boatCard.className = 'modal-boat-card';
@@ -1046,6 +712,103 @@
                             } else {
                                 // Single image
                                 imageHtml = boat.image ? 
+                                `<div class="modal-boat-image" style="background-image: url('${boat.image}')">
+                                    <img src="${boat.image}" alt="${boat.name}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
+                                </div>` :
+                                `<div class="modal-boat-image placeholder">
+                                    <span>${boat.name}</span>
+                                </div>`;
+                            }
+                            
+                            boatCard.innerHTML = `
+                                ${imageHtml}
+                                <h4>${boat.name}</h4>
+                                <div class="boat-capacity">${boat.capacity}</div>
+                                <div class="boat-price">${boat.price}</div>
+                                <div class="boat-status ${boat.status}">${boat.status === 'available' ? 'Beschikbaar' : 'Bezet'}</div>
+                                <div class="boat-actions" style="display: flex; gap: 10px; margin-top: 15px;">
+                                    <a href="tel:0522281528" class="btn" style="flex: 1; padding: 8px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;">
+                                    📞 Reserveren
+                                </a>
+                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.name}')">
+                                        ℹ️ Meer Info
+                                    </button>
+                                </div>
+                            `;
+                            if (modalBoats) modalBoats.appendChild(boatCard);
+                        });
+                        
+                        // Show modal
+                        if (modal) modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // Close modal
+            if (modalClose) modalClose.addEventListener('click', function() {
+                if (modal) modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // Close modal when clicking outside
+            if (modal) modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    if (modal) modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                    if (modal) modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Handle click for 'Alle Boten' category
+            const allBoatsCard = document.querySelector('.category-card[data-category="all"]');
+            if (allBoatsCard) {
+                allBoatsCard.addEventListener('click', function() {
+                    const allBoats = [];
+                    for (const category in boatData) {
+                        allBoats.push(...boatData[category]);
+                    }
+
+                    if (allBoats.length > 0) {
+                        if (modalTitle) modalTitle.textContent = 'Alle Boten';
+                        if (modalBoats) modalBoats.innerHTML = '';
+                        allBoats.forEach(boat => {
+                            const boatCard = document.createElement('div');
+                            boatCard.className = 'modal-boat-card';
+                            
+                            // Create image element with slideshow if available
+                            let imageHtml;
+                            if (boat.slideshow && boat.slideshow.length > 1) {
+                                const slideshowId = 'slideshow-' + Math.random().toString(36).substr(2, 9);
+                                imageHtml = `
+                                    <div class="modal-boat-slideshow" id="${slideshowId}">
+                                        <div class="slideshow-container">
+                                            ${boat.slideshow.map((img, index) => `
+                                                <div class="slide ${index === 0 ? 'active' : ''}">
+                                                    <img src="${img}" alt="${boat.name} - Foto ${index + 1}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <div class="slideshow-controls">
+                                            <button class="slideshow-btn prev" onclick="changeSlide('${slideshowId}', -1)">❮</button>
+                                            <div class="slideshow-dots">
+                                                ${boat.slideshow.map((_, index) => `
+                                                    <span class="dot ${index === 0 ? 'active' : ''}" onclick="currentSlide('${slideshowId}', ${index})"></span>
+                                                `).join('')}
+                                            </div>
+                                            <button class="slideshow-btn next" onclick="changeSlide('${slideshowId}', 1)">❯</button>
+                                        </div>
+                                    </div>
+                                `;
+                            } else {
+                                imageHtml = boat.image ? 
                                     `<div class="modal-boat-image" style="background-image: url('${boat.image}')">
                                         <img src="${boat.image}" alt="${boat.name}" onerror="this.parentElement.classList.add('placeholder'); this.parentElement.innerHTML='<span>${boat.name}</span>';">
                                     </div>` :
@@ -1069,38 +832,15 @@
                                     </button>
                                 </div>
                             `;
-                            modalBoats.appendChild(boatCard);
+                            if (modalBoats) modalBoats.appendChild(boatCard);
                         });
-                        
-                        // Show modal
-                        modal.classList.add('active');
+                        if (modal) modal.classList.add('active');
                         document.body.style.overflow = 'hidden';
                     }
                 });
-            });
-
-            // Close modal
-            modalClose.addEventListener('click', function() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
+            }
         });
     </script>
+    <script src="../js/translation.js" defer></script>
 </body>
 </html> 

@@ -1,6 +1,3 @@
-/* Modern CSS for Nijenhuis Boat Rental Website */
-/* Performance optimized with CSS Grid, Flexbox, and modern features */
-
 /* CSS Custom Properties (Variables) */
 :root {
     /* Colors */
@@ -295,6 +292,34 @@ section:nth-child(even) {
 .language-selector a:hover,
 .language-selector a.active {
     opacity: 0.8;
+}
+
+.language-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.lang-link {
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-normal);
+}
+
+.lang-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lang-link.active {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .flag-icon {
@@ -810,18 +835,44 @@ section:nth-child(even) {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-xl);
+    gap: 2rem;
 }
 
 .service-card {
-    background: var(--bg-primary);
-    padding: var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    text-align: center;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-height: 420px;
     position: relative;
-    overflow: hidden;
+}
+
+.service-card .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.service-card h3 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    text-align: center;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.service-card .btn,
+.service-card .btn-outline {
+    margin-top: auto;
+    align-self: center;
+    display: inline-block;
 }
 
 .service-card::before {
@@ -1712,37 +1763,82 @@ section:nth-child(even) {
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    gap: 2rem;
 }
 
 .service-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    min-height: 420px;
+    position: relative;
+}
+
+.service-card .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
     text-align: center;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+}
+
+.service-card h3 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    text-align: center;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.service-card .btn,
+.service-card .btn-outline {
+    margin-top: auto;
+    align-self: center;
+    display: inline-block;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: var(--transition-normal);
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-xl);
 }
 
 .service-icon {
     font-size: 3rem;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-lg);
+    display: block;
 }
 
 .service-card h3 {
-    font-size: 1.3rem;
+    font-size: var(--font-size-xl);
     color: var(--secondary-color);
-    margin-bottom: 15px;
+    margin-bottom: var(--spacing-md);
 }
 
 .service-card p {
     color: var(--text-secondary);
-    margin-bottom: 20px;
+    margin-bottom: var(--spacing-lg);
     line-height: 1.6;
 }
 
@@ -2304,6 +2400,31 @@ body {
     margin-bottom: 20px;
 }
 
+/* Route Details Styling */
+.route-details {
+    list-style: none;
+    margin: 15px 0;
+    padding: 0;
+    text-align: left;
+}
+
+.route-details li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    color: #666;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.route-details li:last-child {
+    border-bottom: none;
+}
+
+.route-details li strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
 /* House Details */
 .house-details {
     display: grid;
@@ -2547,19 +2668,63 @@ body {
 
 /* Pricing Tables */
 .pricing-table {
-    background: white;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-top: 40px;
+    width: 100%;
+    overflow-x: auto;
+    background: #fff;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    margin: 2rem 0;
 }
-
 .pricing-header {
-    background: var(--secondary-color);
-    color: white;
-    padding: 20px;
     text-align: center;
+    padding: 0.75rem 1rem;
+    background: var(--primary-color);
+    color: #fff;
+    border-top-left-radius: var(--radius-md);
+    border-top-right-radius: var(--radius-md);
 }
+.pricing-rows {
+    width: 100%;
+    display: block;
+    overflow-x: auto;
+}
+.pricing-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    min-width: 600px;
+    background: #fff;
+}
+.pricing-row.header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--primary-color);
+    font-weight: bold;
+    color: #fff;
+    border-bottom: 2px solid var(--primary-dark);
+}
+.pricing-row.header > div {
+    background: transparent;
+    color: #fff;
+}
+.pricing-row > div {
+    padding: 1rem 0.5rem;
+    text-align: center;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+@media (max-width: 700px) {
+    .pricing-row, .pricing-row.header {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        min-width: 480px;
+    }
+    .pricing-header {
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+    }
+}
+/* Remove any old .pricing-row:last-child or .pricing-row .status selectors if present */
 
 .pricing-header h3 {
     font-size: 1.5rem;
@@ -2569,14 +2734,6 @@ body {
 .pricing-rows {
     max-height: 400px;
     overflow-y: auto;
-}
-
-.pricing-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
-    align-items: center;
 }
 
 .pricing-row:nth-child(even) {
@@ -2788,6 +2945,176 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     border: 1px solid #e0e0e0;
+}
+
+/* Contact Call Section */
+.contact-call-section {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.contact-call-section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.contact-call-section p {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+.call-button-container {
+    margin: 30px 0;
+}
+
+.call-button {
+    display: inline-flex;
+    align-items: center;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 20px 30px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: var(--transition-normal);
+    box-shadow: var(--shadow-lg);
+    min-width: 280px;
+    justify-content: center;
+    gap: 15px;
+}
+
+.call-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    color: var(--white);
+}
+
+.call-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.call-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.call-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.call-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 2px;
+}
+
+.call-info {
+    margin-top: 25px;
+    padding: 20px;
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid #e0e0e0;
+}
+
+.call-info p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.call-info p:last-child {
+    margin-bottom: 0;
+}
+
+.call-info strong {
+    color: var(--primary-color);
+}
+
+/* Typing Indicator */
+.typing-indicator .message-bubble {
+    background: #f0f0f0;
+    color: #666;
+    padding: 12px 16px;
+    border-radius: 18px;
+    max-width: 80%;
+    display: inline-block;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: #999;
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0s;
+}
+
+@keyframes typing {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Chat Call Button */
+.chat-call-button-container {
+    margin-top: 8px;
+    text-align: left;
+}
+
+.chat-call-button {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chat-call-button:hover {
+    background: var(--primary-dark);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.chat-call-button:active {
+    transform: translateY(0);
 }
 
 .form-group {
@@ -3291,11 +3618,22 @@ body {
     .top-bar-content {
         justify-content: center;
         text-align: center;
+        flex-direction: column;
+        gap: 10px;
     }
     
     .contact-info {
         flex-direction: column;
         gap: 10px;
+    }
+    
+    .language-links {
+        gap: 5px;
+    }
+    
+    .lang-link {
+        padding: 5px 8px;
+        font-size: 12px;
     }
     
     .contact-grid {
@@ -3305,6 +3643,19 @@ body {
     
     .contact-form {
         padding: 30px;
+    }
+    
+    .contact-call-section {
+        padding: 20px;
+    }
+    
+    .call-button {
+        min-width: 250px;
+        padding: 18px 25px;
+    }
+    
+    .call-number {
+        font-size: 1.3rem;
     }
     
     .contact-item {
@@ -3586,9 +3937,9 @@ body {
 
 .modal-boat-image {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-md);
     margin-bottom: var(--spacing-md);
     overflow: hidden;
     display: flex;
@@ -3705,6 +4056,10 @@ body {
     }
     
     .modal-boat-slideshow {
+        height: 250px;
+    }
+    
+    .modal-boat-image {
         height: 250px;
     }
     
@@ -3846,4 +4201,200 @@ body {
 .modal-boat-slideshow .dot.active,
 .modal-boat-slideshow .dot:hover {
     background: white;
-} 
+}
+
+.booking-form-modern {
+  background: #fff;
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-xl);
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+}
+.booking-form-modern .form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.booking-form-modern .form-header h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.booking-form-modern .form-header p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+.booking-form-modern .form-row {
+  display: flex;
+  gap: 1rem;
+}
+.booking-form-modern .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.booking-form-modern .form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.booking-form-modern .form-group input,
+.booking-form-modern .form-group select {
+  font-size: 1rem;
+  padding: 0.85rem 1rem 0.85rem 2.5rem;
+  border-radius: 0.75rem;
+  border: 2px solid #e0e7ef;
+  background: #f8fafc;
+  transition: border-color 0.2s;
+  box-shadow: none;
+}
+.booking-form-modern .form-group input:focus,
+.booking-form-modern .form-group select:focus {
+  border-color: var(--primary-color);
+  background: #fff;
+}
+.booking-form-modern .form-group .input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  pointer-events: none;
+}
+.booking-form-modern .form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.booking-form-modern .btn,
+.booking-form-modern .btn-outline {
+  border-radius: 2rem;
+  font-size: 1rem;
+  padding: 0.85rem 1.5rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+.booking-form-modern .btn {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+}
+.booking-form-modern .btn:hover {
+  background: var(--primary-dark);
+}
+.booking-form-modern .btn-outline {
+  background: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+.booking-form-modern .btn-outline:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+.booking-form-modern .form-badge {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--success-color);
+  background: #eafaf1;
+  border-radius: 1rem;
+  padding: 0.4rem 1.2rem;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+@media (max-width: 600px) {
+  .booking-form-modern {
+    padding: 1.2rem 0.5rem;
+  }
+  .booking-form-modern .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.language-links .lang-link {
+  font-size: 0; /* Hide any text nodes, only show flag icons */
+}
+.language-links .flag-circle {
+  font-size: 20px; /* Restore flag icon size */
+}
+.language-links .flag-circle .fi {
+  font-size: 16px;
+}
+
+/* Language Switcher Modern Circle Buttons */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 20px;
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  background: var(--bg-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  position: relative;
+}
+
+.lang-btn .flag-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.lang-btn.active,
+.lang-btn:focus {
+  border-color: var(--secondary-color);
+  background: var(--primary-color);
+  box-shadow: 0 4px 16px rgba(0,113,187,0.10);
+}
+
+.lang-btn.active .flag-icon,
+.lang-btn:focus .flag-icon {
+  box-shadow: 0 0 0 2px var(--secondary-color);
+}
+
+.lang-btn:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.lang-btn:active {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+@media (max-width: 600px) {
+  .language-switcher {
+    gap: 0.25rem;
+  }
+  .lang-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .lang-btn .flag-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

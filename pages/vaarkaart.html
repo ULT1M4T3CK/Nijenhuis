@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Vaarkaart - Nijenhuis Botenverhuur</title>
     <meta name="description" content="Vaarkaart en navigatie informatie voor het natuurgebied Weerribben.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.0.0/css/flag-icons.min.css">
     <link rel="stylesheet" href="../styles.css">
     
     <!-- Shared JavaScript -->
@@ -17,14 +16,15 @@
         <div class="container">
             <div class="top-bar-content">
                 <div class="contact-info">
-                    <span>Openingstijden: 9:00 - 18:00 | </span>
+                    <span data-i18n="nav_opening">Openingstijden: 9:00 - 18:00 |</span>
                     <a href="tel:+31522281528">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
-                        0522 - 281 528
+                        <span>+31522 - 281 528</span>
                     </a>
                 </div>
+                <div class="language-switcher" id="languageSwitcher"></div>
             </div>
         </div>
     </div>
@@ -33,37 +33,18 @@
     <nav class="main-nav">
         <div class="container">
             <div class="nav-container">
-                <a href="../index.html" class="logo-link">
+                <a href="./index.html" class="logo-link">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
                 </a>
                 
                 <ul class="nav-menu">
-                    <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                    <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                    <li><a href="te-koop.html">Te Koop</a></li>
-                    <li><a href="camping.html">Camping</a></li>
-                    <li><a href="jachthaven.html">Marina</a></li>
-                    <li><a href="vaarkaart.html" class="active">Vaarkaart</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="language-switcher">
-                        <a href="#" class="current-lang">
-                            <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
-                        </a>
-                        <div class="lang-dropdown">
-                                                        <a href="?lang=nl" class="lang-option active" data-lang="nl">
-                                <span class="flag-circle"><span class="fi fi-nl"></span></span>
-                                Nederlands
-                            </a>
-                            <a href="?lang=en" class="lang-option" data-lang="en">
-                                <span class="flag-circle"><span class="fi fi-gb"></span></span>
-                                English
-                            </a>
-                            <a href="?lang=de" class="lang-option" data-lang="de">
-                                <span class="flag-circle"><span class="fi fi-de"></span></span>
-                                Deutsch
-                            </a>
-                                            </div>
-                    </li>
+                    <li><a href="botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                    <li><a href="vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                    <li><a href="te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                    <li><a href="camping.html" data-i18n="nav_camping">Camping</a></li>
+                    <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                    <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                    <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                 </ul>
                 
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
@@ -78,8 +59,8 @@
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
-            <h1>Vaarkaart</h1>
-            <p>Navigatie informatie en routes voor het natuurgebied Weerribben</p>
+            <h1 data-i18n="vaarkaart_title">Vaarkaart</h1>
+            <p data-i18n="vaarkaart_description">Navigatie informatie en routes voor het natuurgebied Weerribben</p>
         </div>
     </header>
 
@@ -89,14 +70,14 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Interactieve Vaarkaart</h2>
-                    <p>Ontdek de mooiste routes door het natuurgebied Weerribben</p>
+                    <h2 data-i18n="vaarkaart_interactive_map_title">Interactieve vaarkaart</h2>
+                    <p data-i18n="vaarkaart_interactive_map_description">Ontdek de mooiste routes door het natuurgebied Weerribben</p>
                 </div>
 
                 <div class="map-container">
-                    <h3>Weerribben Natuurgebied - Interactieve Vaarkaart</h3>
+                    <h3 data-i18n="vaarkaart_interactive_map_map_title">Weerribben natuurgebied - interactieve vaarkaart</h3>
                     <div class="map-attribution">
-                        <p><strong>Bron:</strong> <a href="https://waterkaart.net/" target="_blank" rel="noopener noreferrer">Waterkaart.net</a> - Professionele vaarkaarten voor Nederlandse wateren</p>
+                        <p><strong data-i18n="vaarkaart_interactive_map_attribution_source">Bron:</strong> <a href="https://waterkaart.net/" target="_blank" rel="noopener noreferrer" data-i18n="vaarkaart_interactive_map_attribution_source_link">Waterkaart.net</a> - Professionele vaarkaarten voor Nederlandse wateren</p>
                     </div>
                     
                     <div class="map-placeholder">
@@ -106,19 +87,19 @@
                                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#007bff"/>
                                 </svg>
                             </div>
-                            <h4>Interactieve Vaarkaart</h4>
-                            <p>Voor de meest actuele en gedetailleerde vaarkaarten van het Weerribben gebied, bezoek de professionele waterkaart van Nederland.</p>
+                            <h4 data-i18n="vaarkaart_interactive_map_placeholder_title">Interactieve vaarkaart</h4>
+                            <p data-i18n="vaarkaart_interactive_map_placeholder_description">Voor de meest actuele en gedetailleerde vaarkaarten van het Weerribben gebied, bezoek de professionele waterkaart van Nederland.</p>
                             <div class="map-buttons">
                                 <a href="https://waterkaart.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                                     <span class="btn-icon">🗺️</span>
-                                    Open Waterkaart.net
+                                    <span data-i18n="vaarkaart_interactive_map_placeholder_button">Open waterkaart.net</span>
                                 </a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="map-footer">
-                        <p><em>Deze interactieve vaarkaart wordt verzorgd door <a href="https://waterkaart.net/" target="_blank" rel="noopener noreferrer">Waterkaart.net</a>. Voor de meest actuele informatie en gedetailleerde vaarkaarten, bezoek hun website.</em></p>
+                        <p data-i18n="vaarkaart_interactive_map_footer_description"><em>Deze interactieve vaarkaart wordt verzorgd door Waterkaart.net. Voor de meest actuele informatie en gedetailleerde vaarkaarten, bezoek hun website.</em></p>
                     </div>
                 </div>
             </div>
@@ -128,45 +109,48 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Populaire Routes</h2>
-                    <p>Ontdek de mooiste vaarroutes in het gebied</p>
+                    <h2 data-i18n="vaarkaart_popular_routes_title">Populaire routes</h2>
+                    <p data-i18n="vaarkaart_popular_routes_description">Ontdek de mooiste vaarroutes in het gebied</p>
                 </div>
 
-                <div class="routes-grid">
-                    <div class="route-card">
-                        <h4>Giethoorn Route</h4>
+                <div class="boat-categories">
+                    <div class="category-card">
+                        <div class="category-icon">🏘️</div>
+                        <h3 data-i18n="vaarkaart_popular_routes_giethoorn_title">Giethoorn route</h3>
                         <ul class="route-details">
-                            <li>Start: Nijenhuis Botenverhuur</li>
-                            <li>Duur: 2-3 uur</li>
-                            <li>Afstand: 8 km</li>
-                            <li>Moeilijkheidsgraad: Gemakkelijk</li>
-                            <li>Hoogtepunten: Dorpsgezicht Giethoorn</li>
+                            <li data-i18n="vaarkaart_popular_routes_giethoorn_start">Start: Nijenhuis Botenverhuur</li>
+                            <li data-i18n="vaarkaart_popular_routes_giethoorn_duration">Duur: 2-3 uur</li>
+                            <li data-i18n="vaarkaart_popular_routes_giethoorn_distance">Afstand: 8 km</li>
+                            <li data-i18n="vaarkaart_popular_routes_giethoorn_difficulty">Moeilijkheidsgraad: Gemakkelijk</li>
+                            <li data-i18n="vaarkaart_popular_routes_giethoorn_highlights">Hoogtepunten: Dorpsgezicht Giethoorn</li>
                         </ul>
-                        <p><strong>Perfect voor beginners en families</strong></p>
+                        <p data-i18n="vaarkaart_popular_routes_giethoorn_perfect_for"><strong>Perfect voor beginners en families</strong></p>
                     </div>
 
-                    <div class="route-card">
-                        <h4>Weerribben Natuurroute</h4>
+                    <div class="category-card">
+                        <div class="category-icon">🌿</div>
+                        <h3 data-i18n="vaarkaart_popular_routes_weerribben_route_title">Weerribben natuurroute</h3>
                         <ul class="route-details">
-                            <li>Start: Nijenhuis Botenverhuur</li>
-                            <li>Duur: 4-5 uur</li>
-                            <li>Afstand: 15 km</li>
-                            <li>Moeilijkheidsgraad: Gemiddeld</li>
-                            <li>Hoogtepunten: Wilde dieren, vogels</li>
+                            <li data-i18n="vaarkaart_popular_routes_weerribben_route_start">Start: Nijenhuis Botenverhuur</li>
+                            <li data-i18n="vaarkaart_popular_routes_weerribben_route_duration">Duur: 4-5 uur</li>
+                            <li data-i18n="vaarkaart_popular_routes_weerribben_route_distance">Afstand: 15 km</li>
+                            <li data-i18n="vaarkaart_popular_routes_weerribben_route_difficulty">Moeilijkheidsgraad: Gemiddeld</li>
+                            <li data-i18n="vaarkaart_popular_routes_weerribben_route_highlights">Hoogtepunten: Wilde dieren, vogels</li>
                         </ul>
-                        <p><strong>Voor natuur- en vogelliefhebbers</strong></p>
+                        <p data-i18n="vaarkaart_popular_routes_weerribben_route_for_nature_lovers"><strong>Voor natuur- en vogelliefhebbers</strong></p>
                     </div>
 
-                    <div class="route-card">
-                        <h4>Wanneperveen Rondvaart</h4>
+                    <div class="category-card">
+                        <div class="category-icon">🏘️</div>
+                        <h3 data-i18n="vaarkaart_popular_routes_wanneperveen_title">Wanneperveen rondvaart</h3>
                         <ul class="route-details">
-                            <li>Start: Nijenhuis Botenverhuur</li>
-                            <li>Duur: 1-2 uur</li>
-                            <li>Afstand: 5 km</li>
-                            <li>Moeilijkheidsgraad: Gemakkelijk</li>
-                            <li>Hoogtepunten: Dorpsgezicht Wanneperveen</li>
+                            <li data-i18n="vaarkaart_popular_routes_wanneperveen_start">Start: Nijenhuis Botenverhuur</li>
+                            <li data-i18n="vaarkaart_popular_routes_wanneperveen_duration">Duur: 1-2 uur</li>
+                            <li data-i18n="vaarkaart_popular_routes_wanneperveen_distance">Afstand: 5 km</li>
+                            <li data-i18n="vaarkaart_popular_routes_wanneperveen_difficulty">Moeilijkheidsgraad: Gemakkelijk</li>
+                            <li data-i18n="vaarkaart_popular_routes_wanneperveen_highlights">Hoogtepunten: Dorpsgezicht Wanneperveen</li>
                         </ul>
-                        <p><strong>Korte route voor een snelle uitstap</strong></p>
+                        <p data-i18n="vaarkaart_popular_routes_wanneperveen_short_route"><strong>Korte route voor een snelle uitstap</strong></p>
                     </div>
                 </div>
             </div>
@@ -176,41 +160,44 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Vaarregels & Veiligheid</h2>
-                    <p>Belangrijke informatie voor veilig varen</p>
+                    <h2 data-i18n="vaarkaart_navigation_rules_title">Vaarregels & Veiligheid</h2>
+                    <p data-i18n="vaarkaart_navigation_rules_description">Belangrijke informatie voor veilig varen</p>
                 </div>
 
-                <div class="routes-grid">
-                    <div class="route-card">
-                        <h4>Algemene Regels</h4>
+                <div class="boat-categories">
+                    <div class="category-card">
+                        <div class="category-icon">📋</div>
+                        <h3 data-i18n="vaarkaart_navigation_rules_general_rules_title">Algemene regels</h3>
                         <ul class="route-details">
-                            <li>Maximum snelheid: 6 km/u</li>
-                            <li>Zwemvesten verplicht</li>
-                            <li>Geen alcohol tijdens het varen</li>
-                            <li>Respecteer de natuur</li>
-                            <li>Houd afstand van andere boten</li>
+                            <li data-i18n="vaarkaart_navigation_rules_general_rules_max_speed">Maximum snelheid: 6 km/u</li>
+                            <li data-i18n="vaarkaart_navigation_rules_general_rules_lifejackets">Zwemvesten verplicht</li>
+                            <li data-i18n="vaarkaart_navigation_rules_general_rules_alcohol">Geen alcohol tijdens het varen</li>
+                            <li data-i18n="vaarkaart_navigation_rules_general_rules_respect_nature">Respecteer de natuur</li>
+                            <li data-i18n="vaarkaart_navigation_rules_general_rules_distance_from_other_boats">Houd afstand van andere boten</li>
                         </ul>
                     </div>
 
-                    <div class="route-card">
-                        <h4>Veiligheidstips</h4>
+                    <div class="category-card">
+                        <div class="category-icon">🛡️</div>
+                        <h3 data-i18n="vaarkaart_navigation_rules_safety_tips_title">Veiligheidstips</h3>
                         <ul class="route-details">
-                            <li>Controleer het weer voor vertrek</li>
-                            <li>Neem voldoende water mee</li>
-                            <li>Zorg voor een opgeladen telefoon</li>
-                            <li>Ken de vaarregels</li>
-                            <li>Blijf op de bevaarbare routes</li>
+                            <li data-i18n="vaarkaart_navigation_rules_safety_tips_check_weather">Controleer het weer voor vertrek</li>
+                            <li data-i18n="vaarkaart_navigation_rules_safety_tips_bring_water">Neem voldoende water mee</li>
+                            <li data-i18n="vaarkaart_navigation_rules_safety_tips_charge_phone">Zorg voor een opgeladen telefoon</li>
+                            <li data-i18n="vaarkaart_navigation_rules_safety_tips_know_rules">Ken de vaarregels</li>
+                            <li data-i18n="vaarkaart_navigation_rules_safety_tips_stay_on_navigable_routes">Blijf op de bevaarbare routes</li>
                         </ul>
                     </div>
 
-                    <div class="route-card">
-                        <h4>Noodnummers</h4>
+                    <div class="category-card">
+                        <div class="category-icon">📞</div>
+                        <h3 data-i18n="vaarkaart_navigation_rules_emergency_numbers_title">Noodnummers</h3>
                         <ul class="route-details">
-                            <li>Algemeen alarmnummer: 112</li>
-                            <li>Nijenhuis Botenverhuur: 0522 281 528</li>
-                            <li>Waterpolitie: 0900-8844</li>
-                            <li>Weerbericht: 0900-9722</li>
-                            <li>Reddingsbrigade: 0900-0112</li>
+                            <li data-i18n="vaarkaart_navigation_rules_emergency_numbers_general_alarm">Algemeen alarmnummer: 112</li>
+                            <li data-i18n="vaarkaart_navigation_rules_emergency_numbers_nijenhuis">Nijenhuis Botenverhuur: 0522 281 528</li>
+                            <li data-i18n="vaarkaart_navigation_rules_emergency_numbers_water_police">Waterpolitie: 0900-8844</li>
+                            <li data-i18n="vaarkaart_navigation_rules_emergency_numbers_weather_report">Weerbericht: 0900-9722</li>
+                            <li data-i18n="vaarkaart_navigation_rules_emergency_numbers_rescue_brigade">Reddingsbrigade: 0900-0112</li>
                         </ul>
                     </div>
                 </div>
@@ -224,41 +211,41 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="height: 60px; margin-bottom: 15px;">
-                    <p>Uw toegangspoort tot het prachtige natuurgebied Weerribben.</p>
+                    <p data-i18n="footer_p">Hier begint jouw avontuur in de prachtige Weerribben!</p>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li>Nijenhuis Botenverhuur</li>
-                        <li>Camping & Jachthaven</li>
-                        <li>Veneweg 199</li>
-                        <li>7946 LP Wanneperveen</li>
-                        <li>Tel: 0522 281 528</li>
-                        <li>Kvk: 6769 7097</li>
-                        <li>Btw nr: NL 195153637 B01</li>
+                        <li data-i18n="footer_company_name">Nijenhuis Botenverhuur</li>
+                        <li data-i18n="footer_company_description">Camping & Jachthaven</li>
+                        <li data-i18n="footer_address">Veneweg 199</li>
+                        <li data-i18n="footer_zip">7946 LP Wanneperveen</li>
+                        <li data-i18n="footer_phone">Tel: 0522 281 528</li>
+                        <li data-i18n="footer_kvk">Kvk: 6769 7097</li>
+                        <li data-i18n="footer_btw">Btw nr: NL 195153637 B01</li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                        <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                        <li><a href="te-koop.html">Te Koop</a></li>
-                        <li><a href="camping.html">Camping</a></li>
+                        <li><a href="botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                        <li><a href="vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                        <li><a href="te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                        <li><a href="camping.html" data-i18n="nav_camping">Camping</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="jachthaven.html">Marina</a></li>
-                        <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                        <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                        <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
+                <p data-i18n="footer_rights">© 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
@@ -271,7 +258,7 @@
         
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
-                <h3>Nijenhuis Support</h3>
+                <h3 data-i18n="chat.header">Nijenhuis Support</h3>
                 <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
             </div>
             
@@ -290,155 +277,9 @@
         </div>
     </div>
 
+    <script src="../js/translation.js" defer></script>
     <script>
-        // Basic translation system
-        const translations = {
-            nl: {
-                'boat-hire': 'Botenverhuur',
-                'holiday-home': 'Vakantiehuis',
-                'for-sale': 'Te Koop',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Vaarkaart',
-                'contact': 'Contact',
-                'hero-title': 'Vaarkaart',
-                'hero-subtitle': 'Ontdek de mooiste routes door het natuurgebied Weerribben',
-                'contact-info': 'Contactgegevens',
-                'services': 'Diensten',
-                'more-information': 'Meer Informatie',
-                'all-rights-reserved': 'Alle rechten voorbehouden'
-            },
-            en: {
-                'boat-hire': 'Boat Rental',
-                'holiday-home': 'Holiday Home',
-                'for-sale': 'For Sale',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Sailing Map',
-                'contact': 'Contact',
-                'hero-title': 'Sailing Map',
-                'hero-subtitle': 'Discover the most beautiful routes through the Weerribben nature reserve',
-                'contact-info': 'Contact Information',
-                'services': 'Services',
-                'more-information': 'More Information',
-                'all-rights-reserved': 'All rights reserved'
-            },
-            de: {
-                'boat-hire': 'Bootsverleih',
-                'holiday-home': 'Ferienhaus',
-                'for-sale': 'Zu Verkaufen',
-                'camping': 'Camping',
-                'marina': 'Marina',
-                'sailing-map': 'Seekarte',
-                'contact': 'Kontakt',
-                'hero-title': 'Seekarte',
-                'hero-subtitle': 'Entdecken Sie die schönsten Routen durch das Naturschutzgebiet Weerribben',
-                'contact-info': 'Kontaktinformationen',
-                'services': 'Dienstleistungen',
-                'more-information': 'Weitere Informationen',
-                'all-rights-reserved': 'Alle Rechte vorbehalten'
-            }
-        };
-
-        function getCurrentLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            return lang && translations[lang] ? lang : 'nl';
-        }
-
-        function updatePageContent(lang) {
-            const t = translations[lang] || translations.nl;
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks[0].textContent = t['boat-hire'];
-            navLinks[1].textContent = t['holiday-home'];
-            navLinks[2].textContent = t['for-sale'];
-            navLinks[3].textContent = t['camping'];
-            navLinks[4].textContent = t['marina'];
-            navLinks[5].textContent = t['sailing-map'];
-            navLinks[6].textContent = t['contact'];
-            
-            // Update hero section
-            document.querySelector('.page-header h1').textContent = t['hero-title'];
-            document.querySelector('.page-header p').textContent = t['hero-subtitle'];
-            
-            // Update footer - titles removed, no longer need to update footer section titles
-            document.querySelector('.footer-bottom p').textContent = '© 2025 Nijenhuis Botenverhuur. ' + t['all-rights-reserved'];
-        }
-
-        // --- Language Switcher Initialization ---
-        function initLanguageSwitcher() {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLangBtn = document.querySelector('.current-lang');
-
-            if (languageSwitcher && currentLangBtn) {
-                // Add click handler to current language button
-                currentLangBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    languageSwitcher.classList.toggle('active');
-                });
-            }
-        }
-
-        // SWITCH LANGUAGE (now calls re-initializer)
-        function switchLanguage(lang) {
-            // Update URL
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.replaceState({}, '', url);
-
-            // Update page content
-            updatePageContent(lang);
-
-            // Update the current language display
-            const currentLang = document.querySelector('.current-lang');
-            if (currentLang) {
-                switch(lang) {
-                    case 'nl':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
-                        break;
-                    case 'en':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
-                        break;
-                    case 'de':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
-                        break;
-                }
-            }
-
-            // --- CRITICAL: Re-initialize event listeners on the replaced node
-            initLanguageSwitcher();
-        }
-
-        // Global event delegation for language switcher
-        function setupLanguageSwitcherEvents() {
-            // Handle clicks on language options (event delegation)
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.lang-option')) {
-                    e.preventDefault();
-                    const langOption = e.target.closest('.lang-option');
-                    const lang = langOption.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    
-                    // Close dropdown
-                    const languageSwitcher = document.querySelector('.language-switcher');
-                    if (languageSwitcher) {
-                        languageSwitcher.classList.remove('active');
-                    }
-                }
-            });
-
-        // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                const languageSwitcher = document.querySelector('.language-switcher');
-                if (languageSwitcher && !languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
-        }
-
+        // Remove the old translation system. Only keep chat widget and mobile menu logic.
         // --- DOM READY LOGIC ---
         // Mobile menu functionality
         function setupMobileMenu() {
@@ -479,18 +320,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = getCurrentLanguage();
-            updatePageContent(currentLang);
-
-            // Initialize language switcher
-            initLanguageSwitcher();
-            
-            // Set up global event delegation for language switcher
-            setupLanguageSwitcherEvents();
-            
-            // Set up mobile menu
             setupMobileMenu();
-            
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');
             const chatWindow = document.getElementById('chatWindow');

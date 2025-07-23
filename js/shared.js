@@ -1,62 +1,5 @@
 // Shared JavaScript functionality for Nijenhuis website
 
-// Language Switcher Functionality
-function setupLanguageSwitcher() {
-    // Skip language switcher setup for index.html (it has its own implementation)
-    if (window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
-        return;
-    }
-    
-    const languageSwitcher = document.querySelector('.language-switcher');
-    const currentLang = document.querySelector('.current-lang');
-    const langDropdown = document.querySelector('.lang-dropdown');
-    const langOptions = document.querySelectorAll('.lang-option');
-
-    if (!languageSwitcher) return;
-
-    // Toggle dropdown on current language click
-    currentLang?.addEventListener('click', (e) => {
-        e.preventDefault();
-        languageSwitcher.classList.toggle('active');
-    });
-
-    // Handle language option clicks
-    langOptions.forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const lang = option.getAttribute('data-lang');
-            if (lang) {
-                // Update current language display
-                const flagSpan = option.querySelector('.flag-circle').innerHTML;
-                const langText = option.textContent.trim();
-                currentLang.innerHTML = `<span class="flag-circle">${flagSpan}</span> ${lang.toUpperCase()}`;
-                
-                // Update active state
-                langOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                
-                // Close dropdown
-                languageSwitcher.classList.remove('active');
-                
-                // Store language preference
-                localStorage.setItem('preferred-language', lang);
-                
-                // Call translation function if it exists (for index.html)
-                if (typeof switchLanguage === 'function') {
-                    switchLanguage(lang);
-                }
-            }
-        });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!languageSwitcher.contains(e.target)) {
-            languageSwitcher.classList.remove('active');
-        }
-    });
-}
-
 // Mobile Menu Functionality
 function setupMobileMenu() {
     const mobileToggle = document.getElementById('mobileMenuToggle');
@@ -246,22 +189,14 @@ function setupForms() {
     });
 }
 
+// --- Removed language switching and translation system code ---
+
     // Initialize all functionality when DOM is loaded
     document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM loaded, setting up mobile menu...');
-        setupLanguageSwitcher();
         setupMobileMenu();
         setupChatWidget();
         setupForms();
-        
-        // Load preferred language
-        const preferredLang = localStorage.getItem('preferred-language');
-        if (preferredLang) {
-            const langOption = document.querySelector(`[data-lang="${preferredLang}"]`);
-            if (langOption) {
-                langOption.click();
-            }
-        }
         
         // Test mobile menu functionality
         setTimeout(() => {
@@ -278,7 +213,6 @@ function setupForms() {
 
 // Export functions for use in other scripts
 window.NijenhuisShared = {
-    setupLanguageSwitcher,
     setupMobileMenu,
     setupChatWidget,
     showNotification,

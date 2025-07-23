@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Jachthaven - Nijenhuis Botenverhuur</title>
     <meta name="description" content="Professionele Jachthaven diensten in het natuurgebied Weerribben. Veilige ligplaatsen en onderhoud.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.0.0/css/flag-icons.min.css">
     <link rel="stylesheet" href="../styles.css">
     
     <!-- Shared JavaScript -->
@@ -17,14 +16,15 @@
         <div class="container">
             <div class="top-bar-content">
                 <div class="contact-info">
-                    <span>Openingstijden: 9:00 - 18:00 | </span>
+                    <span data-i18n="nav_opening">Openingstijden: 9:00 - 18:00 |</span>
                     <a href="tel:+31522281528">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
-                        0522 - 281 528
+                        <span>+31522 - 281 528</span>
                     </a>
                 </div>
+                <div class="language-switcher" id="languageSwitcher"></div>
             </div>
         </div>
     </div>
@@ -33,37 +33,18 @@
     <nav class="main-nav">
         <div class="container">
             <div class="nav-container">
-                <a href="../index.html" class="logo-link">
+                <a href="./index.html" class="logo-link">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
                 </a>
                 
-                <ul class="nav-menu">
-                    <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                    <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                    <li><a href="te-koop.html">Te Koop</a></li>
-                    <li><a href="camping.html">Camping</a></li>
-                    <li><a href="jachthaven.html" class="active">Jachthaven</a></li>
-                    <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="language-switcher">
-                        <a href="#" class="current-lang">
-                            <span class="flag-circle"><span class="fi fi-nl"></span></span> NL
-                        </a>
-                        <div class="lang-dropdown">
-                            <a href="?lang=nl" class="lang-option active" data-lang="nl">
-                                <span class="flag-circle"><span class="fi fi-nl"></span></span>
-                                Nederlands
-                            </a>
-                            <a href="?lang=en" class="lang-option" data-lang="en">
-                                <span class="flag-circle"><span class="fi fi-gb"></span></span>
-                                English
-                            </a>
-                            <a href="?lang=de" class="lang-option" data-lang="de">
-                                <span class="flag-circle"><span class="fi fi-de"></span></span>
-                                Deutsch
-                            </a>
-                        </div>
-                    </li>
+                                <ul class="nav-menu">
+                    <li><a href="botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                    <li><a href="vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                    <li><a href="te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                    <li><a href="camping.html" data-i18n="nav_camping">Camping</a></li>
+                    <li><a href="jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                    <li><a href="vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                    <li><a href="contact.html" data-i18n="nav_contact">Contact</a></li>
                 </ul>
                 
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
@@ -78,8 +59,8 @@
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
-            <h1>Jachthaven</h1>
-            <p>Professionele Jachthaven diensten voor booteigenaren in het natuurgebied Weerribben</p>
+            <h1 data-i18n="jachthaven_title">Jachthaven</h1>
+            <p data-i18n="jachthaven_description">Professionele jachthaven diensten voor booteigenaren in het natuurgebied Weerribben</p>
         </div>
     </header>
 
@@ -88,13 +69,11 @@
         <!-- Jachthaven Information -->
         <section class="content-section">
             <div class="container">
-                <div class="house-details">
-                    <div class="house-image">
-                        <img src="../Images/Boats/jachthaven_10.jpg" alt="Jachthaven ligplaatsen">
-                    </div>
+                <div class="house-details" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                     <div class="house-info">
-                        <h3>Jachthaven Ligplaatsen</h3>
-                        <p>Ligplaatsen in de Jachthaven zijn alleen voor permanente jaarlijkse ligplaatsen. Ze zijn uitgerust met water, elektriciteit, douche en toilet. De maximale diepgang is +/- 1,00 m. De Jachthaven is direct gelegen aan het Belterwijde meer, van waaruit u in alle richtingen kunt varen.</p>
+                        <h3 data-i18n="jachthaven_ligplaatsen_title">Jachthaven ligplaatsen</h3>
+                        <p data-i18n="jachthaven_ligplaatsen_description">Ligplaatsen in de jachthaven zijn alleen voor permanente jaarlijkse ligplaatsen. Ze zijn uitgerust met water, elektriciteit, douche en toilet. De maximale diepgang is +/- 1,00 m. De jachthaven is direct gelegen aan het Belterwijde meer, van waaruit u in alle richtingen kunt varen.</p>
+                        <p data-i18n="jachthaven_ligplaatsen_cta">Neem gerust <a href="contact.html">contact</a> op voor meer informatie over beschikbaarheid en voorwaarden.</p>
                     </div>
                 </div>
             </div>
@@ -104,33 +83,27 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2>Jachthaven Diensten</h2>
-                    <p>Complete Jachthaven faciliteiten voor uw boot</p>
+                    <h2 data-i18n="jachthaven_services_title">Jachthaven diensten</h2>
+                    <p data-i18n="jachthaven_services_description">Complete jachthaven faciliteiten voor uw boot</p>
                 </div>
 
                 <div class="services-grid">
                     <div class="service-card">
                         <div class="service-icon">⚓</div>
-                        <h3>Ligplaatsen</h3>
-                        <p>Veilige ligplaatsen voor boten tot 12 meter. Dagelijks en seizoensligplaatsen beschikbaar.</p>
+                        <h3 data-i18n="jachthaven_services_ligplaatsen_title">Ligplaatsen</h3>
+                        <p data-i18n="jachthaven_services_ligplaatsen_description">Veilige ligplaatsen voor boten tot 12 meter. Dagelijks en seizoensligplaatsen beschikbaar.</p>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">🔧</div>
-                        <h3>Onderhoud</h3>
-                        <p>Professioneel onderhoud en reparatie van alle boottypes. Winterstalling beschikbaar.</p>
+                        <h3 data-i18n="jachthaven_services_onderhoud_title">Onderhoud</h3>
+                        <p data-i18n="jachthaven_services_onderhoud_description">Professioneel onderhoud en reparatie van alle boottypes. Winterstalling beschikbaar.</p>
                     </div>
-
                     <div class="service-card">
                         <div class="service-icon">🚿</div>
-                        <h3>Faciliteiten</h3>
-                        <p>Sanitaire voorzieningen, douches, wasmachines en drogers voor gasten.</p>
+                        <h3 data-i18n="jachthaven_services_faciliteiten_title">Faciliteiten</h3>
+                        <p data-i18n="jachthaven_services_faciliteiten_description">Sanitaire voorzieningen, douches, wasmachines en drogers voor gasten.</p>
                     </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">📞</div>
-                        <h3>24/7 Service</h3>
-                        <p>Noodservice en assistentie beschikbaar. Beveiligde toegang tot de jachthaven.</p>
-                    </div>
+                    <!-- Removed 24/7 Service card -->
                 </div>
             </div>
         </section>
@@ -143,41 +116,41 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="height: 60px; margin-bottom: 15px;">
-                    <p>Uw toegangspoort tot het prachtige natuurgebied Weerribben.</p>
+                    <p data-i18n="footer_p">Hier begint jouw avontuur in de prachtige Weerribben!</p>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li>Nijenhuis Botenverhuur</li>
-                        <li>Camping & Jachthaven</li>
-                        <li>Veneweg 199</li>
-                        <li>7946 LP Wanneperveen</li>
-                        <li>Tel: 0522 281 528</li>
-                        <li>Kvk: 6769 7097</li>
-                        <li>Btw nr: NL 195153637 B01</li>
+                        <li data-i18n="footer_company_name">Nijenhuis Botenverhuur</li>
+                        <li data-i18n="footer_company_description">Camping & Jachthaven</li>
+                        <li data-i18n="footer_address">Veneweg 199</li>
+                        <li data-i18n="footer_zip">7946 LP Wanneperveen</li>
+                        <li data-i18n="footer_phone">Tel: 0522 281 528</li>
+                        <li data-i18n="footer_kvk">Kvk: 6769 7097</li>
+                        <li data-i18n="footer_btw">Btw nr: NL 195153637 B01</li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="botenverhuur.html">Botenverhuur</a></li>
-                        <li><a href="vakantiehuis.html">Vakantiehuis</a></li>
-                        <li><a href="te-koop.html">Te Koop</a></li>
-                        <li><a href="camping.html">Camping</a></li>
+                        <li><a data-i18n="nav_boats" href="botenverhuur.html">Botenverhuur</a></li>
+                        <li><a data-i18n="nav_house" href="vakantiehuis.html">Vakantiehuis</a></li>
+                        <li><a data-i18n="nav_forsale" href="te-koop.html">Te Koop</a></li>
+                        <li><a data-i18n="nav_camping" href="camping.html">Camping</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <ul class="footer-links">
-                        <li><a href="jachthaven.html">Jachthaven</a></li>
-                        <li><a href="vaarkaart.html">Vaarkaart</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a data-i18n="nav_marina" href="jachthaven.html">Jachthaven</a></li>
+                        <li><a data-i18n="nav_chart" href="vaarkaart.html">Vaarkaart</a></li>
+                        <li><a data-i18n="nav_contact" href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
+                <p data-i18n="footer_rights">&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
             </div>
         </div>
     </footer>
@@ -209,385 +182,8 @@
         </div>
     </div>
 
+    <script src="../js/translation.js" defer></script>
     <script>
-        // Translation system
-        const translations = {
-            nl: {
-                // Page meta
-                title: 'Jachthaven - Nijenhuis Botenverhuur',
-                description: 'Professionele Jachthaven diensten in het natuurgebied Weerribben',
-                
-                // Navigation
-                'boat-hire': 'Botenverhuur',
-                'holiday-home': 'Vakantiehuis',
-                'for-sale': 'Te Koop',
-                'camping': 'Camping',
-                'Jachthaven': 'Jachthaven',
-                'sailing-map': 'Vaarkaart',
-                'contact': 'Contact',
-                
-                // Page content
-                'hero-title': 'Jachthaven',
-                'hero-subtitle': 'Professionele Jachthaven diensten voor booteigenaren',
-                
-                // Section titles
-                'Jachthaven-services': 'Jachthaven Diensten',
-                'Jachthaven-services-desc': 'Complete diensten voor booteigenaren',
-                'berths': 'Ligplaatsen',
-                'berths-desc': 'Veilige ligplaatsen voor alle boottypes',
-                'maintenance': 'Onderhoud',
-                'maintenance-desc': 'Professioneel onderhoud en reparatie',
-                
-                // Services
-                'professional-services': 'Professionele Diensten',
-                'berth-rental': 'Ligplaatsverhuur',
-                'berth-rental-desc': 'Veilige ligplaatsen voor seizoen of langdurig',
-                'boat-lift': 'Bootlift',
-                'boat-lift-desc': 'Professionele bootlift voor onderhoud',
-                'fuel-station': 'Tankstation',
-                'fuel-station-desc': 'Diesel en benzine beschikbaar',
-                'sanitary': 'Sanitair',
-                'sanitary-desc': 'Douches, toiletten en wasgelegenheid',
-                'electricity': 'Stroom',
-                'electricity-desc': 'Stroomaansluitingen op alle ligplaatsen',
-                'wifi': 'WiFi',
-                'wifi-desc': 'Gratis WiFi op het hele terrein',
-                
-                // Berths
-                'safe-berths': 'Veilige Ligplaatsen',
-                'small-boats': 'Kleine boten (tot 8m)',
-                'medium-boats': 'Middelgrote boten (8-12m)',
-                'large-boats': 'Grote boten (12m+)',
-                'seasonal': 'Seizoensligplaats',
-                'long-term': 'Langdurige ligplaats',
-                'visitor': 'Bezoekersligplaats',
-                
-                // Maintenance
-                'maintenance-services': 'Onderhoudsdiensten',
-                'winter-storage': 'Winteropslag',
-                'winter-storage-desc': 'Veilige winteropslag voor uw boot',
-                'repairs': 'Reparaties',
-                'repairs-desc': 'Alle soorten reparaties en onderhoud',
-                'cleaning': 'Reiniging',
-                'cleaning-desc': 'Interieur en exterieur reiniging',
-                'painting': 'Schilderen',
-                'painting-desc': 'Professioneel schilderwerk',
-                
-                // Footer
-                'contact-info': 'Contactgegevens',
-                'services': 'Diensten',
-                'more-information': 'Meer Informatie',
-                'all-rights-reserved': 'Alle rechten voorbehouden'
-            },
-            en: {
-                // Page meta
-                title: 'Jachthaven - Nijenhuis Botenverhuur',
-                description: 'Professional Jachthaven services in the Weerribben nature reserve',
-                
-                // Navigation
-                'boat-hire': 'Boat Rental',
-                'holiday-home': 'Holiday Home',
-                'for-sale': 'For Sale',
-                'camping': 'Camping',
-                'Jachthaven': 'Jachthaven',
-                'sailing-map': 'Sailing Map',
-                'contact': 'Contact',
-                
-                // Page content
-                'hero-title': 'Jachthaven',
-                'hero-subtitle': 'Professional Jachthaven services for boat owners',
-                
-                // Section titles
-                'Jachthaven-services': 'Jachthaven Services',
-                'Jachthaven-services-desc': 'Complete services for boat owners',
-                'berths': 'Berths',
-                'berths-desc': 'Safe berths for all boat types',
-                'maintenance': 'Maintenance',
-                'maintenance-desc': 'Professional maintenance and repair',
-                
-                // Services
-                'professional-services': 'Professional Services',
-                'berth-rental': 'Berth Rental',
-                'berth-rental-desc': 'Safe berths for season or long-term',
-                'boat-lift': 'Boat Lift',
-                'boat-lift-desc': 'Professional boat lift for maintenance',
-                'fuel-station': 'Fuel Station',
-                'fuel-station-desc': 'Diesel and petrol available',
-                'sanitary': 'Sanitary',
-                'sanitary-desc': 'Showers, toilets and laundry facilities',
-                'electricity': 'Electricity',
-                'electricity-desc': 'Power connections on all berths',
-                'wifi': 'WiFi',
-                'wifi-desc': 'Free WiFi throughout the site',
-                
-                // Berths
-                'safe-berths': 'Safe Berths',
-                'small-boats': 'Small boats (up to 8m)',
-                'medium-boats': 'Medium boats (8-12m)',
-                'large-boats': 'Large boats (12m+)',
-                'seasonal': 'Seasonal berth',
-                'long-term': 'Long-term berth',
-                'visitor': 'Visitor berth',
-                
-                // Maintenance
-                'maintenance-services': 'Maintenance Services',
-                'winter-storage': 'Winter Storage',
-                'winter-storage-desc': 'Safe winter storage for your boat',
-                'repairs': 'Repairs',
-                'repairs-desc': 'All types of repairs and maintenance',
-                'cleaning': 'Cleaning',
-                'cleaning-desc': 'Interior and exterior cleaning',
-                'painting': 'Painting',
-                'painting-desc': 'Professional painting work',
-                
-                // Footer
-                'contact-info': 'Contact Information',
-                'services': 'Services',
-                'more-information': 'More Information',
-                'all-rights-reserved': 'All rights reserved'
-            },
-            de: {
-                // Page meta
-                title: 'Jachthaven - Nijenhuis Botenverhuur',
-                description: 'Professionelle Jachthaven-Dienste im Naturschutzgebiet Weerribben',
-                
-                // Navigation
-                'boat-hire': 'Bootsverleih',
-                'holiday-home': 'Ferienhaus',
-                'for-sale': 'Zu Verkaufen',
-                'camping': 'Camping',
-                'Jachthaven': 'Jachthaven',
-                'sailing-map': 'Seekarte',
-                'contact': 'Kontakt',
-                
-                // Page content
-                'hero-title': 'Jachthaven',
-                'hero-subtitle': 'Professionelle Jachthaven-Dienste für Bootseigentümer',
-                
-                // Section titles
-                'Jachthaven-services': 'Jachthaven-Dienste',
-                'Jachthaven-services-desc': 'Vollständige Dienste für Bootseigentümer',
-                'berths': 'Liegeplätze',
-                'berths-desc': 'Sichere Liegeplätze für alle Bootstypen',
-                'maintenance': 'Wartung',
-                'maintenance-desc': 'Professionelle Wartung und Reparatur',
-                
-                // Services
-                'professional-services': 'Professionelle Dienste',
-                'berth-rental': 'Liegeplatzmiete',
-                'berth-rental-desc': 'Sichere Liegeplätze für Saison oder langfristig',
-                'boat-lift': 'Bootslift',
-                'boat-lift-desc': 'Professioneller Bootslift für Wartung',
-                'fuel-station': 'Tankstelle',
-                'fuel-station-desc': 'Diesel und Benzin verfügbar',
-                'sanitary': 'Sanitäranlagen',
-                'sanitary-desc': 'Duschen, Toiletten und Waschgelegenheit',
-                'electricity': 'Strom',
-                'electricity-desc': 'Stromanschlüsse an allen Liegeplätzen',
-                'wifi': 'WiFi',
-                'wifi-desc': 'Kostenloses WiFi im gesamten Gelände',
-                
-                // Berths
-                'safe-berths': 'Sichere Liegeplätze',
-                'small-boats': 'Kleine Boote (bis 8m)',
-                'medium-boats': 'Mittelgroße Boote (8-12m)',
-                'large-boats': 'Große Boote (12m+)',
-                'seasonal': 'Saisonliegeplatz',
-                'long-term': 'Langzeitliegeplatz',
-                'visitor': 'Besucherliegeplatz',
-                
-                // Maintenance
-                'maintenance-services': 'Wartungsdienste',
-                'winter-storage': 'Winterlagerung',
-                'winter-storage-desc': 'Sichere Winterlagerung für Ihr Boot',
-                'repairs': 'Reparaturen',
-                'repairs-desc': 'Alle Arten von Reparaturen und Wartung',
-                'cleaning': 'Reinigung',
-                'cleaning-desc': 'Innen- und Außenreinigung',
-                'painting': 'Lackierung',
-                'painting-desc': 'Professionelle Lackierarbeiten',
-                
-                // Footer
-                'contact-info': 'Kontaktinformationen',
-                'services': 'Dienstleistungen',
-                'more-information': 'Weitere Informationen',
-                'all-rights-reserved': 'Alle Rechte vorbehalten'
-            }
-        };
-
-        // Get current language from URL or default to Dutch
-        function getCurrentLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            return lang && translations[lang] ? lang : 'nl';
-        }
-
-        // Update page content based on language
-        function updatePageContent(lang) {
-            const t = translations[lang] || translations.nl;
-            
-            // Update page title and meta description
-            document.title = t.title;
-            document.querySelector('meta[name="description"]').setAttribute('content', t.description);
-            
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks[0].textContent = t['boat-hire'];
-            navLinks[1].textContent = t['holiday-home'];
-            navLinks[2].textContent = t['for-sale'];
-            navLinks[3].textContent = t['camping'];
-            navLinks[4].textContent = t['Jachthaven'];
-            navLinks[5].textContent = t['sailing-map'];
-            navLinks[6].textContent = t['contact'];
-            
-            // Update hero section
-            document.querySelector('.page-header h1').textContent = t['hero-title'];
-            document.querySelector('.page-header p').textContent = t['hero-subtitle'];
-            
-            // Update section titles
-            const sectionTitles = document.querySelectorAll('.section-title h2');
-            sectionTitles[0].textContent = t['Jachthaven-services'];
-            sectionTitles[1].textContent = t['berths'];
-            sectionTitles[2].textContent = t['maintenance'];
-            
-            const sectionDescs = document.querySelectorAll('.section-title p');
-            sectionDescs[0].textContent = t['Jachthaven-services-desc'];
-            sectionDescs[1].textContent = t['berths-desc'];
-            sectionDescs[2].textContent = t['maintenance-desc'];
-            
-            // Update services
-            const servicesTitle = document.querySelector('.services-section h3');
-            servicesTitle.textContent = t['professional-services'];
-            
-            const serviceCards = document.querySelectorAll('.service-card h4');
-            serviceCards[0].textContent = t['berth-rental'];
-            serviceCards[1].textContent = t['boat-lift'];
-            serviceCards[2].textContent = t['fuel-station'];
-            serviceCards[3].textContent = t['sanitary'];
-            serviceCards[4].textContent = t['electricity'];
-            serviceCards[5].textContent = t['wifi'];
-            
-            const serviceDescs = document.querySelectorAll('.service-card p');
-            serviceDescs[0].textContent = t['berth-rental-desc'];
-            serviceDescs[1].textContent = t['boat-lift-desc'];
-            serviceDescs[2].textContent = t['fuel-station-desc'];
-            serviceDescs[3].textContent = t['sanitary-desc'];
-            serviceDescs[4].textContent = t['electricity-desc'];
-            serviceDescs[5].textContent = t['wifi-desc'];
-            
-            // Update berths section
-            const berthsTitle = document.querySelector('.berths-section h3');
-            berthsTitle.textContent = t['safe-berths'];
-            
-            const berthCards = document.querySelectorAll('.berth-card h4');
-            berthCards[0].textContent = t['small-boats'];
-            berthCards[1].textContent = t['medium-boats'];
-            berthCards[2].textContent = t['large-boats'];
-            
-            const berthTypes = document.querySelectorAll('.berth-card .berth-type');
-            berthTypes[0].textContent = t['seasonal'];
-            berthTypes[1].textContent = t['long-term'];
-            berthTypes[2].textContent = t['visitor'];
-            
-            // Update maintenance section
-            const maintenanceTitle = document.querySelector('.maintenance-section h3');
-            maintenanceTitle.textContent = t['maintenance-services'];
-            
-            const maintenanceCards = document.querySelectorAll('.maintenance-card h4');
-            maintenanceCards[0].textContent = t['winter-storage'];
-            maintenanceCards[1].textContent = t['repairs'];
-            maintenanceCards[2].textContent = t['cleaning'];
-            maintenanceCards[3].textContent = t['painting'];
-            
-            const maintenanceDescs = document.querySelectorAll('.maintenance-card p');
-            maintenanceDescs[0].textContent = t['winter-storage-desc'];
-            maintenanceDescs[1].textContent = t['repairs-desc'];
-            maintenanceDescs[2].textContent = t['cleaning-desc'];
-            maintenanceDescs[3].textContent = t['painting-desc'];
-            
-            // Update footer - titles removed, no longer need to update footer section titles
-            document.querySelector('.footer-bottom p').textContent = '© 2025 Nijenhuis Botenverhuur. ' + t['all-rights-reserved'];
-        }
-
-        // --- Language Switcher Initialization ---
-        function initLanguageSwitcher() {
-            const languageSwitcher = document.querySelector('.language-switcher');
-            const currentLangBtn = document.querySelector('.current-lang');
-
-            if (languageSwitcher && currentLangBtn) {
-                // Add click handler to current language button
-                currentLangBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    languageSwitcher.classList.toggle('active');
-                });
-            }
-        }
-
-        // GET CURRENT LANGUAGE
-        function getCurrentLanguage() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = urlParams.get('lang');
-            return lang && translations[lang] ? lang : 'nl';
-        }
-
-        // SWITCH LANGUAGE (now calls re-initializer)
-        function switchLanguage(lang) {
-            // Update URL
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.replaceState({}, '', url);
-
-            // Update page content
-            updatePageContent(lang);
-
-            // Update the current language display
-            const currentLang = document.querySelector('.current-lang');
-            if (currentLang) {
-                switch(lang) {
-                    case 'nl':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-nl"></span></span> NL';
-                        break;
-                    case 'en':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-gb"></span></span> EN';
-                        break;
-                    case 'de':
-                        currentLang.innerHTML = '<span class="flag-circle"><span class="fi fi-de"></span></span> DE';
-                        break;
-                }
-            }
-
-            // --- CRITICAL: Re-initialize event listeners on the replaced node
-            initLanguageSwitcher();
-        }
-
-        // Global event delegation for language switcher
-        function setupLanguageSwitcherEvents() {
-            // Handle clicks on language options (event delegation)
-            document.addEventListener('click', function(e) {
-                if (e.target.closest('.lang-option')) {
-                    e.preventDefault();
-                    const langOption = e.target.closest('.lang-option');
-                    const lang = langOption.getAttribute('href').split('=')[1];
-                    switchLanguage(lang);
-                    
-                    // Close dropdown
-                    const languageSwitcher = document.querySelector('.language-switcher');
-                    if (languageSwitcher) {
-                        languageSwitcher.classList.remove('active');
-                    }
-                }
-            });
-
-        // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                const languageSwitcher = document.querySelector('.language-switcher');
-                if (languageSwitcher && !languageSwitcher.contains(e.target)) {
-                    languageSwitcher.classList.remove('active');
-                }
-            });
-        }
-
         // Initialize page with current language
         // Mobile menu functionality
         function setupMobileMenu() {
@@ -628,15 +224,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const currentLang = getCurrentLanguage();
-            updatePageContent(currentLang);
-
-            // Initialize language switcher
-            initLanguageSwitcher();
-            
-            // Set up global event delegation for language switcher
-            setupLanguageSwitcherEvents();
-            
             // Set up mobile menu
             setupMobileMenu();
 
