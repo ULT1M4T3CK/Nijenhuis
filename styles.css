@@ -1156,7 +1156,7 @@ section:nth-child(even) {
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
         position: relative;
-        z-index: var(--z-fixed); /* Ensure this variable is defined */
+        z-index: 1000; /* Ensure this variable is defined */
         user-select: none;
         outline: none;
     }
