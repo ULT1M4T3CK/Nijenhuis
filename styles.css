@@ -3299,4 +3299,11 @@ body.dark-mode .message-time {
     text-align: right;
   }
 }
+
+@media (max-width: 768px) {
+  .nav-menu a {
+    text-decoration: none;
+    border-bottom: none;
+  }
+}
   
