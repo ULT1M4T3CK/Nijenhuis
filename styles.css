@@ -3193,6 +3193,28 @@ body.dark-mode .message-time {
   .logo-link {
     margin-right: auto;
   }
+  .top-bar-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .language-switcher {
+    order: -1;
+    margin-left: 0;
+    margin-bottom: 0.3rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .mobile-menu-toggle svg {
