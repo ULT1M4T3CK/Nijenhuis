@@ -153,6 +153,7 @@
         camping_overview_title: "Onze camping",
         camping_overview_description: "Een rustige en sfeervolle camping midden in de natuur",
 
+        camping_overview_permanent_title: "Permanente seizonplaatsen",
         camping_overview_permanent_description: "Onze camping biedt seizoensplaatsen aan, met vaste plekken voor caravans. Het is een gezellige, kleinschalige camping waar elke plaats een eigen aanlegsteiger heeft.",
         camping_overview_permanent_list_item_1: "Permanente seizonplaatsen",
         camping_overview_permanent_list_item_2: "Wateraansluiting",
@@ -444,6 +445,7 @@
         "camping_overview_title": "Unser Campingplatz",
         "camping_overview_description": "Ein ruhiger und stimmungsvoller Campingplatz mitten in der Natur",
 
+        "camping_overview_permanent_title": "Permanente Saisonplätze",
         "camping_overview_permanent_description": "Unser Campingplatz bietet Saisonplätze mit festen Stellplätzen für Wohnwagen. Es ist ein gemütlicher, kleiner Campingplatz, auf dem jeder Platz einen eigenen Anlegeplatz hat.",
         "camping_overview_permanent_list_item_1": "Permanente Saisonplätze",
         "camping_overview_permanent_list_item_2": "Wasseranschluss",
@@ -731,6 +733,7 @@
         "camping_overview_title": "Our campsite",
         "camping_overview_description": "A quiet and atmospheric campsite in the middle of nature",
 
+        "camping_overview_permanent_title": "Permanent seasonal pitches",
         "camping_overview_permanent_description": "Our campsite offers seasonal pitches with permanent spots for caravans. It is a cozy, small campsite where each pitch has its own mooring place.",
         "camping_overview_permanent_list_item_1": "Permanent seasonal pitches",
         "camping_overview_permanent_list_item_2": "Water connection",
