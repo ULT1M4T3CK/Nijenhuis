@@ -110,7 +110,7 @@
                 <div class="section-title">
                     <h2 data-i18n="prices_h2">Prijzen & Beschikbaarheid</h2>
                     <p data-i18n="prices_intro">Alle prijzen zijn per dag inclusief veiligheidsuitrusting en instructies.</p>
-                    <p data-i18n="prices_intro_2" class="subtitle-sm">Borg bedragen zijn afhankelijk van het boottype and moeten contant worden betalt.</p>
+                    <p data-i18n="prices_intro_2" class="subtitle-sm">De Borg is afhankelijk van het type boot en moet contant worden betaald.</p>
                 </div>
 
                 <!-- Pricing Table: Semantic HTML -->
@@ -167,7 +167,7 @@
                       <td data-label="Borg">€0</td>
                     </tr>
                     <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Electrosloep</strong></td>
+                      <td data-label="Boot type"><strong>Electroboot</strong></td>
                       <td data-label="Capaciteit">5 personen</td>
                       <td data-label="Prijs per dag">€80</td>
                       <td data-label="Borg">€0</td>
@@ -181,6 +181,12 @@
                     <tr class="pricing-row">
                       <td data-label="Boot type"><strong>Kajak</strong></td>
                       <td data-label="Capaciteit">2 personen</td>
+                      <td data-label="Prijs per dag">€25</td>
+                      <td data-label="Borg">€0</td>
+                    </tr>
+                    <tr class="pricing-row">
+                      <td data-label="Boot type"><strong>Kajak</strong></td>
+                      <td data-label="Capaciteit">1 persoon</td>
                       <td data-label="Prijs per dag">€25</td>
                       <td data-label="Borg">€0</td>
                     </tr>
@@ -325,7 +331,7 @@
                     '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
                 ] },
                 { id: 'boat-002', name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
-                { id: 'boat-003', name: 'Electrosloep', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' },
+                { id: 'boat-003', name: 'Electroboot', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' },
                 { id: 'boat-004', name: 'Classic tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
                     '../Images/Boats/tender-720/104831747849501502092021.jpg',
                     '../Images/Boats/tender-720/125324337810511502092021.jpg',
@@ -351,14 +357,15 @@
             sailing: [
                 { id: 'boat-006', name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
                 { id: 'boat-007', name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { id: 'boat-008', name: 'Zeilpunter 3/4 pers', capacity: '3-4 personen', price: '€60', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
+                { id: 'boat-008', name: 'Zeilpunter', capacity: '3-4 personen', price: '€60', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
             ],
             canoe: [
                 { id: 'boat-009', name: 'Canadese', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
-                { id: 'boat-010', name: 'Kajak voor 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg', slideshow: [
+                { id: 'boat-010', name: 'Kajak', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg', slideshow: [
                     '../Images/Boats/kayak-2/kayak-2.jpg',
                     '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
-                ] }
+                ] },
+                { id: 'boat-012', name: 'Kajak', capacity: '1 persoon', price: '€25', status: 'available', image: '../Images/Boats/kayak-1/kayak-1.jpg' }
             ],
             sup: [
                 { id: 'boat-011', name: 'SUP board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg', slideshow: [
@@ -383,6 +390,10 @@
                     description: 'Een milieuvriendelijke elektrische boot. Stil en duurzaam.',
                     features: ['Verschillende capaciteiten beschikbaar', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Perfect voor natuurgebied']
                 },
+                'Electroboot': {
+                    description: 'Een compacte elektrische boot voor kleine groepen. Ideaal voor kortere vaartochten.',
+                    features: ['5 personen capaciteit', 'Elektrische motor', 'Compact en wendbaar', 'Stil en milieuvriendelijk', 'Perfect voor kleine groepen']
+                },
                 'Zeilboot (zonder motor)': {
                     description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
                     features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers']
@@ -395,15 +406,15 @@
                     description: 'Een stabiele kano voor twee personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
                     features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen']
                 },
-                'Kajak voor 2': {
-                    description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
-                    features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen']
+                'Kajak': {
+                    description: 'Een snelle kajak voor één of twee personen. Ideaal voor sportieve uitjes.',
+                    features: ['1-2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen']
                 },
                 'SUP board': {
                     description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
                     features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring']
                 },
-                'Zeilpunter 3/4 pers': {
+                'Zeilpunter': {
                     description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
                     features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen']
                 }

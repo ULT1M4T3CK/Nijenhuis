@@ -84,7 +84,7 @@
         boats_cat_all_desc: "Bekijk alle beschikbare boten en hun details.",
         prices_h2: "Prijzen & Beschikbaarheid",
         prices_intro: "Alle prijzen zijn per dag inclusief veiligheidsuitrusting en instructies",
-        prices_intro_2: "Borg bedragen zijn afhankelijk van het boottype and moeten contant worden betalt.",
+        prices_intro_2: "De Borg is afhankelijk van het type boot en moet contant worden betaald.",
         prices_table_title: "Dagprijzen botenverhuur",
         prices_season: "Seizoen: 1 april - 1 november 2025",
         prices_th_type: "Boot type",
