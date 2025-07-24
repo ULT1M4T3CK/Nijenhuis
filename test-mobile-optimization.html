@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0071BB">
+    <title>Mobile Optimization Test - Nijenhuis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <style>
+        .test-section {
+            background: white;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        .pass { background: #d4edda; color: #155724; }
+        .fail { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .test-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin: 8px;
+            cursor: pointer;
+            min-height: 48px;
+            min-width: 48px;
+        }
+        .touch-test {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Mobile Optimization Test Page</h1>
+        <p>This page tests all mobile optimizations implemented for the Nijenhuis website.</p>
+
+        <div class="test-section">
+            <h2>🎯 Touch Target Tests</h2>
+            <div id="touchResults"></div>
+            <button class="test-button" onclick="testTouchTargets()">Test Touch Targets</button>
+            <button class="test-button" style="width: 30px; height: 30px;">Small</button>
+            <button class="test-button" style="width: 44px; height: 44px;">44px</button>
+            <button class="test-button" style="width: 48px; height: 48px;">48px</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📐 Responsive Design Tests</h2>
+            <div id="responsiveResults"></div>
+            <button class="test-button" onclick="testResponsiveDesign()">Test Responsive Features</button>
+        </div>
+
+        <div class="test-section">
+            <h2>📱 Device Features</h2>
+            <div id="deviceResults"></div>
+            <button class="test-button" onclick="testDeviceFeatures()">Test Device Features</button>
+            <button class="test-button" onclick="testVibration()">Test Vibration</button>
+        </div>
+
+        <div class="test-section">
+            <h2>🖼️ Image Optimization</h2>
+            <div id="imageResults"></div>
+            <button class="test-button" onclick="testImageOptimization()">Test Image Features</button>
+            <img data-src="Images/Boats/zeilboot-4-5.jpg" 
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f0f0f0'/%3E%3C/svg%3E"
+                 alt="Test lazy loading" 
+                 class="lazy responsive-img"
+                 style="width: 200px; height: 150px;">
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Form Tests</h2>
+            <div id="formResults"></div>
+            <form onsubmit="testForm(event)">
+                <div class="form-group">
+                    <label for="testEmail">Email (should show email keyboard):</label>
+                    <input type="email" id="testEmail" inputmode="email" placeholder="test@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="testPhone">Phone (should show numeric keyboard):</label>
+                    <input type="tel" id="testPhone" inputmode="tel" placeholder="+31 6 12345678">
+                </div>
+                <div class="form-group">
+                    <label for="testDate">Date:</label>
+                    <input type="date" id="testDate">
+                </div>
+                <button type="submit" class="test-button">Test Form Submission</button>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h2>👆 Touch Interaction Test</h2>
+            <div class="touch-test" id="touchArea">
+                <p>Touch, tap, or click this area to test touch interactions</p>
+                <div id="touchInfo"></div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎨 PWA Features</h2>
+            <div id="pwaResults"></div>
+            <button class="test-button" onclick="testPWAFeatures()">Test PWA Features</button>
+        </div>
+    </div>
+
+    <script src="js/mobile-optimizations.js"></script>
+    <script>
+        function addResult(container, message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.textContent = message;
+            document.getElementById(container).appendChild(div);
+        }
+
+        function testTouchTargets() {
+            const container = 'touchResults';
+            document.getElementById(container).innerHTML = '';
+            
+            const buttons = document.querySelectorAll('.test-button');
+            let passCount = 0;
+            
+            buttons.forEach(button => {
+                const rect = button.getBoundingClientRect();
+                const isGoodSize = rect.width >= 44 && rect.height >= 44;
+                
+                if (isGoodSize) {
+                    passCount++;
+                    addResult(container, `✅ Button ${rect.width}x${rect.height}px - Good touch target`, 'pass');
+                } else {
+                    addResult(container, `❌ Button ${rect.width}x${rect.height}px - Too small (min 44px)`, 'fail');
+                }
+            });
+            
+            addResult(container, `${passCount}/${buttons.length} buttons meet touch target guidelines`, 
+                     passCount === buttons.length ? 'pass' : 'fail');
+        }
+
+        function testResponsiveDesign() {
+            const container = 'responsiveResults';
+            document.getElementById(container).innerHTML = '';
+            
+            // Test viewport
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport && viewport.content.includes('width=device-width')) {
+                addResult(container, '✅ Viewport meta tag configured correctly', 'pass');
+            } else {
+                addResult(container, '❌ Viewport meta tag missing or incorrect', 'fail');
+            }
+            
+            // Test responsive images
+            const images = document.querySelectorAll('img');
+            let responsiveImages = 0;
+            images.forEach(img => {
+                const styles = getComputedStyle(img);
+                if (styles.maxWidth === '100%' || img.hasAttribute('loading')) {
+                    responsiveImages++;
+                }
+            });
+            
+            addResult(container, `✅ ${responsiveImages}/${images.length} images are responsive`, 'pass');
+            
+            // Test screen size
+            addResult(container, `📱 Screen: ${window.innerWidth}x${window.innerHeight}px`, 'info');
+            addResult(container, `📐 Device pixel ratio: ${window.devicePixelRatio}`, 'info');
+        }
+
+        function testDeviceFeatures() {
+            const container = 'deviceResults';
+            document.getElementById(container).innerHTML = '';
+            
+            // Test mobile detection
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            addResult(container, `📱 Mobile device: ${isMobile ? 'Yes' : 'No'}`, isMobile ? 'pass' : 'info');
+            
+            // Test touch support
+            const hasTouch = 'ontouchstart' in window;
+            addResult(container, `👆 Touch support: ${hasTouch ? 'Yes' : 'No'}`, hasTouch ? 'pass' : 'info');
+            
+            // Test vibration
+            const hasVibration = 'vibrate' in navigator;
+            addResult(container, `📳 Vibration API: ${hasVibration ? 'Available' : 'Not available'}`, hasVibration ? 'pass' : 'info');
+            
+            // Test network information
+            if ('connection' in navigator) {
+                const conn = navigator.connection;
+                addResult(container, `📶 Network: ${conn.effectiveType || 'unknown'}`, 'info');
+            }
+        }
+
+        function testVibration() {
+            if ('vibrate' in navigator) {
+                navigator.vibrate(200);
+                addResult('deviceResults', '📳 Vibration test triggered!', 'pass');
+            } else {
+                addResult('deviceResults', '❌ Vibration not supported on this device', 'fail');
+            }
+        }
+
+        function testImageOptimization() {
+            const container = 'imageResults';
+            document.getElementById(container).innerHTML = '';
+            
+            // Test lazy loading
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            addResult(container, `🖼️ Lazy loading images found: ${lazyImages.length}`, lazyImages.length > 0 ? 'pass' : 'info');
+            
+            // Test WebP support
+            const webpSupported = document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
+            addResult(container, `🎨 WebP support: ${webpSupported ? 'Yes' : 'No'}`, webpSupported ? 'pass' : 'info');
+            
+            // Test Intersection Observer
+            const ioSupported = 'IntersectionObserver' in window;
+            addResult(container, `👁️ Intersection Observer: ${ioSupported ? 'Supported' : 'Not supported'}`, ioSupported ? 'pass' : 'fail');
+        }
+
+        function testForm(event) {
+            event.preventDefault();
+            const container = 'formResults';
+            document.getElementById(container).innerHTML = '';
+            
+            const inputs = document.querySelectorAll('#testEmail, #testPhone, #testDate');
+            let validInputs = 0;
+            
+            inputs.forEach(input => {
+                const fontSize = getComputedStyle(input).fontSize;
+                const fontSizeNum = parseInt(fontSize);
+                
+                if (fontSizeNum >= 16) {
+                    validInputs++;
+                    addResult(container, `✅ ${input.type} input: ${fontSize} (prevents zoom)`, 'pass');
+                } else {
+                    addResult(container, `❌ ${input.type} input: ${fontSize} (may cause zoom)`, 'fail');
+                }
+            });
+            
+            addResult(container, '✅ Form submission test completed', 'pass');
+        }
+
+        function testPWAFeatures() {
+            const container = 'pwaResults';
+            document.getElementById(container).innerHTML = '';
+            
+            // Test manifest
+            const manifest = document.querySelector('link[rel="manifest"]');
+            addResult(container, `📋 PWA Manifest: ${manifest ? 'Found' : 'Missing'}`, manifest ? 'pass' : 'fail');
+            
+            // Test service worker
+            if ('serviceWorker' in navigator) {
+                addResult(container, '⚙️ Service Worker API: Available', 'pass');
+                
+                navigator.serviceWorker.getRegistrations().then(registrations => {
+                    addResult(container, `📝 Service Workers registered: ${registrations.length}`, 
+                             registrations.length > 0 ? 'pass' : 'info');
+                });
+            } else {
+                addResult(container, '❌ Service Worker API: Not available', 'fail');
+            }
+            
+            // Test theme color
+            const themeColor = document.querySelector('meta[name="theme-color"]');
+            addResult(container, `🎨 Theme color: ${themeColor ? themeColor.content : 'Not set'}`, 
+                     themeColor ? 'pass' : 'info');
+        }
+
+        // Touch interaction test
+        const touchArea = document.getElementById('touchArea');
+        const touchInfo = document.getElementById('touchInfo');
+        
+        touchArea.addEventListener('touchstart', handleTouch);
+        touchArea.addEventListener('touchmove', handleTouch);
+        touchArea.addEventListener('touchend', handleTouch);
+        touchArea.addEventListener('click', handleTouch);
+        
+        function handleTouch(event) {
+            const info = [];
+            info.push(`Event: ${event.type}`);
+            
+            if (event.touches) {
+                info.push(`Touches: ${event.touches.length}`);
+                if (event.touches.length > 0) {
+                    const touch = event.touches[0];
+                    info.push(`Position: ${Math.round(touch.clientX)}, ${Math.round(touch.clientY)}`);
+                }
+            }
+            
+            if (event.clientX !== undefined) {
+                info.push(`Mouse: ${Math.round(event.clientX)}, ${Math.round(event.clientY)}`);
+            }
+            
+            touchInfo.innerHTML = info.join('<br>');
+            
+            // Visual feedback
+            touchArea.style.background = '#e3f2fd';
+            setTimeout(() => {
+                touchArea.style.background = '#f8f9fa';
+            }, 200);
+        }
+
+        // Auto-run basic tests on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testResponsiveDesign();
+                testDeviceFeatures();
+                testImageOptimization();
+                testPWAFeatures();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

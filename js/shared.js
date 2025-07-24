@@ -1,6 +1,6 @@
 // Shared JavaScript functionality for Nijenhuis website
 
-// Mobile Menu Functionality
+// Enhanced Mobile Menu Functionality
 function setupMobileMenu() {
     const mobileToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -10,16 +10,26 @@ function setupMobileMenu() {
         return;
     }
 
-    console.log('Setting up mobile menu...');
+    console.log('Setting up enhanced mobile menu...');
 
-    // Handle both click and touch events for better mobile support
+    // Enhanced toggle function with improved mobile support
     const toggleMenu = (e) => {
         console.log('Toggle menu called', e.type);
         e.preventDefault();
         e.stopPropagation();
+        
         const isActive = navMenu.classList.contains('active');
         navMenu.classList.toggle('active');
         mobileToggle.setAttribute('aria-expanded', !isActive);
+        
+        // Add haptic feedback on supported devices
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isActive ? 'auto' : 'hidden';
+        
         updateMobileMenuIcon();
         console.log('Menu toggled, active:', !isActive);
     };

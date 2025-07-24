@@ -1,0 +1,75 @@
+/* Mobile Image Optimization CSS */
+/* Add this to your existing CSS for better mobile image performance */
+
+/* Responsive images */
+.responsive-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Different image sizes for different screen sizes */
+@media (max-width: 480px) {
+    .hero {
+        background-image: url('Images/Boats/zeilboot-4-5-mobile.jpg');
+    }
+    
+    .page-header {
+        background-image: url('Images/belterwijde-mobile.jpg');
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero {
+        background-image: url('Images/Boats/zeilboot-4-5-tablet.jpg');
+    }
+    
+    .page-header {
+        background-image: url('Images/belterwijde-tablet.jpg');
+    }
+}
+
+/* WebP support with fallbacks */
+@supports (background-image: url('image.webp')) {
+    .hero {
+        background-image: url('Images/Boats/zeilboot-4-5.webp');
+    }
+    
+    .page-header {
+        background-image: url('Images/belterwijde.webp');
+    }
+    
+    @media (max-width: 480px) {
+        .hero {
+            background-image: url('Images/Boats/zeilboot-4-5-mobile.webp');
+        }
+        
+        .page-header {
+            background-image: url('Images/belterwijde-mobile.webp');
+        }
+    }
+}
+
+/* Lazy loading styles */
+.lazy {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy.loaded {
+    opacity: 1;
+}
+
+/* Progressive image loading */
+.progressive-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(5px);
+    transition: filter 0.3s;
+}
+
+.progressive-img.loaded {
+    filter: none;
+}

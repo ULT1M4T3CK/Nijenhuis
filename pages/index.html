@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#0071BB">
     <title>Nijenhuis Botenverhuur | Camping & Jachthaven in Giethoorn & Wanneperveen</title>
     
     <!-- SEO Meta Tags -->
@@ -25,6 +29,9 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/Images/logo-white.svg">
     <link rel="apple-touch-icon" href="../Images/logo-white.svg">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json">
     
     <!-- Preload Critical Resources -->
 
@@ -64,6 +71,7 @@
     
     <!-- Shared JavaScript -->
     <script src="../js/shared.js" defer></script>
+    <script src="../js/mobile-optimizations.js" defer></script>
 </head>
 <body>
     <!-- Top Bar -->
