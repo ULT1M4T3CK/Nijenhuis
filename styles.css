@@ -395,7 +395,7 @@ img {
 .hero {
     position: relative;
     min-height: 600px;
-    background: url('./Images/Boats/zeilboot-4-5.jpg');
+    background: url('../Images/Boats/zeilboot-4-5.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -453,7 +453,7 @@ img {
 }
 
 .page-header {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('./Images/belterwijde.jpg');
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../Images/belterwijde.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -3506,7 +3506,7 @@ body.dark-mode .message-time {
 @media (max-width: 768px) {
     /* Responsive images for mobile */
     .hero {
-        background-image: url('./Images/Boats/zeilboot-4-5.jpg');
+        background-image: url('../Images/Boats/zeilboot-4-5.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: scroll; /* Better performance on mobile */
@@ -3530,7 +3530,7 @@ body.dark-mode .message-time {
 /* WebP support with fallbacks */
 @supports (background-image: url('image.webp')) {
     .hero {
-        background-image: url('./Images/Boats/zeilboot-4-5.webp');
+        background-image: url('../Images/Boats/zeilboot-4-5.webp');
     }
 }
 

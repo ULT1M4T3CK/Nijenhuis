@@ -12,41 +12,41 @@
 /* Different image sizes for different screen sizes */
 @media (max-width: 480px) {
     .hero {
-        background-image: url('./Images/Boats/zeilboot-4-5-mobile.jpg');
+        background-image: url('../Images/Boats/zeilboot-4-5-mobile.jpg');
     }
     
     .page-header {
-        background-image: url('./Images/belterwijde-mobile.jpg');
+        background-image: url('../Images/belterwijde-mobile.jpg');
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     .hero {
-        background-image: url('./Images/Boats/zeilboot-4-5-tablet.jpg');
+        background-image: url('../Images/Boats/zeilboot-4-5-tablet.jpg');
     }
     
     .page-header {
-        background-image: url('./Images/belterwijde-tablet.jpg');
+        background-image: url('../Images/belterwijde-tablet.jpg');
     }
 }
 
 /* WebP support with fallbacks */
 @supports (background-image: url('image.webp')) {
     .hero {
-        background-image: url('./Images/Boats/zeilboot-4-5.webp');
+        background-image: url('../Images/Boats/zeilboot-4-5.webp');
     }
     
     .page-header {
-        background-image: url('./Images/belterwijde.webp');
+        background-image: url('../Images/belterwijde.webp');
     }
     
     @media (max-width: 480px) {
         .hero {
-            background-image: url('./Images/Boats/zeilboot-4-5-mobile.webp');
+            background-image: url('../Images/Boats/zeilboot-4-5-mobile.webp');
         }
         
         .page-header {
-            background-image: url('./Images/belterwijde-mobile.webp');
+            background-image: url('../Images/belterwijde-mobile.webp');
         }
     }
 }
