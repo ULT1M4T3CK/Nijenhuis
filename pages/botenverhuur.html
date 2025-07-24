@@ -154,13 +154,13 @@
                       <td data-label="Borg">€100</td>
                     </tr>
                     <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Zeilboot (zonder motor)</strong></td>
+                      <td data-label="Boot type"><strong>Zeilboot zonder motor</strong></td>
                       <td data-label="Capaciteit">4-5 personen</td>
                       <td data-label="Prijs per dag">€70</td>
                       <td data-label="Borg">€50</td>
                     </tr>
                     <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Zeilboot (met motor)</strong></td>
+                      <td data-label="Boot type"><strong>Zeilboot met motor</strong></td>
                       <td data-label="Capaciteit">4-5 personen</td>
                       <td data-label="Prijs per dag">€85</td>
                       <td data-label="Borg">€50</td>
@@ -187,6 +187,12 @@
                       <td data-label="Boot type"><strong>Kajak</strong></td>
                       <td data-label="Capaciteit">2 personen</td>
                       <td data-label="Prijs per dag">€25</td>
+                      <td data-label="Borg">€0</td>
+                    </tr>
+                    <tr class="pricing-row">
+                      <td data-label="Boot type"><strong>Kajak</strong></td>
+                      <td data-label="Capaciteit">1 persoon</td>
+                      <td data-label="Prijs per dag">€20</td>
                       <td data-label="Borg">€0</td>
                     </tr>
                     <tr class="pricing-row">
@@ -324,7 +330,7 @@
             electric: [
                 { 
                     id: 'electrosloep-8p', 
-                    name: 'Electrosloep (8 personen)', 
+                    name: 'Electrosloep', 
                     capacity: '8 personen', 
                     price: '€175', 
                     status: 'available', 
@@ -341,7 +347,7 @@
                 },
                 { 
                     id: 'electrosloep-10p', 
-                    name: 'Electrosloep (10 personen)', 
+                    name: 'Electrosloep', 
                     capacity: '10 personen', 
                     price: '€200', 
                     status: 'available', 
@@ -351,7 +357,7 @@
                 },
                 { 
                     id: 'electroboat-5p', 
-                    name: 'Electroboot (5 personen)', 
+                    name: 'Electrosloep', 
                     capacity: '5 personen', 
                     price: '€80', 
                     status: 'available', 
@@ -405,7 +411,7 @@
             sailing: [
                 { 
                     id: 'zeilboot-zonder-motor', 
-                    name: 'Zeilboot (zonder motor)', 
+                    name: 'Zeilboot zonder motor', 
                     capacity: '4-5 personen', 
                     price: '€70', 
                     status: 'available', 
@@ -415,7 +421,7 @@
                 },
                 { 
                     id: 'zeilboot-met-motor', 
-                    name: 'Zeilboot (met motor)', 
+                    name: 'Zeilboot met motor', 
                     capacity: '4-5 personen', 
                     price: '€85', 
                     status: 'available', 
@@ -425,7 +431,7 @@
                 },
                 { 
                     id: 'zeilpunter-34p', 
-                    name: 'Zeilpunter (3-4 personen)', 
+                    name: 'Zeilpunter', 
                     capacity: '3-4 personen', 
                     price: '€60', 
                     status: 'available', 
@@ -447,7 +453,7 @@
                 },
                 { 
                     id: 'kajak-2p', 
-                    name: 'Kajak (2 personen)', 
+                    name: 'Kajak', 
                     capacity: '2 personen', 
                     price: '€25', 
                     status: 'available', 
@@ -458,6 +464,16 @@
                         '../Images/Boats/kayak-2/kayak-2.jpg',
                         '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
                     ] 
+                },
+                { 
+                    id: 'kajak-1p', 
+                    name: 'Kajak', 
+                    capacity: '1 persoon', 
+                    price: '€20', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'canoe',
+                    image: '../Images/Boats/kayak-1/kayak-1.jpg'
                 }
             ],
             sup: [
@@ -533,6 +549,10 @@
                     description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
                     features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen']
                 },
+                'kajak-1p': {
+                    description: 'Een half open kano met lage zit en heeft peddels met 2 bladen. Een kajak is een half open kano met lage zit en heeft peddels met 2 bladen. Perfect voor één persoon die sportieve activiteiten wil ondernemen.',
+                    features: ['1 persoon capaciteit', 'Half open kano', 'Lage zitpositie', 'Peddels met 2 bladen', 'Sportief en wendbaar']
+                },
                 'sup-board': {
                     description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
                     features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring']
@@ -556,7 +576,7 @@
                             ${info.features.map(feature => `<li style="margin-bottom: 5px;">${feature}</li>`).join('')}
                         </ul>
                         
-                        <div style="margin-bottom: 15px; padding: 10px; background: #e8f4f8; border-radius: 6px; border-left: 4px solid var(--primary-color);">
+                        <div class="boat-identifier-section" style="margin-bottom: 15px; padding: 10px; background: #e8f4f8; border-radius: 6px; border-left: 4px solid var(--primary-color); display: none;">
                             <strong>Boot ID:</strong> ${foundBoat.id}<br>
                             <strong>Categorie:</strong> ${foundBoat.category}<br>
                             <strong>Status:</strong> ${foundBoat.status === 'available' ? 'Beschikbaar' : 'Bezet'}

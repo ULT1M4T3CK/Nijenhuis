@@ -97,6 +97,11 @@
     padding: 0;
 }
 
+/* Hide unique identifier sections from users */
+.boat-identifier-section {
+    display: none !important;
+}
+
 /* Mobile Image Optimization */
 img {
     max-width: 100%;
