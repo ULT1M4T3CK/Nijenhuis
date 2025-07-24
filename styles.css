@@ -2115,12 +2115,16 @@
 }
 
 .house-details {
-    /* Remove global flex and column styles */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
 }
 
 .house-info {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
 }
 
 /* Category card styles already defined in unified card styles */
@@ -3308,5 +3312,145 @@ body.dark-mode .message-time {
     text-decoration: none;
     border-bottom: none;
   }
+}
+
+/* ---------------------------------------------------------------------
+   --- MODERN SLIDESHOW STYLES
+   ------------------------------------------------------------------ */
+.modern-slideshow {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.slideshow-main {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slideshow-main .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+.slideshow-main .slide.active {
+    display: block;
+}
+
+.slideshow-thumbnails {
+    display: flex;
+    gap: 8px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+.slideshow-thumbnails::-webkit-scrollbar {
+    height: 4px;
+}
+
+.slideshow-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.slideshow-thumbnails::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.thumbnail {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+    opacity: 1;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modern-slideshow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modern-slideshow-btn:hover {
+    background: var(--white);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modern-slideshow-btn.prev {
+    left: 16px;
+}
+
+.modern-slideshow-btn.next {
+    right: 16px;
+}
+
+.modern-slideshow-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile responsive for house details */
+@media (max-width: 900px) {
+    .house-details {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .slideshow-main {
+        height: 300px;
+    }
+    
+    .slideshow-thumbnails {
+        padding: 12px;
+    }
+    
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
 }
   

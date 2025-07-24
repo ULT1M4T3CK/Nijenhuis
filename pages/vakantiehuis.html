@@ -75,8 +75,8 @@
 
                 <div class="house-details">
                     <div class="house-image">
-                        <div class="slideshow-container">
-                            <div class="slideshow-wrapper">
+                        <div class="modern-slideshow">
+                            <div class="slideshow-main">
                                 <img src="../Images/Vakantiehuis/1.jpg" alt="Vakantiehuis Belterwiede" class="slide active">
                                 <img src="../Images/Vakantiehuis/2.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/3.jpg" alt="Vakantiehuis Belterwiede" class="slide">
@@ -95,27 +95,69 @@
                                 <img src="../Images/Vakantiehuis/16.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/17.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                             </div>
-                            <button class="slideshow-btn prev" onclick="changeSlide(-1)">❮</button>
-                            <button class="slideshow-btn next" onclick="changeSlide(1)">❯</button>
-                            <div class="slideshow-dots">
-                                <span class="dot active" onclick="currentSlide(1)"></span>
-                                <span class="dot" onclick="currentSlide(2)"></span>
-                                <span class="dot" onclick="currentSlide(3)"></span>
-                                <span class="dot" onclick="currentSlide(4)"></span>
-                                <span class="dot" onclick="currentSlide(5)"></span>
-                                <span class="dot" onclick="currentSlide(6)"></span>
-                                <span class="dot" onclick="currentSlide(7)"></span>
-                                <span class="dot" onclick="currentSlide(8)"></span>
-                                <span class="dot" onclick="currentSlide(9)"></span>
-                                <span class="dot" onclick="currentSlide(10)"></span>
-                                <span class="dot" onclick="currentSlide(11)"></span>
-                                <span class="dot" onclick="currentSlide(12)"></span>
-                                <span class="dot" onclick="currentSlide(13)"></span>
-                                <span class="dot" onclick="currentSlide(14)"></span>
-                                <span class="dot" onclick="currentSlide(15)"></span>
-                                <span class="dot" onclick="currentSlide(16)"></span>
-                                <span class="dot" onclick="currentSlide(17)"></span>
+                            <div class="slideshow-thumbnails">
+                                <div class="thumbnail active" onclick="currentSlide(1)">
+                                    <img src="../Images/Vakantiehuis/1.jpg" alt="Thumbnail 1">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(2)">
+                                    <img src="../Images/Vakantiehuis/2.jpg" alt="Thumbnail 2">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(3)">
+                                    <img src="../Images/Vakantiehuis/3.jpg" alt="Thumbnail 3">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(4)">
+                                    <img src="../Images/Vakantiehuis/4.jpg" alt="Thumbnail 4">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(5)">
+                                    <img src="../Images/Vakantiehuis/5.jpg" alt="Thumbnail 5">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(6)">
+                                    <img src="../Images/Vakantiehuis/6.jpg" alt="Thumbnail 6">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(7)">
+                                    <img src="../Images/Vakantiehuis/7.jpg" alt="Thumbnail 7">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(8)">
+                                    <img src="../Images/Vakantiehuis/8.jpg" alt="Thumbnail 8">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(9)">
+                                    <img src="../Images/Vakantiehuis/9.jpg" alt="Thumbnail 9">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(10)">
+                                    <img src="../Images/Vakantiehuis/10.jpg" alt="Thumbnail 10">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(11)">
+                                    <img src="../Images/Vakantiehuis/11.jpg" alt="Thumbnail 11">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(12)">
+                                    <img src="../Images/Vakantiehuis/12.jpg" alt="Thumbnail 12">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(13)">
+                                    <img src="../Images/Vakantiehuis/13.jpg" alt="Thumbnail 13">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(14)">
+                                    <img src="../Images/Vakantiehuis/14.jpg" alt="Thumbnail 14">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(15)">
+                                    <img src="../Images/Vakantiehuis/15.jpg" alt="Thumbnail 15">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(16)">
+                                    <img src="../Images/Vakantiehuis/16.jpg" alt="Thumbnail 16">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(17)">
+                                    <img src="../Images/Vakantiehuis/17.jpg" alt="Thumbnail 17">
+                                </div>
                             </div>
+                            <button class="modern-slideshow-btn prev" onclick="changeSlide(-1)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                            </button>
+                            <button class="modern-slideshow-btn next" onclick="changeSlide(1)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="house-info">
@@ -278,21 +320,21 @@
 
     <script src="../js/translation.js" defer></script>
     <script>
-        // Slideshow functionality
+        // Modern Slideshow functionality
         let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.slideshow-main .slide');
+        const thumbnails = document.querySelectorAll('.thumbnail');
         const totalSlides = slides.length;
 
         function showSlide(index) {
-            // Hide all slides
+            // Hide all slides and thumbnails
             slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
             
-            // Show current slide
+            // Show current slide and thumbnail
             if (slides[index]) {
                 slides[index].classList.add('active');
-                dots[index].classList.add('active');
+                thumbnails[index].classList.add('active');
             }
         }
 
@@ -322,12 +364,12 @@
         let slideInterval = setInterval(autoAdvance, 5000);
 
         // Pause auto-advance when hovering over slideshow
-        document.querySelector('.slideshow-container').addEventListener('mouseenter', () => {
+        document.querySelector('.modern-slideshow').addEventListener('mouseenter', () => {
             clearInterval(slideInterval);
         });
 
         // Resume auto-advance when leaving slideshow
-        document.querySelector('.slideshow-container').addEventListener('mouseleave', () => {
+        document.querySelector('.modern-slideshow').addEventListener('mouseleave', () => {
             slideInterval = setInterval(autoAdvance, 5000);
         });
 
