@@ -882,7 +882,7 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: var(--spacing-xl);
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
+    gap: 20px;
     grid-template-columns: 1fr;
 }
 
@@ -908,7 +908,7 @@
 
 .boat-image {
     position: relative;
-    height: 250px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -954,21 +954,21 @@
 
 .boat-info {
     padding: var(--spacing-lg);
-    padding: 20px;
+    padding: 15px;
 }
 
 .boat-info h3 {
     font-size: var(--font-size-xl);
     color: var(--secondary-color);
     margin-bottom: var(--spacing-sm);
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
 }
 
 .boat-capacity {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-xs);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .boat-price {
@@ -976,8 +976,8 @@
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: var(--spacing-md);
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
 }
 
 /* ---------------------------------------------------------------------
