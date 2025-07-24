@@ -251,7 +251,7 @@ a:hover {
 .hero {
     position: relative;
     min-height: 600px;
-    background: url('../Images/Boats/zeilboot-4-5.jpg') center center;
+    background: url('Nijenhuis/Images/Boats/zeilboot-4-5.jpg') center center;
     background-size: cover;
     background-attachment: fixed;
     display: flex;
