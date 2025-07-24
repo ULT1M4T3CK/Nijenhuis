@@ -437,7 +437,8 @@
 .facility-card,
 .contact-direct-card,
 .jachthaven-info-card,
-.map-section-card {
+.map-section-card,
+.boat-card {
     background: var(--white);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
@@ -457,7 +458,8 @@
 .facility-card:hover,
 .contact-direct-card:hover,
 .jachthaven-info-card:hover,
-.map-section-card:hover {
+.map-section-card:hover,
+.boat-card:hover {
     box-shadow: var(--shadow-xl);
     transform: translateY(-4px);
 }
@@ -887,23 +889,18 @@
 }
 
 .boat-card {
-    background: var(--bg-primary);
+    background: var(--white);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
     transition: var(--transition-normal);
     position: relative;
-    background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
     margin: 0 var(--spacing-sm);
 }
 
 .boat-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-xl);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .boat-image {
@@ -917,7 +914,6 @@
     height: 100%;
     object-fit: cover;
     transition: var(--transition-normal);
-    transition: var(--transition);
 }
 
 .boat-card:hover .boat-image img {
@@ -926,56 +922,44 @@
 
 .boat-status {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--radius-full);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    z-index: 2;
     top: 15px;
     right: 15px;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 2;
 }
 
 .boat-status.available {
     background: var(--success-color);
-    color: var(--text-white);
     color: white;
 }
 
 .boat-status.occupied {
     background: var(--error-color);
-    color: var(--text-white);
     color: white;
 }
 
 .boat-info {
-    padding: var(--spacing-lg);
     padding: 15px;
 }
 
 .boat-info h3 {
-    font-size: var(--font-size-xl);
     color: var(--secondary-color);
-    margin-bottom: var(--spacing-sm);
     font-size: 1.2rem;
     margin-bottom: 8px;
+    font-weight: 600;
 }
 
 .boat-capacity {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-xs);
     margin-bottom: 4px;
 }
 
 .boat-price {
-    font-size: var(--font-size-lg);
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: var(--spacing-md);
     font-size: 1.1rem;
     margin-bottom: 12px;
 }
