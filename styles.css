@@ -428,6 +428,77 @@
     gap: 30px;
 }
 
+/* ---------------------------------------------------------------------
+   --- UNIFIED CARD STYLES - Consistent across all pages
+   ------------------------------------------------------------------ */
+.card,
+.category-card,
+.service-card,
+.facility-card,
+.contact-direct-card,
+.jachthaven-info-card,
+.map-section-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+}
+
+.card:hover,
+.category-card:hover,
+.service-card:hover,
+.facility-card:hover,
+.contact-direct-card:hover,
+.jachthaven-info-card:hover,
+.map-section-card:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+}
+
+/* Icon styles for cards */
+.card .icon,
+.category-icon,
+.service-icon,
+.facility-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+/* Title styles for cards */
+.card h3,
+.category-card h3,
+.service-card h3,
+.facility-card h3,
+.contact-direct-card h3,
+.jachthaven-info-card h3,
+.map-section-card h3 {
+    color: var(--secondary-color);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Paragraph styles for cards */
+.card p,
+.category-card p,
+.service-card p,
+.facility-card p,
+.contact-direct-card p,
+.jachthaven-info-card p,
+.map-section-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
 .page-header {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/belterwijde.jpg');
     background-size: cover;
@@ -932,33 +1003,14 @@
     grid-template-columns: 1fr;
 }
 
+/* Service card specific overrides */
 .service-card {
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
+    min-height: 420px;
     justify-content: flex-start;
     align-items: stretch;
-    min-height: 420px;
-    position: relative;
-    padding: var(--spacing-lg);
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-.service-card .service-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-    display: block;
-}
+/* Service icon inherits from unified card icon styles */
 
 .service-card h3 {
     font-size: var(--font-size-xl);
@@ -2051,20 +2103,9 @@
     margin-top: var(--spacing-xl);
 }
 
-.facility-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: var(--spacing-lg);
-    text-align: center;
-    transition: var(--transition-normal);
-}
+/* Facility card already styled by unified card styles */
 
-.facility-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--primary-color);
-}
+/* Facility icon inherits from unified card icon styles */
 
 .cta-section {
     margin-top: var(--spacing-lg);
@@ -2098,24 +2139,7 @@
     margin: 0 auto;
 }
 
-.category-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: var(--spacing-lg);
-    text-align: center;
-    cursor: pointer;
-    transition: var(--transition-normal);
-}
-.category-card:hover {
-    box-shadow: var(--shadow-xl);
-    transform: translateY(-4px);
-}
-.category-icon {
-    font-size: 2.5rem;
-    margin-bottom: var(--spacing-md);
-    color: var(--primary-color);
-}
+/* Category card styles already defined in unified card styles */
 
 /* ---------------------------------------------------------------------
    --- CHAT WIDGET (ADDITIONS)
@@ -2580,20 +2604,7 @@ body.dark-mode .message-time {
   margin-bottom: 2rem;
 }
 
-.boat-categories .category-card {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-  padding: 1.5rem;
-  text-align: center;
-  transition: box-shadow 0.2s, transform 0.2s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 180px;
-}
+/* Boat categories cards inherit from unified card styles */
 
 /* Tablet view: 2 columns */
 @media (min-width: 768px) and (max-width: 899px) {
@@ -2611,18 +2622,6 @@ body.dark-mode .message-time {
     margin-bottom: 2.5rem;
   }
   .category-card {
-    background: var(--white);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    transition: box-shadow 0.2s, transform 0.2s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 220px;
     grid-column: span 2;
   }
   /* First row: normal positioning */
@@ -2641,10 +2640,6 @@ body.dark-mode .message-time {
   }
   .category-card:nth-child(5) {
     grid-column: 4 / span 2;
-  }
-  .category-card:hover {
-    box-shadow: var(--shadow-xl);
-    transform: translateY(-4px);
   }
 }
 
@@ -2963,27 +2958,19 @@ body.dark-mode .message-time {
 /* ---------------------------------------------------------------------
    --- JACHTHAVEN INFO CARD STYLE
    ------------------------------------------------------------------ */
+/* Jachthaven-info-card specific overrides */
 .jachthaven-info-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 8px 32px rgba(0, 113, 187, 0.08);
   border-left: 5px solid var(--primary-color);
-  padding: 2.5rem 2rem;
   margin: 2rem auto 2.5rem auto;
   max-width: 600px;
   text-align: left;
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
 }
 .jachthaven-info-card h3 {
-  color: var(--primary-color);
-  margin-bottom: 1.1rem;
   font-size: 1.5rem;
 }
 .jachthaven-info-card p {
   font-size: 1.08rem;
-  color: var(--text-color);
   margin-bottom: 0.7em;
 }
 .jachthaven-info-card p:last-child {
@@ -3006,14 +2993,10 @@ body.dark-mode .message-time {
 /* ---------------------------------------------------------------------
    --- VAARKAART MAP SECTION & INFO LIST
    ------------------------------------------------------------------ */
+/* Map-section-card specific overrides */
 .map-section-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 8px 32px rgba(0, 113, 187, 0.08);
-  padding: 2.5rem 2rem;
   margin: 2rem auto 2.5rem auto;
   max-width: 900px;
-  text-align: center;
 }
 .info-list {
   margin: 2.5rem 0 0 0;
@@ -3072,22 +3055,11 @@ body.dark-mode .message-time {
   }
   .contact-direct-card {
     flex: 1;
-    background: var(--white);
-    border-radius: var(--radius-xl);
-    box-shadow: 0 8px 32px rgba(0, 113, 187, 0.08);
-    padding: 2.5rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-width: 280px;
     max-width: 340px;
     margin-top: 0;
-    text-align: center;
   }
   .contact-direct-card h3 {
-    color: var(--primary-color);
-    margin-bottom: 1.1rem;
     font-size: 1.5rem;
   }
   .contact-direct-card .call-button-container {
