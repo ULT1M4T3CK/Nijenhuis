@@ -2368,6 +2368,26 @@ body.dark-mode .message-time {
     gap: 1rem;
     font-size: 1rem;
     color: var(--text-white);
+    font-weight: 500;
+    position: relative;
+}
+
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-info:hover::before {
+    opacity: 1;
 }
 .contact-info a {
     color: var(--text-white);
@@ -2375,10 +2395,19 @@ body.dark-mode .message-time {
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    transition: color 0.2s;
+    transition: all 0.2s ease;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 .contact-info a:hover {
-    color: #90caf9;
+    color: var(--text-white);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Desktop nav-menu (visible on desktop) */
@@ -2880,10 +2909,94 @@ body.dark-mode .message-time {
 }
 
 /* ---------------------------------------------------------------------
-   --- TE KOOP CONTACT HIGHLIGHT
+   --- ENHANCED CONTACT HIGHLIGHT DESIGN
    ------------------------------------------------------------------ */
 .contact-highlight {
-  color: var(--secondary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    color: var(--text-white);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+.contact-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.contact-highlight h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+    position: relative;
+    z-index: 1;
+}
+
+.contact-highlight p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+}
+
+.contact-highlight div {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-highlight div p {
+    margin: 0.8rem 0;
+    font-size: 1rem;
+    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-highlight div p strong {
+    font-weight: 600;
+    min-width: 80px;
+    display: inline-block;
+}
+
+.contact-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+    transition: all 0.3s ease;
+}
+
+@keyframes contactPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.contact-highlight:active {
+    animation: contactPulse 0.3s ease;
+}
+
+.contact-info a:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
 }
 
 /* ---------------------------------------------------------------------
@@ -3226,13 +3339,42 @@ body.dark-mode .message-time {
     display: flex;
     justify-content: center;
   }
-  .contact-info {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
-    width: 100%;
-    justify-content: center;
-  }
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .contact-info a {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-highlight {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .contact-highlight h3 {
+        font-size: 1.4rem;
+    }
+    
+    .contact-highlight div {
+        padding: 1rem;
+    }
+    
+    .contact-highlight div p {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+    
+    .contact-highlight div p strong {
+        min-width: auto;
+    }
 }
 
 .mobile-menu-toggle svg {
