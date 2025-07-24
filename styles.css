@@ -113,13 +113,6 @@ img {
     image-rendering: optimize-contrast;
     loading: lazy;
 }
-
-/* Critical path images should load immediately */
-.hero img,
-.logo,
-.hero::before {
-    loading: eager;
-}
   
   html {
     -webkit-text-size-adjust: 100%;
@@ -395,7 +388,7 @@ img {
 .hero {
     position: relative;
     min-height: 600px;
-    background: url('../Images/Boats/zeilboot-4-5.jpg');
+    background: url('/Images/Boats/zeilboot-4-5.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -3506,7 +3499,7 @@ body.dark-mode .message-time {
 @media (max-width: 768px) {
     /* Responsive images for mobile */
     .hero {
-        background-image: url('../Images/Boats/zeilboot-4-5.jpg');
+        background-image: url('/Images/Boats/zeilboot-4-5.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: scroll; /* Better performance on mobile */
@@ -3530,7 +3523,7 @@ body.dark-mode .message-time {
 /* WebP support with fallbacks */
 @supports (background-image: url('image.webp')) {
     .hero {
-        background-image: url('../Images/Boats/zeilboot-4-5.webp');
+        background-image: url('/Images/Boats/zeilboot-4-5.webp');
     }
 }
 
