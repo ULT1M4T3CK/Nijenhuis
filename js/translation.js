@@ -453,7 +453,7 @@
         "camping_overview_permanent_list_item_6": "Eigener Anlegeplatz",
         "camping_overview_permanent_list_item_7": "Duschen und Toiletten verfügbar",
         "camping_overview_permanent_list_item_8": "Kleiner, aber gemütlicher Campingplatz",
-        "camping_overview_permanent_list_item_9": "Waschmaschine und Trockner verfügbar"
+        "camping_overview_permanent_list_item_9": "Waschmaschine und Trockner verfügbar",
         camping_overview_cta_strong: "Interesse an einem dauerhaften Platz?",
         camping_overview_cta_button: "JETZT ANRUFEN",
         facilities_title: "Ausstattung",
