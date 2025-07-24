@@ -80,11 +80,7 @@
                         <h3 data-i18n="boats_cat_electric">Elektrische boten</h3>
                         <p data-i18n="boats_cat_electric_desc">Milieuvriendelijke boten met elektrische aandrijving, perfect voor rustige vaartochten door het natuurgebied.</p>
                     </div>
-                    <div class="category-card" data-category="gasoline">
-                        <div class="category-icon">⛽</div>
-                        <h3 data-i18n="boats_cat_gasoline">Benzine boten</h3>
-                        <p data-i18n="boats_cat_gasoline_desc">Krachtige boten met benzinemotor, ideaal voor grotere groepen en langere vaartochten.</p>
-                    </div>
+
                     <div class="category-card" data-category="sailing">
                         <div class="category-icon">⛵</div>
                         <h3 data-i18n="boats_cat_sailing">Zeilboten</h3>
@@ -330,9 +326,7 @@
                     '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
                 ] },
                 { name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
-                { name: 'Electrosloep', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' }
-            ],
-            gasoline: [
+                { name: 'Electrosloep', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' },
                 { name: 'Classic tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
                     '../Images/Boats/tender-720/104831747849501502092021.jpg',
                     '../Images/Boats/tender-720/125324337810511502092021.jpg',
@@ -355,6 +349,7 @@
                     '../Images/Boats/tender-570/79334617131061602092021.jpg'
                 ] }
             ],
+
             sailing: [
                 { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
                 { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
@@ -380,58 +375,47 @@
             const boatInfo = {
                 'Classic tender 720': {
                     description: 'Een krachtige benzinemotor boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
-                    features: ['10-12 personen capaciteit', 'Benzinemotor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families'],
-                    specifications: 'Lengte: 7.2m, Motor: Benzine, Max snelheid: 15 km/u'
+                    features: ['10-12 personen capaciteit', 'Benzinemotor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families']
                 },
                 'Classic tender 570': {
                     description: 'Een comfortabele benzinemotor boot voor middelgrote groepen. Ideaal voor dagtochten.',
-                    features: ['8 personen capaciteit', 'Benzinemotor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten'],
-                    specifications: 'Lengte: 5.7m, Motor: Benzine, Max snelheid: 12 km/u'
+                    features: ['8 personen capaciteit', 'Benzinemotor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten']
                 },
                 'Electrosloep': {
                     description: 'Een milieuvriendelijke elektrische boot voor grotere groepen. Stil en duurzaam.',
-                    features: ['10 personen capaciteit', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Grote ruimte', 'Perfect voor natuurgebied'],
-                    specifications: 'Lengte: 6.5m, Motor: Elektrisch, Max snelheid: 8 km/u'
+                    features: ['10 personen capaciteit', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Grote ruimte', 'Perfect voor natuurgebied']
                 },
                 'Electrosloep': {
                     description: 'Een compacte elektrische boot voor kleinere groepen. Stil en wendbaar.',
-                    features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor kleine groepen'],
-                    specifications: 'Lengte: 5.8m, Motor: Elektrisch, Max snelheid: 8 km/u'
+                    features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor kleine groepen']
                 },
                 'Electrosloep': {
                     description: 'Een kleine elektrische boot voor gezinnen. Perfect voor rustige vaartochten.',
-                    features: ['5 personen capaciteit', 'Elektrische motor', 'Stil en veilig', 'Compact', 'Geschikt voor gezinnen'],
-                    specifications: 'Lengte: 4.2m, Motor: Elektrisch, Max snelheid: 6 km/u'
+                    features: ['5 personen capaciteit', 'Elektrische motor', 'Stil en veilig', 'Compact', 'Geschikt voor gezinnen']
                 },
                 'Zeilboot (zonder motor)': {
                     description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
-                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers'],
-                    specifications: 'Lengte: 5.5m, Aandrijving: Zeil, Max snelheid: Afhankelijk van wind'
+                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers']
                 },
                 'Zeilboot (met motor)': {
                     description: 'Een zeilboot met hulpmotor voor meer flexibiliteit. Ideaal voor beginners en ervaren zeilers.',
-                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus'],
-                    specifications: 'Lengte: 5.5m, Aandrijving: Zeil + motor, Max snelheid: 8 km/u'
+                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus']
                 },
                 'Canadese kano': {
                     description: 'Een stabiele kano voor twee personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
-                    features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen'],
-                    specifications: 'Lengte: 4.5m, Type: Kano, Gewicht: 35kg'
+                    features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen']
                 },
                 'Kajak': {
                     description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
-                    features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen'],
-                    specifications: 'Lengte: 4.2m, Type: Kajak, Gewicht: 28kg'
+                    features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen']
                 },
                 'SUP board': {
                     description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
-                    features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring'],
-                    specifications: 'Lengte: 3.2m, Type: SUP board, Gewicht: 12kg'
+                    features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring']
                 },
                 'Zeilpunter': {
                     description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
-                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen'],
-                    specifications: 'Lengte: 4.8m, Aandrijving: Zeil, Type: Punter'
+                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen']
                 }
             };
 
@@ -447,8 +431,7 @@
                             ${info.features.map(feature => `<li style="margin-bottom: 5px;">${feature}</li>`).join('')}
                         </ul>
                         
-                        <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Specificaties:</h4>
-                        <p style="margin-bottom: 15px; font-weight: 600;">${info.specifications}</p>
+
                         
                         <div style="text-align: center; margin-top: 20px;">
                             <a href="tel:0522281528" class="btn" style="display: inline-block; padding: 10px 25px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">

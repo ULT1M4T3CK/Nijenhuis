@@ -2577,9 +2577,18 @@ body.dark-mode .message-time {
   .boat-categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2.5rem;
+  }
+  
+  /* Center the last two items in the bottom row */
+  .boat-categories .category-card:nth-child(4) {
+    grid-column: 2 / 3;
+  }
+  
+  .boat-categories .category-card:nth-child(5) {
+    grid-column: 3 / 4;
   }
   .category-card {
     background: var(--white);
