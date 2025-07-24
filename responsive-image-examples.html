@@ -1,0 +1,37 @@
+<!-- Responsive Image Examples -->
+<!-- Add these patterns to your HTML for optimal mobile image loading -->
+
+<!-- Basic responsive image -->
+<img src="Images/example.jpg" 
+     alt="Description" 
+     class="responsive-img" 
+     loading="lazy"
+     decoding="async">
+
+<!-- Picture element with multiple sources for different screen sizes -->
+<picture>
+    <source media="(max-width: 480px)" 
+            srcset="Images/example-mobile.webp" 
+            type="image/webp">
+    <source media="(max-width: 480px)" 
+            srcset="Images/example-mobile.jpg">
+    <source media="(max-width: 768px)" 
+            srcset="Images/example-tablet.webp" 
+            type="image/webp">
+    <source media="(max-width: 768px)" 
+            srcset="Images/example-tablet.jpg">
+    <source srcset="Images/example.webp" 
+            type="image/webp">
+    <img src="Images/example.jpg" 
+         alt="Description" 
+         class="responsive-img"
+         loading="lazy"
+         decoding="async">
+</picture>
+
+<!-- Lazy loading with data-src -->
+<img data-src="Images/example.jpg" 
+     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23f0f0f0'/%3E%3C/svg%3E"
+     alt="Description" 
+     class="lazy responsive-img"
+     loading="lazy">

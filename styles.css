@@ -96,6 +96,25 @@
     margin: 0;
     padding: 0;
 }
+
+/* Mobile Image Optimization */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: optimize-contrast;
+    loading: lazy;
+}
+
+/* Critical path images should load immediately */
+.hero img,
+.logo,
+.hero::before {
+    loading: eager;
+}
   
   html {
     -webkit-text-size-adjust: 100%;
@@ -492,6 +511,37 @@
     display: flex;
     flex-direction: column;
     position: relative;
+}
+
+/* Mobile form optimizations */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .booking-form-modern {
+        margin: 0 16px;
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 2px solid #e0e7ef;
+        background: #fff;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0,113,187,0.1);
+        outline: none;
+    }
 }
 
 .form-group label {
@@ -1683,42 +1733,75 @@
 /* ---------------------------------------------------------------------
    --- RESPONSIVE DESIGN - MEDIA QUERIES
    ------------------------------------------------------------------ */
+
+/* Enhanced Mobile Performance Optimizations */
 @media (max-width: 1024px) {
     .container {
         padding: 0 var(--spacing-md);
     }
+    
     .hero {
         min-height: 500px;
+        background-attachment: scroll; /* Better performance on mobile */
     }
+    
+    .page-header {
+        background-attachment: scroll; /* Better performance on mobile */
+    }
+    
     .intro-grid {
         gap: var(--spacing-xl);
+    }
+    
+    /* Optimize images for tablet */
+    img {
+        height: auto;
+        max-width: 100%;
+    }
+    
+    /* Improve touch targets */
+    .btn, button, input, select, textarea {
+        min-height: 44px;
+        min-width: 44px;
     }
 }
 
 @media (max-width: 768px) {
+    /* Enhanced Mobile Navigation */
     .top-bar {
-        padding: 6px 0;
-        font-size: 12px;
+        padding: 8px 0;
+        font-size: 14px;
     }
+    
     .top-bar-content {
         flex-direction: column;
         text-align: center;
-        gap: 4px;
+        gap: 8px;
         justify-content: center;
-        gap: 10px;
     }
+    
     .contact-info {
         flex-direction: column;
-        gap: 2px;
+        gap: 8px;
         white-space: normal;
-        gap: 10px;
+    }
+    
+    .contact-info a {
+        padding: 8px 12px;
+        border-radius: 20px;
+        background: rgba(255,255,255,0.1);
+        transition: background 0.2s;
+    }
+    
+    .contact-info a:hover {
+        background: rgba(255,255,255,0.2);
     }
     .mobile-menu-toggle {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         background: var(--primary-color);
         border: none;
         border-radius: var(--radius-md);
@@ -1731,6 +1814,7 @@
         z-index: 1000;
         user-select: none;
         outline: none;
+        box-shadow: 0 2px 8px rgba(0,113,187,0.15);
     }
     .mobile-menu-toggle:hover,
     .mobile-menu-toggle:focus {
@@ -1912,19 +1996,68 @@
 }
 
 @media (max-width: 480px) {
+    /* Mobile-first optimizations */
     .container {
-        padding: 0 var(--spacing-sm);
-        padding: 0 15px;
+        padding: 0 16px;
     }
+    
+    .hero {
+        min-height: 60vh;
+        padding: 40px 0;
+    }
+    
     .hero h1 {
-        font-size: var(--font-size-3xl);
         font-size: 1.8rem;
+        line-height: 1.3;
+        margin-bottom: 16px;
     }
+    
+    .hero p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 24px;
+    }
+    
     .section {
-        padding: var(--spacing-2xl) 0;
+        padding: 48px 0;
     }
+    
     .section-title {
-        font-size: var(--font-size-3xl);
+        font-size: 1.8rem;
+        margin-bottom: 32px;
+    }
+    
+    /* Enhanced touch targets */
+    .btn, button, input, select, textarea {
+        min-height: 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px 20px;
+    }
+    
+    /* Improved spacing for mobile */
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    /* Better mobile typography */
+    body {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+        line-height: 1.4;
+    }
+    
+    p, li {
+        font-size: 16px;
+        line-height: 1.6;
     }
     .boat-card {
         margin: 0 var(--spacing-sm);
@@ -3305,5 +3438,211 @@ body.dark-mode .message-time {
     text-decoration: none;
     border-bottom: none;
   }
+}
+
+/* Advanced Mobile Image Optimizations */
+@media (max-width: 768px) {
+    /* Responsive images for mobile */
+    .hero {
+        background-image: url('Images/Boats/zeilboot-4-5.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll; /* Better performance on mobile */
+    }
+    
+    .boat-image img,
+    .modal-boat-image img {
+        object-fit: cover;
+        width: 100%;
+        height: 220px;
+        border-radius: 12px;
+    }
+    
+    /* Optimize large images for mobile */
+    .page-header {
+        background-attachment: scroll;
+        min-height: 300px;
+    }
+}
+
+/* WebP support with fallbacks */
+@supports (background-image: url('image.webp')) {
+    .hero {
+        background-image: url('Images/Boats/zeilboot-4-5.webp');
+    }
+}
+
+/* Performance optimizations */
+.boat-card,
+.service-card,
+.facility-card {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   --- MOBILE-SPECIFIC OPTIMIZATIONS
+   ------------------------------------------------------------------ */
+
+/* Mobile scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Mobile-specific utilities */
+.is-mobile .hero {
+    min-height: calc(100vh - 140px);
+}
+
+.is-mobile .main-nav.scrolled {
+    background: rgba(0, 51, 102, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background 0.3s ease;
+}
+
+/* Enhanced touch feedback */
+.is-mobile .btn:active,
+.is-mobile button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+/* Mobile-optimized grid layouts */
+@media (max-width: 480px) {
+    .boats-grid,
+    .services-grid,
+    .facilities-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 16px;
+    }
+    
+    .boat-card,
+    .service-card,
+    .facility-card {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+/* Improved mobile form styling */
+@media (max-width: 768px) {
+    .form-group input[type="date"] {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230071BB'%3e%3cpath d='M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 20px;
+        padding-right: 40px;
+    }
+}
+
+/* Mobile notification positioning */
+@media (max-width: 768px) {
+    .notification {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        max-width: none;
+        border-radius: 12px;
+    }
+}
+
+/* Mobile modal optimizations */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95vw;
+        max-width: 95vw;
+        max-height: 90vh;
+        margin: 0;
+        border-radius: 12px;
+    }
+    
+    .modal-header {
+        padding: 16px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .modal-body {
+        padding: 16px;
+        max-height: calc(90vh - 120px);
+    }
+}
+
+/* Performance optimization for mobile */
+@media (max-width: 768px) {
+    .boat-card:hover,
+    .service-card:hover,
+    .facility-card:hover {
+        transform: none; /* Disable hover effects on mobile */
+    }
+    
+    .is-mobile .boat-card,
+    .is-mobile .service-card,
+    .is-mobile .facility-card {
+        transition: box-shadow 0.2s ease;
+    }
+    
+    .is-mobile .boat-card:active,
+    .is-mobile .service-card:active,
+    .is-mobile .facility-card:active {
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        transform: translateY(-2px);
+    }
+}
+
+/* Mobile chat widget enhancements */
+@media (max-width: 480px) {
+    .chat-widget {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+    }
+    
+    .chat-button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        left: auto;
+    }
+    
+    .chat-window {
+        position: fixed;
+        bottom: 75px;
+        left: 15px;
+        right: 15px;
+        width: auto;
+        height: 60vh;
+        max-height: 400px;
+    }
 }
   
