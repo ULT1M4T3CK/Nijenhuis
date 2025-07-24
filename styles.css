@@ -268,7 +268,6 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0,51,102,0.6) 0%, rgba(0,113,187,0.4) 100%);
     z-index: 1;
 }
 
