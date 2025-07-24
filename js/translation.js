@@ -109,7 +109,7 @@
         house_overview_p2: "Wilt u een weekend, midweek, week of een hele vakantie doorbrengen in een prachtig natuur- of watersportgebied? Kom dan naar de Kop van Overijssel, waar u kunt genieten van varen, vissen, zwemmen, fietsen, wandelen en het bezoeken van andere dorpen in de omgeving. Het huis is direct gelegen aan het Belterwijde meer.",
         house_overview_p3: "<strong>Beneden:</strong> <span>U heeft 1 slaapkamer, een douche, toilet en wasmachine. U kunt ontspannen in de ruime woonkamer met TV en radio. De kamer heeft een open keuken met diverse huishoudelijke apparaten (oven, magnetron, koelkast). Er is een ruime hal en het huis is volledig voorzien van centrale verwarming.</span>",
         house_overview_p4: "<strong>Boven:</strong> <span>U heeft vier slaapkamers, waarvan er twee een wastafel hebben. Er is ook een douche en toilet op de tweede verdieping.</span>",
-        house_overview_li1: "Kinderbedje, box en kinderstoel aanwezig",
+        house_overview_li1: "Kinderbedje, box en kinderstoel kunnen aangevraagd worden in het Waterpark Belterwijde.",
         house_overview_li2: "Kussens en dekbedden beschikbaar",
         house_overview_li3: "Linnengoed graag zelf meenemen",
         house_overview_li4: "Linnengoed ook te huur bij ons (graag vooraf melden)",
