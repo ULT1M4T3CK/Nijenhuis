@@ -388,7 +388,7 @@ img {
 .hero {
     position: relative;
     min-height: 600px;
-    background: url('/Images/Boats/zeilboot-4-5.jpg');
+    background: url('../Images/Boats/zeilboot-4-5.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -3499,7 +3499,7 @@ body.dark-mode .message-time {
 @media (max-width: 768px) {
     /* Responsive images for mobile */
     .hero {
-        background-image: url('/Images/Boats/zeilboot-4-5.jpg');
+        background-image: url('../Images/Boats/zeilboot-4-5.jpg');
         background-size: cover;
         background-position: center;
         background-attachment: scroll; /* Better performance on mobile */
