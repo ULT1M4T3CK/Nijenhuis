@@ -3078,12 +3078,6 @@ body.dark-mode .message-time {
 }
 
 @media (min-width: 900px) {
-  .house-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   .jachthaven-info-card {
     margin-left: auto;
     margin-right: auto;
