@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Switcher Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .language-switcher {
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        /* Debug styles */
+        #languageSwitcher {
+            border: 2px solid red !important;
+            min-height: 50px !important;
+            background: yellow !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Language Switcher Debug Test</h1>
+        
+        <h2>Language Switcher Container:</h2>
+        <div class="language-switcher" id="languageSwitcher"></div>
+        
+        <h2>Debug Info:</h2>
+        <div id="debugInfo"></div>
+        
+        <script>
+            // Debug script to check what's happening
+            document.addEventListener("DOMContentLoaded", () => {
+                const switcher = document.getElementById("languageSwitcher");
+                const debugInfo = document.getElementById("debugInfo");
+                
+                debugInfo.innerHTML = `
+                    <p><strong>Switcher element found:</strong> ${switcher ? 'YES' : 'NO'}</p>
+                    <p><strong>Initial HTML:</strong> "${switcher ? switcher.innerHTML : 'N/A'}"</p>
+                `;
+                
+                // Try to load the translation script
+                const script = document.createElement('script');
+                script.src = 'js/translation.js';
+                script.onload = () => {
+                    debugInfo.innerHTML += '<p><strong>Translation script loaded:</strong> YES</p>';
+                    setTimeout(() => {
+                        debugInfo.innerHTML += `<p><strong>After script HTML:</strong> "${switcher.innerHTML}"</p>`;
+                        debugInfo.innerHTML += `<p><strong>Child elements:</strong> ${switcher.children.length}</p>`;
+                    }, 100);
+                };
+                script.onerror = () => {
+                    debugInfo.innerHTML += '<p><strong>Translation script loaded:</strong> NO</p>';
+                };
+                document.head.appendChild(script);
+            });
+        </script>
+    </div>
+</body>
+</html>
