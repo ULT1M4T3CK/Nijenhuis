@@ -29,19 +29,18 @@ const API_CACHE = [
 
 // Install event - cache static files
 self.addEventListener('install', (event) => {
-    console.log('Service Worker installing...');
+    // Production-ready service worker - logging removed
     
     event.waitUntil(
         caches.open(STATIC_CACHE)
             .then((cache) => {
-                console.log('Caching static files');
                 return cache.addAll(STATIC_FILES);
             })
             .then(() => {
-                console.log('Static files cached successfully');
                 return self.skipWaiting();
             })
             .catch((error) => {
+                // Only log errors in production
                 console.error('Error caching static files:', error);
             })
     );
@@ -49,7 +48,7 @@ self.addEventListener('install', (event) => {
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
-    console.log('Service Worker activating...');
+    // Production-ready service worker - logging removed
     
     event.waitUntil(
         caches.keys()
@@ -57,14 +56,12 @@ self.addEventListener('activate', (event) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => {
                         if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
-                            console.log('Deleting old cache:', cacheName);
                             return caches.delete(cacheName);
                         }
                     })
                 );
             })
             .then(() => {
-                console.log('Service Worker activated');
                 return self.clients.claim();
             })
     );
@@ -117,7 +114,7 @@ async function handleHTMLRequest(request) {
             return networkResponse;
         }
     } catch (error) {
-        console.log('Network failed for HTML, trying cache:', error);
+                    // Network failed, fallback to cache
     }
 
     // Fallback to cache
@@ -150,9 +147,9 @@ async function handleStaticRequest(request) {
             cache.put(request, networkResponse.clone());
             return networkResponse;
         }
-    } catch (error) {
-        console.log('Network failed for static asset:', error);
-    }
+            } catch (error) {
+            // Network failed, fallback to cache
+        }
 
     // Return a default response for CSS/JS
     if (request.url.endsWith('.css')) {
@@ -188,9 +185,9 @@ async function handleImageRequest(request) {
             cache.put(request, networkResponse.clone());
             return networkResponse;
         }
-    } catch (error) {
-        console.log('Network failed for image:', error);
-    }
+            } catch (error) {
+            // Network failed, fallback to cache
+        }
 
     // Return a placeholder image
     return caches.match('/images/placeholder.jpg');
@@ -222,9 +219,9 @@ async function handleAPIRequest(request) {
             cache.put(request, cachedResponse);
             return networkResponse;
         }
-    } catch (error) {
-        console.log('Network failed for API, trying cache:', error);
-    }
+            } catch (error) {
+            // Network failed, fallback to cache
+        }
 
     // Fallback to cache
     const cachedResponse = await caches.match(request);
@@ -268,9 +265,9 @@ async function handleFontRequest(request) {
             cache.put(request, networkResponse.clone());
             return networkResponse;
         }
-    } catch (error) {
-        console.log('Network failed for font:', error);
-    }
+            } catch (error) {
+            // Network failed, fallback to cache
+        }
 
     // Return empty response for fonts
     return new Response('', {
@@ -285,7 +282,7 @@ async function handleDefaultRequest(request) {
     try {
         return await fetch(request);
     } catch (error) {
-        console.log('Network failed for default request:', error);
+        // Network failed for default request
         
         // Try cache as fallback
         const cachedResponse = await caches.match(request);
@@ -302,7 +299,7 @@ async function handleDefaultRequest(request) {
  * Background sync for offline actions
  */
 self.addEventListener('sync', (event) => {
-    console.log('Background sync triggered:', event.tag);
+    // Background sync triggered
     
     if (event.tag === 'background-sync') {
         event.waitUntil(doBackgroundSync());
@@ -337,7 +334,7 @@ async function doBackgroundSync() {
  * Push notification handling
  */
 self.addEventListener('push', (event) => {
-    console.log('Push notification received:', event);
+    // Push notification received
     
     const options = {
         body: event.data ? event.data.text() : 'New notification from Nijenhuis',
@@ -371,7 +368,7 @@ self.addEventListener('push', (event) => {
  * Notification click handling
  */
 self.addEventListener('notificationclick', (event) => {
-    console.log('Notification clicked:', event);
+    // Notification clicked
     
     event.notification.close();
 
@@ -386,7 +383,7 @@ self.addEventListener('notificationclick', (event) => {
  * Message handling from main thread
  */
 self.addEventListener('message', (event) => {
-    console.log('Message received in service worker:', event.data);
+    // Message received in service worker
     
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
@@ -463,7 +460,7 @@ async function retryAvailabilityCheck(checkData) {
  */
 async function removePendingAction(actionId) {
     // This would typically use IndexedDB
-    console.log('Removing pending action:', actionId);
+            // Removing pending action
 }
 
 /**
