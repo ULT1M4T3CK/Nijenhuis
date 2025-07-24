@@ -315,115 +315,236 @@
     </div>
 
     <script>
-        // Boat data for modal
+        // Boat data for modal with unique identifiers
         const boatData = {
             electric: [
-                { name: 'Electrosloep', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg', slideshow: [
-                    '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
-                    '../Images/Boats/electrosloep-8/61374455328291526032019.jpg',
-                    '../Images/Boats/electrosloep-8/92961705928291526032019.jpg',
-                    '../Images/Boats/electrosloep-8/40156326328291526032019 (1).jpg',
-                    '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
-                ] },
-                { name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
-                { name: 'Electroboot', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' },
-                { name: 'Classic tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
-                    '../Images/Boats/tender-720/104831747849501502092021.jpg',
-                    '../Images/Boats/tender-720/125324337810511502092021.jpg',
-                    '../Images/Boats/tender-720/149033913309511502092021.jpg',
-                    '../Images/Boats/tender-720/168856508710511502092021.jpg',
-                    '../Images/Boats/tender-720/168856508710511502092021 (1).jpg',
-                    '../Images/Boats/tender-720/192454903409511502092021.jpg',
-                    '../Images/Boats/tender-720/193735011109511502092021.jpg',
-                    '../Images/Boats/tender-720/24662537210511502092021.jpg',
-                    '../Images/Boats/tender-720/51263685510511502092021.jpg',
-                    '../Images/Boats/tender-720/60035623109511502092021.jpg',
-                    '../Images/Boats/tender-720/90763066509511502092021.jpg'
-                ] },
-                { name: 'Classic tender 570', capacity: '8 personen', price: '€200', status: 'available', image: '../Images/Boats/tender-570/209200032731061602092021 (1).jpg', slideshow: [
-                    '../Images/Boats/tender-570/209200032731061602092021 (1).jpg',
-                    '../Images/Boats/tender-570/170165100030061602092021.jpg',
-                    '../Images/Boats/tender-570/90106743031061602092021.jpg',
-                    '../Images/Boats/tender-570/27725985231061602092021.jpg',
-                    '../Images/Boats/tender-570/63307108531061602092021.jpg',
-                    '../Images/Boats/tender-570/79334617131061602092021.jpg'
-                ] }
+                { 
+                    id: 'electrosloep-8p', 
+                    name: 'Electrosloep (8 personen)', 
+                    capacity: '8 personen', 
+                    price: '€175', 
+                    status: 'available', 
+                    deposit: '€100',
+                    category: 'electric',
+                    image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg', 
+                    slideshow: [
+                        '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
+                        '../Images/Boats/electrosloep-8/61374455328291526032019.jpg',
+                        '../Images/Boats/electrosloep-8/92961705928291526032019.jpg',
+                        '../Images/Boats/electrosloep-8/40156326328291526032019 (1).jpg',
+                        '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
+                    ] 
+                },
+                { 
+                    id: 'electrosloep-10p', 
+                    name: 'Electrosloep (10 personen)', 
+                    capacity: '10 personen', 
+                    price: '€200', 
+                    status: 'available', 
+                    deposit: '€100',
+                    category: 'electric',
+                    image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' 
+                },
+                { 
+                    id: 'electroboat-5p', 
+                    name: 'Electroboot (5 personen)', 
+                    capacity: '5 personen', 
+                    price: '€80', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'electric',
+                    image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' 
+                },
+                { 
+                    id: 'tender-720', 
+                    name: 'Classic tender 720', 
+                    capacity: '10-12 personen', 
+                    price: '€230', 
+                    status: 'available', 
+                    deposit: '€100',
+                    category: 'electric',
+                    image: '../Images/Boats/tender-720/104831747849501502092021.jpg', 
+                    slideshow: [
+                        '../Images/Boats/tender-720/104831747849501502092021.jpg',
+                        '../Images/Boats/tender-720/125324337810511502092021.jpg',
+                        '../Images/Boats/tender-720/149033913309511502092021.jpg',
+                        '../Images/Boats/tender-720/168856508710511502092021.jpg',
+                        '../Images/Boats/tender-720/168856508710511502092021 (1).jpg',
+                        '../Images/Boats/tender-720/192454903409511502092021.jpg',
+                        '../Images/Boats/tender-720/193735011109511502092021.jpg',
+                        '../Images/Boats/tender-720/24662537210511502092021.jpg',
+                        '../Images/Boats/tender-720/51263685510511502092021.jpg',
+                        '../Images/Boats/tender-720/60035623109511502092021.jpg',
+                        '../Images/Boats/tender-720/90763066509511502092021.jpg'
+                    ] 
+                },
+                { 
+                    id: 'tender-570', 
+                    name: 'Classic tender 570', 
+                    capacity: '8 personen', 
+                    price: '€200', 
+                    status: 'available', 
+                    deposit: '€100',
+                    category: 'electric',
+                    image: '../Images/Boats/tender-570/209200032731061602092021 (1).jpg', 
+                    slideshow: [
+                        '../Images/Boats/tender-570/209200032731061602092021 (1).jpg',
+                        '../Images/Boats/tender-570/170165100030061602092021.jpg',
+                        '../Images/Boats/tender-570/90106743031061602092021.jpg',
+                        '../Images/Boats/tender-570/27725985231061602092021.jpg',
+                        '../Images/Boats/tender-570/63307108531061602092021.jpg',
+                        '../Images/Boats/tender-570/79334617131061602092021.jpg'
+                    ] 
+                }
             ],
 
             sailing: [
-                { name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { name: 'Zeilpunter 3/4 pers', capacity: '3-4 personen', price: '€40', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
+                { 
+                    id: 'zeilboot-zonder-motor', 
+                    name: 'Zeilboot (zonder motor)', 
+                    capacity: '4-5 personen', 
+                    price: '€70', 
+                    status: 'available', 
+                    deposit: '€50',
+                    category: 'sailing',
+                    image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' 
+                },
+                { 
+                    id: 'zeilboot-met-motor', 
+                    name: 'Zeilboot (met motor)', 
+                    capacity: '4-5 personen', 
+                    price: '€85', 
+                    status: 'available', 
+                    deposit: '€50',
+                    category: 'sailing',
+                    image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' 
+                },
+                { 
+                    id: 'zeilpunter-34p', 
+                    name: 'Zeilpunter (3-4 personen)', 
+                    capacity: '3-4 personen', 
+                    price: '€60', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'sailing',
+                    image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' 
+                }
             ],
             canoe: [
-                { name: 'Canadese', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
-                { name: 'Kajak voor 2', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg', slideshow: [
-                    '../Images/Boats/kayak-2/kayak-2.jpg',
-                    '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
-                ] }
+                { 
+                    id: 'canadese-kano', 
+                    name: 'Canadese kano', 
+                    capacity: '2 personen', 
+                    price: '€25', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'canoe',
+                    image: '../Images/Boats/canoe/canoe-3.jpg' 
+                },
+                { 
+                    id: 'kajak-2p', 
+                    name: 'Kajak (2 personen)', 
+                    capacity: '2 personen', 
+                    price: '€25', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'canoe',
+                    image: '../Images/Boats/kayak-2/kayak-2.jpg', 
+                    slideshow: [
+                        '../Images/Boats/kayak-2/kayak-2.jpg',
+                        '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
+                    ] 
+                }
             ],
             sup: [
-                { name: 'SUP board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg', slideshow: [
-                    '../Images/Boats/Sup/sub-1.jpg',
-                    '../Images/Boats/Sup/tender-570-8.jpg'
-                ] }
+                { 
+                    id: 'sup-board', 
+                    name: 'SUP board', 
+                    capacity: '1 persoon', 
+                    price: '€35', 
+                    status: 'available', 
+                    deposit: '€0',
+                    category: 'sup',
+                    image: '../Images/Boats/Sup/sub-1.jpg', 
+                    slideshow: [
+                        '../Images/Boats/Sup/sub-1.jpg',
+                        '../Images/Boats/Sup/tender-570-8.jpg'
+                    ] 
+                }
             ]
         };
 
-        // Function to show boat information
-        function showBoatInfo(boatName) {
+        // Function to show boat information using unique identifiers
+        function showBoatInfo(boatId) {
+            // Find the boat by its unique ID
+            let foundBoat = null;
+            for (const category in boatData) {
+                foundBoat = boatData[category].find(boat => boat.id === boatId);
+                if (foundBoat) break;
+            }
+
+            if (!foundBoat) {
+                console.error('Boat not found with ID:', boatId);
+                return;
+            }
+
             const boatInfo = {
-                'Classic tender 720': {
+                'tender-720': {
                     description: 'Een krachtige benzinemotor boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
                     features: ['10-12 personen capaciteit', 'Benzinemotor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families']
                 },
-                'Classic tender 570': {
+                'tender-570': {
                     description: 'Een comfortabele benzinemotor boot voor middelgrote groepen. Ideaal voor dagtochten.',
                     features: ['8 personen capaciteit', 'Benzinemotor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten']
                 },
-                'Electrosloep': {
+                'electrosloep-10p': {
                     description: 'Een milieuvriendelijke elektrische boot voor grotere groepen. Stil en duurzaam.',
                     features: ['10 personen capaciteit', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Grote ruimte', 'Perfect voor natuurgebied']
                 },
-                'Electrosloep': {
-                    description: 'Een compacte elektrische boot voor kleinere groepen. Stil en wendbaar.',
-                    features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor kleine groepen']
+                'electrosloep-8p': {
+                    description: 'Een compacte elektrische boot voor middelgrote groepen. Stil en wendbaar.',
+                    features: ['8 personen capaciteit', 'Elektrische motor', 'Stil en wendbaar', 'Compact design', 'Ideaal voor groepen']
                 },
-                'Electrosloep': {
+                'electroboat-5p': {
                     description: 'Een kleine elektrische boot voor gezinnen. Perfect voor rustige vaartochten.',
                     features: ['5 personen capaciteit', 'Elektrische motor', 'Stil en veilig', 'Compact', 'Geschikt voor gezinnen']
                 },
-                'Zeilboot (zonder motor)': {
+                'zeilboot-zonder-motor': {
                     description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
                     features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers']
                 },
-                'Zeilboot (met motor)': {
+                'zeilboot-met-motor': {
                     description: 'Een zeilboot met hulpmotor voor meer flexibiliteit. Ideaal voor beginners en ervaren zeilers.',
                     features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus']
                 },
-                'Canadese kano': {
+                'zeilpunter-34p': {
+                    description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
+                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen']
+                },
+                'canadese-kano': {
                     description: 'Een stabiele kano voor twee personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
                     features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen']
                 },
-                'Kajak': {
+                'kajak-2p': {
                     description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
                     features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen']
                 },
-                'SUP board': {
+                'sup-board': {
                     description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
                     features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring']
-                },
-                'Zeilpunter': {
-                    description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
-                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen']
                 }
             };
 
-            const info = boatInfo[boatName];
+            const info = boatInfo[boatId];
             if (info) {
                 const infoHtml = `
                     <div style="background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 20px auto;">
-                        <h3 style="color: var(--primary-color); margin-bottom: 15px;">${boatName}</h3>
+                        <h3 style="color: var(--primary-color); margin-bottom: 15px;">${foundBoat.name}</h3>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding: 10px; background: #f5f5f5; border-radius: 6px;">
+                            <span><strong>Capaciteit:</strong> ${foundBoat.capacity}</span>
+                            <span><strong>Prijs:</strong> ${foundBoat.price}/dag</span>
+                            <span><strong>Borg:</strong> ${foundBoat.deposit}</span>
+                        </div>
                         <p style="margin-bottom: 15px; line-height: 1.6;">${info.description}</p>
                         
                         <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Kenmerken:</h4>
@@ -431,7 +552,11 @@
                             ${info.features.map(feature => `<li style="margin-bottom: 5px;">${feature}</li>`).join('')}
                         </ul>
                         
-
+                        <div style="margin-bottom: 15px; padding: 10px; background: #e8f4f8; border-radius: 6px; border-left: 4px solid var(--primary-color);">
+                            <strong>Boot ID:</strong> ${foundBoat.id}<br>
+                            <strong>Categorie:</strong> ${foundBoat.category}<br>
+                            <strong>Status:</strong> ${foundBoat.status === 'available' ? 'Beschikbaar' : 'Bezet'}
+                        </div>
                         
                         <div style="text-align: center; margin-top: 20px;">
                             <a href="tel:0522281528" class="btn" style="display: inline-block; padding: 10px 25px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
@@ -466,7 +591,41 @@
                 });
                 
                 document.body.appendChild(infoModal);
+            } else {
+                console.error('No info found for boat ID:', boatId);
             }
+        }
+
+        // Utility functions for boat management
+        function findBoatById(boatId) {
+            for (const category in boatData) {
+                const boat = boatData[category].find(boat => boat.id === boatId);
+                if (boat) return boat;
+            }
+            return null;
+        }
+
+        function getBoatsByCategory(category) {
+            return boatData[category] || [];
+        }
+
+        function getAllBoats() {
+            const allBoats = [];
+            for (const category in boatData) {
+                allBoats.push(...boatData[category]);
+            }
+            return allBoats;
+        }
+
+        function getAvailableBoats() {
+            return getAllBoats().filter(boat => boat.status === 'available');
+        }
+
+        function getBoatsByCapacity(minCapacity, maxCapacity) {
+            return getAllBoats().filter(boat => {
+                const capacity = parseInt(boat.capacity.split(' ')[0]);
+                return capacity >= minCapacity && capacity <= maxCapacity;
+            });
         }
 
         // Slideshow functions
@@ -670,8 +829,8 @@
                             // Create image element with slideshow if available
                             let imageHtml;
                             if (boat.slideshow && boat.slideshow.length > 1) {
-                                // Create slideshow
-                                const slideshowId = 'slideshow-' + Math.random().toString(36).substr(2, 9);
+                                // Create slideshow with unique ID based on boat ID
+                                const slideshowId = 'slideshow-' + boat.id;
                                 imageHtml = `
                                     <div class="modal-boat-slideshow" id="${slideshowId}">
                                         <div class="slideshow-container">
@@ -713,7 +872,7 @@
                                     <a href="tel:0522281528" class="btn" style="flex: 1; padding: 8px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;">
                                     📞 Reserveren
                                 </a>
-                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.name}')">
+                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.id}')">
                                         ℹ️ Meer Info
                                     </button>
                                 </div>
@@ -769,7 +928,7 @@
                             // Create image element with slideshow if available
                             let imageHtml;
                             if (boat.slideshow && boat.slideshow.length > 1) {
-                                const slideshowId = 'slideshow-' + Math.random().toString(36).substr(2, 9);
+                                const slideshowId = 'slideshow-' + boat.id;
                                 imageHtml = `
                                     <div class="modal-boat-slideshow" id="${slideshowId}">
                                         <div class="slideshow-container">
@@ -810,7 +969,7 @@
                                     <a href="tel:0522281528" class="btn" style="flex: 1; padding: 8px 20px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; text-align: center; transition: all 0.3s ease;">
                                         📞 Reserveren
                                     </a>
-                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.name}')">
+                                    <button class="btn btn-outline" style="flex: 1; padding: 8px 20px; background: transparent; color: var(--primary-color); border: 2px solid var(--primary-color); text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s ease;" onclick="showBoatInfo('${boat.id}')">
                                         ℹ️ Meer Info
                                     </button>
                                 </div>
