@@ -111,6 +111,22 @@
         </div>
     </nav>
 
+    <!-- Season Banner -->
+    <div class="season-banner">
+        <div class="container">
+            <div class="season-banner-content">
+                <div class="season-icon">🏕️</div>
+                <div class="season-info">
+                    <h3 data-i18n="index_season_title">Seizoenscamping</h3>
+                    <p data-i18n="index_season_dates">Open van 1 april tot 31 oktober</p>
+                </div>
+                <div class="season-status">
+                    <span data-i18n="index_season_status" class="season-status-text"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -326,5 +342,42 @@
     </div>
 
     <script src="../js/translation.js" defer></script>
+    <script>
+        // Season status functionality
+        function updateSeasonStatus() {
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1; // January is 0
+            const currentDay = now.getDate();
+            
+            const seasonStart = { month: 4, day: 1 }; // April 1st
+            const seasonEnd = { month: 10, day: 31 }; // October 31st
+            
+            let isInSeason = false;
+            
+            if (currentMonth > seasonStart.month && currentMonth < seasonEnd.month) {
+                isInSeason = true;
+            } else if (currentMonth === seasonStart.month && currentDay >= seasonStart.day) {
+                isInSeason = true;
+            } else if (currentMonth === seasonEnd.month && currentDay <= seasonEnd.day) {
+                isInSeason = true;
+            }
+            
+            const statusElement = document.querySelector('.season-status-text');
+            if (statusElement) {
+                if (isInSeason) {
+                    statusElement.textContent = 'Nu open';
+                    statusElement.style.color = '#4caf50';
+                } else {
+                    statusElement.textContent = 'Gesloten tot 1 april';
+                    statusElement.style.color = '#f44336';
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update season status
+            updateSeasonStatus();
+        });
+    </script>
 </body>
 </html>

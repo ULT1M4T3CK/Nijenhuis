@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Camping - Nijenhuis Botenverhuur</title>
-    <meta name="description" content="Camping in het natuurgebied Weerribben. Prachtige kampeerplaatsen met moderne faciliteiten.">
+    <meta name="description" content="Seizoenscamping in het natuurgebied Weerribben. Prachtige kampeerplaatsen met moderne faciliteiten van 1 april tot 31 oktober.">
     <link rel="stylesheet" href="../styles.css">
     
     <!-- Shared JavaScript -->
@@ -57,6 +57,22 @@
         </div>
     </nav>
 
+    <!-- Season Banner -->
+    <div class="season-banner">
+        <div class="container">
+            <div class="season-banner-content">
+                <div class="season-icon">🌿</div>
+                <div class="season-info">
+                    <h3 data-i18n="camping_season_title">Seizoenscamping</h3>
+                    <p data-i18n="camping_season_dates">Open van 1 april tot 31 oktober</p>
+                </div>
+                <div class="season-status">
+                    <span data-i18n="camping_season_status" class="season-status-text"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Page Header -->
     <header class="page-header">
         <div class="container">
@@ -80,21 +96,22 @@
                     <img src="../Images/banner-img.jpg" alt="Camping Nijenhuis">
                   </div>
                   <div class="camping-details">
-                    <h3 data-i18n="camping_overview_permanent_title">Permanente jaarplaatsen</h3>
-                    <p data-i18n="camping_overview_permanent_description">Onze camping biedt alleen permanente jaarplaatsen aan. Het is geen grote camping maar zeer gezellig. Elke plaats heeft een eigen aanlegplaats.</p>
+                    <h3 data-i18n="camping_overview_seasonal_title">Seizoenscamping met caravans</h3>
+                    <p data-i18n="camping_overview_seasonal_description">Onze camping is een seizoenscamping waar caravans het hele jaar door kunnen blijven staan. Het is geen grote camping maar zeer gezellig. Elke plaats heeft een eigen aanlegplaats.</p>
                     <ul>
-                      <li data-i18n="camping_overview_permanent_list_item_1">Permanente jaarplaatsen</li>
-                      <li data-i18n="camping_overview_permanent_list_item_2">Wateraansluiting</li>
-                      <li data-i18n="camping_overview_permanent_list_item_3">Elektriciteitsmeter</li>
-                      <li data-i18n="camping_overview_permanent_list_item_4">Centrale antenne</li>
-                      <li data-i18n="camping_overview_permanent_list_item_5">Rioolafvoer</li>
-                      <li data-i18n="camping_overview_permanent_list_item_6">Eigen aanlegplaats</li>
-                      <li data-i18n="camping_overview_permanent_list_item_7">Douches en toiletten beschikbaar</li>
-                      <li data-i18n="camping_overview_permanent_list_item_8">Kleine maar gezellige camping</li>
-                      <li data-i18n="camping_overview_permanent_list_item_9">Wasmachine en droger beschikbaar</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_1">Seizoenscamping (1 april - 31 oktober)</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_2">Caravans kunnen het hele jaar blijven staan</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_3">Wateraansluiting</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_4">Elektriciteitsmeter</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_5">Centrale antenne</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_6">Rioolafvoer</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_7">Eigen aanlegplaats</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_8">Douches en toiletten beschikbaar</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_9">Kleine maar gezellige camping</li>
+                      <li data-i18n="camping_overview_seasonal_list_item_10">Wasmachine en droger beschikbaar</li>
                     </ul>
                     <div class="cta-section">
-                      <p><strong data-i18n="camping_overview_cta_strong">Interesse in een permanente plaats?</strong></p>
+                      <p><strong data-i18n="camping_overview_cta_strong">Interesse in een seizoensplaats?</strong></p>
                       <a href="tel:0522281528" class="cta-button" data-i18n="camping_overview_cta_button">BEL NU</a>
                     </div>
                   </div>
@@ -107,7 +124,7 @@
             <div class="container">
                 <div class="section-title">
                     <h2 data-i18n="facilities_title">Faciliteiten</h2>
-                    <p data-i18n="facilities_description">Alle voorzieningen voor permanente plaatsen</p>
+                    <p data-i18n="facilities_description">Alle voorzieningen voor seizoensplaatsen</p>
                 </div>
 
                 <div class="facilities-grid">
@@ -242,6 +259,37 @@
             });
         }
 
+        // Season status functionality
+        function updateSeasonStatus() {
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1; // January is 0
+            const currentDay = now.getDate();
+            
+            const seasonStart = { month: 4, day: 1 }; // April 1st
+            const seasonEnd = { month: 10, day: 31 }; // October 31st
+            
+            let isInSeason = false;
+            
+            if (currentMonth > seasonStart.month && currentMonth < seasonEnd.month) {
+                isInSeason = true;
+            } else if (currentMonth === seasonStart.month && currentDay >= seasonStart.day) {
+                isInSeason = true;
+            } else if (currentMonth === seasonEnd.month && currentDay <= seasonEnd.day) {
+                isInSeason = true;
+            }
+            
+            const statusElement = document.querySelector('.season-status-text');
+            if (statusElement) {
+                if (isInSeason) {
+                    statusElement.textContent = 'Nu open';
+                    statusElement.style.color = '#4caf50';
+                } else {
+                    statusElement.textContent = 'Gesloten tot 1 april';
+                    statusElement.style.color = '#f44336';
+                }
+            }
+        }
+
         function updateMobileMenuIcon() {
             const mobileToggle = document.getElementById('mobileMenuToggle');
             const navMenu = document.querySelector('.nav-menu');
@@ -264,6 +312,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Set up mobile menu
             setupMobileMenu();
+            
+            // Update season status
+            updateSeasonStatus();
 
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');
