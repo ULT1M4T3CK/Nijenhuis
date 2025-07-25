@@ -3766,7 +3766,7 @@ body.dark-mode .message-time {
 
 /* Camping Section Styles for Index Page */
 .camping-section {
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, var(--primary-color) 0%, #4caf50 100%);
     padding: 4rem 0;
     position: relative;
     overflow: hidden;
@@ -3793,17 +3793,18 @@ body.dark-mode .message-time {
 }
 
 .camping-text h2 {
-    color: var(--primary-color);
+    color: white;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .camping-text p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #495057;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 2rem;
 }
 
@@ -3819,16 +3820,17 @@ body.dark-mode .message-time {
     align-items: flex-start;
     gap: 1rem;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .camping-feature:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .feature-icon {
@@ -3850,26 +3852,28 @@ body.dark-mode .message-time {
 }
 
 .feature-text h4 {
-    color: var(--primary-color);
+    color: white;
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .feature-text p {
-    color: #6c757d;
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
     margin: 0;
     line-height: 1.4;
 }
 
 .camping-cta {
-    background: linear-gradient(135deg, var(--primary-color), #4caf50);
+    background: rgba(255, 255, 255, 0.2);
     padding: 1.5rem;
     border-radius: 15px;
     text-align: center;
     color: white;
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .camping-cta p {
@@ -3889,12 +3893,12 @@ body.dark-mode .message-time {
     font-weight: 600;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .camping-phone:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     color: var(--primary-color);
 }
 
@@ -3923,7 +3927,7 @@ body.dark-mode .message-time {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, rgba(76, 175, 80, 0.15), rgba(76, 175, 80, 0.05));
+    background: linear-gradient(45deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1));
     pointer-events: none;
 }
 
