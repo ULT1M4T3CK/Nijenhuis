@@ -1969,9 +1969,27 @@
     }
     .page-header {
         padding: 60px 0;
+        min-height: 250px;
     }
+    
     .page-header h1 {
         font-size: 1.8rem;
+    }
+    
+    /* Extra small mobile adjustments for page header */
+    @media (max-width: 480px) {
+        .page-header {
+            padding: 40px 0;
+            min-height: 200px;
+        }
+        
+        .page-header h1 {
+            font-size: 1.6rem;
+        }
+        
+        .page-header p {
+            font-size: 1rem;
+        }
     }
     .section-title h2 {
         font-size: 1.8rem;
