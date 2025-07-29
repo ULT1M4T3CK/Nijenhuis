@@ -149,8 +149,6 @@
         house_contact_h3: "Waterpark Belterwiede",
         house_contact_p2: "E-mail: info@parkbelterwiede.nl",
         house_contact_p3: "Telefoon: 0522-281828",
-        house_contact_website_h3: "Bezoek Website",
-        house_contact_website_p: "Bekijk de officiële website van Waterpark Belterwiede voor meer informatie en directe reserveringen.",
         /* te-koop page */
         te_koop_h1: "Te koop",
         te_koop_p1: "Bekijk hier onze nieuwste aanbiedingen.",
@@ -463,8 +461,6 @@
         house_contact_h3: "Waterpark Belterwiede",
         house_contact_p2: "E-mail: info@parkbelterwiede.nl",
         house_contact_p3: "Telefon: 0522-281828",
-        house_contact_website_h3: "Website besuchen",
-        house_contact_website_p: "Besuchen Sie die offizielle Website von Waterpark Belterwiede für weitere Informationen und direkte Reservierungen.",
         /* te-koop page */
         te_koop_h1: "Zu verkaufen",
         te_koop_p1: "Schau dir hier unsere neuesten Angebote an.",
@@ -774,8 +770,6 @@
         house_contact_h3: "Waterpark Belterwiede",
         house_contact_p2: "Email: info@parkbelterwiede.nl",
         house_contact_p3: "Phone: 0522-281828",
-        house_contact_website_h3: "Visit Website",
-        house_contact_website_p: "Visit the official Waterpark Belterwiede website for more information and direct bookings.",
         /* te-koop page */
         te_koop_h1: "For Sale",
         te_koop_p1: "Check out our latest offers here.",
