@@ -101,6 +101,10 @@
                         <p data-i18n="boats_cat_all_desc">Bekijk alle beschikbare boten en hun details.</p>
                     </div>
                 </div>
+                
+                <div style="margin-top: 2em; padding: 1.5em; background-color: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; font-weight: bold; color: #856404; font-size: 1.1em;">⚠️ Let op: Huisdieren zijn niet toegestaan op al onze boten.</p>
+                </div>
             </div>
         </section>
 
@@ -163,7 +167,7 @@
                     <tr class="pricing-row">
                       <td data-label="Boot type"><strong>Zeilpunter</strong></td>
                       <td data-label="Capaciteit">3-4 personen</td>
-                      <td data-label="Prijs per dag">€60</td>
+                      <td data-label="Prijs per dag">€40</td>
                       <td data-label="Borg">€0</td>
                     </tr>
                     <tr class="pricing-row">
@@ -173,8 +177,8 @@
                       <td data-label="Borg">€0</td>
                     </tr>
                     <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Canadese kano</strong></td>
-                      <td data-label="Capaciteit">2 personen</td>
+                      <td data-label="Boot type"><strong>Canadese Kano</strong></td>
+                      <td data-label="Capaciteit">3 personen</td>
                       <td data-label="Prijs per dag">€25</td>
                       <td data-label="Borg">€0</td>
                     </tr>
@@ -187,7 +191,7 @@
                     <tr class="pricing-row">
                       <td data-label="Boot type"><strong>Kajak</strong></td>
                       <td data-label="Capaciteit">1 persoon</td>
-                      <td data-label="Prijs per dag">€25</td>
+                      <td data-label="Prijs per dag">€20</td>
                       <td data-label="Borg">€0</td>
                     </tr>
                     <tr class="pricing-row">
@@ -261,7 +265,7 @@
                         <li data-i18n="footer_li4">7946 LP Wanneperveen</li>
                         <li data-i18n="footer_li5">Tel: 0522 281 528</li>
                         <li data-i18n="footer_li6">Kvk: 6769 7097</li>
-                        <li data-i18n="footer_li7">Btw nr: NL 195153637 B01</li>
+                        <li data-i18n="footer_li7">Btw nr: NL857 1361 48 B01</li>
                     </ul>
                 </div>
                 
@@ -357,15 +361,15 @@
             sailing: [
                 { id: 'boat-006', name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
                 { id: 'boat-007', name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { id: 'boat-008', name: 'Zeilpunter', capacity: '3-4 personen', price: '€60', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
+                { id: 'boat-008', name: 'Zeilpunter', capacity: '3-4 personen', price: '€40', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
             ],
             canoe: [
-                { id: 'boat-009', name: 'Canadese', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
+                { id: 'boat-009', name: 'Canadese Kano', capacity: '3 personen', price: '€25', status: 'available', image: '../Images/Boats/canoe/canoe-3.jpg' },
                 { id: 'boat-010', name: 'Kajak', capacity: '2 personen', price: '€25', status: 'available', image: '../Images/Boats/kayak-2/kayak-2.jpg', slideshow: [
                     '../Images/Boats/kayak-2/kayak-2.jpg',
                     '../Images/Boats/zeilpunter/109252711110511012042019.jpg'
                 ] },
-                { id: 'boat-012', name: 'Kajak', capacity: '1 persoon', price: '€25', status: 'available', image: '../Images/Kajak-1/kajak-1.jpg' }
+                { id: 'boat-012', name: 'Kajak', capacity: '1 persoon', price: '€20', status: 'available', image: '../Images/Boats/Kayak-1/kayak-1.jpg' }
             ],
             sup: [
                 { id: 'boat-011', name: 'SUP board', capacity: '1 persoon', price: '€35', status: 'available', image: '../Images/Boats/Sup/sub-1.jpg' }
@@ -393,15 +397,15 @@
                 },
                 'Zeilboot (zonder motor)': {
                     description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
-                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers']
+                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers', 'Ervaren zeiler vereist']
                 },
                 'Zeilboot (met motor)': {
                     description: 'Een zeilboot met hulpmotor voor meer flexibiliteit. Ideaal voor beginners en ervaren zeilers.',
-                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus']
+                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus', 'Ervaren zeiler vereist']
                 },
-                'Canadese': {
-                    description: 'Een stabiele kano voor twee personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
-                    features: ['2 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen']
+                'Canadese Kano': {
+                    description: 'Een stabiele kano voor drie personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
+                    features: ['3 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen']
                 },
                 'Kajak': {
                     description: 'Een snelle kajak voor één of twee personen. Ideaal voor sportieve uitjes.',
@@ -413,7 +417,7 @@
                 },
                 'Zeilpunter': {
                     description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
-                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen']
+                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen', 'Ervaren zeiler vereist']
                 }
             };
 

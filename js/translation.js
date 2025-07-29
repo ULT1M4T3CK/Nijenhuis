@@ -72,7 +72,7 @@
         footer_company_postal: "7946 LP Wanneperveen",
         footer_company_phone: "Tel: 0522 281 528",
         footer_company_kvk: "Kvk: 6769 7097",
-        footer_company_btw: "Btw nr: NL 195153637 B01",
+        footer_company_btw: "Btw nr: NL857 1361 48 B01",
         footer_li1: "Botenverhuur",
         footer_li2: "Vakantiehuis",
         footer_li3: "Te Koop",  
@@ -303,17 +303,17 @@
 
         contact_opening_title: "Openingstijden",
         contact_opening_p: "Dagelijks: 09:00 - 18:00 uur",
-        contact_season_p: "Seizoen: 1 april - 1 november",
+        contact_season_p: "Seizoen: 1 april - 31 oktober",
 
         contact_business_title: "Bedrijfsgegevens",
         contact_kvk: "Kvk: 6769 7097",
-        contact_btw: "Btw nr: NL 195153637 B01",
+        contact_btw: "Btw nr: NL857 1361 48 B01",
 
         contact_call_title: "Direct contact",
         contact_call_p: "Voor vragen, reserveringen of meer informatie, bel ons direct:",
         contact_call_button: "Bel Nu",
         contact_call_info_p: "Beschikbaar: Dagelijks van 09:00 - 18:00 uur",
-        contact_call_info_p2: "Seizoen: 1 april - 1 november",
+        contact_call_info_p2: "Seizoen: 1 april - 31 oktober",
 
         contact_map_title: "Waar vind je ons?",
         contact_map_p: "Bekijk onze locatie op de kaart",
@@ -391,7 +391,7 @@
         footer_company_postal: "7946 LP Wanneperveen",
         footer_company_phone: "Tel: 0522 281 528",
         footer_company_kvk: "Kvk: 6769 7097",
-        footer_company_btw: "Btw nr: NL 195153637 B01",
+        footer_company_btw: "Btw nr: NL857 1361 48 B01",
         footer_rights: "© 2025 Nijenhuis Bootsverleih. Alle Rechte vorbehalten.",
         /* boats page */
         boats_header_h1: "Bootsverleih",
@@ -610,17 +610,17 @@
 
         contact_opening_title: "Öffnungszeiten",
         contact_opening_p: "Täglich: 09:00 - 18:00 Uhr",
-        contact_season_p: "Saison: 1. April - 1. November",
+        contact_season_p: "Saison: 1. April - 31. Oktober",
 
         contact_business_title: "Firmendaten",
         contact_kvk: "Handelsregister: 6769 7097",
-        contact_btw: "USt.-Nr.: NL 195153637 B01",
+        contact_btw: "USt.-Nr.: NL857 1361 48 B01",
 
         contact_call_title: "Direkter Kontakt",
         contact_call_p: "Für Fragen, Reservierungen oder weitere Informationen rufen Sie uns direkt an:",
         contact_call_button: "Jetzt Anrufen",
         contact_call_info_p: "Verfügbar: Täglich von 09:00 - 18:00 Uhr",
-        contact_call_info_p2: "Saison: 1. April - 1. November",
+        contact_call_info_p2: "Saison: 1. April - 31. Oktober",
 
         contact_map_title: "Wo finden Sie uns?",
         contact_map_p: "Sehen Sie unseren Standort auf der Karte",
@@ -700,7 +700,7 @@
         footer_company_postal: "7946 LP Wanneperveen",
         footer_company_phone: "Tel: 0522 281 528",
         footer_company_kvk: "Kvk: 6769 7097",
-        footer_company_btw: "Btw nr: NL 195153637 B01",
+        footer_company_btw: "Btw nr: NL857 1361 48 B01",
         footer_rights: "© 2025 Nijenhuis Boat Rental. All rights reserved.",
         /* boats page */
         boats_header_h1: "Boat Rental",
@@ -920,17 +920,17 @@
 
         contact_opening_title: "Opening Hours",
         contact_opening_p: "Daily: 09:00 AM - 06:00 PM",
-        contact_season_p: "Season: April 1 - November 1",
+        contact_season_p: "Season: April 1 - October 31",
 
         contact_business_title: "Company Details",
         contact_kvk: "Chamber of Commerce: 6769 7097",
-        contact_btw: "VAT No.: NL 195153637 B01",
+        contact_btw: "VAT No.: NL857 1361 48 B01",
 
         contact_call_title: "Direct Contact",
         contact_call_p: "For questions, reservations or more information, call us directly:",
         contact_call_button: "Call Now",
         contact_call_info_p: "Available: Daily from 09:00 AM - 06:00 PM",
-        contact_call_info_p2: "Season: April 1 - November 1",
+        contact_call_info_p2: "Season: April 1 - October 31",
 
         contact_map_title: "Where to find us?",
         contact_map_p: "View our location on the map",
