@@ -117,91 +117,130 @@
                     <p data-i18n="prices_intro_2" class="subtitle-sm">De Borg is afhankelijk van het type boot en moet contant worden betaald.</p>
                 </div>
 
-                <!-- Pricing Table: Semantic HTML -->
-                <table class="pricing-table">
-                  <thead>
-                    <tr class="pricing-header">
-                      <th data-i18n="prices_th_type">Boot type</th>
-                      <th data-i18n="prices_th_capacity">Capaciteit</th>
-                      <th data-i18n="prices_th_price">Prijs per dag</th>
-                      <th data-i18n="prices_th_deposit">Borg</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Classic tender 720</strong></td>
-                      <td data-label="Capaciteit">10-12 personen</td>
-                      <td data-label="Prijs per dag">€230</td>
-                      <td data-label="Borg">€100</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Electrosloep</strong></td>
-                      <td data-label="Capaciteit">10 personen</td>
-                      <td data-label="Prijs per dag">€200</td>
-                      <td data-label="Borg">€100</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Classic tender 570</strong></td>
-                      <td data-label="Capaciteit">8 personen</td>
-                      <td data-label="Prijs per dag">€200</td>
-                      <td data-label="Borg">€100</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Electrosloep</strong></td>
-                      <td data-label="Capaciteit">8 personen</td>
-                      <td data-label="Prijs per dag">€175</td>
-                      <td data-label="Borg">€100</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Zeilboot (zonder motor)</strong></td>
-                      <td data-label="Capaciteit">4-5 personen</td>
-                      <td data-label="Prijs per dag">€70</td>
-                      <td data-label="Borg">€50</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Zeilboot (met motor)</strong></td>
-                      <td data-label="Capaciteit">4-5 personen</td>
-                      <td data-label="Prijs per dag">€85</td>
-                      <td data-label="Borg">€50</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Zeilpunter</strong></td>
-                      <td data-label="Capaciteit">3-4 personen</td>
-                      <td data-label="Prijs per dag">€40</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Electroboot</strong></td>
-                      <td data-label="Capaciteit">5 personen</td>
-                      <td data-label="Prijs per dag">€80</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Canadese Kano</strong></td>
-                      <td data-label="Capaciteit">3 personen</td>
-                      <td data-label="Prijs per dag">€25</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Kajak</strong></td>
-                      <td data-label="Capaciteit">2 personen</td>
-                      <td data-label="Prijs per dag">€25</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>Kajak</strong></td>
-                      <td data-label="Capaciteit">1 persoon</td>
-                      <td data-label="Prijs per dag">€20</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                    <tr class="pricing-row">
-                      <td data-label="Boot type"><strong>SUP board</strong></td>
-                      <td data-label="Capaciteit">1 persoon</td>
-                      <td data-label="Prijs per dag">€35</td>
-                      <td data-label="Borg">€0</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <!-- Pricing Table: Semantic HTML with Sticky Headers and Quick Actions -->
+                <div class="pricing-table-container">
+                  <table class="pricing-table">
+                    <thead class="sticky-header">
+                      <tr class="pricing-header">
+                        <th data-i18n="prices_th_type">Boot type</th>
+                        <th data-i18n="prices_th_capacity">Capaciteit</th>
+                        <th data-i18n="prices_th_price">Prijs per dag</th>
+                        <th data-i18n="prices_th_deposit">Borg</th>
+                        <th class="action-header">Actie</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Classic tender 720</strong></td>
+                        <td data-label="Capaciteit">10-12 personen</td>
+                        <td data-label="Prijs per dag">€230</td>
+                        <td data-label="Borg">€100</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Electrosloep</strong></td>
+                        <td data-label="Capaciteit">10 personen</td>
+                        <td data-label="Prijs per dag">€200</td>
+                        <td data-label="Borg">€100</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Classic tender 570</strong></td>
+                        <td data-label="Capaciteit">8 personen</td>
+                        <td data-label="Prijs per dag">€200</td>
+                        <td data-label="Borg">€100</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Electrosloep</strong></td>
+                        <td data-label="Capaciteit">8 personen</td>
+                        <td data-label="Prijs per dag">€175</td>
+                        <td data-label="Borg">€100</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Zeilboot (zonder motor)</strong></td>
+                        <td data-label="Capaciteit">4-5 personen</td>
+                        <td data-label="Prijs per dag">€70</td>
+                        <td data-label="Borg">€50</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Zeilboot (met motor)</strong></td>
+                        <td data-label="Capaciteit">4-5 personen</td>
+                        <td data-label="Prijs per dag">€85</td>
+                        <td data-label="Borg">€50</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Zeilpunter</strong></td>
+                        <td data-label="Capaciteit">3-4 personen</td>
+                        <td data-label="Prijs per dag">€40</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Electroboot</strong></td>
+                        <td data-label="Capaciteit">5 personen</td>
+                        <td data-label="Prijs per dag">€80</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Canadese Kano</strong></td>
+                        <td data-label="Capaciteit">3 personen</td>
+                        <td data-label="Prijs per dag">€25</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Kajak</strong></td>
+                        <td data-label="Capaciteit">2 personen</td>
+                        <td data-label="Prijs per dag">€25</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>Kajak</strong></td>
+                        <td data-label="Capaciteit">1 persoon</td>
+                        <td data-label="Prijs per dag">€20</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                      <tr class="pricing-row">
+                        <td data-label="Boot type"><strong>SUP board</strong></td>
+                        <td data-label="Capaciteit">1 persoon</td>
+                        <td data-label="Prijs per dag">€35</td>
+                        <td data-label="Borg">€0</td>
+                        <td data-label="Actie">
+                          <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
                 <p data-i18n="multi_day_note" style="margin-top: 1.5em; text-align: center; color: var(--text-secondary);">Boten kunnen ook voor meerdere dagen worden gehuurd. Neem contact op voor meer informatie en tarieven.</p>
             </div>
         </section>
@@ -221,11 +260,11 @@
                     </div>
                     <div class="category-card">
                         <h3 data-i18n="rentinfo_open_title">⏰ Openingstijden</h3>
-                        <p data-i18n="rentinfo_open_desc">Dagelijks geopend van 09:00 tot 18:00 uur tijdens het seizoen (1 april - 1 november).</p>
+                        <p data-i18n="rentinfo_open_desc">Dagelijks geopend van 09:00 tot 18:00 uur tijdens het seizoen (1 april - 31 oktober).</p>
                     </div>
                     <div class="category-card">
                         <h3 data-i18n="rentinfo_pay_title">💰 Betaling</h3>
-                        <p data-i18n="rentinfo_pay_desc">Alleen contante betaling wordt geaccepteerd. Een borg van €50-€100 is vereist afhankelijk van het boottype. Zie de prijzentabel voor specifieke borgbedragen.</p>
+                        <p data-i18n="rentinfo_pay_desc">Contante betaling en pinbetaling worden geaccepteerd. Een borg van €50-€100 is vereist afhankelijk van het boottype. Zie de prijzentabel voor specifieke borgbedragen.</p>
                     </div>
                 </div>
             </div>
