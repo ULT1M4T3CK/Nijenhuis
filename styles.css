@@ -3504,12 +3504,47 @@ body.dark-mode .message-time {
   }
   
   .reserve-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 120px;
+    margin: 0 auto;
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 113, 187, 0.2);
+  }
+  
+  .reserve-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 113, 187, 0.4);
   }
   
   .pricing-row td[data-label="Actie"] {
     text-align: center;
+    padding: 1rem 0.5rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .reserve-btn {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.85rem;
+    min-height: 48px;
+    max-width: 110px;
+  }
+  
+  .action-header {
+    min-width: 90px;
+  }
+  
+  .pricing-row td[data-label="Actie"] {
+    padding: 0.8rem 0.3rem;
   }
 }
 
