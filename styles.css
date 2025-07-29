@@ -3721,8 +3721,8 @@ body.dark-mode .message-time {
         gap: 1.5rem;
         width: 100%;
         max-width: 100%;
-        padding: 0;
-        margin: 0;
+        padding: 0 1rem;
+        margin: 0 auto;
         box-sizing: border-box;
     }
     
@@ -3736,10 +3736,11 @@ body.dark-mode .message-time {
     
     .modern-slideshow {
         width: 100%;
-        max-width: 100vw;
-        margin: 0;
+        max-width: calc(100vw - 2rem);
+        margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
+        overflow: hidden;
     }
     
     .slideshow-main {
@@ -3827,10 +3828,11 @@ body.dark-mode .message-time {
 @media (max-width: 480px) {
     .modern-slideshow {
         width: 100%;
-        max-width: 100vw;
-        margin: 0;
+        max-width: calc(100vw - 1rem);
+        margin: 0 auto;
         padding: 0;
         box-sizing: border-box;
+        overflow: hidden;
     }
     
     .slideshow-main {
@@ -3933,8 +3935,8 @@ body.dark-mode .message-time {
     .house-details {
         width: 100%;
         max-width: 100%;
-        padding: 0;
-        margin: 0;
+        padding: 0 0.5rem;
+        margin: 0 auto;
         box-sizing: border-box;
     }
     
