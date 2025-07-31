@@ -399,29 +399,54 @@ class AdminDashboard {
     
     async createBooking(bookingData) {
         try {
-            const response = await fetch('booking-handler.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    action: 'createBooking',
-                    bookingData: bookingData
-                })
-            });
+            // Try Python server first, then fallback to PHP
+            const endpoints = [
+                'http://localhost:8000/admin/booking-handler.py',
+                'booking-handler.php'
+            ];
             
-            const result = await response.json();
+            let success = false;
+            for (const endpoint of endpoints) {
+                try {
+                    console.log('Trying to create booking via:', endpoint);
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action: 'createBooking',
+                            bookingData: bookingData
+                        })
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log('Successfully created booking via:', endpoint);
+                        
+                        if (result.success) {
+                            // Reload bookings from server
+                            this.bookings = await this.loadBookings();
+                            this.renderCalendar();
+                            this.renderBookingList();
+                            this.updateStats();
+                            
+                            this.showNotification('Booking created successfully', 'success');
+                            success = true;
+                            break;
+                        } else {
+                            this.showNotification(result.message || 'Failed to create booking', 'error');
+                            success = true;
+                            break;
+                        }
+                    }
+                } catch (error) {
+                    console.log('Failed to create booking via:', endpoint, error);
+                }
+            }
             
-            if (result.success) {
-                // Reload bookings from server
-                this.bookings = await this.loadBookings();
-                this.renderCalendar();
-                this.renderBookingList();
-                this.updateStats();
-                
-                this.showNotification('Booking created successfully', 'success');
-            } else {
-                this.showNotification(result.message || 'Failed to create booking', 'error');
+            if (!success) {
+                this.showNotification('Failed to create booking - no server available', 'error');
             }
         } catch (error) {
             console.error('Error creating booking:', error);
@@ -502,16 +527,30 @@ class AdminDashboard {
     
     async loadBookings() {
         try {
-            const response = await fetch('booking-handler.php', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            // Try Python server first, then fallback to PHP
+            const endpoints = [
+                'http://localhost:8000/admin/booking-handler.py',
+                'booking-handler.php'
+            ];
             
-            if (response.ok) {
-                const data = await response.json();
-                return data.bookings || [];
+            for (const endpoint of endpoints) {
+                try {
+                    console.log('Trying to load bookings from:', endpoint);
+                    const response = await fetch(endpoint, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log('Successfully loaded bookings from:', endpoint);
+                        return data.bookings || [];
+                    }
+                } catch (error) {
+                    console.log('Failed to load from:', endpoint, error);
+                }
             }
         } catch (error) {
             console.error('Error loading bookings:', error);

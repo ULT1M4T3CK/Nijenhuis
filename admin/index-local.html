@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nijenhuis Botenverhuur (Local)</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="icon" type="image/svg+xml" href="../Images/logo-white.svg">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="login-logo">
+                <h1>Admin Dashboard</h1>
+                <p>Booking Management System (Local Development)</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div id="loginError" class="login-error hidden"></div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard hidden">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-header-left">
+                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="admin-logo">
+                    <h1>Booking Management (Local)</h1>
+                </div>
+                <div class="admin-header-right">
+                    <div class="admin-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalBookings">0</span>
+                            <span class="stat-label">Total Bookings</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="pendingBookings">0</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="btn btn-outline">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                <!-- Calendar Section -->
+                <section class="calendar-section">
+                    <div class="calendar-header">
+                        <h2>Booking Calendar</h2>
+                        <div class="calendar-controls">
+                            <button id="prevMonth" class="btn btn-outline">‹</button>
+                            <h3 id="currentMonth">January 2024</h3>
+                            <button id="nextMonth" class="btn btn-outline">›</button>
+                        </div>
+                        <div class="calendar-filters">
+                            <select id="boatFilter" class="filter-select">
+                                <option value="">All Boats</option>
+                                <option value="classic-tender-720">Classic tender 720</option>
+                                <option value="electrosloop-10">Electrosloep 10 pers</option>
+                                <option value="classic-tender-570">Classic tender 570</option>
+                                <option value="electrosloop-8">Electrosloep 8 pers</option>
+                                <option value="sailboat-4-5">Zeilboot 4/5 pers</option>
+                                <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
+                                <option value="electroboat-5">Electrosloep 5 pers</option>
+                                <option value="canoe-3">Canadese kano 3 pers</option>
+                                <option value="kayak-2">Kajak 2 pers</option>
+                                <option value="kayak-1">Kajak 1 pers</option>
+                                <option value="sup-board">SUP board 1 pers</option>
+                            </select>
+                            <select id="statusFilter" class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="not-confirmed">Not Confirmed</option>
+                                <option value="confirmed-not-paid">Confirmed, Not Paid</option>
+                                <option value="confirmed-paid">Confirmed & Paid</option>
+                                <option value="payment-rejected">Payment Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-container">
+                        <div class="calendar-grid" id="calendarGrid">
+                            <!-- Calendar will be generated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Booking Details Section -->
+                <section class="booking-details-section">
+                    <div class="booking-details-header">
+                        <h2>Booking Details</h2>
+                        <button id="addBookingBtn" class="btn">Add New Booking</button>
+                    </div>
+                    
+                    <div class="booking-list" id="bookingList">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Edit Booking</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalDate">Date</label>
+                            <input type="date" id="modalDate" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalBoatType">Boat Type</label>
+                            <select id="modalBoatType" name="boatType" required>
+                                <option value="classic-tender-720">Classic tender 720 10/12 pers</option>
+                                <option value="electrosloop-10">Electrosloep voor 10 pers</option>
+                                <option value="classic-tender-570">Classic tender 570 8 pers</option>
+                                <option value="electrosloop-8">Electrosloep voor 8 pers</option>
+                                <option value="sailboat-4-5">Zeilboot 4/5 pers</option>
+                                <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
+                                <option value="electroboat-5">Electrosloep voor 5 pers</option>
+                                <option value="canoe-3">Canadese kano 3 pers</option>
+                                <option value="kayak-2">Kajak 2 pers</option>
+                                <option value="kayak-1">Kajak 1 pers</option>
+                                <option value="sup-board">SUP board 1 pers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalCustomerName">Customer Name</label>
+                            <input type="text" id="modalCustomerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalCustomerEmail">Customer Email</label>
+                            <input type="email" id="modalCustomerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="modalCustomerPhone">Customer Phone</label>
+                            <input type="tel" id="modalCustomerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modalStatus">Status</label>
+                            <select id="modalStatus" name="status" required>
+                                <option value="not-confirmed">Not Confirmed</option>
+                                <option value="confirmed-not-paid">Confirmed, Not Paid</option>
+                                <option value="confirmed-paid">Confirmed & Paid</option>
+                                <option value="payment-rejected">Payment Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalNotes">Notes</label>
+                        <textarea id="modalNotes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Save Booking</button>
+                        <button type="button" class="btn btn-outline" id="cancelBooking">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

@@ -6,9 +6,24 @@
 class BookingSystem {
     constructor() {
         this.currentBooking = null;
-        // Use absolute path to ensure it works from any page
-        this.adminEndpoint = '/admin/booking-handler.php';
+        // Use Python server for local development, fallback to PHP for production
+        this.adminEndpoint = this.detectServerEndpoint();
         this.init();
+    }
+    
+    detectServerEndpoint() {
+        // Check if we're running locally (localhost or 127.0.0.1)
+        const isLocal = window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1' ||
+                       window.location.hostname === '';
+        
+        if (isLocal) {
+            // Use Python server for local development
+            return 'http://localhost:8000/admin/booking-handler.py';
+        } else {
+            // Use PHP server for production
+            return '/admin/booking-handler.php';
+        }
     }
     
     init() {
@@ -237,6 +252,7 @@ class BookingSystem {
             // Try multiple endpoint paths
             const endpoints = [
                 this.adminEndpoint,
+                'http://localhost:8000/admin/booking-handler.py',
                 '../admin/booking-handler.php',
                 './admin/booking-handler.php'
             ];
