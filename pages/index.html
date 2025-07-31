@@ -30,6 +30,7 @@
 
     <link rel="preload" href="../Images/banner-img.jpg" as="image">
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../js/booking-system.css">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -62,8 +63,10 @@
     </script>
     <!-- Flag Icons CSS -->
     
-    <!-- Shared JavaScript -->
-    <script src="../js/shared.js" defer></script>
+    <!-- Simple Chatbot JavaScript -->
+    <script src="../js/simple-chatbot.js" defer></script>
+    <!-- Booking System JavaScript -->
+    <script src="../js/booking-system.js" defer></script>
 </head>
 <body>
     <!-- Top Bar -->
@@ -123,7 +126,7 @@
                 <h2 data-i18n="hero_book_h2">Direct boeken</h2>
                 <p data-i18n="hero_book_p">Reserveer eenvoudig uw boot voor een dag op het water</p>
               </div>
-              <form id="bookingForm" action="https://formspree.io/f/xpzgwqjq" method="POST" data-test="true" autocomplete="off">
+              <form id="bookingForm" autocomplete="off">
                 <div class="form-row">
                   <div class="form-group">
                     <label for="date" data-i18n="hero_book_date">Datum</label>
@@ -149,12 +152,6 @@
                     </select>
                   </div>
                 </div>
-                <input type="hidden" name="_next" value="https://nijenhuis-botenverhuur.nl/index.html?success=true">
-                <input type="hidden" name="_subject" value="Nieuwe reserveringsaanvraag - Nijenhuis Botenverhuur">
-                <input type="hidden" name="_replyto" value="info@nijenhuis-botenverhuur.nl">
-                <input type="hidden" name="formType" value="booking">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
                 <div class="form-actions">
                   <button type="submit" class="btn" data-i18n="hero_book_btn">Beschikbaarheid controleren</button>
                   <a href="tel:0522281528" class="btn" data-i18n="btn_outline" style="text-align:center;">📞 Bel direct</a>
@@ -395,5 +392,78 @@
     </div>
 
     <script src="../js/translation.js" defer></script>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-modal-content">
+            <div class="booking-modal-header">
+                <h2 id="bookingModalTitle">Boot reserveren</h2>
+                <button class="booking-modal-close" id="closeBookingModal">&times;</button>
+            </div>
+            <div class="booking-modal-body">
+                <div id="availabilityCheck" class="availability-check">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Beschikbaarheid controleren...</p>
+                    </div>
+                </div>
+                
+                <form id="bookingDetailsForm" class="booking-details-form hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Naam *</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">E-mail *</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerPhone">Telefoon *</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerNotes">Opmerkingen</label>
+                            <textarea id="customerNotes" name="customerNotes" rows="3" placeholder="Eventuele speciale wensen of opmerkingen..."></textarea>
+                        </div>
+                    </div>
+                    <div class="booking-summary">
+                        <h3>Reservering overzicht</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">Datum:</span>
+                            <span id="summaryDate"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Boot:</span>
+                            <span id="summaryBoat"></span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Reservering bevestigen</button>
+                        <button type="button" class="btn btn-outline" id="cancelBooking">Annuleren</button>
+                    </div>
+                </form>
+                
+                <div id="bookingSuccess" class="booking-success hidden">
+                    <div class="success-icon">✅</div>
+                    <h3>Reservering succesvol!</h3>
+                    <p>Uw reservering is ontvangen en wordt verwerkt. We nemen binnen 24 uur contact met u op voor bevestiging.</p>
+                    <div class="booking-id">
+                        <strong>Reservering ID:</strong> <span id="bookingId"></span>
+                    </div>
+                    <button class="btn" id="closeSuccessModal">Sluiten</button>
+                </div>
+                
+                <div id="bookingError" class="booking-error hidden">
+                    <div class="error-icon">❌</div>
+                    <h3>Er is een fout opgetreden</h3>
+                    <p id="errorMessage">Er is een probleem opgetreden bij het verwerken van uw reservering. Probeer het later opnieuw.</p>
+                    <button class="btn btn-outline" id="retryBooking">Opnieuw proberen</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

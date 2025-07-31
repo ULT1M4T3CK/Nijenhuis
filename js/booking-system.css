@@ -1,0 +1,300 @@
+/* ========================================================================
+   BOOKING SYSTEM STYLES
+   Modal and form styles for the booking system
+   ======================================================================== */
+
+/* ---------------------------------------------------------------------
+   --- BOOKING MODAL
+   ------------------------------------------------------------------ */
+.booking-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-normal);
+}
+
+.booking-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.booking-modal-content {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: var(--transition-normal);
+}
+
+.booking-modal.active .booking-modal-content {
+    transform: scale(1);
+}
+
+.booking-modal-header {
+    padding: var(--spacing-xl);
+    border-bottom: 1px solid var(--bg-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.booking-modal-header h2 {
+    color: var(--white);
+    font-size: var(--font-size-xl);
+    margin: 0;
+}
+
+.booking-modal-close {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    color: var(--white);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+}
+
+.booking-modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.booking-modal-body {
+    padding: var(--spacing-xl);
+}
+
+/* ---------------------------------------------------------------------
+   --- AVAILABILITY CHECK
+   ------------------------------------------------------------------ */
+.availability-check {
+    text-align: center;
+    padding: var(--spacing-2xl) 0;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--bg-secondary);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING DETAILS FORM
+   ------------------------------------------------------------------ */
+.booking-details-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.booking-details-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.booking-details-form .form-group {
+    margin-bottom: 0;
+}
+
+.booking-details-form textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid #ddd;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    resize: vertical;
+    transition: var(--transition-normal);
+}
+
+.booking-details-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0,113,187,0.1);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING SUMMARY
+   ------------------------------------------------------------------ */
+.booking-summary {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+}
+
+.booking-summary h3 {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    margin-top: 0;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.summary-item span:last-child {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* ---------------------------------------------------------------------
+   --- SUCCESS & ERROR STATES
+   ------------------------------------------------------------------ */
+.booking-success,
+.booking-error {
+    text-align: center;
+    padding: var(--spacing-2xl) 0;
+}
+
+.success-icon,
+.error-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.booking-success h3 {
+    color: var(--success-color);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-md);
+    margin-top: 0;
+}
+
+.booking-error h3 {
+    color: var(--error-color);
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-md);
+    margin-top: 0;
+}
+
+.booking-success p,
+.booking-error p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.booking-id {
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    font-family: monospace;
+    font-size: var(--font-size-sm);
+}
+
+/* ---------------------------------------------------------------------
+   --- UTILITY CLASSES
+   ------------------------------------------------------------------ */
+.hidden {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------------------
+   --- RESPONSIVE DESIGN
+   ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .booking-modal-content {
+        width: 95%;
+        margin: var(--spacing-md);
+    }
+    
+    .booking-modal-header,
+    .booking-modal-body {
+        padding: var(--spacing-lg);
+    }
+    
+    .booking-details-form .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .summary-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+    
+    .booking-summary {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+    }
+    
+    .booking-modal-header {
+        border-radius: 0;
+    }
+    
+    .booking-modal-header h2 {
+        font-size: var(--font-size-lg);
+    }
+    
+    .success-icon,
+    .error-icon {
+        font-size: 2.5rem;
+    }
+} 

@@ -1,0 +1,54 @@
+# ========================================================================
+# ADMIN DIRECTORY SECURITY
+# ========================================================================
+
+# Prevent direct access to sensitive files
+<Files "bookings.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "*.php">
+    # Allow access to PHP files (needed for booking-handler.php)
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|backup|old|tmp)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Rate limiting for login attempts (if mod_evasive is available)
+<IfModule mod_evasive20.c>
+    DOSHashTableSize 3097
+    DOSPageCount 2
+    DOSSiteCount 50
+    DOSPageInterval 1
+    DOSSiteInterval 1
+    DOSBlockingPeriod 10
+</IfModule>
+
+# Log access attempts
+<IfModule mod_log_config.c>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" admin_log
+    CustomLog logs/admin_access.log admin_log
+</IfModule> 
