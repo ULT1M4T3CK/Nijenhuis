@@ -6,7 +6,8 @@
 class BookingSystem {
     constructor() {
         this.currentBooking = null;
-        this.adminEndpoint = '../admin/booking-handler.php';
+        // Use absolute path to ensure it works from any page
+        this.adminEndpoint = '/admin/booking-handler.php';
         this.init();
     }
     
@@ -221,20 +222,57 @@ class BookingSystem {
             formType: 'booking'
         };
         
+        // Validate required fields
+        if (!bookingData.customerName || !bookingData.customerEmail || !bookingData.customerPhone) {
+            this.showError('Vul alle verplichte velden in.');
+            return;
+        }
+        
         try {
             // Show loading state
             this.showLoadingState();
             
-            // Submit booking to admin system
-            const response = await fetch(this.adminEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bookingData)
-            });
+            console.log('Submitting booking data:', bookingData);
+            
+            // Try multiple endpoint paths
+            const endpoints = [
+                this.adminEndpoint,
+                '../admin/booking-handler.php',
+                './admin/booking-handler.php'
+            ];
+            
+            let response = null;
+            let lastError = null;
+            
+            for (const endpoint of endpoints) {
+                try {
+                    console.log('Trying endpoint:', endpoint);
+                    response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(bookingData)
+                    });
+                    
+                    if (response.ok) {
+                        break; // Success, exit the loop
+                    }
+                } catch (error) {
+                    console.log('Failed to connect to:', endpoint, error);
+                    lastError = error;
+                }
+            }
+            
+            if (!response || !response.ok) {
+                throw new Error(`HTTP error! status: ${response?.status || 'No response'} - ${lastError?.message || 'Connection failed'}`);
+            }
+            
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
             
             const result = await response.json();
+            console.log('Response result:', result);
             
             if (result.success) {
                 this.showSuccessMessage(result.bookingId);
@@ -243,7 +281,7 @@ class BookingSystem {
             }
         } catch (error) {
             console.error('Error submitting booking:', error);
-            this.showError('Er is een fout opgetreden bij het verwerken van uw reservering.');
+            this.showError(`Er is een fout opgetreden bij het verwerken van uw reservering. (${error.message})`);
         }
     }
     

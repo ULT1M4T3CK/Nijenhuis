@@ -93,6 +93,11 @@ switch ($method) {
     case 'POST':
         $input = json_decode(file_get_contents('php://input'), true);
         
+        // Debug logging
+        error_log('Booking handler received POST request');
+        error_log('Raw input: ' . file_get_contents('php://input'));
+        error_log('Decoded input: ' . print_r($input, true));
+        
         // Check if this is a login request
         if (isset($input['action']) && $input['action'] === 'login') {
             if ($input['username'] === $adminCredentials['username'] && 
@@ -105,8 +110,9 @@ switch ($method) {
             exit;
         }
         
-        // Check if this is a booking submission
+        // Check if this is a booking submission from the main website
         if (isset($input['formType']) && $input['formType'] === 'booking') {
+            error_log('Processing booking submission');
             $bookingData = [
                 'date' => $input['date'] ?? '',
                 'boatType' => $input['boatType'] ?? '',
