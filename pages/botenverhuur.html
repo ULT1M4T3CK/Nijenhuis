@@ -417,42 +417,67 @@
 
         // Function to show boat information
         function showBoatInfo(boatName) {
+            // Get current language
+            const currentLang = localStorage.getItem('selected-language') || 'nl';
+            
+            // Translation mapping for boat names
+            const boatNameMap = {
+                'Classic tender 720': 'boat_classic_tender_720',
+                'Classic tender 570': 'boat_classic_tender_570',
+                'Electrosloep': 'boat_electrosloop_8',
+                'Electroboot': 'boat_electroboat_5',
+                'Zeilboot': 'boat_sailboat',
+                'Canadese Kano': 'boat_canoe',
+                'Kajak': 'boat_kayak_2',
+                'SUP board': 'boat_sup',
+                'Zeilpunter': 'boat_sailpunter'
+            };
+            
+            // Get translation keys for this boat
+            const translationKey = boatNameMap[boatName];
+            
+            // Get translated content
+            const getTranslation = (key) => {
+                const element = document.querySelector(`[data-i18n="${key}"]`);
+                return element ? element.textContent : null;
+            };
+            
             const boatInfo = {
                 'Classic tender 720': {
-                    description: 'Een krachtige boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
-                    features: ['10-12 personen capaciteit', 'Elektrische motor', 'Grote ruimte', 'Stabiel en veilig', 'Perfect voor families', 'Huisdieren niet toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een krachtige boot voor grotere groepen. Perfect voor familie-uitjes en langere vaartochten.',
+                    features: (getTranslation(`${translationKey}_features`) || '10-12 personen capaciteit, Elektrische motor, Grote ruimte, Stabiel en veilig, Perfect voor families, Huisdieren niet toegestaan').split(', ')
                 },
                 'Classic tender 570': {
-                    description: 'Een comfortabele boot voor middelgrote groepen. Ideaal voor dagtochten.',
-                    features: ['8 personen capaciteit', 'Elektrische motor', 'Comfortabele zitplaatsen', 'Stabiele vaart', 'Geschikt voor dagtochten', 'Huisdieren niet toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een comfortabele boot voor middelgrote groepen. Ideaal voor dagtochten.',
+                    features: (getTranslation(`${translationKey}_features`) || '8 personen capaciteit, Elektrische motor, Comfortabele zitplaatsen, Stabiele vaart, Geschikt voor dagtochten, Huisdieren niet toegestaan').split(', ')
                 },
                 'Electrosloep': {
-                    description: 'Een milieuvriendelijke elektrische boot. Stil en duurzaam.',
-                    features: ['Verschillende capaciteiten beschikbaar', 'Elektrische motor', 'Stil en milieuvriendelijk', 'Perfect voor natuurgebied', 'Huisdieren niet toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een milieuvriendelijke elektrische boot. Stil en duurzaam.',
+                    features: (getTranslation(`${translationKey}_features`) || 'Verschillende capaciteiten beschikbaar, Elektrische motor, Stil en milieuvriendelijk, Perfect voor natuurgebied, Huisdieren niet toegestaan').split(', ')
                 },
                 'Electroboot': {
-                    description: 'Een compacte elektrische boot voor kleine groepen. Ideaal voor kortere vaartochten.',
-                    features: ['5 personen capaciteit', 'Elektrische motor', 'Compact en wendbaar', 'Stil en milieuvriendelijk', 'Perfect voor kleine groepen', 'Huisdieren toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een compacte elektrische boot voor kleine groepen. Ideaal voor kortere vaartochten.',
+                    features: (getTranslation(`${translationKey}_features`) || '5 personen capaciteit, Elektrische motor, Compact en wendbaar, Stil en milieuvriendelijk, Perfect voor kleine groepen, Huisdieren toegestaan').split(', ')
                 },
                 'Zeilboot': {
-                    description: 'Een traditionele zeilboot beschikbaar met of zonder motor. Zonder motor voor ervaren zeilers, met motor voor meer flexibiliteit.',
-                    features: ['4-5 personen capaciteit', 'Zeilen zonder motor: €70', 'Zeilen met motor: €85', 'Flexibel', 'Voor alle niveaus', 'Ervaren zeiler vereist', 'Huisdieren niet toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een traditionele zeilboot beschikbaar met of zonder motor. Zonder motor voor ervaren zeilers, met motor voor meer flexibiliteit.',
+                    features: (getTranslation(`${translationKey}_features`) || '4-5 personen capaciteit, Zeilen zonder motor: €70, Zeilen met motor: €85, Flexibel, Voor alle niveaus, Ervaren zeiler vereist, Huisdieren niet toegestaan').split(', ')
                 },
                 'Canadese Kano': {
-                    description: 'Een stabiele kano voor drie personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
-                    features: ['3 personen capaciteit', 'Sportief', 'Stabiel', 'Wendbaar', 'Voor actieve mensen', 'Huisdieren toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een stabiele kano voor drie personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
+                    features: (getTranslation(`${translationKey}_features`) || '3 personen capaciteit, Sportief, Stabiel, Wendbaar, Voor actieve mensen, Huisdieren toegestaan').split(', ')
                 },
                 'Kajak': {
-                    description: 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
-                    features: ['2 personen capaciteit', 'Sportief', 'Snel', 'Wendbaar', 'Voor actieve mensen', 'Huisdieren toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een snelle kajak voor twee personen. Ideaal voor sportieve uitjes.',
+                    features: (getTranslation(`${translationKey}_features`) || '2 personen capaciteit, Sportief, Snel, Wendbaar, Voor actieve mensen, Huisdieren toegestaan').split(', ')
                 },
                 'SUP board': {
-                    description: 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
-                    features: ['1 persoon capaciteit', 'Stand-up paddle', 'Fitness', 'Balans', 'Unieke ervaring', 'Huisdieren toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een stand-up paddleboard voor een unieke waterervaring. Perfect voor balans en fitness.',
+                    features: (getTranslation(`${translationKey}_features`) || '1 persoon capaciteit, Stand-up paddle, Fitness, Balans, Unieke ervaring, Huisdieren toegestaan').split(', ')
                 },
                 'Zeilpunter': {
-                    description: 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
-                    features: ['3-4 personen capaciteit', 'Traditioneel zeilen', 'Historisch schip', 'Rustige vaart', 'Voor kleine groepen', 'Ervaren zeiler vereist', 'Huisdieren toegestaan']
+                    description: getTranslation(`${translationKey}_description`) || 'Een traditionele zeilpunter voor kleine groepen. Perfect voor rustige vaartochten en het ervaren van de traditionele zeilvaart.',
+                    features: (getTranslation(`${translationKey}_features`) || '3-4 personen capaciteit, Traditioneel zeilen, Historisch schip, Rustige vaart, Voor kleine groepen, Ervaren zeiler vereist, Huisdieren toegestaan').split(', ')
                 }
             };
 
@@ -860,6 +885,38 @@
             }
         });
     </script>
+    
+    <!-- Hidden translation elements for boat descriptions -->
+    <div style="display: none;">
+        <!-- Dutch translations -->
+        <span data-i18n="boat_classic_tender_720_description">Een luxe elektrische tender voor grotere groepen. Perfect voor comfortabele vaartochten door het natuurgebied.</span>
+        <span data-i18n="boat_classic_tender_720_features">10-12 personen capaciteit, Elektrische motor, Luxe en comfortabel, Stil en milieuvriendelijk, Perfect voor grotere groepen, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_classic_tender_570_description">Een elegante elektrische tender voor middelgrote groepen. Ideaal voor ontspannen vaartochten.</span>
+        <span data-i18n="boat_classic_tender_570_features">8 personen capaciteit, Elektrische motor, Elegant en comfortabel, Stil en milieuvriendelijk, Perfect voor families, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_electrosloop_8_description">Een comfortabele elektrische sloep voor families en vriendengroepen.</span>
+        <span data-i18n="boat_electrosloop_8_features">8 personen capaciteit, Elektrische motor, Comfortabel en stabiel, Stil en milieuvriendelijk, Perfect voor families, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_electroboat_5_description">Een compacte elektrische sloep voor kleine groepen. Ideaal voor rustige vaartochten.</span>
+        <span data-i18n="boat_electroboat_5_features">5 personen capaciteit, Elektrische motor, Compact en wendbaar, Stil en milieuvriendelijk, Perfect voor kleine groepen, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_sailboat_description">Een traditionele zeilboot beschikbaar met of zonder motor. Zonder motor voor ervaren zeilers, met motor voor meer flexibiliteit.</span>
+        <span data-i18n="boat_sailboat_features">4-5 personen capaciteit, Zeilen zonder motor: €70, Zeilen met motor: €85, Flexibel, Voor alle niveaus, Ervaren zeiler vereist, Huisdieren niet toegestaan</span>
+        
+        <span data-i18n="boat_sailpunter_description">Een traditionele zeilpunter voor de ervaren zeiler. Geniet van wind en natuur.</span>
+        <span data-i18n="boat_sailpunter_features">3-4 personen capaciteit, Zeilen, Traditioneel, Sportief, Voor ervaren zeilers, Ervaren zeiler vereist, Huisdieren niet toegestaan</span>
+        
+        <span data-i18n="boat_canoe_description">Een stabiele Canadese kano voor sportieve activiteiten en het verkennen van kleinere waterwegen.</span>
+        <span data-i18n="boat_canoe_features">3 personen capaciteit, Paddelen, Sportief, Stabiel, Voor alle niveaus, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_kayak_2_description">Een tandem kajak voor twee personen. Perfect voor sportieve activiteiten.</span>
+        <span data-i18n="boat_kayak_2_features">2 personen capaciteit, Paddelen, Sportief, Wendbaar, Voor alle niveaus, Huisdieren toegestaan</span>
+        
+        <span data-i18n="boat_sup_description">Een stand-up paddleboard voor een unieke manier om het water te ervaren.</span>
+        <span data-i18n="boat_sup_features">1 persoon capaciteit, Paddelen, Uniek, Balanceren, Voor alle niveaus, Huisdieren toegestaan</span>
+    </div>
+    
     <script src="../js/translation.js" defer></script>
 </body>
 </html> 

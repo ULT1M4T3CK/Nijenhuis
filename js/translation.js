@@ -17,6 +17,62 @@
         hero_book_date: "Datum",
         hero_book_boat_type: "Boot type",  
         hero_book_boat_type_select: "Selecteer een boot",
+        hero_book_boat_type_classic_tender_720: "Classic tender 720 10/12 pers",
+        hero_book_boat_type_classic_tender_570: "Classic tender 570 8 pers",
+        hero_book_boat_type_electrosloop_10: "Electrosloep voor 10 pers",
+        hero_book_boat_type_electrosloop_8: "Electrosloep voor 8 pers",
+        hero_book_boat_type_electroboat_5: "Electrosloep voor 5 pers",
+        hero_book_boat_type_sailboat_4_5: "Zeilboot",
+        hero_book_boat_type_sailpunter_3_4: "Zeilpunter 3/4 pers",
+        hero_book_boat_type_canoe_3: "Canadese kano 3 pers",
+        hero_book_boat_type_kayak_2: "Kajak 2 pers",
+        hero_book_boat_type_kayak_1: "Kajak 1 pers",
+        hero_book_boat_type_sup_board: "SUP board 1 pers",
+        /* Boat descriptions and features */
+        boat_classic_tender_720_name: "Classic tender 720",
+        boat_classic_tender_720_description: "Een luxe elektrische tender voor grotere groepen. Perfect voor comfortabele vaartochten door het natuurgebied.",
+        boat_classic_tender_720_features: "10-12 personen capaciteit, Elektrische motor, Luxe en comfortabel, Stil en milieuvriendelijk, Perfect voor grotere groepen, Huisdieren toegestaan",
+        
+        boat_classic_tender_570_name: "Classic tender 570",
+        boat_classic_tender_570_description: "Een elegante elektrische tender voor middelgrote groepen. Ideaal voor ontspannen vaartochten.",
+        boat_classic_tender_570_features: "8 personen capaciteit, Elektrische motor, Elegant en comfortabel, Stil en milieuvriendelijk, Perfect voor families, Huisdieren toegestaan",
+        
+        boat_electrosloop_10_name: "Electrosloep voor 10 pers",
+        boat_electrosloop_10_description: "Een ruime elektrische sloep voor grotere groepen. Perfect voor gezellige vaartochten.",
+        boat_electrosloop_10_features: "10 personen capaciteit, Elektrische motor, Ruim en comfortabel, Stil en milieuvriendelijk, Perfect voor groepen, Huisdieren toegestaan",
+        
+        boat_electrosloop_8_name: "Electrosloep voor 8 pers",
+        boat_electrosloop_8_description: "Een comfortabele elektrische sloep voor families en vriendengroepen.",
+        boat_electrosloop_8_features: "8 personen capaciteit, Elektrische motor, Comfortabel en stabiel, Stil en milieuvriendelijk, Perfect voor families, Huisdieren toegestaan",
+        
+        boat_electroboat_5_name: "Electrosloep voor 5 pers",
+        boat_electroboat_5_description: "Een compacte elektrische sloep voor kleine groepen. Ideaal voor rustige vaartochten.",
+        boat_electroboat_5_features: "5 personen capaciteit, Elektrische motor, Compact en wendbaar, Stil en milieuvriendelijk, Perfect voor kleine groepen, Huisdieren toegestaan",
+        
+        boat_sailboat_name: "Zeilboot",
+        boat_sailboat_description: "Een traditionele zeilboot beschikbaar met of zonder motor. Zonder motor voor ervaren zeilers, met motor voor meer flexibiliteit.",
+        boat_sailboat_features: "4-5 personen capaciteit, Zeilen zonder motor: €70, Zeilen met motor: €85, Flexibel, Voor alle niveaus, Ervaren zeiler vereist, Huisdieren niet toegestaan",
+        
+        boat_sailpunter_name: "Zeilpunter",
+        boat_sailpunter_description: "Een traditionele zeilpunter voor de ervaren zeiler. Geniet van wind en natuur.",
+        boat_sailpunter_features: "3-4 personen capaciteit, Zeilen, Traditioneel, Sportief, Voor ervaren zeilers, Ervaren zeiler vereist, Huisdieren niet toegestaan",
+        
+        boat_canoe_name: "Canadese kano",
+        boat_canoe_description: "Een stabiele Canadese kano voor sportieve activiteiten en het verkennen van kleinere waterwegen.",
+        boat_canoe_features: "3 personen capaciteit, Paddelen, Sportief, Stabiel, Voor alle niveaus, Huisdieren toegestaan",
+        
+        boat_kayak_2_name: "Kajak 2 pers",
+        boat_kayak_2_description: "Een tandem kajak voor twee personen. Perfect voor sportieve activiteiten.",
+        boat_kayak_2_features: "2 personen capaciteit, Paddelen, Sportief, Wendbaar, Voor alle niveaus, Huisdieren toegestaan",
+        
+        boat_kayak_1_name: "Kajak 1 pers",
+        boat_kayak_1_description: "Een solo kajak voor individuele vaartochten. Ideaal voor sportieve activiteiten.",
+        boat_kayak_1_features: "1 persoon capaciteit, Paddelen, Sportief, Wendbaar, Voor alle niveaus, Huisdieren toegestaan",
+        
+        boat_sup_name: "SUP board",
+        boat_sup_description: "Een stand-up paddleboard voor een unieke manier om het water te ervaren.",
+        boat_sup_features: "1 persoon capaciteit, Paddelen, Uniek, Balanceren, Voor alle niveaus, Huisdieren toegestaan",
+        
         hero_book_btn: "Beschikbaarheid controleren",
         btn_outline: "📞 Bel direct!", 
         hero_book_badge: "100% veilig &amp; vrijblijvend",
@@ -335,6 +391,62 @@
         hero_book_date: "Datum",
         hero_book_boat_type: "Boot type",
         hero_book_boat_type_select: "Boot type wählen",
+        hero_book_boat_type_classic_tender_720: "Classic tender 720 10/12 pers",
+        hero_book_boat_type_classic_tender_570: "Classic tender 570 8 pers",
+        hero_book_boat_type_electrosloop_10: "Electrosloep für 10 pers",
+        hero_book_boat_type_electrosloop_8: "Electrosloep für 8 pers",
+        hero_book_boat_type_electroboat_5: "Electrosloep für 5 pers",
+        hero_book_boat_type_sailboat_4_5: "Segelboot",
+        hero_book_boat_type_sailpunter_3_4: "Segelpunter 3/4 pers",
+        hero_book_boat_type_canoe_3: "Kanadisches Kanu 3 pers",
+        hero_book_boat_type_kayak_2: "Kajak 2 pers",
+        hero_book_boat_type_kayak_1: "Kajak 1 pers",
+        hero_book_boat_type_sup_board: "SUP board 1 pers",
+        /* Boat descriptions and features */
+        boat_classic_tender_720_name: "Classic tender 720",
+        boat_classic_tender_720_description: "Ein luxuriöses elektrisches Tender für größere Gruppen. Perfekt für komfortable Bootsfahrten durch das Naturschutzgebiet.",
+        boat_classic_tender_720_features: "10-12 Personen Kapazität, Elektromotor, Luxuriös und komfortabel, Leise und umweltfreundlich, Perfekt für größere Gruppen, Haustiere erlaubt",
+        
+        boat_classic_tender_570_name: "Classic tender 570",
+        boat_classic_tender_570_description: "Ein elegantes elektrisches Tender für mittlere Gruppen. Ideal für entspannte Bootsfahrten.",
+        boat_classic_tender_570_features: "8 Personen Kapazität, Elektromotor, Elegant und komfortabel, Leise und umweltfreundlich, Perfekt für Familien, Haustiere erlaubt",
+        
+        boat_electrosloop_10_name: "Electrosloep für 10 pers",
+        boat_electrosloop_10_description: "Ein geräumiges elektrisches Boot für größere Gruppen. Perfekt für gesellige Bootsfahrten.",
+        boat_electrosloop_10_features: "10 Personen Kapazität, Elektromotor, Geräumig und komfortabel, Leise und umweltfreundlich, Perfekt für Gruppen, Haustiere erlaubt",
+        
+        boat_electrosloop_8_name: "Electrosloep für 8 pers",
+        boat_electrosloop_8_description: "Ein komfortables elektrisches Boot für Familien und Freundesgruppen.",
+        boat_electrosloop_8_features: "8 Personen Kapazität, Elektromotor, Komfortabel und stabil, Leise und umweltfreundlich, Perfekt für Familien, Haustiere erlaubt",
+        
+        boat_electroboat_5_name: "Electrosloep für 5 pers",
+        boat_electroboat_5_description: "Ein kompaktes elektrisches Boot für kleine Gruppen. Ideal für ruhige Bootsfahrten.",
+        boat_electroboat_5_features: "5 Personen Kapazität, Elektromotor, Kompakt und wendig, Leise und umweltfreundlich, Perfekt für kleine Gruppen, Haustiere erlaubt",
+        
+        boat_sailboat_name: "Segelboot",
+        boat_sailboat_description: "Ein traditionelles Segelboot verfügbar mit oder ohne Motor. Ohne Motor für erfahrene Segler, mit Motor für mehr Flexibilität.",
+        boat_sailboat_features: "4-5 Personen Kapazität, Segeln ohne Motor: €70, Segeln mit Motor: €85, Flexibel, Für alle Niveaus, Erfahrener Segler erforderlich, Haustiere nicht erlaubt",
+        
+        boat_sailpunter_name: "Segelpunter",
+        boat_sailpunter_description: "Ein traditioneller Segelpunter für den erfahrenen Segler. Genieße Wind und Natur.",
+        boat_sailpunter_features: "3-4 Personen Kapazität, Segeln, Traditionell, Sportlich, Für erfahrene Segler, Erfahrener Segler erforderlich, Haustiere nicht erlaubt",
+        
+        boat_canoe_name: "Kanadisches Kanu",
+        boat_canoe_description: "Ein stabiles kanadisches Kanu für sportliche Aktivitäten und das Erkunden kleinerer Wasserwege.",
+        boat_canoe_features: "3 Personen Kapazität, Paddeln, Sportlich, Stabil, Für alle Niveaus, Haustiere erlaubt",
+        
+        boat_kayak_2_name: "Kajak 2 pers",
+        boat_kayak_2_description: "Ein Tandem-Kajak für zwei Personen. Perfekt für sportliche Aktivitäten.",
+        boat_kayak_2_features: "2 Personen Kapazität, Paddeln, Sportlich, Wendig, Für alle Niveaus, Haustiere erlaubt",
+        
+        boat_kayak_1_name: "Kajak 1 pers",
+        boat_kayak_1_description: "Ein Solo-Kajak für individuelle Bootsfahrten. Ideal für sportliche Aktivitäten.",
+        boat_kayak_1_features: "1 Person Kapazität, Paddeln, Sportlich, Wendig, Für alle Niveaus, Haustiere erlaubt",
+        
+        boat_sup_name: "SUP board",
+        boat_sup_description: "Ein Stand-up-Paddleboard für eine einzigartige Art, das Wasser zu erleben.",
+        boat_sup_features: "1 Person Kapazität, Paddeln, Einzigartig, Balancieren, Für alle Niveaus, Haustiere erlaubt",
+        
         hero_book_btn: "Verfügbarkeit prüfen",
         btn_outline: "📞 Jetzt anrufen!",
         hero_book_badge: "100% sicher &amp; unverbindlich",
@@ -644,6 +756,62 @@
         hero_book_date: "Datum",
         hero_book_boat_type: "Boot type",
         hero_book_boat_type_select: "Choose a boat",
+        hero_book_boat_type_classic_tender_720: "Classic tender 720 10/12 pers",
+        hero_book_boat_type_classic_tender_570: "Classic tender 570 8 pers",
+        hero_book_boat_type_electrosloop_10: "Electrosloep for 10 pers",
+        hero_book_boat_type_electrosloop_8: "Electrosloep for 8 pers",
+        hero_book_boat_type_electroboat_5: "Electrosloep for 5 pers",
+        hero_book_boat_type_sailboat_4_5: "Sailboat",
+        hero_book_boat_type_sailpunter_3_4: "Sailpunter 3/4 pers",
+        hero_book_boat_type_canoe_3: "Canadian canoe 3 pers",
+        hero_book_boat_type_kayak_2: "Kayak 2 pers",
+        hero_book_boat_type_kayak_1: "Kayak 1 pers",
+        hero_book_boat_type_sup_board: "SUP board 1 pers",
+        /* Boat descriptions and features */
+        boat_classic_tender_720_name: "Classic tender 720",
+        boat_classic_tender_720_description: "A luxurious electric tender for larger groups. Perfect for comfortable boat trips through the nature reserve.",
+        boat_classic_tender_720_features: "10-12 person capacity, Electric motor, Luxurious and comfortable, Quiet and eco-friendly, Perfect for larger groups, Pets allowed",
+        
+        boat_classic_tender_570_name: "Classic tender 570",
+        boat_classic_tender_570_description: "An elegant electric tender for medium-sized groups. Ideal for relaxed boat trips.",
+        boat_classic_tender_570_features: "8 person capacity, Electric motor, Elegant and comfortable, Quiet and eco-friendly, Perfect for families, Pets allowed",
+        
+        boat_electrosloop_10_name: "Electrosloep for 10 pers",
+        boat_electrosloop_10_description: "A spacious electric boat for larger groups. Perfect for sociable boat trips.",
+        boat_electrosloop_10_features: "10 person capacity, Electric motor, Spacious and comfortable, Quiet and eco-friendly, Perfect for groups, Pets allowed",
+        
+        boat_electrosloop_8_name: "Electrosloep for 8 pers",
+        boat_electrosloop_8_description: "A comfortable electric boat for families and groups of friends.",
+        boat_electrosloop_8_features: "8 person capacity, Electric motor, Comfortable and stable, Quiet and eco-friendly, Perfect for families, Pets allowed",
+        
+        boat_electroboat_5_name: "Electrosloep for 5 pers",
+        boat_electroboat_5_description: "A compact electric boat for small groups. Ideal for quiet boat trips.",
+        boat_electroboat_5_features: "5 person capacity, Electric motor, Compact and manoeuvrable, Quiet and eco-friendly, Perfect for small groups, Pets allowed",
+        
+        boat_sailboat_name: "Sailboat",
+        boat_sailboat_description: "A traditional sailboat available with or without motor. Without motor for experienced sailors, with motor for more flexibility.",
+        boat_sailboat_features: "4-5 person capacity, Sailing without motor: €70, Sailing with motor: €85, Flexible, For all levels, Experienced sailor required, Pets not allowed",
+        
+        boat_sailpunter_name: "Sailpunter",
+        boat_sailpunter_description: "A traditional sailpunter for the experienced sailor. Enjoy wind and nature.",
+        boat_sailpunter_features: "3-4 person capacity, Sailing, Traditional, Sporty, For experienced sailors, Experienced sailor required, Pets not allowed",
+        
+        boat_canoe_name: "Canadian canoe",
+        boat_canoe_description: "A stable Canadian canoe for sporting activities and exploring smaller waterways.",
+        boat_canoe_features: "3 person capacity, Paddling, Sporty, Stable, For all levels, Pets allowed",
+        
+        boat_kayak_2_name: "Kayak 2 pers",
+        boat_kayak_2_description: "A tandem kayak for two people. Perfect for sporting activities.",
+        boat_kayak_2_features: "2 person capacity, Paddling, Sporty, Manoeuvrable, For all levels, Pets allowed",
+        
+        boat_kayak_1_name: "Kayak 1 pers",
+        boat_kayak_1_description: "A solo kayak for individual boat trips. Ideal for sporting activities.",
+        boat_kayak_1_features: "1 person capacity, Paddling, Sporty, Manoeuvrable, For all levels, Pets allowed",
+        
+        boat_sup_name: "SUP board",
+        boat_sup_description: "A stand-up paddleboard for a unique way to experience the water.",
+        boat_sup_features: "1 person capacity, Paddling, Unique, Balancing, For all levels, Pets allowed",
+        
         hero_book_btn: "Check availability",
         btn_outline: "📞 Call now!",
         hero_book_badge: "100% safe &amp; free",
