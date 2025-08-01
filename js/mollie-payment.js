@@ -75,6 +75,11 @@ class MolliePaymentSystem {
     createSimulatedPayment(bookingData) {
         const paymentId = 'tr_sim_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
         
+        // Create proper URLs for local development
+        const baseUrl = this.getBaseUrl();
+        const redirectUrl = `${baseUrl}pages/payment-success.html?booking_id=${bookingData.id}`;
+        const checkoutUrl = `${baseUrl}pages/payment-simulation.html?payment_id=${paymentId}&booking_id=${bookingData.id}`;
+        
         const simulatedPayment = {
             id: paymentId,
             status: 'pending',
@@ -83,10 +88,10 @@ class MolliePaymentSystem {
                 value: this.calculateBookingPrice(bookingData.boatType, bookingData.engineOption)
             },
             description: `Reservering ${bookingData.boatType} - ${bookingData.date}`,
-            redirectUrl: `${window.location.origin}/pages/payment-success.html?booking_id=${bookingData.id}`,
+            redirectUrl: redirectUrl,
             links: {
                 checkout: {
-                    href: `${window.location.origin}/pages/payment-simulation.html?payment_id=${paymentId}&booking_id=${bookingData.id}`
+                    href: checkoutUrl
                 }
             },
             metadata: {
@@ -98,11 +103,35 @@ class MolliePaymentSystem {
         };
         
         console.log('Simulated payment created:', simulatedPayment);
+        console.log('Checkout URL:', checkoutUrl);
         
         // Store payment ID with booking
         this.updateBookingWithPaymentId(bookingData.id, paymentId);
         
         return simulatedPayment;
+    }
+    
+    // Get base URL for local development
+    getBaseUrl() {
+        // Check if we're running from file:// protocol (local development)
+        if (window.location.protocol === 'file:') {
+            // For file:// protocol, we need to construct the path differently
+            const currentPath = window.location.pathname;
+            const pathParts = currentPath.split('/');
+            
+            // Remove the filename and get the directory path
+            pathParts.pop(); // Remove current file
+            if (pathParts[pathParts.length - 1] === 'pages') {
+                pathParts.pop(); // Remove 'pages' directory
+            }
+            
+            // Construct the base URL
+            const basePath = pathParts.join('/') + '/';
+            return `file://${basePath}`;
+        } else {
+            // For http/https, use origin
+            return window.location.origin + '/';
+        }
     }
     
     // Calculate booking price based on boat type and engine option
@@ -234,7 +263,13 @@ class MolliePaymentSystem {
     redirectToPayment(payment) {
         if (payment.links && payment.links.checkout) {
             console.log('Redirecting to payment page:', payment.links.checkout.href);
-            window.location.href = payment.links.checkout.href;
+            console.log('Current location:', window.location.href);
+            console.log('Protocol:', window.location.protocol);
+            
+            // Add a small delay to ensure console logs are visible
+            setTimeout(() => {
+                window.location.href = payment.links.checkout.href;
+            }, 100);
         } else {
             console.error('No checkout URL found in payment response');
             throw new Error('No checkout URL found in payment response');
