@@ -409,6 +409,16 @@
                         category: 'electric'
                     },
                     {
+                        id: 'classic-tender-570',
+                        name: 'Classic tender 570',
+                        capacity: 8,
+                        price: 200,
+                        deposit: 100,
+                        image: '../Images/Boats/tender-570/209200032731061602092021 (1).jpg',
+                        available: 2,
+                        category: 'electric'
+                    },
+                    {
                         id: 'electrosloop-10',
                         name: 'Electrosloep voor 10 pers',
                         capacity: 10,
@@ -419,22 +429,22 @@
                         category: 'electric'
                     },
                     {
-                        id: 'classic-tender-570',
-                        name: 'Classic tender 570',
-                        capacity: 8,
-                        price: 200,
-                        deposit: 100,
-                        image: '../Images/Boats/tender-570/tender-570-8.jpg',
-                        available: 2,
-                        category: 'electric'
-                    },
-                    {
                         id: 'electrosloop-8',
                         name: 'Electrosloep voor 8 pers',
                         capacity: 8,
                         price: 175,
                         deposit: 100,
                         image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
+                        available: 2,
+                        category: 'electric'
+                    },
+                    {
+                        id: 'electroboat-5',
+                        name: 'Electrosloep voor 5 pers',
+                        capacity: 5,
+                        price: 80,
+                        deposit: 0,
+                        image: '../Images/Boats/electrosloep-5/electroboat-5.jpg',
                         available: 2,
                         category: 'electric'
                     },
@@ -469,16 +479,6 @@
                         image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg',
                         available: 1,
                         category: 'sailing'
-                    },
-                    {
-                        id: 'electroboat-5',
-                        name: 'Electrosloep voor 5 pers',
-                        capacity: 5,
-                        price: 80,
-                        deposit: 0,
-                        image: '../Images/Boats/electrosloep-5/electroboat-5.jpg',
-                        available: 2,
-                        category: 'electric'
                     },
                     {
                         id: 'canoe-3',
@@ -532,8 +532,22 @@
                     return;
                 }
                 
-                // Sort boats by price (highest first) and then by capacity
+                // Sort boats by category and then by price (highest first)
                 const sortedBoats = [...this.boats].sort((a, b) => {
+                    // First sort by category: electric, sailing, canoe, sup
+                    const categoryOrder = { 'electric': 0, 'sailing': 1, 'canoe': 2, 'sup': 3 };
+                    const categoryDiff = categoryOrder[a.category] - categoryOrder[b.category];
+                    if (categoryDiff !== 0) return categoryDiff;
+                    
+                    // Within electric category, sort tenders first, then electrosloeps
+                    if (a.category === 'electric' && b.category === 'electric') {
+                        const aIsTender = a.name.includes('tender');
+                        const bIsTender = b.name.includes('tender');
+                        if (aIsTender && !bIsTender) return -1;
+                        if (!aIsTender && bIsTender) return 1;
+                    }
+                    
+                    // Then sort by price (highest first)
                     if (b.price !== a.price) {
                         return b.price - a.price;
                     }

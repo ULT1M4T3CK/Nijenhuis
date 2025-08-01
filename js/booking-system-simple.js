@@ -149,12 +149,12 @@ class SimpleBookingSystem {
         let boatName = '';
         const boatNames = {
             'classic-tender-720': 'Classic tender 720 (10/12 pers)',
-            'electrosloop-10': 'Electrosloep voor 10 pers',
             'classic-tender-570': 'Classic tender 570 (8 pers)',
+            'electrosloop-10': 'Electrosloep voor 10 pers',
             'electrosloop-8': 'Electrosloep voor 8 pers',
+            'electroboat-5': 'Electrosloep voor 5 pers',
             'sailboat-4-5': 'Zeilboot 4/5 pers',
             'sailpunter-3-4': 'Zeilpunter 3/4 pers',
-            'electroboat-5': 'Electrosloep voor 5 pers',
             'canoe-3': 'Canadese kano 3 pers',
             'kayak-2': 'Kajak 2 pers',
             'kayak-1': 'Kajak 1 pers',

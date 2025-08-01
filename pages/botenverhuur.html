@@ -138,8 +138,8 @@
                         </td>
                       </tr>
                       <tr class="pricing-row">
-                        <td data-label="Boot type"><strong>Electrosloep</strong></td>
-                        <td data-label="Capaciteit">10 personen</td>
+                        <td data-label="Boot type"><strong>Classic tender 570</strong></td>
+                        <td data-label="Capaciteit">8 personen</td>
                         <td data-label="Prijs per dag">€200</td>
                         <td data-label="Borg">€100</td>
                         <td data-label="Actie">
@@ -147,8 +147,8 @@
                         </td>
                       </tr>
                       <tr class="pricing-row">
-                        <td data-label="Boot type"><strong>Classic tender 570</strong></td>
-                        <td data-label="Capaciteit">8 personen</td>
+                        <td data-label="Boot type"><strong>Electrosloep</strong></td>
+                        <td data-label="Capaciteit">10 personen</td>
                         <td data-label="Prijs per dag">€200</td>
                         <td data-label="Borg">€100</td>
                         <td data-label="Actie">
@@ -165,18 +165,18 @@
                         </td>
                       </tr>
                       <tr class="pricing-row">
-                        <td data-label="Boot type"><strong>Zeilboot (zonder motor)</strong></td>
-                        <td data-label="Capaciteit">4-5 personen</td>
-                        <td data-label="Prijs per dag">€70</td>
-                        <td data-label="Borg">€50</td>
+                        <td data-label="Boot type"><strong>Electrosloep</strong></td>
+                        <td data-label="Capaciteit">5 personen</td>
+                        <td data-label="Prijs per dag">€80</td>
+                        <td data-label="Borg">€0</td>
                         <td data-label="Actie">
                           <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
                         </td>
                       </tr>
                       <tr class="pricing-row">
-                        <td data-label="Boot type"><strong>Zeilboot (met motor)</strong></td>
+                        <td data-label="Boot type"><strong>Zeilboot 4/5 pers</strong></td>
                         <td data-label="Capaciteit">4-5 personen</td>
-                        <td data-label="Prijs per dag">€85</td>
+                        <td data-label="Prijs per dag">€70 (zonder motor) / €85 (met motor)</td>
                         <td data-label="Borg">€50</td>
                         <td data-label="Actie">
                           <a href="tel:0522281528" class="reserve-btn">📞 Reserveren</a>
@@ -367,15 +367,6 @@
         // Boat data for modal
         const boatData = {
             electric: [
-                { id: 'boat-001', name: 'Electrosloep', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg', slideshow: [
-                    '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
-                    '../Images/Boats/electrosloep-8/61374455328291526032019.jpg',
-                    '../Images/Boats/electrosloep-8/92961705928291526032019.jpg',
-                    '../Images/Boats/electrosloep-8/40156326328291526032019 (1).jpg',
-                    '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
-                ] },
-                { id: 'boat-002', name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
-                { id: 'boat-003', name: 'Electroboot', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' },
                 { id: 'boat-004', name: 'Classic tender 720', capacity: '10-12 personen', price: '€230', status: 'available', image: '../Images/Boats/tender-720/104831747849501502092021.jpg', slideshow: [
                     '../Images/Boats/tender-720/104831747849501502092021.jpg',
                     '../Images/Boats/tender-720/125324337810511502092021.jpg',
@@ -396,11 +387,19 @@
                     '../Images/Boats/tender-570/27725985231061602092021.jpg',
                     '../Images/Boats/tender-570/63307108531061602092021.jpg',
                     '../Images/Boats/tender-570/79334617131061602092021.jpg'
-                ] }
+                ] },
+                { id: 'boat-002', name: 'Electrosloep', capacity: '10 personen', price: '€200', status: 'available', image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg' },
+                { id: 'boat-001', name: 'Electrosloep', capacity: '8 personen', price: '€175', status: 'available', image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg', slideshow: [
+                    '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
+                    '../Images/Boats/electrosloep-8/61374455328291526032019.jpg',
+                    '../Images/Boats/electrosloep-8/92961705928291526032019.jpg',
+                    '../Images/Boats/electrosloep-8/40156326328291526032019 (1).jpg',
+                    '../Images/Boats/electrosloep-8/40156326328291526032019.jpg'
+                ] },
+                { id: 'boat-003', name: 'Electroboot', capacity: '5 personen', price: '€80', status: 'available', image: '../Images/Boats/electrosloep-5/electroboat-5.jpg' }
             ],
             sailing: [
-                { id: 'boat-006', name: 'Zeilboot (zonder motor)', capacity: '4-5 personen', price: '€70', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
-                { id: 'boat-007', name: 'Zeilboot (met motor)', capacity: '4-5 personen', price: '€85', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg' },
+                { id: 'boat-006', name: 'Zeilboot 4/5 pers', capacity: '4-5 personen', price: '€70 (zonder motor) / €85 (met motor)', status: 'available', image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg', description: 'Beschikbaar met of zonder motor. Zonder motor: €70, Met motor: €85' },
                 { id: 'boat-008', name: 'Zeilpunter', capacity: '3-4 personen', price: '€40', status: 'available', image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg' }
             ],
             canoe: [
@@ -435,13 +434,9 @@
                     description: 'Een compacte elektrische boot voor kleine groepen. Ideaal voor kortere vaartochten.',
                     features: ['5 personen capaciteit', 'Elektrische motor', 'Compact en wendbaar', 'Stil en milieuvriendelijk', 'Perfect voor kleine groepen', 'Huisdieren toegestaan']
                 },
-                'Zeilboot (zonder motor)': {
-                    description: 'Een traditionele zeilboot voor ervaren zeilers. Geniet van wind en natuur.',
-                    features: ['4-5 personen capaciteit', 'Zeilen', 'Traditioneel', 'Sportief', 'Voor ervaren zeilers', 'Ervaren zeiler vereist', 'Huisdieren niet toegestaan']
-                },
-                'Zeilboot (met motor)': {
-                    description: 'Een zeilboot met hulpmotor voor meer flexibiliteit. Ideaal voor beginners en ervaren zeilers.',
-                    features: ['4-5 personen capaciteit', 'Zeilen + motor', 'Flexibel', 'Veilig', 'Voor alle niveaus', 'Ervaren zeiler vereist', 'Huisdieren niet toegestaan']
+                'Zeilboot 4/5 pers': {
+                    description: 'Een traditionele zeilboot beschikbaar met of zonder motor. Zonder motor voor ervaren zeilers, met motor voor meer flexibiliteit.',
+                    features: ['4-5 personen capaciteit', 'Zeilen (zonder motor: €70)', 'Zeilen + motor (met motor: €85)', 'Flexibel', 'Voor alle niveaus', 'Ervaren zeiler vereist', 'Huisdieren niet toegestaan']
                 },
                 'Canadese Kano': {
                     description: 'Een stabiele kano voor drie personen. Perfect voor sportieve activiteiten en het verkennen van kleinere waterwegen.',
