@@ -245,7 +245,7 @@ class SimpleBookingSystem {
             
         } catch (error) {
             console.error('Payment creation failed:', error);
-            this.showPaymentError();
+            this.showPaymentError(error.message);
         }
     }
     
@@ -355,7 +355,7 @@ class SimpleBookingSystem {
         }
     }
     
-    showPaymentError() {
+    showPaymentError(errorMessage = 'Er is een fout opgetreden bij het aanmaken van de betaling.') {
         const bookingDetailsForm = document.getElementById('bookingDetailsForm');
         const bookingError = document.getElementById('bookingError');
         
@@ -365,7 +365,7 @@ class SimpleBookingSystem {
             bookingError.innerHTML = `
                 <div class="error-message">
                     <h3>❌ Betaling Fout</h3>
-                    <p>Er is een fout opgetreden bij het aanmaken van de betaling. Probeer het later opnieuw.</p>
+                    <p>${errorMessage}</p>
                     <div class="error-actions">
                         <button onclick="window.bookingSystem.closeModal()" class="btn">Sluiten</button>
                         <button onclick="window.bookingSystem.retryBooking()" class="btn btn-outline">Opnieuw Proberen</button>

@@ -18,6 +18,16 @@ class MolliePaymentSystem {
     // Create a new payment
     async createPayment(bookingData) {
         try {
+            // Check if we're in local development mode
+            const isLocalDevelopment = window.location.hostname === 'localhost' || 
+                                     window.location.hostname === '127.0.0.1' ||
+                                     window.location.protocol === 'file:';
+            
+            if (isLocalDevelopment) {
+                console.log('Local development mode detected - simulating payment creation');
+                return this.createSimulatedPayment(bookingData);
+            }
+            
             const paymentData = {
                 amount: {
                     currency: 'EUR',
@@ -59,6 +69,40 @@ class MolliePaymentSystem {
             console.error('Error creating payment:', error);
             throw error;
         }
+    }
+    
+    // Create a simulated payment for local development
+    createSimulatedPayment(bookingData) {
+        const paymentId = 'tr_sim_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        
+        const simulatedPayment = {
+            id: paymentId,
+            status: 'pending',
+            amount: {
+                currency: 'EUR',
+                value: this.calculateBookingPrice(bookingData.boatType, bookingData.engineOption)
+            },
+            description: `Reservering ${bookingData.boatType} - ${bookingData.date}`,
+            redirectUrl: `${window.location.origin}/pages/payment-success.html?booking_id=${bookingData.id}`,
+            links: {
+                checkout: {
+                    href: `${window.location.origin}/pages/payment-simulation.html?payment_id=${paymentId}&booking_id=${bookingData.id}`
+                }
+            },
+            metadata: {
+                booking_id: bookingData.id,
+                customer_email: bookingData.customerEmail,
+                boat_type: bookingData.boatType,
+                booking_date: bookingData.date
+            }
+        };
+        
+        console.log('Simulated payment created:', simulatedPayment);
+        
+        // Store payment ID with booking
+        this.updateBookingWithPaymentId(bookingData.id, paymentId);
+        
+        return simulatedPayment;
     }
     
     // Calculate booking price based on boat type and engine option
@@ -189,9 +233,11 @@ class MolliePaymentSystem {
     // Redirect to Mollie payment page
     redirectToPayment(payment) {
         if (payment.links && payment.links.checkout) {
+            console.log('Redirecting to payment page:', payment.links.checkout.href);
             window.location.href = payment.links.checkout.href;
         } else {
             console.error('No checkout URL found in payment response');
+            throw new Error('No checkout URL found in payment response');
         }
     }
     
