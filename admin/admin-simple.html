@@ -675,8 +675,15 @@
             updateStatus(bookingId, newStatus) {
                 const bookingIndex = this.bookings.findIndex(b => b.id === bookingId);
                 if (bookingIndex !== -1) {
+                    const oldStatus = this.bookings[bookingIndex].status;
+                    const boatType = this.bookings[bookingIndex].boatType;
+                    
                     this.bookings[bookingIndex].status = newStatus;
                     this.bookings[bookingIndex].updatedAt = new Date().toISOString();
+                    
+                    // Update boat availability based on status changes
+                    this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
+                    
                     this.saveBookings();
                     this.loadBookings();
                     this.renderBookings();
@@ -687,7 +694,17 @@
             
             deleteBooking(bookingId) {
                 if (confirm('Are you sure you want to delete this booking?')) {
+                    const bookingToDelete = this.bookings.find(b => b.id === bookingId);
+                    
                     this.bookings = this.bookings.filter(b => b.id !== bookingId);
+                    
+                    // Restore boat availability if booking was active
+                    if (bookingToDelete && 
+                        bookingToDelete.status !== 'payment-rejected' && 
+                        bookingToDelete.status !== 'boat-picked-up') {
+                        this.updateBoatAvailabilityForStatusChange(bookingToDelete.boatType, bookingToDelete.status, 'payment-rejected');
+                    }
+                    
                     this.saveBookings();
                     this.loadBookings();
                     this.renderBookings();
@@ -745,6 +762,49 @@
                 this.renderBookings();
                 this.updateStats();
                 alert('Bookings refreshed!');
+            }
+            
+            loadBoats() {
+                try {
+                    const stored = localStorage.getItem('nijenhuis_boats');
+                    if (stored) {
+                        return JSON.parse(stored);
+                    }
+                    return [];
+                } catch (error) {
+                    console.error('Error loading boats:', error);
+                    return [];
+                }
+            }
+            
+            updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus) {
+                try {
+                    const boats = this.loadBoats();
+                    const boatIndex = boats.findIndex(b => b.id === boatType);
+                    
+                    if (boatIndex === -1) return;
+                    
+                    let change = 0;
+                    
+                    // If status changes to payment-rejected or boat-picked-up, boat becomes available again
+                    if (oldStatus !== 'payment-rejected' && oldStatus !== 'boat-picked-up' && 
+                        (newStatus === 'payment-rejected' || newStatus === 'boat-picked-up')) {
+                        change = 1; // Boat becomes available
+                    }
+                    // If status changes from payment-rejected or boat-picked-up to active status, boat becomes unavailable
+                    else if ((oldStatus === 'payment-rejected' || oldStatus === 'boat-picked-up') && 
+                             newStatus !== 'payment-rejected' && newStatus !== 'boat-picked-up') {
+                        change = -1; // Boat becomes unavailable
+                    }
+                    
+                    if (change !== 0) {
+                        boats[boatIndex].available = Math.max(0, boats[boatIndex].available + change);
+                        localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                        console.log(`Updated ${boatType} availability: ${boats[boatIndex].available} (change: ${change})`);
+                    }
+                } catch (error) {
+                    console.error('Error updating boat availability:', error);
+                }
             }
         }
         

@@ -80,15 +80,30 @@ class SimpleBookingSystem {
     
     isBoatAvailable(date, boatType) {
         const bookings = this.loadBookings();
+        const boats = this.loadBoats();
+        
+        // Find the boat in the boat management system
+        const boat = boats.find(b => b.id === boatType);
+        if (!boat) {
+            console.error('Boat not found in boat management system:', boatType);
+            return false;
+        }
+        
+        // Check if there are any boats available
+        if (boat.available <= 0) {
+            return false;
+        }
         
         // Check if there's already a booking for this boat on this date
-        const conflictingBooking = bookings.find(booking => 
+        const conflictingBookings = bookings.filter(booking => 
             booking.date === date && 
             booking.boatType === boatType &&
-            booking.status !== 'payment-rejected'
+            booking.status !== 'payment-rejected' &&
+            booking.status !== 'boat-picked-up'
         );
         
-        return !conflictingBooking;
+        // Check if we have enough boats available for this date
+        return conflictingBookings.length < boat.available;
     }
     
     showLoadingState() {
@@ -228,6 +243,9 @@ class SimpleBookingSystem {
             bookings.push(bookingData);
             localStorage.setItem(this.storageKey, JSON.stringify(bookings));
             
+            // Update boat availability
+            this.updateBoatAvailability(bookingData.boatType, -1);
+            
             console.log('Booking saved successfully:', bookingData);
             console.log('Total bookings in storage:', bookings.length);
             
@@ -245,6 +263,49 @@ class SimpleBookingSystem {
         } catch (error) {
             console.error('Error loading bookings:', error);
             return [];
+        }
+    }
+    
+    loadBoats() {
+        try {
+            const stored = localStorage.getItem('nijenhuis_boats');
+            if (stored) {
+                return JSON.parse(stored);
+            }
+            
+            // Return default boats if none stored
+            return [
+                { id: 'classic-tender-720', available: 2 },
+                { id: 'classic-tender-570', available: 2 },
+                { id: 'electrosloop-10', available: 1 },
+                { id: 'electrosloop-8', available: 2 },
+                { id: 'electroboat-5', available: 2 },
+                { id: 'sailboat-4-5', available: 2 },
+                { id: 'sailboat-4-5-engine', available: 1 },
+                { id: 'sailpunter-3-4', available: 1 },
+                { id: 'canoe-3', available: 3 },
+                { id: 'kayak-2', available: 2 },
+                { id: 'kayak-1', available: 2 },
+                { id: 'sup-board', available: 2 }
+            ];
+        } catch (error) {
+            console.error('Error loading boats:', error);
+            return [];
+        }
+    }
+    
+    updateBoatAvailability(boatType, change) {
+        try {
+            const boats = this.loadBoats();
+            const boatIndex = boats.findIndex(b => b.id === boatType);
+            
+            if (boatIndex !== -1) {
+                boats[boatIndex].available = Math.max(0, boats[boatIndex].available + change);
+                localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                console.log(`Updated ${boatType} availability: ${boats[boatIndex].available}`);
+            }
+        } catch (error) {
+            console.error('Error updating boat availability:', error);
         }
     }
     
