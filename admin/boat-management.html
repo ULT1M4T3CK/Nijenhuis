@@ -208,6 +208,61 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
+        .stock-display {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .stock-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md);
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .stock-item.low-stock {
+            border-left-color: #ff9800;
+            background: #fff3e0;
+        }
+        
+        .stock-item.out-of-stock {
+            border-left-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .stock-item-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .stock-item-count {
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--primary-color);
+        }
+        
+        .stock-item-count.low-stock {
+            color: #ff9800;
+        }
+        
+        .stock-item-count.out-of-stock {
+            color: #f44336;
+        }
+        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -316,6 +371,14 @@
                             <div class="stat-number" id="totalCapacity">0</div>
                             <div class="stat-label">Total Capacity</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Stock Display -->
+                <div class="stock-display">
+                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Current Stock Status</h3>
+                    <div class="stock-grid" id="stockGrid">
+                        <!-- Stock items will be loaded here -->
                     </div>
                 </div>
 
@@ -648,6 +711,57 @@
                 document.getElementById('availableBoats').textContent = available;
                 document.getElementById('rentedBoats').textContent = rented;
                 document.getElementById('totalCapacity').textContent = totalCapacity;
+                
+                // Update stock display
+                this.renderStockDisplay();
+            }
+            
+            renderStockDisplay() {
+                const container = document.getElementById('stockGrid');
+                if (!container) return;
+                
+                if (this.boats.length === 0) {
+                    container.innerHTML = '<div class="no-boats"><p>No boats found.</p></div>';
+                    return;
+                }
+                
+                // Sort boats by category and name for consistent display
+                const sortedBoats = [...this.boats].sort((a, b) => {
+                    const categoryOrder = { 'electric': 0, 'sailing': 1, 'canoe': 2, 'sup': 3 };
+                    const categoryDiff = categoryOrder[a.category] - categoryOrder[b.category];
+                    if (categoryDiff !== 0) return categoryDiff;
+                    return a.name.localeCompare(b.name);
+                });
+                
+                container.innerHTML = sortedBoats.map(boat => this.createStockItem(boat)).join('');
+            }
+            
+            createStockItem(boat) {
+                const displayName = boat.hasEngine ? `${boat.name} (met motor)` : boat.name;
+                let stockClass = '';
+                let countClass = '';
+                
+                if (boat.available === 0) {
+                    stockClass = 'out-of-stock';
+                    countClass = 'out-of-stock';
+                } else if (boat.available <= 1) {
+                    stockClass = 'low-stock';
+                    countClass = 'low-stock';
+                }
+                
+                return `
+                    <div class="stock-item ${stockClass}">
+                        <div class="stock-item-name">${displayName}</div>
+                        <div class="stock-item-count ${countClass}">${boat.available}</div>
+                    </div>
+                `;
+            }
+            
+            // Method to refresh stock display from external systems (like booking system)
+            refreshStockDisplay() {
+                this.loadBoats();
+                this.renderStockDisplay();
+                this.updateStats();
             }
         }
         
@@ -656,6 +770,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             boatManager = new BoatManager();
         });
+        
+        // Global function to refresh stock display (can be called from booking system)
+        function refreshBoatStockDisplay() {
+            if (window.boatManager) {
+                window.boatManager.refreshStockDisplay();
+            }
+        }
     </script>
 </body>
 </html> 

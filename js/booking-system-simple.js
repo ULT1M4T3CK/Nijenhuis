@@ -246,6 +246,11 @@ class SimpleBookingSystem {
             // Update boat availability
             this.updateBoatAvailability(bookingData.boatType, -1);
             
+            // Refresh stock display in admin if available
+            if (typeof refreshBoatStockDisplay === 'function') {
+                refreshBoatStockDisplay();
+            }
+            
             console.log('Booking saved successfully:', bookingData);
             console.log('Total bookings in storage:', bookings.length);
             
