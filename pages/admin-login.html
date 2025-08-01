@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Admin Login - Nijenhuis Botenverhuur</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Admin login voor Nijenhuis Botenverhuur">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../Images/logo-white.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../js/translation.js">
+    
+    <style>
+        .admin-login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 100%);
+            padding: 20px;
+        }
+        
+        .admin-login-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .admin-login-logo {
+            margin-bottom: 30px;
+        }
+        
+        .admin-login-logo img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .admin-login-title {
+            color: #2c5aa0;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .admin-login-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .admin-form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .admin-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .admin-form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .admin-form-group input:focus {
+            outline: none;
+            border-color: #2c5aa0;
+        }
+        
+        .admin-login-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .admin-login-btn:hover {
+            background: #1e3a8a;
+        }
+        
+        .admin-login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .admin-back-link {
+            display: inline-block;
+            color: #2c5aa0;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 20px;
+            transition: color 0.3s ease;
+        }
+        
+        .admin-back-link:hover {
+            color: #1e3a8a;
+        }
+        
+        .admin-error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .admin-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .admin-loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .admin-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2c5aa0;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <div class="admin-login-logo">
+                <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);">
+                <h1 class="admin-login-title">Admin Login</h1>
+                <p class="admin-login-subtitle">Booking Management System</p>
+            </div>
+            
+            <div id="adminError" class="admin-error"></div>
+            <div id="adminSuccess" class="admin-success"></div>
+            
+            <form id="adminLoginForm">
+                <div class="admin-form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                
+                <div class="admin-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                
+                <button type="submit" class="admin-login-btn" id="loginBtn">
+                    Login
+                </button>
+            </form>
+            
+            <div id="adminLoading" class="admin-loading">
+                <div class="admin-spinner"></div>
+                <p>Logging in...</p>
+            </div>
+            
+            <a href="./index.html" class="admin-back-link">← Back to Website</a>
+        </div>
+    </div>
+
+    <script>
+        class AdminLogin {
+            constructor() {
+                this.form = document.getElementById('adminLoginForm');
+                this.usernameInput = document.getElementById('username');
+                this.passwordInput = document.getElementById('password');
+                this.loginBtn = document.getElementById('loginBtn');
+                this.errorDiv = document.getElementById('adminError');
+                this.successDiv = document.getElementById('adminSuccess');
+                this.loadingDiv = document.getElementById('adminLoading');
+                
+                this.init();
+            }
+            
+            init() {
+                this.form.addEventListener('submit', (e) => this.handleLogin(e));
+                
+                // Check if already logged in
+                if (this.isLoggedIn()) {
+                    this.redirectToAdmin();
+                }
+            }
+            
+            handleLogin(e) {
+                e.preventDefault();
+                
+                const username = this.usernameInput.value.trim();
+                const password = this.passwordInput.value;
+                
+                if (!username || !password) {
+                    this.showError('Please enter both username and password');
+                    return;
+                }
+                
+                this.showLoading(true);
+                
+                // Simple authentication (for demo purposes)
+                // In production, this should be server-side authentication
+                setTimeout(() => {
+                    if (this.authenticate(username, password)) {
+                        this.loginSuccess();
+                    } else {
+                        this.showError('Invalid username or password');
+                        this.showLoading(false);
+                    }
+                }, 1000);
+            }
+            
+            authenticate(username, password) {
+                // Default credentials (you can change these)
+                const validCredentials = {
+                    'admin': 'nijenhuis2025',
+                    'manager': 'boats2025'
+                };
+                
+                return validCredentials[username] === password;
+            }
+            
+            loginSuccess() {
+                // Store login state
+                localStorage.setItem('adminLoggedIn', 'true');
+                localStorage.setItem('adminUser', this.usernameInput.value);
+                localStorage.setItem('adminLoginTime', new Date().toISOString());
+                
+                this.showSuccess('Login successful! Redirecting...');
+                this.showLoading(false);
+                
+                // Redirect to admin dashboard
+                setTimeout(() => {
+                    this.redirectToAdmin();
+                }, 1500);
+            }
+            
+            redirectToAdmin() {
+                // Check if we're in a local environment
+                const isLocal = window.location.hostname === 'localhost' || 
+                              window.location.hostname === '127.0.0.1' ||
+                              window.location.protocol === 'file:';
+                
+                if (isLocal) {
+                    window.location.href = '../admin/admin-simple.html';
+                } else {
+                    window.location.href = '../admin/index.html';
+                }
+            }
+            
+            isLoggedIn() {
+                const loginTime = localStorage.getItem('adminLoginTime');
+                if (!loginTime) return false;
+                
+                // Check if login is still valid (24 hours)
+                const loginDate = new Date(loginTime);
+                const now = new Date();
+                const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+                
+                return hoursDiff < 24;
+            }
+            
+            showError(message) {
+                this.errorDiv.textContent = message;
+                this.errorDiv.style.display = 'block';
+                this.successDiv.style.display = 'none';
+            }
+            
+            showSuccess(message) {
+                this.successDiv.textContent = message;
+                this.successDiv.style.display = 'block';
+                this.errorDiv.style.display = 'none';
+            }
+            
+            showLoading(show) {
+                this.loadingDiv.style.display = show ? 'block' : 'none';
+                this.loginBtn.disabled = show;
+            }
+        }
+        
+        // Initialize admin login
+        document.addEventListener('DOMContentLoaded', () => {
+            new AdminLogin();
+        });
+    </script>
+</body>
+</html> 
