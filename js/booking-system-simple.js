@@ -251,6 +251,11 @@ class SimpleBookingSystem {
                 refreshBoatStockDisplay();
             }
             
+            // Dispatch custom event for stock updates
+            window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                detail: { boatType: bookingData.boatType, change: -1 }
+            }));
+            
             console.log('Booking saved successfully:', bookingData);
             console.log('Total bookings in storage:', bookings.length);
             

@@ -323,26 +323,26 @@
             <div class="admin-header-content">
                 <div class="admin-header-left">
                     <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="admin-logo">
-                    <h1>Boat Management</h1>
+                    <h1>Boot Beheer</h1>
                 </div>
                 <div class="admin-header-right">
                     <a href="admin-simple.html" class="admin-nav-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
                         </svg>
-                        Bookings
+                        Reserveringen
                     </a>
                     <a href="../pages/index.html" class="admin-nav-btn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
                         </svg>
-                        Back to Website
+                        Terug naar Website
                     </a>
                     <button onclick="boatManager.logout()" class="admin-nav-btn" style="cursor: pointer; border: none; font-family: inherit;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
                         </svg>
-                        Logout
+                        Uitloggen
                     </button>
                 </div>
             </div>
@@ -353,30 +353,30 @@
             <div class="admin-container">
                 <!-- Statistics Summary -->
                 <div class="stats-summary">
-                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Fleet Overview</h3>
+                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Vloot Overzicht</h3>
                     <div class="stats-grid">
                         <div class="stat-item">
                             <div class="stat-number" id="totalBoats">0</div>
-                            <div class="stat-label">Total Boats</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="availableBoats">0</div>
-                            <div class="stat-label">Available</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="rentedBoats">0</div>
-                            <div class="stat-label">Currently Rented</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="totalCapacity">0</div>
-                            <div class="stat-label">Total Capacity</div>
+                                                    <div class="stat-label">Totaal Boten</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="availableBoats">0</div>
+                        <div class="stat-label">Beschikbaar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="rentedBoats">0</div>
+                        <div class="stat-label">Momenteel Verhuurd</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalCapacity">0</div>
+                        <div class="stat-label">Totale Capaciteit</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Real-time Stock Display -->
                 <div class="stock-display">
-                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Current Stock Status</h3>
+                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Huidige Voorraad Status</h3>
                     <div class="stock-grid" id="stockGrid">
                         <!-- Stock items will be loaded here -->
                     </div>
@@ -442,6 +442,7 @@
                 this.loadBoats();
                 this.renderBoats();
                 this.updateStats();
+                this.startRealTimeUpdates();
                 console.log('Boat manager initialized');
             }
             
@@ -636,7 +637,7 @@
                                 <div class="boat-price">€${boat.price}/dag</div>
                             </div>
                             <div class="availability-controls">
-                                <div class="availability-label">Available:</div>
+                                <div class="availability-label">Beschikbaar:</div>
                                 <div class="quantity-controls">
                                     <button class="quantity-btn" onclick="boatManager.updateQuantity('${boat.id}', -1)">-</button>
                                     <div class="quantity-display">${boat.available}</div>
@@ -645,7 +646,7 @@
                             </div>
                             <div class="boat-actions">
                                 <button onclick="boatManager.resetQuantity('${boat.id}')" class="btn btn-small btn-outline">Reset</button>
-                                <button onclick="boatManager.editBoat('${boat.id}')" class="btn btn-small">Edit</button>
+                                <button onclick="boatManager.editBoat('${boat.id}')" class="btn btn-small">Bewerken</button>
                             </div>
                         </div>
                     </div>
@@ -762,6 +763,15 @@
                 this.loadBoats();
                 this.renderStockDisplay();
                 this.updateStats();
+                console.log('Stock display refreshed');
+            }
+            
+            // Start real-time updates
+            startRealTimeUpdates() {
+                // Check for updates every 5 seconds
+                setInterval(() => {
+                    this.refreshStockDisplay();
+                }, 5000);
             }
         }
         
@@ -769,6 +779,13 @@
         let boatManager;
         document.addEventListener('DOMContentLoaded', () => {
             boatManager = new BoatManager();
+            
+            // Listen for stock updates from booking system
+            window.addEventListener('boatStockUpdated', (event) => {
+                if (window.boatManager) {
+                    window.boatManager.refreshStockDisplay();
+                }
+            });
         });
         
         // Global function to refresh stock display (can be called from booking system)

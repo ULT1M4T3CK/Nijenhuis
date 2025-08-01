@@ -424,40 +424,40 @@
                 <!-- Statistics -->
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-number" id="totalBookings">0</div>
-                        <div class="stat-label">Total Bookings</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="pendingBookings">0</div>
-                        <div class="stat-label">Pending</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="confirmedBookings">0</div>
-                        <div class="stat-label">Confirmed</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" id="paidBookings">0</div>
-                        <div class="stat-label">Paid</div>
+                                        <div class="stat-number" id="totalBookings">0</div>
+                <div class="stat-label">Totaal Reserveringen</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingBookings">0</div>
+                <div class="stat-label">In Afwachting</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="confirmedBookings">0</div>
+                <div class="stat-label">Bevestigd</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="paidBookings">0</div>
+                <div class="stat-label">Betaald</div>
                     </div>
                 </div>
 
                 <!-- Export Section -->
                 <div class="export-section">
-                    <h3>Data Management</h3>
-                    <p>Bookings are stored in your browser's local storage. You can export them or clear all data.</p>
+                    <h3>Gegevensbeheer</h3>
+                    <p>Reserveringen worden opgeslagen in de lokale opslag van uw browser. U kunt ze exporteren of alle gegevens wissen.</p>
                     <div class="export-actions">
-                        <button onclick="adminSystem.exportBookings()" class="btn">Export Bookings (JSON)</button>
-                        <button onclick="adminSystem.clearAllBookings()" class="btn btn-outline">Clear All Bookings</button>
-                        <button onclick="adminSystem.refreshBookings()" class="btn btn-outline">Refresh</button>
+                        <button onclick="adminSystem.exportBookings()" class="btn">Exporteer Reserveringen (JSON)</button>
+                        <button onclick="adminSystem.clearAllBookings()" class="btn btn-outline">Alle Reserveringen Wissen</button>
+                        <button onclick="adminSystem.refreshBookings()" class="btn btn-outline">Vernieuwen</button>
                     </div>
                 </div>
 
                 <!-- Filters -->
                 <div class="filters">
-                    <h3>Filter Bookings</h3>
+                    <h3>Filter Reserveringen</h3>
                     <div class="filter-controls">
                         <select id="boatFilter" class="filter-select" onchange="adminSystem.filterBookings()">
-                            <option value="">All Boats</option>
+                            <option value="">Alle Boten</option>
                             <option value="classic-tender-720">Classic tender 720</option>
                             <option value="electrosloop-10">Electrosloep 10 pers</option>
     
@@ -471,20 +471,20 @@
                             <option value="sup-board">SUP board 1 pers</option>
                         </select>
                         <select id="statusFilter" class="filter-select" onchange="adminSystem.filterBookings()">
-                            <option value="">All Status</option>
-                            <option value="not-confirmed">Not Confirmed</option>
-                            <option value="confirmed-not-paid">Confirmed, Not Paid</option>
-                            <option value="confirmed-paid">Confirmed & Paid</option>
-                            <option value="payment-rejected">Payment Rejected</option>
+                            <option value="">Alle Statussen</option>
+                            <option value="not-confirmed">Niet Bevestigd</option>
+                            <option value="confirmed-not-paid">Bevestigd, Niet Betaald</option>
+                            <option value="confirmed-paid">Bevestigd & Betaald</option>
+                            <option value="payment-rejected">Betaling Geweigerd</option>
                         </select>
-                        <input type="date" id="dateFilter" class="filter-select" onchange="adminSystem.filterBookings()" placeholder="Filter by date">
+                        <input type="date" id="dateFilter" class="filter-select" onchange="adminSystem.filterBookings()" placeholder="Filter op datum">
                     </div>
                 </div>
 
                 <!-- Bookings List -->
                 <div class="bookings-container">
                     <div class="bookings-header">
-                        <h3>All Bookings</h3>
+                        <h3>Alle Reserveringen</h3>
                     </div>
                     <div class="bookings-list" id="bookingsList">
                         <!-- Bookings will be loaded here -->
@@ -565,7 +565,7 @@
                 if (!container) return;
                 
                 if (this.filteredBookings.length === 0) {
-                    container.innerHTML = '<div class="no-bookings"><p>No bookings found.</p></div>';
+                    container.innerHTML = '<div class="no-bookings"><p>Geen reserveringen gevonden.</p></div>';
                     return;
                 }
                 
@@ -618,11 +618,11 @@
                             </div>
                         ` : ''}
                         <div class="booking-actions">
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Confirm</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Mark Paid</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Reject Payment</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boat Picked Up</button>
-                            <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Delete</button>
+                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Bevestigen</button>
+                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Als Betaald Markeren</button>
+                            <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Betaling Weigeren</button>
+                            <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boot Opgehaald</button>
+                            <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
                         </div>
                     </div>
                 `;
@@ -647,11 +647,11 @@
             
             getStatusDisplayName(status) {
                 const statusNames = {
-                    'not-confirmed': 'Not Confirmed',
-                    'confirmed-not-paid': 'Confirmed, Not Paid',
-                    'confirmed-paid': 'Confirmed & Paid',
-                    'payment-rejected': 'Payment Rejected',
-                    'boat-picked-up': 'Boat Picked Up'
+                    'not-confirmed': 'Niet Bevestigd',
+                    'confirmed-not-paid': 'Bevestigd, Niet Betaald',
+                    'confirmed-paid': 'Bevestigd & Betaald',
+                    'payment-rejected': 'Betaling Geweigerd',
+                    'boat-picked-up': 'Boot Opgehaald'
                 };
                 return statusNames[status] || status;
             }
@@ -684,16 +684,21 @@
                     // Update boat availability based on status changes
                     this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
                     
+                    // Dispatch custom event for stock updates
+                    window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                        detail: { boatType: boatType, change: 0 }
+                    }));
+                    
                     this.saveBookings();
                     this.loadBookings();
                     this.renderBookings();
                     this.updateStats();
-                    alert('Booking status updated successfully!');
+                    alert('Reservering status succesvol bijgewerkt!');
                 }
             }
             
             deleteBooking(bookingId) {
-                if (confirm('Are you sure you want to delete this booking?')) {
+                if (confirm('Weet u zeker dat u deze reservering wilt verwijderen?')) {
                     const bookingToDelete = this.bookings.find(b => b.id === bookingId);
                     
                     this.bookings = this.bookings.filter(b => b.id !== bookingId);
@@ -703,13 +708,18 @@
                         bookingToDelete.status !== 'payment-rejected' && 
                         bookingToDelete.status !== 'boat-picked-up') {
                         this.updateBoatAvailabilityForStatusChange(bookingToDelete.boatType, bookingToDelete.status, 'payment-rejected');
+                        
+                        // Dispatch custom event for stock updates
+                        window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                            detail: { boatType: bookingToDelete.boatType, change: 1 }
+                        }));
                     }
                     
                     this.saveBookings();
                     this.loadBookings();
                     this.renderBookings();
                     this.updateStats();
-                    alert('Booking deleted successfully!');
+                    alert('Reservering succesvol verwijderd!');
                 }
             }
             
@@ -719,7 +729,7 @@
                     console.log('Bookings saved successfully');
                 } catch (error) {
                     console.error('Error saving bookings:', error);
-                    alert('Error saving bookings');
+                    alert('Fout bij opslaan van reserveringen');
                 }
             }
             
@@ -747,13 +757,13 @@
             }
             
             clearAllBookings() {
-                if (confirm('Are you sure you want to delete ALL bookings? This cannot be undone!')) {
+                if (confirm('Weet u zeker dat u ALLE reserveringen wilt verwijderen? Dit kan niet ongedaan worden gemaakt!')) {
                     localStorage.removeItem(this.storageKey);
                     this.bookings = [];
                     this.filteredBookings = [];
                     this.renderBookings();
                     this.updateStats();
-                    alert('All bookings cleared!');
+                    alert('Alle reserveringen gewist!');
                 }
             }
             
@@ -761,7 +771,7 @@
                 this.loadBookings();
                 this.renderBookings();
                 this.updateStats();
-                alert('Bookings refreshed!');
+                alert('Reserveringen vernieuwd!');
             }
             
             loadBoats() {
