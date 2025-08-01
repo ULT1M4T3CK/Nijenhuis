@@ -6,7 +6,14 @@ class MolliePaymentSystem {
     constructor() {
         this.apiKey = 'test_sHQfqTngBbCpEfMyMCPGH92gnm8P7m'; // Test API key
         this.baseUrl = 'https://api.mollie.com/v2';
-        this.webhookUrl = window.location.origin + '/webhook/mollie';
+        
+        // Set webhook URL based on environment
+        if (window.location.hostname === '85.215.195.147' || window.location.hostname.includes('85.215.195.147')) {
+            this.webhookUrl = 'http://85.215.195.147/webhook/mollie';
+        } else {
+            this.webhookUrl = window.location.origin + '/webhook/mollie';
+        }
+        
         this.init();
     }
     
@@ -23,9 +30,19 @@ class MolliePaymentSystem {
                                      window.location.hostname === '127.0.0.1' ||
                                      window.location.protocol === 'file:';
             
+            // Check if we're on the production server
+            const isProductionServer = window.location.hostname === '85.215.195.147' ||
+                                     window.location.hostname.includes('85.215.195.147');
+            
             if (isLocalDevelopment) {
                 console.log('Local development mode detected - simulating payment creation');
                 return this.createSimulatedPayment(bookingData);
+            }
+            
+            if (isProductionServer) {
+                console.log('Production server detected - using real Mollie API');
+                // Use production API key when available
+                // this.apiKey = 'live_YOUR_PRODUCTION_API_KEY';
             }
             
             const paymentData = {
@@ -34,7 +51,7 @@ class MolliePaymentSystem {
                     value: this.calculateBookingPrice(bookingData.boatType, bookingData.engineOption)
                 },
                 description: `Reservering ${bookingData.boatType} - ${bookingData.date}`,
-                redirectUrl: `${window.location.origin}/pages/payment-success.html?booking_id=${bookingData.id}`,
+                redirectUrl: this.getRedirectUrl(bookingData.id),
                 webhookUrl: this.webhookUrl,
                 metadata: {
                     booking_id: bookingData.id,
@@ -77,7 +94,7 @@ class MolliePaymentSystem {
         
         // Create proper URLs for local development
         const baseUrl = this.getBaseUrl();
-        const redirectUrl = `${baseUrl}pages/payment-success.html?booking_id=${bookingData.id}`;
+        const redirectUrl = this.getRedirectUrl(bookingData.id);
         const checkoutUrl = `${baseUrl}pages/payment-simulation.html?payment_id=${paymentId}&booking_id=${bookingData.id}`;
         
         const simulatedPayment = {
@@ -109,6 +126,15 @@ class MolliePaymentSystem {
         this.updateBookingWithPaymentId(bookingData.id, paymentId);
         
         return simulatedPayment;
+    }
+    
+    // Get redirect URL for payment success
+    getRedirectUrl(bookingId) {
+        if (window.location.hostname === '85.215.195.147' || window.location.hostname.includes('85.215.195.147')) {
+            return `http://85.215.195.147/pages/payment-success.html?booking_id=${bookingId}`;
+        } else {
+            return `${window.location.origin}/pages/payment-success.html?booking_id=${bookingId}`;
+        }
     }
     
     // Get base URL for local development
