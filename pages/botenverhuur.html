@@ -497,9 +497,9 @@
                         </ul>
                         
                         <div style="text-align: center; margin-top: 20px;">
-                            <a href="tel:0522281528" class="btn" style="display: inline-block; padding: 10px 25px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
-                                📞 Direct Reserveren
-                            </a>
+                            <button onclick="openBookingForm('${boatName}')" class="btn" style="display: inline-block; padding: 10px 25px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; border: none; cursor: pointer;">
+                                📅 Direct Reserveren
+                            </button>
                         </div>
                     </div>
                 `;
@@ -530,6 +530,33 @@
                 
                 document.body.appendChild(infoModal);
             }
+        }
+
+        // Function to open booking form
+        function openBookingForm(boatName) {
+            // Close the current modal first
+            const currentModal = document.querySelector('.modal.active');
+            if (currentModal) {
+                currentModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Redirect to index.html with boat pre-selected
+            const boatTypeMap = {
+                'Classic tender 720': 'classic-tender-720',
+                'Classic tender 570': 'classic-tender-570',
+                'Electrosloep': 'electrosloop-8',
+                'Electroboot': 'electroboat-5',
+                'Zeilboot': 'sailboat-4-5',
+                'Canadese Kano': 'canoe-3',
+                'Kajak': 'kayak-2',
+                'SUP board': 'sup-board',
+                'Zeilpunter': 'sailpunter-3-4'
+            };
+            
+            const boatType = boatTypeMap[boatName] || '';
+            const url = `./index.html${boatType ? `?boat=${boatType}` : ''}`;
+            window.location.href = url;
         }
 
         // Slideshow functions

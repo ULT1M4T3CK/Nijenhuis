@@ -416,6 +416,25 @@
                 engineOptionRow.style.display = 'none';
             }
         }
+
+        // Function to handle URL parameters and pre-select boat
+        function handleUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const boatType = urlParams.get('boat');
+            
+            if (boatType) {
+                const boatSelect = document.getElementById('boatType');
+                if (boatSelect) {
+                    boatSelect.value = boatType;
+                    updateEngineOption(); // Update engine option if needed
+                }
+            }
+        }
+
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            handleUrlParameters();
+        });
     </script>
 
     <!-- Booking Modal -->
