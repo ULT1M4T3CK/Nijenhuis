@@ -212,7 +212,38 @@
         
         .booking-card:hover {
             box-shadow: var(--shadow-md);
-            border-color: var(--primary-color);
+        }
+        
+        /* Booking card status colors */
+        .booking-card.status-not-confirmed {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+        
+        .booking-card.status-confirmed-not-paid {
+            background: #ffe8cc;
+            border-color: #ffb74d;
+        }
+        
+        .booking-card.status-confirmed-paid {
+            background: #d4edda;
+            border-color: #4caf50;
+        }
+        
+        .booking-card.status-payment-rejected {
+            background: #f8d7da;
+            border-color: #f44336;
+        }
+        
+        .booking-card.status-boat-picked-up {
+            background: #d4edda;
+            border-color: #4caf50;
+        }
+        
+        .booking-card.status-boat-picked-up .booking-details,
+        .booking-card.status-boat-picked-up .booking-header {
+            text-decoration: line-through;
+            opacity: 0.7;
         }
         
         .booking-header {
@@ -552,7 +583,7 @@
                 const statusText = this.getStatusDisplayName(booking.status);
                 
                 return `
-                    <div class="booking-card">
+                    <div class="booking-card ${statusClass}">
                         <div class="booking-header">
                             <div class="booking-date">${date}</div>
                             <span class="booking-status ${statusClass}">${statusText}</span>
@@ -585,6 +616,7 @@
                             <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Confirm</button>
                             <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Mark Paid</button>
                             <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Reject Payment</button>
+                            <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boat Picked Up</button>
                             <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Delete</button>
                         </div>
                     </div>
@@ -594,8 +626,8 @@
             getBoatDisplayName(boatType) {
                 const boatNames = {
                     'classic-tender-720': 'Classic tender 720 (10/12 pers)',
+                    'classic-tender-570': 'Classic tender 570 (8 pers)',
                     'electrosloop-10': 'Electrosloep voor 10 pers',
-        
                     'electrosloop-8': 'Electrosloep voor 8 pers',
                     'sailboat-4-5': 'Zeilboot 4/5 pers',
                     'sailpunter-3-4': 'Zeilpunter 3/4 pers',
@@ -613,7 +645,8 @@
                     'not-confirmed': 'Not Confirmed',
                     'confirmed-not-paid': 'Confirmed, Not Paid',
                     'confirmed-paid': 'Confirmed & Paid',
-                    'payment-rejected': 'Payment Rejected'
+                    'payment-rejected': 'Payment Rejected',
+                    'boat-picked-up': 'Boat Picked Up'
                 };
                 return statusNames[status] || status;
             }
