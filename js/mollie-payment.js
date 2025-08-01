@@ -9,7 +9,8 @@ class MolliePaymentSystem {
         
         // Set webhook URL based on environment
         if (window.location.hostname === '85.215.195.147' || window.location.hostname.includes('85.215.195.147')) {
-            this.webhookUrl = 'http://85.215.195.147/webhook/mollie';
+            // For Plesk hosting, use the PHP webhook handler
+            this.webhookUrl = window.location.origin + '/webhook_handler_plesk.php';
         } else {
             this.webhookUrl = window.location.origin + '/webhook/mollie';
         }
