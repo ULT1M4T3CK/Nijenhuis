@@ -51,7 +51,7 @@ class SimpleBookingSystem {
         const engineOption = formData.get('engineOption');
         
         if (!date || !boatType) {
-            alert('Please select both date and boat type');
+            alert('Selecteer zowel datum als boottype');
             return;
         }
         
@@ -138,10 +138,10 @@ class SimpleBookingSystem {
             bookingError.classList.remove('hidden');
             bookingError.innerHTML = `
                 <div class="error-message">
-                    <h3>❌ Boat Not Available</h3>
-                    <p>The ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)} is not available on ${this.formatDate(this.currentBooking.date)}.</p>
-                    <p>Please try a different date or boat type.</p>
-                    <button onclick="window.bookingSystem.closeModal()" class="btn">Close</button>
+                    <h3>❌ Boot Niet Beschikbaar</h3>
+                    <p>De ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)} is niet beschikbaar op ${this.formatDate(this.currentBooking.date)}.</p>
+                    <p>Probeer een andere datum of boottype.</p>
+                    <button onclick="window.bookingSystem.closeModal()" class="btn">Sluiten</button>
                 </div>
             `;
         }
@@ -152,9 +152,9 @@ class SimpleBookingSystem {
         if (summaryElement) {
             summaryElement.innerHTML = `
                 <div class="booking-summary">
-                    <h3>Booking Summary</h3>
-                    <p><strong>Date:</strong> ${this.formatDate(this.currentBooking.date)}</p>
-                    <p><strong>Boat:</strong> ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)}</p>
+                    <h3>Reservering Samenvatting</h3>
+                    <p><strong>Datum:</strong> ${this.formatDate(this.currentBooking.date)}</p>
+                    <p><strong>Boot:</strong> ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)}</p>
                 </div>
             `;
         }
@@ -211,7 +211,7 @@ class SimpleBookingSystem {
         
         // Validate required fields
         if (!customerName || !customerEmail || !customerPhone) {
-            alert('Please fill in all required fields');
+            alert('Vul alle verplichte velden in');
             return;
         }
         
@@ -332,12 +332,12 @@ class SimpleBookingSystem {
             bookingSuccess.classList.remove('hidden');
             bookingSuccess.innerHTML = `
                 <div class="success-message">
-                    <h3>✅ Booking Submitted Successfully!</h3>
-                    <p>Your booking for the ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)} on ${this.formatDate(this.currentBooking.date)} has been submitted.</p>
-                    <p>We will contact you soon to confirm your reservation.</p>
+                    <h3>✅ Reservering Succesvol Ingediend!</h3>
+                    <p>Uw reservering voor de ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)} op ${this.formatDate(this.currentBooking.date)} is ingediend.</p>
+                    <p>Wij nemen binnenkort contact met u op om uw reservering te bevestigen.</p>
                     <div class="success-actions">
-                        <button onclick="window.bookingSystem.closeModal()" class="btn">Close</button>
-                        <button onclick="window.bookingSystem.retryBooking()" class="btn btn-outline">Make Another Booking</button>
+                        <button onclick="window.bookingSystem.closeModal()" class="btn">Sluiten</button>
+                        <button onclick="window.bookingSystem.retryBooking()" class="btn btn-outline">Nog Een Reservering Maken</button>
                     </div>
                 </div>
             `;

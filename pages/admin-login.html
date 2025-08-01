@@ -169,8 +169,8 @@
         <div class="admin-login-card">
             <div class="admin-login-logo">
                 <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" style="filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);">
-                <h1 class="admin-login-title">Admin Login</h1>
-                <p class="admin-login-subtitle">Booking Management System</p>
+                                    <h1 class="admin-login-title">Admin Inloggen</h1>
+                    <p class="admin-login-subtitle">Reservering Beheer Systeem</p>
             </div>
             
             <div id="adminError" class="admin-error"></div>
@@ -178,17 +178,17 @@
             
             <form id="adminLoginForm">
                 <div class="admin-form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Gebruikersnaam</label>
                     <input type="text" id="username" name="username" required autocomplete="username">
                 </div>
                 
                 <div class="admin-form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Wachtwoord</label>
                     <input type="password" id="password" name="password" required autocomplete="current-password">
                 </div>
                 
                 <button type="submit" class="admin-login-btn" id="loginBtn">
-                    Login
+                    Inloggen
                 </button>
             </form>
             
@@ -230,10 +230,10 @@
                 const username = this.usernameInput.value.trim();
                 const password = this.passwordInput.value;
                 
-                if (!username || !password) {
-                    this.showError('Please enter both username and password');
-                    return;
-                }
+                            if (!username || !password) {
+                this.showError('Voer zowel gebruikersnaam als wachtwoord in');
+                return;
+            }
                 
                 this.showLoading(true);
                 
@@ -243,7 +243,7 @@
                     if (this.authenticate(username, password)) {
                         this.loginSuccess();
                     } else {
-                        this.showError('Invalid username or password');
+                        this.showError('Ongeldige gebruikersnaam of wachtwoord');
                         this.showLoading(false);
                     }
                 }, 1000);
@@ -265,7 +265,7 @@
                 localStorage.setItem('adminUser', this.usernameInput.value);
                 localStorage.setItem('adminLoginTime', new Date().toISOString());
                 
-                this.showSuccess('Login successful! Redirecting...');
+                this.showSuccess('Inloggen succesvol! Doorverwijzen...');
                 this.showLoading(false);
                 
                 // Redirect to admin dashboard
@@ -275,16 +275,8 @@
             }
             
             redirectToAdmin() {
-                // Check if we're in a local environment
-                const isLocal = window.location.hostname === 'localhost' || 
-                              window.location.hostname === '127.0.0.1' ||
-                              window.location.protocol === 'file:';
-                
-                if (isLocal) {
-                    window.location.href = '../admin/admin-simple.html';
-                } else {
-                    window.location.href = '../admin/index.html';
-                }
+                // Always redirect to admin-simple.html (local storage system)
+                window.location.href = '../admin/admin-simple.html';
             }
             
             isLoggedIn() {
