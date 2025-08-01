@@ -148,15 +148,15 @@ class SimpleBookingSystem {
     }
     
     updateBookingSummary() {
-        const summaryElement = document.getElementById('bookingSummary');
-        if (summaryElement) {
-            summaryElement.innerHTML = `
-                <div class="booking-summary">
-                    <h3>Reservering Samenvatting</h3>
-                    <p><strong>Datum:</strong> ${this.formatDate(this.currentBooking.date)}</p>
-                    <p><strong>Boot:</strong> ${this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption)}</p>
-                </div>
-            `;
+        const summaryDateElement = document.getElementById('summaryDate');
+        const summaryBoatElement = document.getElementById('summaryBoat');
+        
+        if (summaryDateElement) {
+            summaryDateElement.textContent = this.formatDate(this.currentBooking.date);
+        }
+        
+        if (summaryBoatElement) {
+            summaryBoatElement.textContent = this.getBoatDisplayName(this.currentBooking.boatType, this.currentBooking.engineOption);
         }
     }
     
