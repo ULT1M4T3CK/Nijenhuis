@@ -212,6 +212,106 @@
             transform: translateY(-1px);
         }
         
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal.hidden {
+            display: none;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: var(--font-size-xl);
+            cursor: pointer;
+            color: var(--text-secondary);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+        
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 113, 187, 0.1);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: flex-end;
+            margin-top: var(--spacing-lg);
+        }
+        
         .stats-summary {
             background: var(--white);
             padding: var(--spacing-xl);
@@ -401,6 +501,51 @@
                 </div>
             </div>
         </main>
+    </div>
+
+    <!-- Manual Booking Modal -->
+    <div id="manualBookingModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Handmatige Reservering</h3>
+                <button class="modal-close" onclick="boatManager.closeManualBookingModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="manualBookingForm">
+                    <div class="form-group">
+                        <label for="manualCustomerName">Klantnaam *</label>
+                        <input type="text" id="manualCustomerName" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manualCustomerEmail">E-mailadres *</label>
+                        <input type="email" id="manualCustomerEmail" name="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manualCustomerPhone">Telefoonnummer *</label>
+                        <input type="tel" id="manualCustomerPhone" name="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="manualBookingDate">Datum *</label>
+                        <input type="date" id="manualBookingDate" name="bookingDate" required>
+                    </div>
+                    <div class="form-group" id="manualEngineOptionGroup" style="display: none;">
+                        <label for="manualEngineOption">Motor optie</label>
+                        <select id="manualEngineOption" name="engineOption">
+                            <option value="without">Zonder motor</option>
+                            <option value="with">Met motor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="manualNotes">Opmerkingen</label>
+                        <textarea id="manualNotes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Reservering Maken</button>
+                        <button type="button" class="btn btn-outline" onclick="boatManager.closeManualBookingModal()">Annuleren</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -636,7 +781,7 @@
             }
             
             createBoatCard(boat) {
-                const displayName = boat.hasEngine ? `${boat.name} (met motor)` : boat.name;
+                const displayName = boat.hasEngine ? 'Zeilboot met motor' : boat.name;
                 
                 return `
                     <div class="boat-card">
@@ -647,17 +792,11 @@
                                 <div class="boat-capacity">${boat.capacity} personen</div>
                                 <div class="boat-price">€${boat.price}/dag</div>
                             </div>
-                            <div class="availability-controls">
+                            <div class="availability-display">
                                 <div class="availability-label">Beschikbaar:</div>
-                                <div class="quantity-controls">
-                                    <button class="quantity-btn" onclick="boatManager.updateQuantity('${boat.id}', -1)">-</button>
-                                    <div class="quantity-display">${boat.available}</div>
-                                    <button class="quantity-btn" onclick="boatManager.updateQuantity('${boat.id}', 1)">+</button>
-                                </div>
+                                <div class="quantity-display">${boat.available}</div>
                             </div>
                             <div class="boat-actions">
-                                <button onclick="boatManager.resetQuantity('${boat.id}')" class="btn btn-small btn-outline">Reset</button>
-                                <button onclick="boatManager.editBoat('${boat.id}')" class="btn btn-small">Bewerken</button>
                                 <button onclick="boatManager.manualBooking('${boat.id}')" class="btn btn-small btn-manual-booking">Handmatige Reservering</button>
                             </div>
                         </div>
@@ -676,33 +815,6 @@
                 }
             }
             
-            resetQuantity(boatId) {
-                const defaultBoats = this.getDefaultBoats();
-                const defaultBoat = defaultBoats.find(b => b.id === boatId);
-                const boat = this.boats.find(b => b.id === boatId);
-                
-                if (boat && defaultBoat) {
-                    boat.available = defaultBoat.available;
-                    this.saveBoats();
-                    this.renderBoats();
-                    this.updateStats();
-                }
-            }
-            
-            editBoat(boatId) {
-                // Simple edit functionality - could be expanded
-                const boat = this.boats.find(b => b.id === boatId);
-                if (boat) {
-                    const newPrice = prompt(`Voer nieuwe prijs in voor ${boat.name}:`, boat.price);
-                    if (newPrice && !isNaN(newPrice)) {
-                        boat.price = parseInt(newPrice);
-                        this.saveBoats();
-                        this.renderBoats();
-                        this.updateStats();
-                    }
-                }
-            }
-            
             manualBooking(boatId) {
                 const boat = this.boats.find(b => b.id === boatId);
                 if (!boat) return;
@@ -712,27 +824,77 @@
                     return;
                 }
                 
-                // Get booking details from admin
-                const customerName = prompt('Klantnaam:');
-                if (!customerName) return;
+                // Store the boat ID for the form submission
+                this.currentManualBookingBoatId = boatId;
+                this.currentManualBookingBoat = boat;
                 
-                const customerEmail = prompt('E-mailadres:');
-                if (!customerEmail) return;
+                // Show/hide engine option for sailboats
+                const engineOptionGroup = document.getElementById('manualEngineOptionGroup');
+                if (engineOptionGroup) {
+                    engineOptionGroup.style.display = boat.category === 'sailing' ? 'block' : 'none';
+                }
                 
-                const customerPhone = prompt('Telefoonnummer:');
-                if (!customerPhone) return;
+                // Set default date to today
+                const dateInput = document.getElementById('manualBookingDate');
+                if (dateInput) {
+                    const today = new Date().toISOString().split('T')[0];
+                    dateInput.value = today;
+                }
                 
-                const bookingDate = prompt('Datum (YYYY-MM-DD):');
-                if (!bookingDate) return;
+                // Show the modal
+                this.showManualBookingModal();
+            }
+            
+            showManualBookingModal() {
+                const modal = document.getElementById('manualBookingModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Set up form submission
+                    const form = document.getElementById('manualBookingForm');
+                    if (form) {
+                        form.onsubmit = (e) => this.handleManualBookingSubmit(e);
+                    }
+                }
+            }
+            
+            closeManualBookingModal() {
+                const modal = document.getElementById('manualBookingModal');
+                if (modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    
+                    // Reset form
+                    const form = document.getElementById('manualBookingForm');
+                    if (form) {
+                        form.reset();
+                    }
+                }
+            }
+            
+            handleManualBookingSubmit(e) {
+                e.preventDefault();
                 
-                const notes = prompt('Opmerkingen (optioneel):') || '';
+                const formData = new FormData(e.target);
+                const customerName = formData.get('customerName');
+                const customerEmail = formData.get('customerEmail');
+                const customerPhone = formData.get('customerPhone');
+                const bookingDate = formData.get('bookingDate');
+                const engineOption = formData.get('engineOption');
+                const notes = formData.get('notes') || '';
+                
+                if (!customerName || !customerEmail || !customerPhone || !bookingDate) {
+                    alert('Vul alle verplichte velden in');
+                    return;
+                }
                 
                 // Create booking object
                 const bookingData = {
                     id: 'manual_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
                     date: bookingDate,
-                    boatType: boatId,
-                    engineOption: boat.hasEngine ? 'with' : null,
+                    boatType: this.currentManualBookingBoatId,
+                    engineOption: this.currentManualBookingBoat.category === 'sailing' ? engineOption : null,
                     customerName,
                     customerEmail,
                     customerPhone,
@@ -746,11 +908,11 @@
                 this.saveManualBooking(bookingData);
                 
                 // Update boat availability
-                this.updateQuantity(boatId, -1);
+                this.updateQuantity(this.currentManualBookingBoatId, -1);
                 
                 // Dispatch event for admin system update
                 window.dispatchEvent(new CustomEvent('boatStockUpdated', {
-                    detail: { boatType: boatId, change: -1 }
+                    detail: { boatType: this.currentManualBookingBoatId, change: -1 }
                 }));
                 
                 // Refresh admin booking display if available
@@ -758,7 +920,9 @@
                     refreshAdminBookings();
                 }
                 
-                alert(`Handmatige reservering succesvol gemaakt voor ${boat.name}`);
+                // Close modal and show success message
+                this.closeManualBookingModal();
+                alert(`Handmatige reservering succesvol gemaakt voor ${this.currentManualBookingBoat.name}`);
             }
             
             saveManualBooking(bookingData) {
@@ -808,23 +972,49 @@
                 if (!container) return;
                 
                 if (this.boats.length === 0) {
-                    container.innerHTML = '<div class="no-boats"><p>No boats found.</p></div>';
+                    container.innerHTML = '<div class="no-boats"><p>Geen boten gevonden.</p></div>';
                     return;
                 }
                 
-                // Sort boats by category and name for consistent display
-                const sortedBoats = [...this.boats].sort((a, b) => {
+                // Group boats by category and combine sailboats
+                const groupedBoats = this.groupBoatsForStockDisplay();
+                
+                container.innerHTML = groupedBoats.map(boat => this.createStockItem(boat)).join('');
+            }
+            
+            groupBoatsForStockDisplay() {
+                const grouped = [];
+                const sailboats = this.boats.filter(b => b.category === 'sailing');
+                const otherBoats = this.boats.filter(b => b.category !== 'sailing');
+                
+                // Add non-sailing boats
+                otherBoats.forEach(boat => {
+                    grouped.push(boat);
+                });
+                
+                // Combine sailboats into one entry
+                if (sailboats.length > 0) {
+                    const totalSailboatAvailable = sailboats.reduce((sum, boat) => sum + boat.available, 0);
+                    const combinedSailboat = {
+                        id: 'sailboat-combined',
+                        name: 'Zeilboot',
+                        available: totalSailboatAvailable,
+                        category: 'sailing'
+                    };
+                    grouped.push(combinedSailboat);
+                }
+                
+                // Sort by category
+                return grouped.sort((a, b) => {
                     const categoryOrder = { 'electric': 0, 'sailing': 1, 'canoe': 2, 'sup': 3 };
                     const categoryDiff = categoryOrder[a.category] - categoryOrder[b.category];
                     if (categoryDiff !== 0) return categoryDiff;
                     return a.name.localeCompare(b.name);
                 });
-                
-                container.innerHTML = sortedBoats.map(boat => this.createStockItem(boat)).join('');
             }
             
             createStockItem(boat) {
-                const displayName = boat.hasEngine ? `${boat.name} (met motor)` : boat.name;
+                const displayName = boat.id === 'sailboat-combined' ? 'Zeilboot' : boat.name;
                 let stockClass = '';
                 let countClass = '';
                 
