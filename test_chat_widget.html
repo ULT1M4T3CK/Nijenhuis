@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .status.success { background-color: #d4edda; color: #155724; }
+        .status.error { background-color: #f8d7da; color: #721c24; }
+        .status.info { background-color: #d1ecf1; color: #0c5460; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #007bff;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+        }
+        .chat-window.active {
+            display: flex;
+        }
+        .chat-header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .chat-send {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+        .message.user {
+            background: #007bff;
+            color: white;
+            margin-left: auto;
+        }
+        .message.bot {
+            background: #f1f1f1;
+            color: #333;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: #666;
+        }
+        .typing-dots {
+            display: flex;
+            margin-left: 5px;
+        }
+        .typing-dots span {
+            width: 4px;
+            height: 4px;
+            background: #666;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; }
+            30% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🤖 Chat Widget Test</h1>
+        <p>This page tests the chat widget functionality to ensure it's working properly.</p>
+        
+        <div id="status-container">
+            <div class="status info">Testing chat widget initialization...</div>
+        </div>
+        
+        <div>
+            <button onclick="testChatButton()">Test Chat Button</button>
+            <button onclick="testChatWindow()">Test Chat Window</button>
+            <button onclick="testAPI()">Test API Connection</button>
+            <button onclick="testSendMessage()">Test Send Message</button>
+        </div>
+        
+        <h3>Test Instructions:</h3>
+        <ol>
+            <li>Click "Test Chat Button" to verify the chat button exists</li>
+            <li>Click "Test Chat Window" to verify the chat window can be opened</li>
+            <li>Click "Test API Connection" to verify the backend is reachable</li>
+            <li>Click "Test Send Message" to test sending a message</li>
+            <li>Try clicking the chat button (💬) in the bottom right corner</li>
+        </ol>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton" aria-label="Open chat">
+            💬
+        </button>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Nijenhuis Support</h3>
+                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500">
+                <button class="chat-send" id="chatSend" aria-label="Send message">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/simple-chatbot.js" defer></script>
+    <script>
+        function addStatus(message, type = 'info') {
+            const container = document.getElementById('status-container');
+            const status = document.createElement('div');
+            status.className = `status ${type}`;
+            status.textContent = message;
+            container.appendChild(status);
+        }
+
+        function testChatButton() {
+            const button = document.getElementById('chatButton');
+            if (button) {
+                addStatus('✅ Chat button found and accessible', 'success');
+            } else {
+                addStatus('❌ Chat button not found', 'error');
+            }
+        }
+
+        function testChatWindow() {
+            const window = document.getElementById('chatWindow');
+            const button = document.getElementById('chatButton');
+            if (window && button) {
+                button.click();
+                setTimeout(() => {
+                    if (window.classList.contains('active')) {
+                        addStatus('✅ Chat window opens correctly', 'success');
+                        button.click(); // Close it again
+                    } else {
+                        addStatus('❌ Chat window does not open', 'error');
+                    }
+                }, 100);
+            } else {
+                addStatus('❌ Chat window or button not found', 'error');
+            }
+        }
+
+        async function testAPI() {
+            try {
+                const response = await fetch('http://localhost:5001/api/health');
+                if (response.ok) {
+                    const data = await response.json();
+                    addStatus('✅ API connection successful - Server is running', 'success');
+                } else {
+                    addStatus('❌ API connection failed - Server responded with error', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ API connection failed - ${error.message}`, 'error');
+            }
+        }
+
+        async function testSendMessage() {
+            try {
+                const response = await fetch('http://localhost:5001/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: 'Test message' })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addStatus('✅ Message sent successfully - Chatbot responded', 'success');
+                } else {
+                    addStatus('❌ Message sending failed', 'error');
+                }
+            } catch (error) {
+                addStatus(`❌ Message sending failed - ${error.message}`, 'error');
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testChatButton();
+                testAPI();
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 

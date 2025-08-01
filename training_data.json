@@ -1,0 +1,127 @@
+{
+  "training_sessions": [
+    {
+      "question": "Wat kost de Tender 720?",
+      "original_response": "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen.",
+      "corrected_response": "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+      "detected_language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:30:00",
+      "status": "Corrected"
+    },
+    {
+      "question": "How much does the Tender 570 cost?",
+      "original_response": "The Tender 570 costs €200 per day and is suitable for up to 8 people.",
+      "corrected_response": "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+      "detected_language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:35:00",
+      "status": "Corrected"
+    },
+    {
+      "question": "Was sind die Öffnungszeiten?",
+      "original_response": "Wir sind täglich von 09:00 bis 18:00 Uhr geöffnet.",
+      "corrected_response": "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethoorn.",
+      "detected_language": "de",
+      "response_type": "opening_hours",
+      "timestamp": "2025-07-30T10:40:00",
+      "status": "Corrected"
+    },
+    {
+      "question": "How much does  a sailboat cost",
+      "original_response": "Our sailboats cost €70-85 per day, depending on size (4-5 meters). Perfect for sailing enthusiasts who want to explore the Frisian lakes.",
+      "detected_language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:26:11.520995",
+      "corrected_response": "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed.",
+      "status": "Corrected"
+    },
+    {
+      "question": "Hoeveel voor en zeilboot?",
+      "original_response": "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
+      "detected_language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:59:51.134555",
+      "corrected_response": "We bieden twee opties aan:\nDe zeilboot met motor kost €85 per dag, zonder motor €70 per dag.\nHoud er rekening mee dat het huren van deze boot vereist dat u een ervaren zeiler bent.\nHuisdieren zijn niet toegestaan.",
+      "status": "Corrected"
+    },
+    {
+      "question": "Wie viel kostet ein Segelboot?",
+      "original_response": "Hier zijn onze actuele prijzen per dag: Tender 720 (12 personen): €230, Tender 570 (8 personen): €200, Electrosloep 10 (10 personen): €200, Electrosloep 8 (8 personen): €175, Zeilboot 4-5 meter: €70-85, Kano/Kajak: €25, Sup Board: €35. Alle prijzen zijn inclusief brandstof en verzekering.",
+      "detected_language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T11:25:14.430147",
+      "corrected_response": "Wir bieten zwei Optionen an:\nDas Segelboot mit Motor kostet 85 € pro Tag, ohne Motor 70 € pro Tag.\nBitte beachten Sie, dass zum Mieten dieses Bootes ein erfahrener Segler erforderlich ist.\nHaustiere sind nicht erlaubt.",
+      "corrected_language": "de",
+      "corrected_category": "pricing",
+      "status": "Corrected"
+    },
+    {
+      "question": "Hoe kan ik reserveren",
+      "original_response": "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
+      "detected_language": "",
+      "response_type": "reservation",
+      "timestamp": "2025-07-30T12:12:51.052148",
+      "corrected_response": "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+      "corrected_language": "nl",
+      "corrected_category": "booking",
+      "status": "Corrected"
+    }
+  ],
+  "improved_responses": {
+    "wat kost de tender 720?": {
+      "original": "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen.",
+      "corrected": "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:30:00"
+    },
+    "how much does the tender 570 cost?": {
+      "original": "The Tender 570 costs €200 per day and is suitable for up to 8 people.",
+      "corrected": "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:35:00"
+    },
+    "was sind die öffnungszeiten?": {
+      "original": "Wir sind täglich von 09:00 bis 18:00 Uhr geöffnet.",
+      "corrected": "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+      "language": "de",
+      "response_type": "opening_hours",
+      "timestamp": "2025-07-30T10:40:00"
+    },
+    "how much does  a sailboat cost": {
+      "original": "Our sailboats cost €70-85 per day, depending on size (4-5 meters). Perfect for sailing enthusiasts who want to explore the Frisian lakes.",
+      "corrected": "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:26:11.520995"
+    },
+    "hoeveel voor en zeilboot?": {
+      "original": "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
+      "corrected": "We bieden twee opties aan:\nDe zeilboot met motor kost €85 per dag, zonder motor €70 per dag.\nHoud er rekening mee dat het huren van deze boot vereist dat u een ervaren zeiler bent.\nHuisdieren zijn niet toegestaan.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T10:59:51.134555"
+    },
+    "wie viel kostet ein segelboot?": {
+      "original": "Hier zijn onze actuele prijzen per dag: Tender 720 (12 personen): €230, Tender 570 (8 personen): €200, Electrosloep 10 (10 personen): €200, Electrosloep 8 (8 personen): €175, Zeilboot 4-5 meter: €70-85, Kano/Kajak: €25, Sup Board: €35. Alle prijzen zijn inclusief brandstof en verzekering.",
+      "corrected": "Wir bieten zwei Optionen an:\nDas Segelboot mit Motor kostet 85 € pro Tag, ohne Motor 70 € pro Tag.\nBitte beachten Sie, dass zum Mieten dieses Bootes ein erfahrener Segler erforderlich ist.\nHaustiere sind nicht erlaubt.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-07-30T11:25:14.430147"
+    },
+    "hoe kan ik reserveren": {
+      "original": "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
+      "corrected": "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-07-30T12:12:51.052148"
+    }
+  },
+  "statistics": {
+    "total_tests": 7,
+    "improved_responses": 7,
+    "accuracy_score": 100.0
+  }
+}

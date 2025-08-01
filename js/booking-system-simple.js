@@ -200,7 +200,7 @@ class SimpleBookingSystem {
         });
     }
     
-    handleBookingDetailsSubmit(e) {
+    async handleBookingDetailsSubmit(e) {
         e.preventDefault();
         
         const formData = new FormData(e.target);
@@ -230,11 +230,23 @@ class SimpleBookingSystem {
             updatedAt: new Date().toISOString()
         };
         
-        // Save booking
+        // Save booking first
         this.saveBooking(bookingData);
         
-        // Show success message
-        this.showSuccessMessage();
+        // Show payment processing
+        this.showPaymentProcessing();
+        
+        try {
+            // Create Mollie payment
+            const payment = await window.molliePayment.createPayment(bookingData);
+            
+            // Redirect to Mollie payment page
+            window.molliePayment.redirectToPayment(payment);
+            
+        } catch (error) {
+            console.error('Payment creation failed:', error);
+            this.showPaymentError();
+        }
     }
     
     saveBooking(bookingData) {
@@ -322,6 +334,45 @@ class SimpleBookingSystem {
     
     generateId() {
         return 'booking_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    }
+    
+    showPaymentProcessing() {
+        const bookingDetailsForm = document.getElementById('bookingDetailsForm');
+        const bookingSuccess = document.getElementById('bookingSuccess');
+        
+        if (bookingDetailsForm) bookingDetailsForm.classList.add('hidden');
+        if (bookingSuccess) {
+            bookingSuccess.classList.remove('hidden');
+            bookingSuccess.innerHTML = `
+                <div class="payment-processing">
+                    <h3>💳 Betaling wordt verwerkt...</h3>
+                    <p>U wordt doorverwezen naar de betaalpagina van Mollie.</p>
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+    
+    showPaymentError() {
+        const bookingDetailsForm = document.getElementById('bookingDetailsForm');
+        const bookingError = document.getElementById('bookingError');
+        
+        if (bookingDetailsForm) bookingDetailsForm.classList.add('hidden');
+        if (bookingError) {
+            bookingError.classList.remove('hidden');
+            bookingError.innerHTML = `
+                <div class="error-message">
+                    <h3>❌ Betaling Fout</h3>
+                    <p>Er is een fout opgetreden bij het aanmaken van de betaling. Probeer het later opnieuw.</p>
+                    <div class="error-actions">
+                        <button onclick="window.bookingSystem.closeModal()" class="btn">Sluiten</button>
+                        <button onclick="window.bookingSystem.retryBooking()" class="btn btn-outline">Opnieuw Proberen</button>
+                    </div>
+                </div>
+            `;
+        }
     }
     
     showSuccessMessage() {

@@ -544,7 +544,76 @@
                 this.loadBookings();
                 this.renderBookings();
                 this.updateStats();
+                this.setupPaymentStatusListener();
                 console.log('Simple admin system initialized');
+            }
+            
+            setupPaymentStatusListener() {
+                // Listen for payment status updates from Mollie
+                window.addEventListener('paymentStatusUpdated', (event) => {
+                    const { bookingId, newStatus, paymentStatus } = event.detail;
+                    console.log(`Payment status updated for booking ${bookingId}: ${paymentStatus} -> ${newStatus}`);
+                    
+                    // Update the booking status in the admin system
+                    this.updateBookingStatusFromPayment(bookingId, newStatus, paymentStatus);
+                });
+                
+                // Listen for Mollie webhook events (for local development)
+                window.addEventListener('mollieWebhook', (event) => {
+                    const { paymentId, status } = event.detail;
+                    console.log(`Mollie webhook received: payment ${paymentId} status ${status}`);
+                    
+                    // Find booking by payment ID and update status
+                    this.updateBookingStatusByPaymentId(paymentId, status);
+                });
+            }
+            
+            updateBookingStatusFromPayment(bookingId, newStatus, paymentStatus) {
+                const bookingIndex = this.bookings.findIndex(b => b.id === bookingId);
+                if (bookingIndex !== -1) {
+                    const oldStatus = this.bookings[bookingIndex].status;
+                    const boatType = this.bookings[bookingIndex].boatType;
+                    
+                    this.bookings[bookingIndex].status = newStatus;
+                    this.bookings[bookingIndex].paymentStatus = paymentStatus;
+                    this.bookings[bookingIndex].updatedAt = new Date().toISOString();
+                    
+                    // Update boat availability based on status changes
+                    this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
+                    
+                    // Save and refresh
+                    this.saveBookings();
+                    this.renderBookings();
+                    this.updateStats();
+                    
+                    console.log(`Booking ${bookingId} status updated from ${oldStatus} to ${newStatus}`);
+                }
+            }
+            
+            updateBookingStatusByPaymentId(paymentId, status) {
+                const bookingIndex = this.bookings.findIndex(b => b.paymentId === paymentId);
+                if (bookingIndex !== -1) {
+                    const booking = this.bookings[bookingIndex];
+                    let newStatus;
+                    
+                    switch (status) {
+                        case 'paid':
+                            newStatus = 'confirmed-paid';
+                            break;
+                        case 'failed':
+                        case 'expired':
+                        case 'canceled':
+                            newStatus = 'payment-rejected';
+                            break;
+                        case 'pending':
+                            newStatus = 'confirmed-not-paid';
+                            break;
+                        default:
+                            newStatus = booking.status;
+                    }
+                    
+                    this.updateBookingStatusFromPayment(booking.id, newStatus, status);
+                }
             }
             
             loadBookings() {

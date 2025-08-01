@@ -1,0 +1,204 @@
+{
+  "interactions": [
+    {
+      "timestamp": "2025-07-30T11:51:36.111952",
+      "question": "wie viel kostet ein segelboot?",
+      "response": "Wir bieten zwei Optionen an:\nDas Segelboot mit Motor kostet 85 € pro Tag, ohne Motor 70 € pro Tag.\nBitte beachten Sie, dass zum Mieten dieses Bootes ein erfahrener Segler erforderlich ist.\nHaustiere sind nicht erlaubt.",
+      "success": true,
+      "response_time": 1.2874603271484375e-05,
+      "user_feedback": null,
+      "question_length": 30,
+      "response_length": 218,
+      "question_words": 5,
+      "response_words": 37
+    },
+    {
+      "timestamp": "2025-07-30T11:51:44.393918",
+      "question": "how much does a canoe cost?",
+      "response": "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
+      "success": true,
+      "response_time": 0.0006699562072753906,
+      "user_feedback": null,
+      "question_length": 27,
+      "response_length": 114,
+      "question_words": 6,
+      "response_words": 19
+    },
+    {
+      "timestamp": "2025-07-30T11:51:48.294954",
+      "question": "wat kost de tender 720?",
+      "response": "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+      "success": true,
+      "response_time": 1.3113021850585938e-05,
+      "user_feedback": null,
+      "question_length": 23,
+      "response_length": 194,
+      "question_words": 5,
+      "response_words": 31
+    },
+    {
+      "timestamp": "2025-07-30T12:02:03.832978",
+      "question": "wat kost een zeilboot?",
+      "response": "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
+      "success": true,
+      "response_time": 0.001024007797241211,
+      "user_feedback": null,
+      "question_length": 22,
+      "response_length": 144,
+      "question_words": 4,
+      "response_words": 21
+    },
+    {
+      "timestamp": "2025-07-30T12:02:07.788693",
+      "question": "how much for a sailboat",
+      "response": "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed.",
+      "success": true,
+      "response_time": 6.580352783203125e-05,
+      "user_feedback": null,
+      "question_length": 23,
+      "response_length": 198,
+      "question_words": 5,
+      "response_words": 36
+    },
+    {
+      "timestamp": "2025-07-30T12:02:10.957018",
+      "question": "hoe kan ik reserveren?",
+      "response": "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
+      "success": true,
+      "response_time": 0.0007290840148925781,
+      "user_feedback": null,
+      "question_length": 22,
+      "response_length": 242,
+      "question_words": 4,
+      "response_words": 34
+    },
+    {
+      "timestamp": "2025-07-30T12:02:14.457782",
+      "question": "what are your opening hours?",
+      "response": "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
+      "success": true,
+      "response_time": 0.0007398128509521484,
+      "user_feedback": null,
+      "question_length": 28,
+      "response_length": 185,
+      "question_words": 5,
+      "response_words": 32
+    },
+    {
+      "timestamp": "2025-07-30T12:12:51.048486",
+      "question": "hoe kan ik reserveren",
+      "response": "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
+      "success": true,
+      "response_time": 0.0023217201232910156,
+      "user_feedback": null,
+      "question_length": 21,
+      "response_length": 242,
+      "question_words": 4,
+      "response_words": 34
+    }
+  ],
+  "patterns": {
+    "common_words": {
+      "how": 2,
+      "much": 2,
+      "wat": 2,
+      "kost": 2,
+      "wie": 1,
+      "viel": 1,
+      "kostet": 1,
+      "ein": 1,
+      "segelboot": 1,
+      "wie viel kostet ein segelboot?": 1,
+      "does": 1,
+      "canoe": 1,
+      "cost": 1,
+      "how much does a canoe cost?": 1,
+      "tender": 1,
+      "720": 1,
+      "wat kost de tender 720?": 1,
+      "een": 1,
+      "zeilboot": 1,
+      "wat kost een zeilboot?": 1
+    },
+    "question_response": {
+      "how": {
+        "responses": [
+          "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
+          "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed."
+        ],
+        "success_rate": 1.0,
+        "avg_quality": 1.0,
+        "frequency": 2
+      },
+      "much": {
+        "responses": [
+          "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
+          "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed."
+        ],
+        "success_rate": 1.0,
+        "avg_quality": 1.0,
+        "frequency": 2
+      },
+      "wat": {
+        "responses": [
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen."
+        ],
+        "success_rate": 1.0,
+        "avg_quality": 1.0,
+        "frequency": 2
+      },
+      "kost": {
+        "responses": [
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen."
+        ],
+        "success_rate": 1.0,
+        "avg_quality": 1.0,
+        "frequency": 2
+      }
+    }
+  },
+  "improvements": [],
+  "statistics": {
+    "total_interactions": 8,
+    "successful_responses": 8,
+    "failed_responses": 0,
+    "common_questions": {
+      "wie viel kostet ein segelboot?": 1,
+      "how much does a canoe cost?": 1,
+      "wat kost de tender 720?": 1,
+      "wat kost een zeilboot?": 1,
+      "how much for a sailboat": 1,
+      "hoe kan ik reserveren?": 1,
+      "what are your opening hours?": 1,
+      "hoe kan ik reserveren": 1
+    },
+    "response_quality": {
+      "wie viel kostet ein segelboot?": [
+        0.9
+      ],
+      "how much does a canoe cost?": [
+        1.0
+      ],
+      "wat kost de tender 720?": [
+        1.0
+      ],
+      "wat kost een zeilboot?": [
+        1.0
+      ],
+      "how much for a sailboat": [
+        1.0
+      ],
+      "hoe kan ik reserveren?": [
+        0.9
+      ],
+      "what are your opening hours?": [
+        1.0
+      ],
+      "hoe kan ik reserveren": [
+        0.9
+      ]
+    }
+  }
+}
