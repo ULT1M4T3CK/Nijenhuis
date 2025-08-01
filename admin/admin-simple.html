@@ -253,6 +253,31 @@
             margin-bottom: var(--spacing-md);
         }
         
+        .booking-header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .type-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .type-badge.manual {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .type-badge.automatic {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
         .booking-date {
             font-weight: 600;
             color: var(--primary-color);
@@ -370,9 +395,37 @@
                 grid-template-columns: 1fr;
             }
             
-            .booking-actions {
-                flex-direction: column;
-            }
+                    .booking-actions {
+            flex-direction: column;
+        }
+        
+        .automatic-booking-info {
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            width: 100%;
+        }
+        
+        .info-badge {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .info-text {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            margin: 0;
+            line-height: 1.4;
+        }
         }
         
         @media (max-width: 480px) {
@@ -571,22 +624,29 @@
             updateBookingStatusFromPayment(bookingId, newStatus, paymentStatus) {
                 const bookingIndex = this.bookings.findIndex(b => b.id === bookingId);
                 if (bookingIndex !== -1) {
-                    const oldStatus = this.bookings[bookingIndex].status;
-                    const boatType = this.bookings[bookingIndex].boatType;
+                    const booking = this.bookings[bookingIndex];
                     
-                    this.bookings[bookingIndex].status = newStatus;
-                    this.bookings[bookingIndex].paymentStatus = paymentStatus;
-                    this.bookings[bookingIndex].updatedAt = new Date().toISOString();
-                    
-                    // Update boat availability based on status changes
-                    this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
-                    
-                    // Save and refresh
-                    this.saveBookings();
-                    this.renderBookings();
-                    this.updateStats();
-                    
-                    console.log(`Booking ${bookingId} status updated from ${oldStatus} to ${newStatus}`);
+                    // Only allow automatic status updates for automatic bookings
+                    if (booking.bookingType === 'automatic') {
+                        const oldStatus = booking.status;
+                        const boatType = booking.boatType;
+                        
+                        this.bookings[bookingIndex].status = newStatus;
+                        this.bookings[bookingIndex].paymentStatus = paymentStatus;
+                        this.bookings[bookingIndex].updatedAt = new Date().toISOString();
+                        
+                        // Update boat availability based on status changes
+                        this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
+                        
+                        // Save and refresh
+                        this.saveBookings();
+                        this.renderBookings();
+                        this.updateStats();
+                        
+                        console.log(`Automatic booking ${bookingId} status updated from ${oldStatus} to ${newStatus}`);
+                    } else {
+                        console.log(`Manual booking ${bookingId} - status updates only allowed via admin actions`);
+                    }
                 }
             }
             
@@ -613,6 +673,31 @@
                     }
                     
                     this.updateBookingStatusFromPayment(booking.id, newStatus, status);
+                }
+            }
+            
+            getBookingActions(booking) {
+                const bookingType = booking.bookingType || 'automatic';
+                
+                if (bookingType === 'manual') {
+                    // Manual bookings can have all status actions
+                    return `
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Bevestigen</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Als Betaald Markeren</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Betaling Weigeren</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boot Opgehaald</button>
+                        <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
+                    `;
+                } else {
+                    // Automatic bookings (from website) - limited actions
+                    // These bookings update automatically based on payment status
+                    return `
+                        <div class="automatic-booking-info">
+                            <span class="info-badge">Automatische Reservering</span>
+                            <p class="info-text">Status wordt automatisch bijgewerkt op basis van betaling</p>
+                        </div>
+                        <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
+                    `;
                 }
             }
             
@@ -655,12 +740,19 @@
                 const boatName = this.getBoatDisplayName(booking.boatType);
                 const statusClass = `status-${booking.status.replace('-', '-')}`;
                 const statusText = this.getStatusDisplayName(booking.status);
+                const bookingType = booking.bookingType || 'automatic';
+                const typeBadge = bookingType === 'manual' ? 
+                    '<span class="type-badge manual">Handmatig</span>' : 
+                    '<span class="type-badge automatic">Automatisch</span>';
                 
                 return `
                     <div class="booking-card ${statusClass}">
                         <div class="booking-header">
                             <div class="booking-date">${date}</div>
-                            <span class="booking-status ${statusClass}">${statusText}</span>
+                            <div class="booking-header-right">
+                                ${typeBadge}
+                                <span class="booking-status ${statusClass}">${statusText}</span>
+                            </div>
                         </div>
                         <div class="booking-details">
                             <div class="booking-detail">
@@ -687,11 +779,7 @@
                             </div>
                         ` : ''}
                         <div class="booking-actions">
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Bevestigen</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Als Betaald Markeren</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Betaling Weigeren</button>
-                            <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boot Opgehaald</button>
-                            <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
+                            ${this.getBookingActions(booking)}
                         </div>
                     </div>
                 `;

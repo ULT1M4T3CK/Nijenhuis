@@ -226,6 +226,7 @@ class SimpleBookingSystem {
             customerPhone,
             notes: notes || '',
             status: 'not-confirmed',
+            bookingType: 'automatic', // Flag for automatic bookings from website
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
         };
