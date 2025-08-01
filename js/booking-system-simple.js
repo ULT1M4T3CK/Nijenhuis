@@ -252,6 +252,7 @@ class SimpleBookingSystem {
             }
             
             // Dispatch custom event for stock updates
+            console.log('Dispatching boatStockUpdated event for:', bookingData.boatType);
             window.dispatchEvent(new CustomEvent('boatStockUpdated', {
                 detail: { boatType: bookingData.boatType, change: -1 }
             }));

@@ -436,9 +436,6 @@
                     return;
                 }
                 
-                // Clear old boat data to force refresh
-                localStorage.removeItem(this.storageKey);
-                
                 this.loadBoats();
                 this.renderBoats();
                 this.updateStats();
@@ -451,12 +448,13 @@
                     const stored = localStorage.getItem(this.storageKey);
                     if (stored) {
                         this.boats = JSON.parse(stored);
+                        console.log('Loaded boats from storage:', this.boats.length);
                     } else {
-                        // Initialize with default boats
+                        // Initialize with default boats only if no stored data exists
                         this.boats = this.getDefaultBoats();
                         this.saveBoats();
+                        console.log('Initialized with default boats:', this.boats.length);
                     }
-                    console.log('Loaded boats:', this.boats.length);
                 } catch (error) {
                     console.error('Error loading boats:', error);
                     this.boats = this.getDefaultBoats();
@@ -760,6 +758,7 @@
             
             // Method to refresh stock display from external systems (like booking system)
             refreshStockDisplay() {
+                console.log('refreshStockDisplay called');
                 this.loadBoats();
                 this.renderStockDisplay();
                 this.updateStats();
@@ -782,6 +781,7 @@
             
             // Listen for stock updates from booking system
             window.addEventListener('boatStockUpdated', (event) => {
+                console.log('boatStockUpdated event received:', event.detail);
                 if (window.boatManager) {
                     window.boatManager.refreshStockDisplay();
                 }
