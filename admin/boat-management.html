@@ -199,6 +199,19 @@
             border-radius: var(--radius-sm);
         }
         
+        .btn-manual-booking {
+            background: var(--primary-color) !important;
+            color: white !important;
+            font-weight: 600;
+            border: none;
+            transition: var(--transition-normal);
+        }
+        
+        .btn-manual-booking:hover {
+            background: var(--secondary-color) !important;
+            transform: translateY(-1px);
+        }
+        
         .stats-summary {
             background: var(--white);
             padding: var(--spacing-xl);
@@ -645,6 +658,7 @@
                             <div class="boat-actions">
                                 <button onclick="boatManager.resetQuantity('${boat.id}')" class="btn btn-small btn-outline">Reset</button>
                                 <button onclick="boatManager.editBoat('${boat.id}')" class="btn btn-small">Bewerken</button>
+                                <button onclick="boatManager.manualBooking('${boat.id}')" class="btn btn-small btn-manual-booking">Handmatige Reservering</button>
                             </div>
                         </div>
                     </div>
@@ -679,13 +693,87 @@
                 // Simple edit functionality - could be expanded
                 const boat = this.boats.find(b => b.id === boatId);
                 if (boat) {
-                    const newPrice = prompt(`Enter new price for ${boat.name}:`, boat.price);
+                    const newPrice = prompt(`Voer nieuwe prijs in voor ${boat.name}:`, boat.price);
                     if (newPrice && !isNaN(newPrice)) {
                         boat.price = parseInt(newPrice);
                         this.saveBoats();
                         this.renderBoats();
                         this.updateStats();
                     }
+                }
+            }
+            
+            manualBooking(boatId) {
+                const boat = this.boats.find(b => b.id === boatId);
+                if (!boat) return;
+                
+                if (boat.available <= 0) {
+                    alert('Deze boot is niet beschikbaar voor reservering.');
+                    return;
+                }
+                
+                // Get booking details from admin
+                const customerName = prompt('Klantnaam:');
+                if (!customerName) return;
+                
+                const customerEmail = prompt('E-mailadres:');
+                if (!customerEmail) return;
+                
+                const customerPhone = prompt('Telefoonnummer:');
+                if (!customerPhone) return;
+                
+                const bookingDate = prompt('Datum (YYYY-MM-DD):');
+                if (!bookingDate) return;
+                
+                const notes = prompt('Opmerkingen (optioneel):') || '';
+                
+                // Create booking object
+                const bookingData = {
+                    id: 'manual_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
+                    date: bookingDate,
+                    boatType: boatId,
+                    engineOption: boat.hasEngine ? 'with' : null,
+                    customerName,
+                    customerEmail,
+                    customerPhone,
+                    notes,
+                    status: 'confirmed-not-paid',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                
+                // Save booking to booking system
+                this.saveManualBooking(bookingData);
+                
+                // Update boat availability
+                this.updateQuantity(boatId, -1);
+                
+                // Dispatch event for admin system update
+                window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                    detail: { boatType: boatId, change: -1 }
+                }));
+                
+                // Refresh admin booking display if available
+                if (typeof refreshAdminBookings === 'function') {
+                    refreshAdminBookings();
+                }
+                
+                alert(`Handmatige reservering succesvol gemaakt voor ${boat.name}`);
+            }
+            
+            saveManualBooking(bookingData) {
+                try {
+                    const bookingStorageKey = 'nijenhuis_bookings';
+                    const existingBookings = localStorage.getItem(bookingStorageKey);
+                    const bookings = existingBookings ? JSON.parse(existingBookings) : [];
+                    
+                    bookings.push(bookingData);
+                    localStorage.setItem(bookingStorageKey, JSON.stringify(bookings));
+                    
+                    console.log('Manual booking saved:', bookingData);
+                } catch (error) {
+                    console.error('Error saving manual booking:', error);
+                    alert('Fout bij opslaan van reservering');
                 }
             }
             
@@ -792,6 +880,15 @@
         function refreshBoatStockDisplay() {
             if (window.boatManager) {
                 window.boatManager.refreshStockDisplay();
+            }
+        }
+        
+        // Global function to refresh admin booking display
+        function refreshAdminBookings() {
+            if (window.adminSystem) {
+                window.adminSystem.loadBookings();
+                window.adminSystem.renderBookings();
+                window.adminSystem.updateStats();
             }
         }
     </script>

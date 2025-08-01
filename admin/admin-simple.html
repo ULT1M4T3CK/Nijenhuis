@@ -822,6 +822,7 @@
         let adminSystem;
         document.addEventListener('DOMContentLoaded', () => {
             adminSystem = new SimpleAdminSystem();
+            window.adminSystem = adminSystem; // Make it globally available
         });
     </script>
 </body>
