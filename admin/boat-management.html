@@ -373,6 +373,9 @@
                     return;
                 }
                 
+                // Clear old boat data to force refresh
+                localStorage.removeItem(this.storageKey);
+                
                 this.loadBoats();
                 this.renderBoats();
                 this.updateStats();
