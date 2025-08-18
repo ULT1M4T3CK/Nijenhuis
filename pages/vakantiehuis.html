@@ -2,17 +2,13 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#0071BB">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Vakantiehuis - Nijenhuis Botenverhuur</title>
     <meta name="description" content="Comfortabel vakantiehuis in het natuurgebied Weerribben. Perfect voor families en groepen.">
     <link rel="stylesheet" href="../styles.css">
     
     <!-- Shared JavaScript -->
     <script src="../js/shared.js" defer></script>
-    <script src="../js/mobile-optimizations.js" defer></script>
 </head>
 <body>
     <!-- Top Bar -->
@@ -79,8 +75,8 @@
 
                 <div class="house-details">
                     <div class="house-image">
-                        <div class="slideshow-container">
-                            <div class="slideshow-wrapper">
+                        <div class="modern-slideshow">
+                            <div class="slideshow-main">
                                 <img src="../Images/Vakantiehuis/1.jpg" alt="Vakantiehuis Belterwiede" class="slide active">
                                 <img src="../Images/Vakantiehuis/2.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/3.jpg" alt="Vakantiehuis Belterwiede" class="slide">
@@ -91,7 +87,6 @@
                                 <img src="../Images/Vakantiehuis/8.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/9.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/10.jpg" alt="Vakantiehuis Belterwiede" class="slide">
-                                <img src="../Images/Vakantiehuis/11.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/12.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/13.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/14.jpg" alt="Vakantiehuis Belterwiede" class="slide">
@@ -99,27 +94,66 @@
                                 <img src="../Images/Vakantiehuis/16.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                                 <img src="../Images/Vakantiehuis/17.jpg" alt="Vakantiehuis Belterwiede" class="slide">
                             </div>
-                            <button class="slideshow-btn prev" onclick="changeSlide(-1)">❮</button>
-                            <button class="slideshow-btn next" onclick="changeSlide(1)">❯</button>
-                            <div class="slideshow-dots">
-                                <span class="dot active" onclick="currentSlide(1)"></span>
-                                <span class="dot" onclick="currentSlide(2)"></span>
-                                <span class="dot" onclick="currentSlide(3)"></span>
-                                <span class="dot" onclick="currentSlide(4)"></span>
-                                <span class="dot" onclick="currentSlide(5)"></span>
-                                <span class="dot" onclick="currentSlide(6)"></span>
-                                <span class="dot" onclick="currentSlide(7)"></span>
-                                <span class="dot" onclick="currentSlide(8)"></span>
-                                <span class="dot" onclick="currentSlide(9)"></span>
-                                <span class="dot" onclick="currentSlide(10)"></span>
-                                <span class="dot" onclick="currentSlide(11)"></span>
-                                <span class="dot" onclick="currentSlide(12)"></span>
-                                <span class="dot" onclick="currentSlide(13)"></span>
-                                <span class="dot" onclick="currentSlide(14)"></span>
-                                <span class="dot" onclick="currentSlide(15)"></span>
-                                <span class="dot" onclick="currentSlide(16)"></span>
-                                <span class="dot" onclick="currentSlide(17)"></span>
+                            <div class="slideshow-thumbnails">
+                                <div class="thumbnail active" onclick="currentSlide(1)">
+                                    <img src="../Images/Vakantiehuis/1.jpg" alt="Thumbnail 1">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(2)">
+                                    <img src="../Images/Vakantiehuis/2.jpg" alt="Thumbnail 2">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(3)">
+                                    <img src="../Images/Vakantiehuis/3.jpg" alt="Thumbnail 3">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(4)">
+                                    <img src="../Images/Vakantiehuis/4.jpg" alt="Thumbnail 4">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(5)">
+                                    <img src="../Images/Vakantiehuis/5.jpg" alt="Thumbnail 5">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(6)">
+                                    <img src="../Images/Vakantiehuis/6.jpg" alt="Thumbnail 6">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(7)">
+                                    <img src="../Images/Vakantiehuis/7.jpg" alt="Thumbnail 7">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(8)">
+                                    <img src="../Images/Vakantiehuis/8.jpg" alt="Thumbnail 8">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(9)">
+                                    <img src="../Images/Vakantiehuis/9.jpg" alt="Thumbnail 9">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(10)">
+                                    <img src="../Images/Vakantiehuis/10.jpg" alt="Thumbnail 10">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(11)">
+                                    <img src="../Images/Vakantiehuis/12.jpg" alt="Thumbnail 11">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(12)">
+                                    <img src="../Images/Vakantiehuis/13.jpg" alt="Thumbnail 12">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(13)">
+                                    <img src="../Images/Vakantiehuis/14.jpg" alt="Thumbnail 13">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(14)">
+                                    <img src="../Images/Vakantiehuis/15.jpg" alt="Thumbnail 14">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(15)">
+                                    <img src="../Images/Vakantiehuis/16.jpg" alt="Thumbnail 15">
+                                </div>
+                                <div class="thumbnail" onclick="currentSlide(16)">
+                                    <img src="../Images/Vakantiehuis/17.jpg" alt="Thumbnail 16">
+                                </div>
                             </div>
+                            <button class="modern-slideshow-btn prev" onclick="changeSlide(-1)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M15 18l-6-6 6-6"/>
+                                </svg>
+                            </button>
+                            <button class="modern-slideshow-btn next" onclick="changeSlide(1)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 18l6-6-6-6"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="house-info">
@@ -133,7 +167,7 @@
                         
                         <h4 data-i18n="house_overview_h4">Bijzonderheden</h4>
                         <ul class="icon-list">
-                            <li><span class="icon">👶</span> <span data-i18n="house_overview_li1">Kinderbedje, box en kinderstoel kunnen worden aangevraagd bij Waterpark Belterwijde.</span></li>
+                            <li><span class="icon">👶</span> Kinderbedje, box en kinderstoel kunnen aangevraagd worden in het Waterpark Belterwijde.</li>
                             <li><span class="icon">🛏️</span> Kussens en dekbedden beschikbaar</li>
                             <li><span class="icon">🧺</span> Linnengoed graag zelf meenemen</li>
                             <li><span class="icon">🛒</span> Linnengoed ook te huur bij ons (graag vooraf melden)</li>
@@ -148,14 +182,14 @@
         <section class="content-section">
             <div class="container">
                 <div class="section-title">
-                    <h2 data-i18n="house_amenities_h2">Faciliteiten</h2>
+                    <h2 data-i18n="house_amenities_h1">Faciliteiten</h2>
                     <p data-i18n="house_amenities_p1">Alles voor een comfortabel verblijf</p>
                 </div>
 
                 <div class="facilities-grid">
                     <div class="facility-card">
                         <div class="facility-icon">🛏️</div>
-                        <h4 data-i18n="house_amenities_h4">5 Slaapkamers</h4>
+                        <h3 data-i18n="house_amenities_h2">5 Slaapkamers</h3>
                         <p data-i18n="house_amenities_p2">1 slaapkamer beneden, 4 slaapkamers boven (2 met wastafel)</p>
                     </div>
                     <div class="facility-card">
@@ -165,22 +199,22 @@
                     </div>
                     <div class="facility-card">
                         <div class="facility-icon">🛁</div>
-                        <h4 data-i18n="house_amenities_h4">2 Badkamers</h4>
+                        <h3 data-i18n="house_amenities_h4">2 Badkamers</h3>
                         <p data-i18n="house_amenities_p4">Douche en toilet op beide verdiepingen</p>
                     </div>
                     <div class="facility-card">
                         <div class="facility-icon">📺</div>
-                        <h4 data-i18n="house_amenities_h4">Woonkamer</h4>
+                        <h3 data-i18n="house_amenities_h5">Woonkamer</h3>
                         <p data-i18n="house_amenities_p5">Ruime woonkamer met TV en radio</p>
                     </div>
                     <div class="facility-card">
                         <div class="facility-icon">🧺</div>
-                        <h4 data-i18n="house_amenities_h4">Wasmachine</h4>
+                        <h3 data-i18n="house_amenities_h6">Wasmachine</h3>
                         <p data-i18n="house_amenities_p6">Wasmachine beschikbaar in het huis</p>
                     </div>
                     <div class="facility-card">
                         <div class="facility-icon">🔥</div>
-                        <h3 data-i18n="house_amenities_h3">Centrale verwarming</h3>
+                        <h3 data-i18n="house_amenities_h7">Centrale verwarming</h3>
                         <p data-i18n="house_amenities_p7">Volledig verwarmd voor comfort het hele jaar door</p>
                     </div>
                 </div>
@@ -201,6 +235,11 @@
                         <div class="contact-details">
                             <p data-i18n="house_contact_p2"><strong>E-mail:</strong> <a href="mailto:info@parkbelterwiede.nl">info@parkbelterwiede.nl</a></p>
                             <p data-i18n="house_contact_p3"><strong>Telefoon:</strong> <a href="tel:0522281828">0522-281828</a></p>
+                            <p style="margin-top: 1rem;">
+                                <a href="https://www.parkbelterwiede.com/?resortids=358403&subject=104108,2" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #0071bb; color: white; border: none; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; text-decoration: none; border-radius: 8px; display: inline-block; transition: background-color 0.3s ease;">
+                                    🌐 Bezoek Waterpark Belterwiede
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -225,7 +264,7 @@
                         <li data-i18n="footer_company_postal">7946 LP Wanneperveen</li>
                         <li data-i18n="footer_company_phone">Tel: 0522 281 528</li>
                         <li data-i18n="footer_company_kvk">Kvk: 6769 7097</li>
-                        <li data-i18n="footer_company_btw">Btw nr: NL 195153637 B01</li>
+                        <li data-i18n="footer_company_btw">Btw nr: NL857 1361 48 B01</li>
                     </ul>
                 </div>
                 
@@ -282,21 +321,21 @@
 
     <script src="../js/translation.js" defer></script>
     <script>
-        // Slideshow functionality
+        // Modern Slideshow functionality
         let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
+        const slides = document.querySelectorAll('.slideshow-main .slide');
+        const thumbnails = document.querySelectorAll('.thumbnail');
         const totalSlides = slides.length;
 
         function showSlide(index) {
-            // Hide all slides
+            // Hide all slides and thumbnails
             slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
             
-            // Show current slide
+            // Show current slide and thumbnail
             if (slides[index]) {
                 slides[index].classList.add('active');
-                dots[index].classList.add('active');
+                thumbnails[index].classList.add('active');
             }
         }
 
@@ -326,12 +365,12 @@
         let slideInterval = setInterval(autoAdvance, 5000);
 
         // Pause auto-advance when hovering over slideshow
-        document.querySelector('.slideshow-container').addEventListener('mouseenter', () => {
+        document.querySelector('.modern-slideshow').addEventListener('mouseenter', () => {
             clearInterval(slideInterval);
         });
 
         // Resume auto-advance when leaving slideshow
-        document.querySelector('.slideshow-container').addEventListener('mouseleave', () => {
+        document.querySelector('.modern-slideshow').addEventListener('mouseleave', () => {
             slideInterval = setInterval(autoAdvance, 5000);
         });
 
