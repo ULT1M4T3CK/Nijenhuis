@@ -23,14 +23,14 @@
     <meta name="twitter:description" content="Botenverhuur in het prachtige natuurgebied Weerribben. Elektrische boten, kano's, camping en jachthaven diensten.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="../Images/logo-white.svg">
-    <link rel="apple-touch-icon" href="../Images/logo-white.svg">
+    <link rel="icon" type="image/svg+xml" href="/Images/logo-white.svg">
+    <link rel="apple-touch-icon" href="/Images/logo-white.svg">
     
     <!-- Preload Critical Resources -->
 
-    <link rel="preload" href="../Images/banner-img.jpg" as="image">
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../js/booking-system.css">
+    <link rel="preload" href="/Images/banner-img.jpg" as="image">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/js/booking-system.css">
 
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
@@ -64,11 +64,9 @@
     <!-- Flag Icons CSS -->
     
     <!-- Simple Chatbot JavaScript -->
-    <script src="../js/simple-chatbot.js" defer></script>
     <!-- Mollie Payment System JavaScript -->
-    <script src="../js/mollie-payment.js" defer></script>
     <!-- Booking System JavaScript -->
-    <script src="../js/booking-system-simple.js" defer></script>
+  <script type="module" src="/src/js/main.js"></script>
 </head>
 <body>
     <!-- Top Bar -->
@@ -94,7 +92,7 @@
         <div class="container">
             <div class="nav-container">
                 <a href="index.html" class="logo-link">
-                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
+                    <img src="/Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
                 </a>
                 
                 <ul class="nav-menu" id="navMenu">
@@ -306,7 +304,7 @@
                         </div>
                     </div>
                     <div class="camping-image">
-                        <img src="../Images/banner-img.jpg" alt="Camping Nijenhuis in de Weerribben">
+                        <img src="/Images/banner-img.jpg" alt="Camping Nijenhuis in de Weerribben">
                     </div>
                 </div>
             </div>
@@ -336,7 +334,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-section">
-                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="footer-logo">
+                    <img src="/Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="footer-logo">
                     <p data-i18n="footer_p">Hier begint jouw avontuur in de prachtige Weerribben!</p>
                 </div>
                 
@@ -406,7 +404,6 @@
         </div>
     </div>
 
-    <script src="../js/translation.js" defer></script>
     <script>
         function updateEngineOption() {
             const boatType = document.getElementById('boatType').value;
@@ -436,6 +433,27 @@
         // Call the function when page loads
         document.addEventListener('DOMContentLoaded', function() {
             handleUrlParameters();
+
+            // Chat Widget Functionality
+            const chatButton = document.getElementById('chatButton');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatClose = document.getElementById('chatClose');
+            const chatInput = document.getElementById('chatInput');
+
+            if (chatButton && chatWindow) {
+                chatButton.addEventListener('click', () => {
+                    chatWindow.classList.toggle('active');
+                    if (chatWindow.classList.contains('active')) {
+                        if (chatInput) chatInput.focus();
+                    }
+                });
+            }
+
+            if (chatClose && chatWindow) {
+                chatClose.addEventListener('click', () => {
+                    chatWindow.classList.remove('active');
+                });
+            }
         });
     </script>
 

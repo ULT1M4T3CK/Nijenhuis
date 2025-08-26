@@ -1,24 +1,68 @@
 <?php
 // ========================================================================
 // BOOKING HANDLER - INTEGRATES WEBSITE BOOKINGS WITH ADMIN SYSTEM
+// Security-hardened: session auth, CSRF protection, origin checks
 // ========================================================================
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+// Security headers
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('Referrer-Policy: no-referrer');
+header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 
-// Handle preflight requests
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    exit(0);
+// Secure session cookies
+if (session_status() === PHP_SESSION_NONE) {
+    $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+    session_set_cookie_params([
+        'lifetime' => 60 * 60 * 24,
+        'path' => '/',
+        'domain' => '',
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ]);
+    session_start();
 }
 
 // Configuration
 $bookingsFile = 'bookings.json';
-$adminCredentials = [
-    'username' => 'admin',
-    'password' => 'nijenhuis2024'
-];
+
+// Admin credentials from environment (recommended)
+$envAdminUser = getenv('ADMIN_USERNAME') ?: '';
+$envAdminPass = getenv('ADMIN_PASSWORD') ?: '';
+
+// Helper: constant-time compare
+function hashEqualsSafe($a, $b) { return hash_equals((string)$a, (string)$b); }
+
+// Helper: origin/referrer same-origin check
+function isSameOrigin() {
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    if ($origin) {
+        $parsed = parse_url($origin);
+        if (!isset($parsed['host'])) return false;
+        return strtolower($parsed['host']) === strtolower(parse_url((isset($_SERVER['REQUEST_SCHEME'])?$_SERVER['REQUEST_SCHEME']:'http').'://'.$host, PHP_URL_HOST));
+    }
+    // Fallback to Referer
+    $ref = $_SERVER['HTTP_REFERER'] ?? '';
+    if ($ref) {
+        $parsed = parse_url($ref);
+        if (!isset($parsed['host'])) return false;
+        return strtolower($parsed['host']) === strtolower(parse_url('http://'.$host, PHP_URL_HOST));
+    }
+    return true; // allow same-origin navigation without headers
+}
+
+// CSRF: validate for state-changing admin actions
+function requireCsrf($input) {
+    $token = $_SERVER['HTTP_X_CSRF_TOKEN'] ?? ($input['csrfToken'] ?? '');
+    if (empty($_SESSION['csrf_token']) || empty($token) || !hashEqualsSafe($_SESSION['csrf_token'], $token)) {
+        http_response_code(403);
+        echo json_encode(['success' => false, 'message' => 'Invalid CSRF token']);
+        exit;
+    }
+}
 
 // Function to load bookings
 function loadBookings($file) {
@@ -86,23 +130,40 @@ function sendBookingNotification($booking) {
     return mail($to, $subject, $message, $headers);
 }
 
+// Helpers for auth
+function requireAdmin() {
+    if (empty($_SESSION['admin_authenticated']) || $_SESSION['admin_authenticated'] !== true) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+        exit;
+    }
+}
+
 // Handle different request types
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
     case 'POST':
-        $input = json_decode(file_get_contents('php://input'), true);
+        $inputRaw = file_get_contents('php://input');
+        $input = json_decode($inputRaw, true);
+        if (!is_array($input)) { $input = []; }
         
-        // Debug logging
-        error_log('Booking handler received POST request');
-        error_log('Raw input: ' . file_get_contents('php://input'));
-        error_log('Decoded input: ' . print_r($input, true));
-        
-        // Check if this is a login request
-        if (isset($input['action']) && $input['action'] === 'login') {
-            if ($input['username'] === $adminCredentials['username'] && 
-                $input['password'] === $adminCredentials['password']) {
-                echo json_encode(['success' => true, 'message' => 'Login successful']);
+        // LOGIN
+        if (($input['action'] ?? '') === 'login') {
+            if (!$input['username'] || !$input['password']) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'message' => 'Username and password required']);
+                exit;
+            }
+            if ($envAdminUser === '' || $envAdminPass === '') {
+                http_response_code(500);
+                echo json_encode(['success' => false, 'message' => 'Server credentials not configured']);
+                exit;
+            }
+            if (hashEqualsSafe($input['username'], $envAdminUser) && hashEqualsSafe($input['password'], $envAdminPass)) {
+                $_SESSION['admin_authenticated'] = true;
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+                echo json_encode(['success' => true, 'message' => 'Login successful', 'csrfToken' => $_SESSION['csrf_token']]);
             } else {
                 http_response_code(401);
                 echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
@@ -110,9 +171,23 @@ switch ($method) {
             exit;
         }
         
+        // LOGOUT
+        if (($input['action'] ?? '') === 'logout') {
+            requireAdmin();
+            requireCsrf($input);
+            session_unset();
+            session_destroy();
+            echo json_encode(['success' => true]);
+            exit;
+        }
+        
         // Check if this is a booking submission from the main website
         if (isset($input['formType']) && $input['formType'] === 'booking') {
-            error_log('Processing booking submission');
+            if (!isSameOrigin()) {
+                http_response_code(403);
+                echo json_encode(['success' => false, 'message' => 'Cross-site requests are not allowed']);
+                exit;
+            }
             $bookingData = [
                 'date' => $input['date'] ?? '',
                 'boatType' => $input['boatType'] ?? '',
@@ -163,12 +238,38 @@ switch ($method) {
             exit;
         }
         
-        // Check if this is an admin action
+        // Public availability check without exposing bookings
+        if (($input['action'] ?? '') === 'checkAvailability') {
+            $date = $input['date'] ?? '';
+            $boatType = $input['boatType'] ?? '';
+            if (!$date || !$boatType) {
+                http_response_code(400);
+                echo json_encode(['success' => false, 'available' => false, 'message' => 'Missing parameters']);
+                exit;
+            }
+            $bookings = loadBookings($bookingsFile);
+            $conflict = false;
+            foreach ($bookings as $b) {
+                if (($b['date'] ?? null) === $date && ($b['boatType'] ?? null) === $boatType && ($b['status'] ?? '') !== 'payment-rejected') {
+                    $conflict = true; break;
+                }
+            }
+            echo json_encode(['success' => true, 'available' => !$conflict]);
+            exit;
+        }
+
+        // Admin actions
         if (isset($input['action'])) {
+            requireAdmin();
+            // Require CSRF for state-changing actions
+            $stateChanging = in_array($input['action'], ['createBooking','updateBooking','deleteBooking'], true);
+            if ($stateChanging) {
+                requireCsrf($input);
+            }
             switch ($input['action']) {
                 case 'getBookings':
                     $bookings = loadBookings($bookingsFile);
-                    echo json_encode(['success' => true, 'bookings' => $bookings]);
+                    echo json_encode(['success' => true, 'bookings' => $bookings, 'csrfToken' => $_SESSION['csrf_token']]);
                     break;
                     
                 case 'createBooking':
@@ -284,9 +385,17 @@ switch ($method) {
         break;
         
     case 'GET':
-        // Return bookings for admin interface
-        $bookings = loadBookings($bookingsFile);
-        echo json_encode(['success' => true, 'bookings' => $bookings]);
+        // Session status endpoint
+        if (isset($_GET['action']) && $_GET['action'] === 'session') {
+            $auth = !empty($_SESSION['admin_authenticated']) && $_SESSION['admin_authenticated'] === true;
+            if ($auth && empty($_SESSION['csrf_token'])) {
+                $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            }
+            echo json_encode(['success' => true, 'authenticated' => $auth, 'csrfToken' => $auth ? $_SESSION['csrf_token'] : null]);
+            break;
+        }
+        http_response_code(405);
+        echo json_encode(['success' => false, 'message' => 'Method not allowed']);
         break;
         
     default:

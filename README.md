@@ -1,125 +1,86 @@
-# 🤖 Chatbot Integration Package for Nijenhuis Website
+# Nijenhuis Botenverhuur – Monorepo
 
-## 📦 **What's Included**
+A structured repository for the Nijenhuis website, admin, payments, chatbot, and infrastructure.
 
-This package contains all the essential files to add a multilingual customer support chatbot to your existing website.
+## Directory layout
 
-### **Core Files:**
-- `simple_chatbot_demo.py` - Working chatbot engine
-- `chatbot-api.py` - Lightweight API server
-- `chatbot-widget.html` - HTML widget code
-- `chatbot-widget.css` - Widget styling
-- `chatbot-widget.js` - Widget functionality
+- frontend/
+  - public/            Static assets served as-is (PWA files, images, flags, CSS)
+  - src/
+    - pages/           HTML pages (built by Vite)
+    - js/
+      - core/          Shared utilities (translation, modal, shared UI)
+      - booking/       Booking and payments (Mollie client proxy)
+      - chat/          Chat widget and helpers
+      - admin/         Admin UI entry
+- backend/
+  - api/               Flask API scaffold (security headers, CORS)
+  - chatbot/
+    - api/             Chatbot API servers (server.py, legacy, proxies)
+    - core/            Chatbot engines and helpers
+    - training/        Training UI and scripts (framework.py, data/)
+    - tests/           Chatbot-related tests
+  - webhooks/
+    - mollie/          Mollie webhook handlers (Python + PHP for Plesk)
+- infra/
+  - nginx/             Example Nginx config to serve frontend and proxy APIs
+- documentation/       All project documentation and deployment guides
+- scripts/
+  - dev/               Developer utilities (local booking server launcher)
 
-## 🚀 **Quick Integration**
+## Getting started (development)
 
-### **Step 1: Add the Widget to Your Website**
+Frontend (Vite):
+1) cd frontend
+2) npm install
+3) npm run dev
+Open http://localhost:5173/src/pages/index.html
 
-Copy this HTML code to your website's `<head>` section:
+Backend API (Flask scaffold):
+- python backend/api/app.py (example app factory for future endpoints)
 
-```html
-<link rel="stylesheet" href="chatbot-widget.css">
-<script src="chatbot-widget.js" defer></script>
-```
+Chatbot API:
+- python backend/chatbot/api/server.py
+- Health: http://localhost:5001/api/health
+- Chat:   http://localhost:5001/api/chat
 
-Add this HTML code to your website's `<body>` section:
+Training framework (GUI):
+- python backend/chatbot/training/start.py
 
-```html
-<div id="chat-widget" class="chat-widget">
-    <div id="chat-header" class="chat-header">
-        <div class="chat-title">
-            <i class="fas fa-robot"></i>
-            <span>Customer Support</span>
-        </div>
-        <button id="chat-toggle" class="chat-toggle">
-            <i class="fas fa-comments"></i>
-        </button>
-    </div>
-    
-    <div id="chat-body" class="chat-body">
-        <div id="chat-messages" class="chat-messages">
-            <div class="message bot-message">
-                <div class="message-content">
-                    Hello! How can I help you today? 👋
-                </div>
-            </div>
-        </div>
-        
-        <div class="chat-input-container">
-            <input type="text" id="chat-input" placeholder="Type your message..." maxlength="500">
-            <button id="send-message" class="send-button">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-</div>
-```
+Webhooks (local):
+- Python service: python backend/webhooks/mollie/webhook_handler_production.py 8080
+- Endpoint (proxied by web server): http://localhost:8080/webhook/mollie
 
-### **Step 2: Start the Chatbot API**
+Plesk (PHP) handler path in production:
+- https://yourdomain.com/webhooks/mollie/webhook_handler_plesk.php
 
-```bash
-# Install Python dependencies
-pip3 install flask requests beautifulsoup4
+## Payments (Mollie)
+- Client uses /mollie_api.php proxy to avoid exposing API keys in the browser.
+- Set MOLLIE_API_KEY in environment for both Python and PHP handlers.
 
-# Start the chatbot API
-python3 chatbot-api.py
+## Environment variables
+- MOLLIE_API_KEY: Mollie secret key
+- ADMIN_USERNAME / ADMIN_PASSWORD: Admin login (used in PHP admin handler)
 
-# The API will be available at http://localhost:5000
-```
+## Security hardening (highlights)
+- Secrets removed from client; server-side proxy for Mollie
+- PHP admin handler: session auth, CSRF, same-origin checks, security headers
+- Service worker only caches safe public API endpoints
+- DOM XSS mitigations across pages and shared components
+- CORS restricted to known origins for backend services
 
-### **Step 3: Update API Endpoint**
+## Build and deploy
+- Frontend: cd frontend && npm run build → output in frontend/dist
+- Nginx example: infra/nginx/site.conf
+- Deploy script (example, VPS): deploy_to_server.sh
 
-In `chatbot-widget.js`, update the API endpoint to point to your server:
+## Documentation
+See documentation/ for deployment guides and integration details:
+- documentation/MOLLIE_INTEGRATION.md
+- documentation/PRODUCTION_DEPLOYMENT.md
+- documentation/PLESK_DEPLOYMENT.md
+- documentation/TRAINING_FRAMEWORK_GUIDE.md
+- documentation/BOOKING_SYSTEM_GUIDE.md
 
-```javascript
-// Change this line in the sendMessage function
-const response = await fetch('http://your-server.com/api/chat', {
-    // ... rest of the code
-});
-```
-
-## 🌟 **Features**
-
-- ✅ **Multilingual Support** (English, Spanish, French, German, Italian)
-- ✅ **Automatic Language Detection**
-- ✅ **Responsive Design** (Mobile-friendly)
-- ✅ **Real-time Chat** with typing indicators
-- ✅ **Website Content Analysis**
-- ✅ **Easy Customization**
-
-## 🔧 **Customization**
-
-### **Change Colors**
-Edit `chatbot-widget.css`:
-```css
-.chat-widget {
-    --primary-color: #your-brand-color;
-    --secondary-color: #your-accent-color;
-}
-```
-
-### **Add Languages**
-Edit `simple_chatbot_demo.py`:
-```python
-language_patterns = {
-    'pt': ['o', 'a', 'os', 'as', 'e', 'ou', 'mas'],  # Portuguese
-    # Add more languages...
-}
-```
-
-### **Customize Responses**
-Edit `simple_chatbot_demo.py`:
-```python
-language_responses = {
-    'en': {
-        'greeting': 'Welcome to Nijenhuis! How can I help?',
-        # Add more responses...
-    }
-}
-```
-
-## 📞 **Support**
-
-For integration help, check the detailed guide in `WEBSITE_INTEGRATION_GUIDE.md`.
-
-The chatbot is production-ready and will work seamlessly with your existing website! 🎉 
+## License
+Proprietary. All rights reserved.

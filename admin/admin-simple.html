@@ -556,33 +556,34 @@
                 this.init();
             }
             
-            checkAuth() {
-                const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-                const loginTime = localStorage.getItem('adminLoginTime');
-                
-                if (!isLoggedIn || !loginTime) {
-                    this.redirectToLogin();
-                    return false;
-                }
-                
-                // Check if login is still valid (24 hours)
-                const loginDate = new Date(loginTime);
-                const now = new Date();
-                const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
-                
-                if (hoursDiff >= 24) {
-                    this.logout();
-                    return false;
-                }
-                
-                return true;
+            async checkAuth() {
+                try {
+                    const res = await fetch('../admin/booking-handler.php?action=session', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.authenticated) {
+                            if (data.csrfToken) localStorage.setItem('csrfToken', data.csrfToken);
+                            return true;
+                        }
+                    }
+                } catch (e) {}
+                this.redirectToLogin();
+                return false;
             }
             
             redirectToLogin() {
                 window.location.href = '../pages/admin-login.html';
             }
             
-            logout() {
+            async logout() {
+                try {
+                    const csrf = localStorage.getItem('csrfToken') || '';
+                    await fetch('../admin/booking-handler.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+                        body: JSON.stringify({ action: 'logout', csrfToken: csrf })
+                    });
+                } catch (e) {}
                 localStorage.removeItem('adminLoggedIn');
                 localStorage.removeItem('adminUser');
                 localStorage.removeItem('adminLoginTime');
@@ -729,6 +730,11 @@
                 container.innerHTML = sortedBookings.map(booking => this.createBookingCard(booking)).join('');
             }
             
+            escapeHTML(value) {
+                if (typeof value !== 'string') return value;
+                return value.replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;' }[c]));
+            }
+
             createBookingCard(booking) {
                 const date = new Date(booking.date).toLocaleDateString('nl-NL', {
                     weekday: 'short',
@@ -737,7 +743,7 @@
                     day: 'numeric'
                 });
                 
-                const boatName = this.getBoatDisplayName(booking.boatType);
+                const boatName = this.escapeHTML(this.getBoatDisplayName(booking.boatType));
                 const statusClass = `status-${booking.status.replace('-', '-')}`;
                 const statusText = this.getStatusDisplayName(booking.status);
                 const bookingType = booking.bookingType || 'automatic';
@@ -761,21 +767,21 @@
                             </div>
                             <div class="booking-detail">
                                 <div class="booking-detail-label">Customer</div>
-                                <div class="booking-detail-value">${booking.customerName}</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerName || '')}</div>
                             </div>
                             <div class="booking-detail">
                                 <div class="booking-detail-label">Email</div>
-                                <div class="booking-detail-value">${booking.customerEmail}</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerEmail || '')}</div>
                             </div>
                             <div class="booking-detail">
                                 <div class="booking-detail-label">Phone</div>
-                                <div class="booking-detail-value">${booking.customerPhone}</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerPhone || '')}</div>
                             </div>
                         </div>
                         ${booking.notes ? `
                             <div class="booking-detail">
                                 <div class="booking-detail-label">Notes</div>
-                                <div class="booking-detail-value">${booking.notes}</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.notes)}</div>
                             </div>
                         ` : ''}
                         <div class="booking-actions">

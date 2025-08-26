@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Nijenhuis Botenverhuur | Camping & Jachthaven in Giethoorn & Wanneperveen</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Botenverhuur in het prachtige natuurgebied Weerribben bij Giethoorn. Elektrische boten, kano's, camping en jachthaven diensten. Boek uw perfecte dag op het water.">
+    <meta name="keywords" content="botenverhuur, Giethoorn, Wanneperveen, Weerribben, elektrische boten, camping, jachthaven, kano, kajak">
+    <meta name="author" content="Nijenhuis Boat Rental">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Nijenhuis Botenverhuur - Giethoorn & Wanneperveen">
+    <meta property="og:description" content="Ervaar de schoonheid van het natuurgebied Weerribben met onze botenverhuur. Elektrische boten, kano's, camping en jachthaven diensten beschikbaar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nijenhuis-botenverhuur.com/en/">
+    <meta property="og:image" content="Images/banner-img.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nijenhuis Botenverhuur - Giethoorn & Wanneperveen">
+    <meta name="twitter:description" content="Botenverhuur in het prachtige natuurgebied Weerribben. Elektrische boten, kano's, camping en jachthaven diensten.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/Images/logo-white.svg">
+    <link rel="apple-touch-icon" href="/Images/logo-white.svg">
+    
+    <!-- Preload Critical Resources -->
+
+    <link rel="preload" href="/Images/banner-img.jpg" as="image">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/js/booking-system.css">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Nijenhuis Botenverhuur",
+        "description": "Botenverhuur, camping en jachthaven diensten in het natuurgebied Weerribben bij Giethoorn",
+        "url": "https://nijenhuis-botenverhuur.com/en/",
+        "telephone": "+31522281528",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Veneweg 199",
+            "addressLocality": "Wanneperveen",
+            "postalCode": "7946 LP",
+            "addressCountry": "NL"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 52.697269,
+            "longitude": 6.077958
+        },
+        "openingHours": "Mo-Su 09:00-18:00",
+        "priceRange": "€€",
+        "image": "Images/banner-img.jpg",
+        "sameAs": [
+            "https://www.facebook.com/nijenhuisbotenverhuur"
+        ]
+    }
+    </script>
+    <!-- Flag Icons CSS -->
+    
+    <!-- Simple Chatbot JavaScript -->
+    <!-- Mollie Payment System JavaScript -->
+    <!-- Booking System JavaScript -->
+  <script type="module" src="/src/js/main.js"></script>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <span data-i18n="nav_opening">Openingstijden: 9:00 - 18:00 |</span>
+                    <a href="tel:+31522281528">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        <span>0522 - 281 528</span>
+                    </a>
+                </div>
+                <div class="language-switcher" id="languageSwitcher"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="logo-link">
+                    <img src="/Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="logo">
+                </a>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a data-i18n="nav_boats" href="./botenverhuur.html">Botenverhuur</a></li>
+                    <li><a data-i18n="nav_house" href="./vakantiehuis.html">Vakantiehuis</a></li>
+                    <li><a data-i18n="nav_forsale" href="./te-koop.html">Te Koop</a></li>
+                    <li><a data-i18n="nav_camping" href="./camping.html">Camping</a></li>
+                    <li><a data-i18n="nav_marina" href="./jachthaven.html">Jachthaven</a></li>
+                    <li><a data-i18n="nav_chart" href="./vaarkaart.html">Vaarkaart</a></li>
+                    <li><a data-i18n="nav_contact" href="./contact.html">Contact</a></li>
+                </ul>
+                
+                <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-layout">
+                            <!-- Booking Form -->
+            <div class="booking-form-modern">
+              <div class="form-header">
+                <h2 data-i18n="hero_book_h2">Direct boeken</h2>
+                <p data-i18n="hero_book_p">Reserveer eenvoudig uw boot voor een dag op het water</p>
+              </div>
+              <form id="bookingForm" autocomplete="off">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="date" data-i18n="hero_book_date">Datum</label>
+                    <span class="input-icon" aria-hidden="true">📅</span>
+                    <input type="date" id="date" name="date" required aria-required="true">
+                  </div>
+                  <div class="form-group">
+                    <label for="boatType" data-i18n="hero_book_boat_type">Boot type</label>
+                    <span class="input-icon" aria-hidden="true">⛵</span>
+                    <select id="boatType" name="boatType" required aria-required="true" onchange="updateEngineOption()">
+                      <option value="" data-i18n="hero_book_boat_type_select">Selecteer een boot</option>
+                      <option value="classic-tender-720" data-i18n="hero_book_boat_type_classic_tender_720">Classic tender 720 10/12 pers</option>
+
+                      <option value="electrosloop-10" data-i18n="hero_book_boat_type_electrosloop_10">Electrosloep voor 10 pers</option>
+                      <option value="electrosloop-8" data-i18n="hero_book_boat_type_electrosloop_8">Electrosloep voor 8 pers</option>
+                      <option value="electroboat-5" data-i18n="hero_book_boat_type_electroboat_5">Electrosloep voor 5 pers</option>
+                      <option value="sailboat-4-5" data-i18n="hero_book_boat_type_sailboat_4_5">Zeilboot</option>
+                      <option value="sailpunter-3-4" data-i18n="hero_book_boat_type_sailpunter_3_4">Zeilpunter 3/4 pers</option>
+                      <option value="canoe-3" data-i18n="hero_book_boat_type_canoe_3">Canadese kano 3 pers</option>
+                      <option value="kayak-2" data-i18n="hero_book_boat_type_kayak_2">Kajak 2 pers</option>
+                      <option value="kayak-1" data-i18n="hero_book_boat_type_kayak_1">Kajak 1 pers</option>
+                      <option value="sup-board" data-i18n="hero_book_boat_type_sup_board">SUP board 1 pers</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row" id="engineOptionRow" style="display: none;">
+                  <div class="form-group">
+                    <label for="engineOption">Motor optie</label>
+                    <span class="input-icon" aria-hidden="true">⚙️</span>
+                    <select id="engineOption" name="engineOption">
+                      <option value="without">Zonder motor (€70)</option>
+                      <option value="with">Met motor (€85)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="btn" data-i18n="hero_book_btn">Beschikbaarheid controleren</button>
+                  <a href="tel:0522281528" class="btn" data-i18n="btn_outline" style="text-align:center;">📞 Bel direct</a>
+                </div>
+                <div class="form-badge" data-i18n="hero_book_badge">100% veilig &amp; vrijblijvend</div>
+              </form>
+            </div>
+                
+                            <div class="hero-content">
+                <h1 data-i18n="hero_h1">Ontsnap naar het natuurparadijs</h1>
+                <p data-i18n="hero_h1_p">Ervaar de schoonheid van het natuurgebied Weerribben met onze premium botenverhuur. Perfect voor families, vrienden en natuurliefhebbers.</p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Introduction Section -->
+        <section class="intro-section">
+            <div class="container">
+                <div class="intro-grid">
+                    <div class="intro-content">
+                        <h2 data-i18n="intro_h2">Even helemaal weg uit de dagelijkse routine</h2>
+                        <p data-i18n="intro_h2_p">In de drukke wereld van vandaag heeft iedereen een moment nodig om los te koppelen. Laat files, stress en de dagelijkse sleur achter je. Ervaar het leven vanuit een ander perspectief - vanaf het water.</p>
+                        <p data-i18n="intro_h2_p2">Onze boten bieden de perfecte manier om het adembenemende natuurgebied Weerribben te verkennen, met onvergetelijke herinneringen voor jou en je dierbaren.</p>
+                    </div>
+                    <div class="intro-features">
+                        <h3 data-i18n="intro_h3">Waarom kiezen voor Nijenhuis?</h3>
+                        <ul class="features-list">
+                            <li data-i18n="intro_h3_li1">📍 Gelegen in het hart van het natuurgebied Weerribben</li>
+                            <li data-i18n="intro_h3_li2">🚤 Breed assortiment boten voor alle voorkeuren</li>
+                            <li data-i18n="intro_h3_li3">🌿 Milieuvriendelijke elektrische boten beschikbaar</li>
+                            <li data-i18n="intro_h3_li4">👨‍👩‍👧‍👦 Perfect voor families en groepen</li>
+                            <li data-i18n="intro_h3_li5">💰 Concurrentiële prijzen voor alle budgetten</li>
+                            <li data-i18n="intro_h3_li6">📞 Persoonlijke service en ondersteuning</li>
+                        </ul>
+                        <div class="cta-box">
+                            <p data-i18n="intro_cta_p"><strong>Voor meer informatie, bel 0522 - 281 528</strong></p>
+                            <p class="payment-note" data-i18n="intro_cta_p2">Contant en pin betalingen geaccepteerd</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <h2 data-i18n="services_h2">Onze diensten</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🚤</div>
+                        <h3 data-i18n="services_h3_1">Botenverhuur</h3>
+                        <p data-i18n="services_p_1">Elektrische boten, kano's, kajaks en SUP boards voor alle leeftijden en ervaringsniveaus.</p>
+                        <div style="text-align:center;"><a href="./botenverhuur.html" class="btn btn-outline" data-i18n="services_btn_1">Meer Info</a></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏠</div>
+                        <h3 data-i18n="services_h3_2">Vakantiehuis</h3>
+                        <p data-i18n="services_p_2">Comfortabele vakantie accommodatie perfect voor families en groepen.</p>
+                        <div style="text-align:center;"><a href="./vakantiehuis.html" class="btn btn-outline" data-i18n="services_btn_2">Meer Info</a></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏕️</div>
+                        <h3 data-i18n="services_h3_3">Camping</h3>
+                        <p data-i18n="services_p_3">Prachtige kampeerplaatsen in het natuurgebied met moderne faciliteiten en adembenemende uitzichten.</p>
+                        <div style="text-align:center;"><a href="./camping.html" class="btn btn-outline" data-i18n="services_btn_3">Meer Info</a></div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">⚓</div>
+                        <h3 data-i18n="services_h3_4">Jachthaven</h3>
+                        <p data-i18n="services_p_4">Professionele jachthaven diensten voor booteigenaren met veilige ligplaatsen en onderhoud.</p>
+                        <div style="text-align:center;"><a href="./jachthaven.html" class="btn btn-outline" data-i18n="services_btn_4">Meer Info</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Camping Section -->
+        <section class="camping-section">
+            <div class="container">
+                <div class="camping-content">
+                    <div class="camping-text">
+                        <h2 data-i18n="index_camping_title">Seizoenscamping in de Weerribben</h2>
+                        <p data-i18n="index_camping_description">Geniet van een unieke kampeerervaring midden in het prachtige natuurgebied Weerribben. Onze seizoenscamping is open van 1 april tot 31 oktober en biedt een rustige, gezellige omgeving voor uw caravan.</p>
+                        
+                        <div class="camping-features">
+                            <div class="camping-feature">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 data-i18n="index_camping_feature_1_title">Seizoenscamping</h4>
+                                    <p data-i18n="index_camping_feature_1_desc">Open van 1 april tot 31 oktober</p>
+                                </div>
+                            </div>
+                            <div class="camping-feature">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 data-i18n="index_camping_feature_2_title">Caravans het hele jaar</h4>
+                                    <p data-i18n="index_camping_feature_2_desc">Caravans kunnen het hele jaar blijven staan</p>
+                                </div>
+                            </div>
+                            <div class="camping-feature">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                                    </svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 data-i18n="index_camping_feature_3_title">Moderne faciliteiten</h4>
+                                    <p data-i18n="index_camping_feature_3_desc">Water, elektriciteit, sanitair en eigen aanlegplaats</p>
+                                </div>
+                            </div>
+                            <div class="camping-feature">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/>
+                                    </svg>
+                                </div>
+                                <div class="feature-text">
+                                    <h4 data-i18n="index_camping_feature_4_title">Botenverhuur seizoen</h4>
+                                    <p data-i18n="index_camping_feature_4_desc">Botenverhuur alleen tijdens het seizoen beschikbaar</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="camping-cta">
+                            <p data-i18n="index_camping_cta_text">Voor meer informatie over onze seizoenscamping</p>
+                            <a href="tel:0522281528" class="camping-phone">📞 0522 - 281 528</a>
+                        </div>
+                    </div>
+                    <div class="camping-image">
+                        <img src="/Images/banner-img.jpg" alt="Camping Nijenhuis in de Weerribben">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container">
+                <h2 data-i18n="map_h2">Vind ons</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d77373.91668916645!2d6.077958504433576!3d52.69726901355547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c871953a3891e5%3A0x1a70802adc308067!2sVeneweg+199%2C+7946+LP+Wanneperveen!5e0!3m2!1sen!2snl!4v1552921192864" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0; border-radius: var(--border-radius);" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <img src="/Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="footer-logo">
+                    <p data-i18n="footer_p">Hier begint jouw avontuur in de prachtige Weerribben!</p>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li data-i18n="footer_company_name">Nijenhuis Botenverhuur</li>
+                        <li data-i18n="footer_company_location">Camping & Jachthaven</li>
+                        <li data-i18n="footer_company_address">Veneweg 199</li>
+                        <li data-i18n="footer_company_postal">7946 LP Wanneperveen</li>
+                        <li data-i18n="footer_company_phone">Tel: 0522 281 528</li>
+                        <li data-i18n="footer_company_kvk">Kvk: 6769 7097</li>
+                        <li data-i18n="footer_company_btw">Btw nr: NL857 1361 48 B01</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="./botenverhuur.html" data-i18n="nav_boats">Botenverhuur</a></li>
+                        <li><a href="./vakantiehuis.html" data-i18n="nav_house">Vakantiehuis</a></li>
+                        <li><a href="./te-koop.html" data-i18n="nav_forsale">Te Koop</a></li>
+                        <li><a href="./camping.html" data-i18n="nav_camping">Camping</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <ul class="footer-links">
+                        <li><a href="./jachthaven.html" data-i18n="nav_marina">Jachthaven</a></li>
+                        <li><a href="./vaarkaart.html" data-i18n="nav_chart">Vaarkaart</a></li>
+                        <li><a href="./contact.html" data-i18n="nav_contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-i18n="footer_bottom">&copy; 2025 Nijenhuis Botenverhuur. Alle rechten voorbehouden.</p>
+                <div class="admin-link">
+                    <a href="./admin-login.html" class="admin-button" style="color: #ccc; text-decoration: none; font-size: 12px; opacity: 0.7;">Admin</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" id="chatButton" aria-label="Open chat">
+            💬
+        </button>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Nijenhuis Support</h3>
+                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Messages will be added here dynamically -->
+            </div>
+            
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500">
+                <button class="chat-send" id="chatSend" aria-label="Send message">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateEngineOption() {
+            const boatType = document.getElementById('boatType').value;
+            const engineOptionRow = document.getElementById('engineOptionRow');
+            
+            if (boatType === 'sailboat-4-5') {
+                engineOptionRow.style.display = 'flex';
+            } else {
+                engineOptionRow.style.display = 'none';
+            }
+        }
+
+        // Function to handle URL parameters and pre-select boat
+        function handleUrlParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const boatType = urlParams.get('boat');
+            
+            if (boatType) {
+                const boatSelect = document.getElementById('boatType');
+                if (boatSelect) {
+                    boatSelect.value = boatType;
+                    updateEngineOption(); // Update engine option if needed
+                }
+            }
+        }
+
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            handleUrlParameters();
+        });
+    </script>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="booking-modal-content">
+            <div class="booking-modal-header">
+                <h2 id="bookingModalTitle">Boot reserveren</h2>
+                <button class="booking-modal-close" id="closeBookingModal">&times;</button>
+            </div>
+            <div class="booking-modal-body">
+                <div id="availabilityCheck" class="availability-check">
+                    <div class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Beschikbaarheid controleren...</p>
+                    </div>
+                </div>
+                
+                <form id="bookingDetailsForm" class="booking-details-form hidden">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Naam *</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">E-mail *</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerPhone">Telefoon *</label>
+                            <input type="tel" id="customerPhone" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerNotes">Opmerkingen</label>
+                            <textarea id="customerNotes" name="customerNotes" rows="3" placeholder="Eventuele speciale wensen of opmerkingen..."></textarea>
+                        </div>
+                    </div>
+                    <div class="booking-summary">
+                        <h3>Reservering overzicht</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">Datum:</span>
+                            <span id="summaryDate"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Boot:</span>
+                            <span id="summaryBoat"></span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Reservering bevestigen</button>
+                        <button type="button" class="btn btn-outline" id="cancelBooking">Annuleren</button>
+                    </div>
+                </form>
+                
+                <div id="bookingSuccess" class="booking-success hidden">
+                    <div class="success-icon">✅</div>
+                    <h3>Reservering succesvol!</h3>
+                    <p>Uw reservering is ontvangen en wordt verwerkt. We nemen binnen 24 uur contact met u op voor bevestiging.</p>
+                    <div class="booking-id">
+                        <strong>Reservering ID:</strong> <span id="bookingId"></span>
+                    </div>
+                    <button class="btn" id="closeSuccessModal">Sluiten</button>
+                </div>
+                
+                <div id="bookingError" class="booking-error hidden">
+                    <div class="error-icon">❌</div>
+                    <h3>Er is een fout opgetreden</h3>
+                    <p id="errorMessage">Er is een probleem opgetreden bij het verwerken van uw reservering. Probeer het later opnieuw.</p>
+                    <button class="btn btn-outline" id="retryBooking">Opnieuw proberen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

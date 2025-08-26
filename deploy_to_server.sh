@@ -39,19 +39,11 @@ print_status "Creating web directory on server..."
 ssh $SERVER_USER@$SERVER_IP "mkdir -p $WEB_DIR"
 
 print_status "Uploading website files..."
-scp -r pages/ $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp -r js/ $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp -r admin/ $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp -r Images/ $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.html $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.css $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.js $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.json $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.xml $SERVER_USER@$SERVER_IP:$WEB_DIR/
-scp *.txt $SERVER_USER@$SERVER_IP:$WEB_DIR/
+scp -r frontend/dist/ $SERVER_USER@$SERVER_IP:$WEB_DIR/
+scp -r backend/webhooks/mollie/ $SERVER_USER@$SERVER_IP:$WEB_DIR/backend/webhooks/mollie/
 
 print_status "Uploading webhook handler..."
-scp webhook_handler_production.py $SERVER_USER@$SERVER_IP:$WEB_DIR/
+scp backend/webhooks/mollie/webhook_handler_production.py $SERVER_USER@$SERVER_IP:$WEB_DIR/backend/webhooks/mollie/
 
 print_status "Setting up webhook handler on server..."
 ssh $SERVER_USER@$SERVER_IP << EOF
@@ -61,7 +53,7 @@ ssh $SERVER_USER@$SERVER_IP << EOF
     pip3 install requests
     
     # Make webhook handler executable
-    chmod +x webhook_handler_production.py
+    chmod +x backend/webhooks/mollie/webhook_handler_production.py
     
     # Create log directory
     sudo mkdir -p /var/log
@@ -78,7 +70,7 @@ After=network.target
 Type=simple
 User=www-data
 WorkingDirectory=$WEB_DIR
-ExecStart=/usr/bin/python3 $WEB_DIR/webhook_handler_production.py $WEBHOOK_PORT
+ExecStart=/usr/bin/python3 $WEB_DIR/backend/webhooks/mollie/webhook_handler_production.py $WEBHOOK_PORT
 Restart=always
 RestartSec=10
 

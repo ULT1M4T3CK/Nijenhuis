@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/Images/logo-white.svg">
+    <style>
+        /* Admin Dashboard Specific Styles */
+        .admin-dashboard {
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+        
+        .admin-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .admin-logo {
+            width: 50px;
+            height: 50px;
+            filter: brightness(0) saturate(100%) invert(100%);
+        }
+        
+        .admin-header-left h1 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .admin-nav-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            transition: var(--transition-normal);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .admin-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .admin-main {
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-3xl);
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+        }
+        
+        .export-section {
+            background: var(--white);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .export-section h3 {
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .export-section p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .export-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .filters {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .filters h3 {
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            font-size: var(--font-size-sm);
+            min-width: 150px;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+        }
+        
+        .bookings-container {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        .bookings-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--light-gray);
+            background: var(--bg-light);
+        }
+        
+        .bookings-header h3 {
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+            margin: 0;
+        }
+        
+        .bookings-list {
+            padding: var(--spacing-lg);
+        }
+        
+        .booking-card {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+        
+        .booking-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* Booking card status colors */
+        .booking-card.status-not-confirmed {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+        
+        .booking-card.status-confirmed-not-paid {
+            background: #ffe8cc;
+            border-color: #ffb74d;
+        }
+        
+        .booking-card.status-confirmed-paid {
+            background: #d4edda;
+            border-color: #4caf50;
+        }
+        
+        .booking-card.status-payment-rejected {
+            background: #f8d7da;
+            border-color: #f44336;
+        }
+        
+        .booking-card.status-boat-picked-up {
+            background: #d4edda;
+            border-color: #4caf50;
+        }
+        
+        .booking-card.status-boat-picked-up .booking-details,
+        .booking-card.status-boat-picked-up .booking-header {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .booking-header-right {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .type-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .type-badge.manual {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .type-badge.automatic {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .booking-date {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: var(--font-size-base);
+        }
+        
+        .booking-status {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-not-confirmed { 
+            background: #ffc107; 
+            color: #ffffff; 
+        }
+        
+        .status-confirmed-not-paid { 
+            background: #ffb74d; 
+            color: #ffffff; 
+        }
+        
+        .status-confirmed-paid { 
+            background: #4caf50; 
+            color: #ffffff; 
+        }
+        
+        .status-payment-rejected { 
+            background: #f44336; 
+            color: #ffffff; 
+        }
+        
+        .status-boat-picked-up { 
+            background: #4caf50; 
+            color: #ffffff; 
+        }
+        
+        .booking-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .booking-detail {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .booking-detail-label {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .booking-detail-value {
+            font-size: var(--font-size-sm);
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .booking-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+        }
+        
+        .btn-small {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            font-size: var(--font-size-xs);
+            border-radius: var(--radius-sm);
+        }
+        
+        .no-bookings {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            color: var(--text-secondary);
+        }
+        
+        .no-bookings p {
+            font-size: var(--font-size-lg);
+            margin: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-header-content {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+            
+            .admin-header-right {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .export-actions {
+                flex-direction: column;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+            }
+            
+            .booking-details {
+                grid-template-columns: 1fr;
+            }
+            
+                    .booking-actions {
+            flex-direction: column;
+        }
+        
+        .automatic-booking-info {
+            background: var(--light-gray);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            width: 100%;
+        }
+        
+        .info-badge {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .info-text {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+            margin: 0;
+            line-height: 1.4;
+        }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+    </style>
+  <link rel="stylesheet" href="/admin/admin-styles.css">
+  <script type="module" src="/src/js/admin.js"></script>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Admin Header -->
+        <header class="admin-header">
+            <div class="admin-header-content">
+                <div class="admin-header-left">
+                    <img src="/Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="admin-logo">
+                    <h1>Booking Management</h1>
+                </div>
+                <div class="admin-header-right">
+                    <a href="boat-management.html" class="admin-nav-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Boats
+                    </a>
+                    <a href="../pages/index.html" class="admin-nav-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        Back to Website
+                    </a>
+                    <button onclick="adminSystem.logout()" class="admin-nav-btn" style="cursor: pointer; border: none; font-family: inherit;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+                        </svg>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <div class="admin-container">
+                <!-- Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                                        <div class="stat-number" id="totalBookings">0</div>
+                <div class="stat-label">Totaal Reserveringen</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="pendingBookings">0</div>
+                <div class="stat-label">In Afwachting</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="confirmedBookings">0</div>
+                <div class="stat-label">Bevestigd</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="paidBookings">0</div>
+                <div class="stat-label">Betaald</div>
+                    </div>
+                </div>
+
+                <!-- Export Section -->
+                <div class="export-section">
+                    <h3>Gegevensbeheer</h3>
+                    <p>Reserveringen worden opgeslagen in de lokale opslag van uw browser. U kunt ze exporteren of alle gegevens wissen.</p>
+                    <div class="export-actions">
+                        <button onclick="adminSystem.exportBookings()" class="btn">Exporteer Reserveringen (JSON)</button>
+                        <button onclick="adminSystem.clearAllBookings()" class="btn btn-outline">Alle Reserveringen Wissen</button>
+                        <button onclick="adminSystem.refreshBookings()" class="btn btn-outline">Vernieuwen</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filters">
+                    <h3>Filter Reserveringen</h3>
+                    <div class="filter-controls">
+                        <select id="boatFilter" class="filter-select" onchange="adminSystem.filterBookings()">
+                            <option value="">Alle Boten</option>
+                            <option value="classic-tender-720">Classic tender 720</option>
+                            <option value="electrosloop-10">Electrosloep 10 pers</option>
+    
+                            <option value="electrosloop-8">Electrosloep 8 pers</option>
+                            <option value="sailboat-4-5">Zeilboot 4/5 pers</option>
+                            <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
+                            <option value="electroboat-5">Electrosloep 5 pers</option>
+                            <option value="canoe-3">Canadese kano 3 pers</option>
+                            <option value="kayak-2">Kajak 2 pers</option>
+                            <option value="kayak-1">Kajak 1 pers</option>
+                            <option value="sup-board">SUP board 1 pers</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select" onchange="adminSystem.filterBookings()">
+                            <option value="">Alle Statussen</option>
+                            <option value="not-confirmed">Niet Bevestigd</option>
+                            <option value="confirmed-not-paid">Bevestigd, Niet Betaald</option>
+                            <option value="confirmed-paid">Bevestigd & Betaald</option>
+                            <option value="payment-rejected">Betaling Geweigerd</option>
+                        </select>
+                        <input type="date" id="dateFilter" class="filter-select" onchange="adminSystem.filterBookings()" placeholder="Filter op datum">
+                    </div>
+                </div>
+
+                <!-- Bookings List -->
+                <div class="bookings-container">
+                    <div class="bookings-header">
+                        <h3>Alle Reserveringen</h3>
+                    </div>
+                    <div class="bookings-list" id="bookingsList">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        class SimpleAdminSystem {
+            constructor() {
+                this.storageKey = 'nijenhuis_bookings';
+                this.bookings = [];
+                this.filteredBookings = [];
+                this.init();
+            }
+            
+            async checkAuth() {
+                try {
+                    const res = await fetch('../admin/booking-handler.php?action=session', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data.authenticated) {
+                            if (data.csrfToken) localStorage.setItem('csrfToken', data.csrfToken);
+                            return true;
+                        }
+                    }
+                } catch (e) {}
+                this.redirectToLogin();
+                return false;
+            }
+            
+            redirectToLogin() {
+                window.location.href = '../pages/admin-login.html';
+            }
+            
+            async logout() {
+                try {
+                    const csrf = localStorage.getItem('csrfToken') || '';
+                    await fetch('../admin/booking-handler.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+                        body: JSON.stringify({ action: 'logout', csrfToken: csrf })
+                    });
+                } catch (e) {}
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('adminUser');
+                localStorage.removeItem('adminLoginTime');
+                this.redirectToLogin();
+            }
+            
+            init() {
+                if (!this.checkAuth()) {
+                    return;
+                }
+                
+                this.loadBookings();
+                this.renderBookings();
+                this.updateStats();
+                this.setupPaymentStatusListener();
+                console.log('Simple admin system initialized');
+            }
+            
+            setupPaymentStatusListener() {
+                // Listen for payment status updates from Mollie
+                window.addEventListener('paymentStatusUpdated', (event) => {
+                    const { bookingId, newStatus, paymentStatus } = event.detail;
+                    console.log(`Payment status updated for booking ${bookingId}: ${paymentStatus} -> ${newStatus}`);
+                    
+                    // Update the booking status in the admin system
+                    this.updateBookingStatusFromPayment(bookingId, newStatus, paymentStatus);
+                });
+                
+                // Listen for Mollie webhook events (for local development)
+                window.addEventListener('mollieWebhook', (event) => {
+                    const { paymentId, status } = event.detail;
+                    console.log(`Mollie webhook received: payment ${paymentId} status ${status}`);
+                    
+                    // Find booking by payment ID and update status
+                    this.updateBookingStatusByPaymentId(paymentId, status);
+                });
+            }
+            
+            updateBookingStatusFromPayment(bookingId, newStatus, paymentStatus) {
+                const bookingIndex = this.bookings.findIndex(b => b.id === bookingId);
+                if (bookingIndex !== -1) {
+                    const booking = this.bookings[bookingIndex];
+                    
+                    // Only allow automatic status updates for automatic bookings
+                    if (booking.bookingType === 'automatic') {
+                        const oldStatus = booking.status;
+                        const boatType = booking.boatType;
+                        
+                        this.bookings[bookingIndex].status = newStatus;
+                        this.bookings[bookingIndex].paymentStatus = paymentStatus;
+                        this.bookings[bookingIndex].updatedAt = new Date().toISOString();
+                        
+                        // Update boat availability based on status changes
+                        this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
+                        
+                        // Save and refresh
+                        this.saveBookings();
+                        this.renderBookings();
+                        this.updateStats();
+                        
+                        console.log(`Automatic booking ${bookingId} status updated from ${oldStatus} to ${newStatus}`);
+                    } else {
+                        console.log(`Manual booking ${bookingId} - status updates only allowed via admin actions`);
+                    }
+                }
+            }
+            
+            updateBookingStatusByPaymentId(paymentId, status) {
+                const bookingIndex = this.bookings.findIndex(b => b.paymentId === paymentId);
+                if (bookingIndex !== -1) {
+                    const booking = this.bookings[bookingIndex];
+                    let newStatus;
+                    
+                    switch (status) {
+                        case 'paid':
+                            newStatus = 'confirmed-paid';
+                            break;
+                        case 'failed':
+                        case 'expired':
+                        case 'canceled':
+                            newStatus = 'payment-rejected';
+                            break;
+                        case 'pending':
+                            newStatus = 'confirmed-not-paid';
+                            break;
+                        default:
+                            newStatus = booking.status;
+                    }
+                    
+                    this.updateBookingStatusFromPayment(booking.id, newStatus, status);
+                }
+            }
+            
+            getBookingActions(booking) {
+                const bookingType = booking.bookingType || 'automatic';
+                
+                if (bookingType === 'manual') {
+                    // Manual bookings can have all status actions
+                    return `
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-not-paid')" class="btn btn-small">Bevestigen</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'confirmed-paid')" class="btn btn-small">Als Betaald Markeren</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'payment-rejected')" class="btn btn-small">Betaling Weigeren</button>
+                        <button onclick="adminSystem.updateStatus('${booking.id}', 'boat-picked-up')" class="btn btn-small">Boot Opgehaald</button>
+                        <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
+                    `;
+                } else {
+                    // Automatic bookings (from website) - limited actions
+                    // These bookings update automatically based on payment status
+                    return `
+                        <div class="automatic-booking-info">
+                            <span class="info-badge">Automatische Reservering</span>
+                            <p class="info-text">Status wordt automatisch bijgewerkt op basis van betaling</p>
+                        </div>
+                        <button onclick="adminSystem.deleteBooking('${booking.id}')" class="btn btn-small btn-outline">Verwijderen</button>
+                    `;
+                }
+            }
+            
+            loadBookings() {
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    this.bookings = stored ? JSON.parse(stored) : [];
+                    this.filteredBookings = [...this.bookings];
+                    console.log('Loaded bookings:', this.bookings.length);
+                } catch (error) {
+                    console.error('Error loading bookings:', error);
+                    this.bookings = [];
+                    this.filteredBookings = [];
+                }
+            }
+            
+            renderBookings() {
+                const container = document.getElementById('bookingsList');
+                if (!container) return;
+                
+                if (this.filteredBookings.length === 0) {
+                    container.innerHTML = '<div class="no-bookings"><p>Geen reserveringen gevonden.</p></div>';
+                    return;
+                }
+                
+                // Sort bookings by date (newest first)
+                const sortedBookings = [...this.filteredBookings].sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                container.innerHTML = sortedBookings.map(booking => this.createBookingCard(booking)).join('');
+            }
+            
+            escapeHTML(value) {
+                if (typeof value !== 'string') return value;
+                return value.replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;' }[c]));
+            }
+
+            createBookingCard(booking) {
+                const date = new Date(booking.date).toLocaleDateString('nl-NL', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                
+                const boatName = this.escapeHTML(this.getBoatDisplayName(booking.boatType));
+                const statusClass = `status-${booking.status.replace('-', '-')}`;
+                const statusText = this.getStatusDisplayName(booking.status);
+                const bookingType = booking.bookingType || 'automatic';
+                const typeBadge = bookingType === 'manual' ? 
+                    '<span class="type-badge manual">Handmatig</span>' : 
+                    '<span class="type-badge automatic">Automatisch</span>';
+                
+                return `
+                    <div class="booking-card ${statusClass}">
+                        <div class="booking-header">
+                            <div class="booking-date">${date}</div>
+                            <div class="booking-header-right">
+                                ${typeBadge}
+                                <span class="booking-status ${statusClass}">${statusText}</span>
+                            </div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="booking-detail">
+                                <div class="booking-detail-label">Boat</div>
+                                <div class="booking-detail-value">${boatName}</div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-label">Customer</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerName || '')}</div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-label">Email</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerEmail || '')}</div>
+                            </div>
+                            <div class="booking-detail">
+                                <div class="booking-detail-label">Phone</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.customerPhone || '')}</div>
+                            </div>
+                        </div>
+                        ${booking.notes ? `
+                            <div class="booking-detail">
+                                <div class="booking-detail-label">Notes</div>
+                                <div class="booking-detail-value">${this.escapeHTML(booking.notes)}</div>
+                            </div>
+                        ` : ''}
+                        <div class="booking-actions">
+                            ${this.getBookingActions(booking)}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            getBoatDisplayName(boatType) {
+                const boatNames = {
+                    'classic-tender-720': 'Classic tender 720 (10/12 pers)',
+                    'classic-tender-570': 'Classic tender 570 (8 pers)',
+                    'electrosloop-10': 'Electrosloep voor 10 pers',
+                    'electrosloop-8': 'Electrosloep voor 8 pers',
+                    'sailboat-4-5': 'Zeilboot 4/5 pers',
+                    'sailpunter-3-4': 'Zeilpunter 3/4 pers',
+                    'electroboat-5': 'Electrosloep voor 5 pers',
+                    'canoe-3': 'Canadese kano 3 pers',
+                    'kayak-2': 'Kajak 2 pers',
+                    'kayak-1': 'Kajak 1 pers',
+                    'sup-board': 'SUP board 1 pers'
+                };
+                return boatNames[boatType] || boatType;
+            }
+            
+            getStatusDisplayName(status) {
+                const statusNames = {
+                    'not-confirmed': 'Niet Bevestigd',
+                    'confirmed-not-paid': 'Bevestigd, Niet Betaald',
+                    'confirmed-paid': 'Bevestigd & Betaald',
+                    'payment-rejected': 'Betaling Geweigerd',
+                    'boat-picked-up': 'Boot Opgehaald'
+                };
+                return statusNames[status] || status;
+            }
+            
+            filterBookings() {
+                const boatFilter = document.getElementById('boatFilter').value;
+                const statusFilter = document.getElementById('statusFilter').value;
+                const dateFilter = document.getElementById('dateFilter').value;
+                
+                this.filteredBookings = this.bookings.filter(booking => {
+                    const matchesBoat = !boatFilter || booking.boatType === boatFilter;
+                    const matchesStatus = !statusFilter || booking.status === statusFilter;
+                    const matchesDate = !dateFilter || booking.date === dateFilter;
+                    
+                    return matchesBoat && matchesStatus && matchesDate;
+                });
+                
+                this.renderBookings();
+            }
+            
+            updateStatus(bookingId, newStatus) {
+                const bookingIndex = this.bookings.findIndex(b => b.id === bookingId);
+                if (bookingIndex !== -1) {
+                    const oldStatus = this.bookings[bookingIndex].status;
+                    const boatType = this.bookings[bookingIndex].boatType;
+                    
+                    this.bookings[bookingIndex].status = newStatus;
+                    this.bookings[bookingIndex].updatedAt = new Date().toISOString();
+                    
+                    // Update boat availability based on status changes
+                    this.updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus);
+                    
+                    // Dispatch custom event for stock updates
+                    window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                        detail: { boatType: boatType, change: 0 }
+                    }));
+                    
+                    this.saveBookings();
+                    this.loadBookings();
+                    this.renderBookings();
+                    this.updateStats();
+                    alert('Reservering status succesvol bijgewerkt!');
+                }
+            }
+            
+            deleteBooking(bookingId) {
+                if (confirm('Weet u zeker dat u deze reservering wilt verwijderen?')) {
+                    const bookingToDelete = this.bookings.find(b => b.id === bookingId);
+                    
+                    this.bookings = this.bookings.filter(b => b.id !== bookingId);
+                    
+                    // Restore boat availability if booking was active
+                    if (bookingToDelete && 
+                        bookingToDelete.status !== 'payment-rejected' && 
+                        bookingToDelete.status !== 'boat-picked-up') {
+                        this.updateBoatAvailabilityForStatusChange(bookingToDelete.boatType, bookingToDelete.status, 'payment-rejected');
+                        
+                        // Dispatch custom event for stock updates
+                        window.dispatchEvent(new CustomEvent('boatStockUpdated', {
+                            detail: { boatType: bookingToDelete.boatType, change: 1 }
+                        }));
+                    }
+                    
+                    this.saveBookings();
+                    this.loadBookings();
+                    this.renderBookings();
+                    this.updateStats();
+                    alert('Reservering succesvol verwijderd!');
+                }
+            }
+            
+            saveBookings() {
+                try {
+                    localStorage.setItem(this.storageKey, JSON.stringify(this.bookings));
+                    console.log('Bookings saved successfully');
+                } catch (error) {
+                    console.error('Error saving bookings:', error);
+                    alert('Fout bij opslaan van reserveringen');
+                }
+            }
+            
+            updateStats() {
+                const total = this.bookings.length;
+                const pending = this.bookings.filter(b => b.status === 'not-confirmed').length;
+                const confirmed = this.bookings.filter(b => b.status === 'confirmed-not-paid' || b.status === 'confirmed-paid').length;
+                const paid = this.bookings.filter(b => b.status === 'confirmed-paid').length;
+                
+                document.getElementById('totalBookings').textContent = total;
+                document.getElementById('pendingBookings').textContent = pending;
+                document.getElementById('confirmedBookings').textContent = confirmed;
+                document.getElementById('paidBookings').textContent = paid;
+            }
+            
+            exportBookings() {
+                const dataStr = JSON.stringify(this.bookings, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `nijenhuis_bookings_${new Date().toISOString().split('T')[0]}.json`;
+                link.click();
+                URL.revokeObjectURL(url);
+            }
+            
+            clearAllBookings() {
+                if (confirm('Weet u zeker dat u ALLE reserveringen wilt verwijderen? Dit kan niet ongedaan worden gemaakt!')) {
+                    localStorage.removeItem(this.storageKey);
+                    this.bookings = [];
+                    this.filteredBookings = [];
+                    this.renderBookings();
+                    this.updateStats();
+                    alert('Alle reserveringen gewist!');
+                }
+            }
+            
+            refreshBookings() {
+                this.loadBookings();
+                this.renderBookings();
+                this.updateStats();
+                alert('Reserveringen vernieuwd!');
+            }
+            
+            loadBoats() {
+                try {
+                    const stored = localStorage.getItem('nijenhuis_boats');
+                    if (stored) {
+                        return JSON.parse(stored);
+                    }
+                    return [];
+                } catch (error) {
+                    console.error('Error loading boats:', error);
+                    return [];
+                }
+            }
+            
+            updateBoatAvailabilityForStatusChange(boatType, oldStatus, newStatus) {
+                try {
+                    const boats = this.loadBoats();
+                    const boatIndex = boats.findIndex(b => b.id === boatType);
+                    
+                    if (boatIndex === -1) return;
+                    
+                    let change = 0;
+                    
+                    // If status changes to payment-rejected or boat-picked-up, boat becomes available again
+                    if (oldStatus !== 'payment-rejected' && oldStatus !== 'boat-picked-up' && 
+                        (newStatus === 'payment-rejected' || newStatus === 'boat-picked-up')) {
+                        change = 1; // Boat becomes available
+                    }
+                    // If status changes from payment-rejected or boat-picked-up to active status, boat becomes unavailable
+                    else if ((oldStatus === 'payment-rejected' || oldStatus === 'boat-picked-up') && 
+                             newStatus !== 'payment-rejected' && newStatus !== 'boat-picked-up') {
+                        change = -1; // Boat becomes unavailable
+                    }
+                    
+                    if (change !== 0) {
+                        boats[boatIndex].available = Math.max(0, boats[boatIndex].available + change);
+                        localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                        console.log(`Updated ${boatType} availability: ${boats[boatIndex].available} (change: ${change})`);
+                    }
+                } catch (error) {
+                    console.error('Error updating boat availability:', error);
+                }
+            }
+        }
+        
+        // Initialize the admin system
+        let adminSystem;
+        document.addEventListener('DOMContentLoaded', () => {
+            adminSystem = new SimpleAdminSystem();
+            window.adminSystem = adminSystem; // Make it globally available
+        });
+    </script>
+</body>
+</html> 
