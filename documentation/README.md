@@ -18,7 +18,7 @@ This package contains all the essential files to add a multilingual customer sup
 Copy this HTML code to your website's `<head>` section:
 
 ```html
-<link rel="stylesheet" href="chatbot-widget.css">
+<link rel="stylesheet" href="backend/chatbot/chatbot-widget.css">
 <script src="chatbot-widget.js" defer></script>
 ```
 
