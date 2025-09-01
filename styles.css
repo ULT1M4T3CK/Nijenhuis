@@ -371,7 +371,7 @@
 .hero {
     position: relative;
     min-height: 600px;
-    background: url('Images/Boats/zeilboot-4-5.jpg');
+    background: url('frontend/Images/Boats/zeilboot-4-5.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -502,7 +502,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('Images/belterwijde.jpg');
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('frontend/Images/belterwijde.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

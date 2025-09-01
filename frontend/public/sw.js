@@ -13,8 +13,8 @@ const STATIC_FILES = [
     '/index.html',
     '/styles.css',
     '/script.js',
-    '/Images/logo-white.svg',
-    '/Images/banner-img.jpg',
+    '/frontend/Images/logo-white.svg',
+    '/frontend/Images/banner-img.jpg',
     '/flags/nl.svg',
     '/flags/gb.svg',
     '/flags/de.svg',
@@ -347,8 +347,8 @@ self.addEventListener('push', (event) => {
     
     const options = {
         body: event.data ? event.data.text() : 'New notification from Nijenhuis',
-        icon: '/Images/logo-white.svg',
-        badge: '/Images/logo-white.svg',
+        icon: '/frontend/Images/logo-white.svg',
+        badge: '/frontend/Images/logo-white.svg',
         vibrate: [100, 50, 100],
         data: {
             dateOfArrival: Date.now(),
@@ -358,12 +358,12 @@ self.addEventListener('push', (event) => {
             {
                 action: 'explore',
                 title: 'View Details',
-                icon: '/Images/logo-white.svg'
+                icon: '/frontend/Images/logo-white.svg'
             },
             {
                 action: 'close',
                 title: 'Close',
-                icon: '/Images/logo-white.svg'
+                icon: '/frontend/Images/logo-white.svg'
             }
         ]
     };
