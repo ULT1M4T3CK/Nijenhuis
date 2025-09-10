@@ -215,95 +215,325 @@
       "response_length": 178,
       "question_words": 4,
       "response_words": 33
+    },
+    {
+      "timestamp": "2025-09-10T14:10:54.497467",
+      "question": "wat kost de tender 720?",
+      "response": "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+      "success": false,
+      "response_time": 2.8848648071289062e-05,
+      "user_feedback": null,
+      "question_length": 23,
+      "response_length": 147,
+      "question_words": 5,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:10:54.498780",
+      "question": "how much does the tender 570 cost?",
+      "response": "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+      "success": false,
+      "response_time": 2.2649765014648438e-05,
+      "user_feedback": null,
+      "question_length": 34,
+      "response_length": 147,
+      "question_words": 7,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:10:54.499908",
+      "question": "was sind die öffnungszeiten?",
+      "response": "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+      "success": false,
+      "response_time": 2.288818359375e-05,
+      "user_feedback": null,
+      "question_length": 28,
+      "response_length": 128,
+      "question_words": 4,
+      "response_words": 23
+    },
+    {
+      "timestamp": "2025-09-10T14:10:54.501307",
+      "question": "hoe kan ik reserveren?",
+      "response": "U kunt reserveren door ons te bellen op 0522 281 528. We raden aan om vooral in het hoogseizoen op tijd te reserveren.",
+      "success": false,
+      "response_time": 2.2649765014648438e-05,
+      "user_feedback": null,
+      "question_length": 22,
+      "response_length": 118,
+      "question_words": 4,
+      "response_words": 23
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.153815",
+      "question": "wat kost een electrosloep 10?",
+      "response": "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+      "success": false,
+      "response_time": 8.20159912109375e-05,
+      "user_feedback": null,
+      "question_length": 29,
+      "response_length": 147,
+      "question_words": 5,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.155430",
+      "question": "how much does a kayak cost?",
+      "response": "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+      "success": false,
+      "response_time": 2.6226043701171875e-05,
+      "user_feedback": null,
+      "question_length": 27,
+      "response_length": 147,
+      "question_words": 6,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.156738",
+      "question": "was kostet ein sup board?",
+      "response": "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+      "success": false,
+      "response_time": 2.3126602172851562e-05,
+      "user_feedback": null,
+      "question_length": 25,
+      "response_length": 147,
+      "question_words": 5,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.158054",
+      "question": "hoeveel personen passen er in de tender 720?",
+      "response": "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+      "success": false,
+      "response_time": 2.9325485229492188e-05,
+      "user_feedback": null,
+      "question_length": 44,
+      "response_length": 106,
+      "question_words": 8,
+      "response_words": 14
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.159357",
+      "question": "what are your opening hours?",
+      "response": "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+      "success": false,
+      "response_time": 2.193450927734375e-05,
+      "user_feedback": null,
+      "question_length": 28,
+      "response_length": 128,
+      "question_words": 5,
+      "response_words": 23
+    },
+    {
+      "timestamp": "2025-09-10T14:15:40.160704",
+      "question": "können wir haustiere mitbringen?",
+      "response": "Ik help u graag verder! Voor specifieke vragen kunt u ons bellen op 0522 281 528 of kijk op onze website voor meer informatie.",
+      "success": false,
+      "response_time": 2.8848648071289062e-05,
+      "user_feedback": null,
+      "question_length": 32,
+      "response_length": 126,
+      "question_words": 4,
+      "response_words": 24
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.650319",
+      "question": "wat kost een electrosloep 10?",
+      "response": "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon.",
+      "success": true,
+      "response_time": 0.0009889602661132812,
+      "user_feedback": null,
+      "question_length": 29,
+      "response_length": 226,
+      "question_words": 5,
+      "response_words": 35
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.652604",
+      "question": "how much does a kayak cost?",
+      "response": "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways.",
+      "success": true,
+      "response_time": 0.00018024444580078125,
+      "user_feedback": null,
+      "question_length": 27,
+      "response_length": 146,
+      "question_words": 6,
+      "response_words": 23
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.654503",
+      "question": "was kostet ein sup board?",
+      "response": "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet.",
+      "success": true,
+      "response_time": 0.00016832351684570312,
+      "user_feedback": null,
+      "question_length": 25,
+      "response_length": 143,
+      "question_words": 5,
+      "response_words": 22
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.656243",
+      "question": "hoeveel personen passen er in de tender 720?",
+      "response": "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+      "success": true,
+      "response_time": 2.3126602172851562e-05,
+      "user_feedback": null,
+      "question_length": 44,
+      "response_length": 173,
+      "question_words": 8,
+      "response_words": 26
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.658050",
+      "question": "what are your opening hours?",
+      "response": "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528.",
+      "success": true,
+      "response_time": 2.5033950805664062e-05,
+      "user_feedback": null,
+      "question_length": 28,
+      "response_length": 155,
+      "question_words": 5,
+      "response_words": 30
+    },
+    {
+      "timestamp": "2025-09-10T14:16:01.659865",
+      "question": "können wir haustiere mitbringen?",
+      "response": "Leider sind Haustiere auf unseren Booten nicht erlaubt. Dies liegt an Sicherheits- und Hygienevorschriften. Wir hoffen auf Ihr Verständnis.",
+      "success": true,
+      "response_time": 2.3126602172851562e-05,
+      "user_feedback": null,
+      "question_length": 32,
+      "response_length": 139,
+      "question_words": 4,
+      "response_words": 19
     }
   ],
   "patterns": {
     "common_words": {
-      "tender": 5,
-      "how": 4,
-      "much": 4,
-      "wat": 4,
-      "kost": 4,
-      "does": 3,
-      "cost": 3,
-      "720": 3,
-      "wat kost de tender 720?": 3,
-      "hoe": 3,
-      "kan": 3,
-      "reserveren": 3,
-      "hoe kan ik reserveren?": 2,
-      "what": 2,
-      "are": 2,
-      "the": 2,
-      "570": 2,
-      "how much does the tender 570 cost?": 2,
-      "was": 2,
-      "sind": 2
+      "tender": 9,
+      "how": 7,
+      "much": 7,
+      "wat": 7,
+      "kost": 7,
+      "does": 6,
+      "cost": 6,
+      "720": 6,
+      "hoe": 5,
+      "kan": 5,
+      "reserveren": 5,
+      "was": 5,
+      "wat kost de tender 720?": 4,
+      "hoe kan ik reserveren?": 4,
+      "what": 4,
+      "are": 4,
+      "kostet": 3,
+      "ein": 3,
+      "een": 3,
+      "your": 3
     },
     "question_response": {
+      "kostet": {
+        "responses": [
+          "Wir bieten zwei Optionen an:\nDas Segelboot mit Motor kostet 85 € pro Tag, ohne Motor 70 € pro Tag.\nBitte beachten Sie, dass zum Mieten dieses Bootes ein erfahrener Segler erforderlich ist.\nHaustiere sind nicht erlaubt.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8333333333333334,
+        "frequency": 3
+      },
+      "ein": {
+        "responses": [
+          "Wir bieten zwei Optionen an:\nDas Segelboot mit Motor kostet 85 € pro Tag, ohne Motor 70 € pro Tag.\nBitte beachten Sie, dass zum Mieten dieses Bootes ein erfahrener Segler erforderlich ist.\nHaustiere sind nicht erlaubt.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8333333333333334,
+        "frequency": 3
+      },
       "how": {
         "responses": [
           "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
           "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed.",
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 4
+        "success_rate": 0.7142857142857143,
+        "avg_quality": 0.8857142857142858,
+        "frequency": 7
       },
       "much": {
         "responses": [
           "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
           "We offer two options:\nThe sailboat with an engine is €85 per day, and without an engine is €70 per day.\nPlease note that renting this boat requires an experienced sailor.\nAlso, pets are not allowed.",
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 4
+        "success_rate": 0.7142857142857143,
+        "avg_quality": 0.8857142857142858,
+        "frequency": 7
       },
       "does": {
         "responses": [
           "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 3
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 6
       },
       "cost": {
         "responses": [
           "Canoes and kayaks cost €25 per day. Ideal for individual trips or small groups. Includes paddles and life jackets.",
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 3
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 6
       },
       "wat": {
         "responses": [
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
           "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
-          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 4
+        "success_rate": 0.7142857142857143,
+        "avg_quality": 0.8714285714285713,
+        "frequency": 7
       },
       "kost": {
         "responses": [
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
           "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
-          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 4
+        "success_rate": 0.7142857142857143,
+        "avg_quality": 0.8714285714285713,
+        "frequency": 7
       },
       "tender": {
         "responses": [
@@ -311,160 +541,240 @@
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 5
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 9
       },
       "720": {
         "responses": [
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
-          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 3
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 6
       },
       "wat kost de tender 720?": {
         "responses": [
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
           "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
-          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+          "De Tender 720 kost €230 per dag en is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
+        "success_rate": 0.75,
+        "avg_quality": 0.9,
+        "frequency": 4
+      },
+      "een": {
+        "responses": [
+          "Onze zeilboten kosten €70-85 per dag, afhankelijk van de grootte (4-5 meter). Perfect voor zeilliefhebbers die de Friese meren willen verkennen.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8333333333333334,
         "frequency": 3
       },
       "hoe": {
         "responses": [
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
-          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas."
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "U kunt reserveren door ons te bellen op 0522 281 528. We raden aan om vooral in het hoogseizoen op tijd te reserveren."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 0.9333333333333332,
-        "frequency": 3
+        "success_rate": 0.8,
+        "avg_quality": 0.8800000000000001,
+        "frequency": 5
       },
       "kan": {
         "responses": [
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
-          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas."
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "U kunt reserveren door ons te bellen op 0522 281 528. We raden aan om vooral in het hoogseizoen op tijd te reserveren."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 0.9333333333333332,
-        "frequency": 3
+        "success_rate": 0.8,
+        "avg_quality": 0.8800000000000001,
+        "frequency": 5
       },
       "reserveren": {
         "responses": [
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
-          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas."
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "U kunt reserveren door ons te bellen op 0522 281 528. We raden aan om vooral in het hoogseizoen op tijd te reserveren."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 0.9333333333333332,
-        "frequency": 3
+        "success_rate": 0.8,
+        "avg_quality": 0.8800000000000001,
+        "frequency": 5
       },
       "hoe kan ik reserveren?": {
         "responses": [
           "Reserveren kan op verschillende manieren: Telefonisch: 0522 281 528, Per e-mail: info@nijenhuis-botenverhuur.nl, Of persoonlijk bij ons kantoor. We raden aan om vooraf te reserveren, vooral in het hoogseizoen. Betaling kan contant of per pin.",
-          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas."
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.",
+          "U kunt reserveren door ons te bellen op 0522 281 528. We raden aan om vooral in het hoogseizoen op tijd te reserveren."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 0.95,
-        "frequency": 2
+        "success_rate": 0.75,
+        "avg_quality": 0.875,
+        "frequency": 4
       },
       "what": {
         "responses": [
           "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
-          "We have various boats available: electric boats (Tender 720/570, Electrosloep 8/10), sailboats, canoes, kayaks and SUP boards. All boats are perfect for exploring the Weerribben-Wieden nature reserve."
+          "We have various boats available: electric boats (Tender 720/570, Electrosloep 8/10), sailboats, canoes, kayaks and SUP boards. All boats are perfect for exploring the Weerribben-Wieden nature reserve.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.75,
+        "avg_quality": 0.9,
+        "frequency": 4
       },
       "are": {
         "responses": [
           "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
-          "We are located at Veneweg 199, 7946 LP Wanneperveen, in the beautiful Weerribben-Wieden nature reserve. Perfectly located for boat trips through the unique waterways."
+          "We are located at Veneweg 199, 7946 LP Wanneperveen, in the beautiful Weerribben-Wieden nature reserve. Perfectly located for boat trips through the unique waterways.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.75,
+        "avg_quality": 0.9,
+        "frequency": 4
+      },
+      "your": {
+        "responses": [
+          "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
+      },
+      "opening": {
+        "responses": [
+          "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
+      },
+      "hours": {
+        "responses": [
+          "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
+      },
+      "what are your opening hours?": {
+        "responses": [
+          "Our opening hours are: Daily from 09:00 to 18:00, from April 1st to November 1st. Outside the season we are available by appointment. We are located at Belterwijde 1, 8355 AA Giethoorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528."
+        ],
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "the": {
         "responses": [
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "570": {
         "responses": [
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "how much does the tender 570 cost?": {
         "responses": [
           "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
-          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment."
+          "The Tender 570 costs €200 per day and is suitable for up to 8 people. This electric boat is perfect for families and includes comfortable seating, canopy, and safety equipment.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "was": {
         "responses": [
           "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
-          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn."
+          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.",
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6,
+        "avg_quality": 0.8400000000000001,
+        "frequency": 5
       },
       "sind": {
         "responses": [
           "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
-          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn."
+          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "die": {
         "responses": [
           "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
-          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn."
+          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "öffnungszeiten": {
         "responses": [
           "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
-          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn."
+          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "was sind die öffnungszeiten?": {
         "responses": [
           "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
-          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn."
+          "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
+          "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar."
         ],
-        "success_rate": 1.0,
-        "avg_quality": 1.0,
-        "frequency": 2
+        "success_rate": 0.6666666666666666,
+        "avg_quality": 0.8666666666666667,
+        "frequency": 3
       },
       "you": {
         "responses": [
@@ -474,42 +784,370 @@
         "success_rate": 1.0,
         "avg_quality": 1.0,
         "frequency": 2
+      },
+      "electrosloep": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.75,
+        "frequency": 2
+      },
+      "wat kost een electrosloep 10?": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.75,
+        "frequency": 2
+      },
+      "kayak": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "how much does a kayak cost?": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "sup": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "board": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "was kostet ein sup board?": {
+        "responses": [
+          "Voor actuele prijzen kunt u ons bellen op 0522 281 528 of kijk op onze website. We hebben verschillende boten beschikbaar voor alle groepsgroottes.",
+          "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "hoeveel": {
+        "responses": [
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "personen": {
+        "responses": [
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "passen": {
+        "responses": [
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
+      },
+      "hoeveel personen passen er in de tender 720?": {
+        "responses": [
+          "We hebben verschillende boten: Tender 720/570, Electrosloep 8/10, zeilboten, kano's, kajaks en SUP boards.",
+          "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming."
+        ],
+        "success_rate": 0.5,
+        "avg_quality": 0.8,
+        "frequency": 2
       }
     }
   },
   "improvements": [
     {
+      "type": "low_success_rate",
+      "question": "kostet",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "ein",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "does",
+      "success_rate": 0.6666666666666666,
+      "frequency": 6,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "cost",
+      "success_rate": 0.6666666666666666,
+      "frequency": 6,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "tender",
+      "success_rate": 0.6666666666666666,
+      "frequency": 9,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "720",
+      "success_rate": 0.6666666666666666,
+      "frequency": 6,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "een",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "your",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "opening",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "hours",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "what are your opening hours?",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "the",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "570",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "how much does the tender 570 cost?",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "was",
+      "success_rate": 0.6,
+      "frequency": 5,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "sind",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "die",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "öffnungszeiten",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
+      "type": "low_success_rate",
+      "question": "was sind die öffnungszeiten?",
+      "success_rate": 0.6666666666666666,
+      "frequency": 3,
+      "suggested_action": "Review and improve response for this question"
+    },
+    {
       "type": "inconsistent_responses",
       "question": "how",
+      "response_variations": 5,
+      "frequency": 7,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "much",
+      "response_variations": 5,
+      "frequency": 7,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "does",
+      "response_variations": 4,
+      "frequency": 6,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "cost",
+      "response_variations": 4,
+      "frequency": 6,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "wat",
+      "response_variations": 4,
+      "frequency": 7,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "kost",
+      "response_variations": 4,
+      "frequency": 7,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "tender",
+      "response_variations": 5,
+      "frequency": 9,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "720",
+      "response_variations": 4,
+      "frequency": 6,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "hoe",
+      "response_variations": 3,
+      "frequency": 5,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "kan",
+      "response_variations": 3,
+      "frequency": 5,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "reserveren",
+      "response_variations": 3,
+      "frequency": 5,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "hoe kan ik reserveren?",
       "response_variations": 3,
       "frequency": 4,
       "suggested_action": "Standardize response for this question"
     },
     {
       "type": "inconsistent_responses",
-      "question": "much",
-      "response_variations": 3,
+      "question": "what",
+      "response_variations": 4,
       "frequency": 4,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "are",
+      "response_variations": 4,
+      "frequency": 4,
+      "suggested_action": "Standardize response for this question"
+    },
+    {
+      "type": "inconsistent_responses",
+      "question": "was",
+      "response_variations": 4,
+      "frequency": 5,
       "suggested_action": "Standardize response for this question"
     }
   ],
   "statistics": {
-    "total_interactions": 18,
-    "successful_responses": 18,
-    "failed_responses": 0,
+    "total_interactions": 34,
+    "successful_responses": 24,
+    "failed_responses": 10,
     "common_questions": {
       "wie viel kostet ein segelboot?": 1,
       "how much does a canoe cost?": 1,
-      "wat kost de tender 720?": 3,
+      "wat kost de tender 720?": 4,
       "wat kost een zeilboot?": 1,
       "how much for a sailboat": 1,
-      "hoe kan ik reserveren?": 3,
-      "what are your opening hours?": 1,
+      "hoe kan ik reserveren?": 4,
+      "what are your opening hours?": 3,
       "hoe kan ik reserveren": 1,
-      "how much does the tender 570 cost?": 2,
-      "was sind die öffnungszeiten?": 2,
+      "how much does the tender 570 cost?": 3,
+      "was sind die öffnungszeiten?": 3,
       "what boats do you have available?": 1,
-      "where are you located?": 1
+      "where are you located?": 1,
+      "wat kost een electrosloep 10?": 2,
+      "how much does a kayak cost?": 2,
+      "was kostet ein sup board?": 2,
+      "hoeveel personen passen er in de tender 720?": 2,
+      "können wir haustiere mitbringen?": 2
     },
     "response_quality": {
       "wie viel kostet ein segelboot?": [
@@ -521,7 +1159,8 @@
       "wat kost de tender 720?": [
         1.0,
         1.0,
-        1.0
+        1.0,
+        0.6
       ],
       "wat kost een zeilboot?": [
         1.0
@@ -532,9 +1171,12 @@
       "hoe kan ik reserveren?": [
         0.9,
         1.0,
-        1.0
+        1.0,
+        0.6
       ],
       "what are your opening hours?": [
+        1.0,
+        0.6,
         1.0
       ],
       "hoe kan ik reserveren": [
@@ -542,16 +1184,38 @@
       ],
       "how much does the tender 570 cost?": [
         1.0,
-        1.0
+        1.0,
+        0.6
       ],
       "was sind die öffnungszeiten?": [
         1.0,
-        1.0
+        1.0,
+        0.6
       ],
       "what boats do you have available?": [
         1.0
       ],
       "where are you located?": [
+        1.0
+      ],
+      "wat kost een electrosloep 10?": [
+        0.6,
+        0.9
+      ],
+      "how much does a kayak cost?": [
+        0.6,
+        1.0
+      ],
+      "was kostet ein sup board?": [
+        0.6,
+        1.0
+      ],
+      "hoeveel personen passen er in de tender 720?": [
+        0.6,
+        1.0
+      ],
+      "können wir haustiere mitbringen?": [
+        0.6,
         1.0
       ]
     }

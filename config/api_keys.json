@@ -1,0 +1,177 @@
+{
+  "S4zDd_p5brRsqPSPLuyI6OSiHf7oJlSCMUxjKWN2dDg": {
+    "name": "default_development_key",
+    "permissions": [
+      "chat",
+      "health",
+      "config"
+    ],
+    "created_at": "2025-09-10T12:53:08.168988",
+    "last_used": "2025-09-10T13:24:13.918788",
+    "usage_count": 4,
+    "rate_limit_override": null
+  },
+  "JoFAUW6CiaaBZn7z2hY64b9DzTN1Q7VcQXTot70ARek": {
+    "name": "test_key",
+    "permissions": [
+      "chat",
+      "config"
+    ],
+    "created_at": "2025-09-10T12:53:08.176312",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 100
+  },
+  "FuJxmODzZ5ZGsFzZz5wq2HRRtDhcgCXFRPNquCQNmAU": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T12:53:08.177983",
+    "last_used": "2025-09-10T12:53:08.178201",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "2S5OHq5Sx33v4immEuwzoe9CpUCE1jWIXoYk0vuJfho": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T12:53:08.205539",
+    "last_used": "2025-09-10T12:53:08.205824",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "VjB15gSbkWPajwZqqGzFPxUnlOPRMBoCRHzENE3IGTc": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T12:53:08.207315",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 5
+  },
+  "nZ8KujNOb4RO7L0AtYm9evftSUK3p25FssnCaHvKVNs": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T12:53:08.274134",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  },
+  "ecyyiH02drzN9Hqu1SXFDP1x6TBwPknYSRJAhmGqbqc": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:13:18.985427",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  },
+  "4WRZ5bnzr_nA8Xp9Nf4t6Wxsy5es2zdOveyL2IuLnTU": {
+    "name": "test_key",
+    "permissions": [
+      "chat",
+      "config"
+    ],
+    "created_at": "2025-09-10T13:13:45.758148",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 100
+  },
+  "H-sS8c_FGCIA35on3DqQo0NsnriCpk1N5-fpuaoIjCo": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:13:45.760634",
+    "last_used": "2025-09-10T13:13:45.760953",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "ICUcEms10pcPhaA_ZW3XAsZlkM8mvHGWon6AAcNx1-w": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:13:45.794684",
+    "last_used": "2025-09-10T13:13:45.795068",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "RdvM6d-MoTJC1kIOsqSbBYWQeLAMCYGSgUCHEONy1CQ": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:13:45.795992",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  },
+  "ZHzZupcUe144g5pqp2rUXT3oEJC5kPMSc6X55HUs2PE": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:13:45.818853",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  },
+  "uTzGKzLNHJ5n6D144yynzMGo6OyXuRbrWHqQ_Ye3Lbs": {
+    "name": "test_key",
+    "permissions": [
+      "chat",
+      "config"
+    ],
+    "created_at": "2025-09-10T13:14:27.734335",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 100
+  },
+  "2Ks3WdZXJqUeDzRHGHYbHEEg-S7Cypl583E1apDVjog": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:14:27.736131",
+    "last_used": "2025-09-10T13:14:27.736448",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "X3Z6gwSfnDLXMRFzoqz4tlA9abNt4raWIGtCC8yd3GU": {
+    "name": "test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:14:29.747022",
+    "last_used": "2025-09-10T13:14:29.747496",
+    "usage_count": 1,
+    "rate_limit_override": null
+  },
+  "kCbH-jnvVYOdpUyyXpKGcJOYgG403RySGRMOAjQsRvQ": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:14:29.748679",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  },
+  "EgQmfVhps4cBmN2mZfnx_cYCvAzCBXzdGq5eB0Zy3rQ": {
+    "name": "rate_test",
+    "permissions": [
+      "chat"
+    ],
+    "created_at": "2025-09-10T13:14:29.771887",
+    "last_used": null,
+    "usage_count": 0,
+    "rate_limit_override": 3
+  }
+}

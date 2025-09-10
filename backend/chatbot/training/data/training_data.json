@@ -21,7 +21,7 @@
     {
       "question": "Was sind die Öffnungszeiten?",
       "original_response": "Wir sind täglich von 09:00 bis 18:00 Uhr geöffnet.",
-      "corrected_response": "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethoorn.",
+      "corrected_response": "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Wir befinden uns in der Belterwijde 1, 8355 AA Giethorn.",
       "detected_language": "de",
       "response_type": "opening_hours",
       "timestamp": "2025-07-30T10:40:00",
@@ -117,11 +117,389 @@
       "language": "nl",
       "response_type": "booking",
       "timestamp": "2025-07-30T12:12:51.052148"
+    },
+    "wat kost een electrosloep 10?": {
+      "original": "De Electrosloep 10 kost €200 per dag.",
+      "corrected": "De Electrosloep 10 kost €200 per dag en is geschikt voor maximaal 10 personen. Deze elektrische boot is perfect voor rustige vaartochten door het Weerribben-Wieden gebied en heeft een overkapping voor bescherming tegen de zon.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:30:00"
+    },
+    "hoeveel kost een electrosloep 8?": {
+      "original": "De Electrosloep 8 kost €175 per dag.",
+      "corrected": "De Electrosloep 8 kost €175 per dag en is geschikt voor maximaal 8 personen. Deze elektrische boot is ideaal voor families en heeft comfortabele zitplaatsen en een overkapping.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:31:00"
+    },
+    "wat kost een kano per dag?": {
+      "original": "Een kano kost €25 per dag.",
+      "corrected": "Een kano kost €25 per dag. Perfect voor een rustige vaartocht door de smalle waterwegen van het Weerribben-Wieden gebied. Inclusief peddels en reddingsvesten.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:32:00"
+    },
+    "hoeveel kost een kajak?": {
+      "original": "Een kajak kost €25 per dag.",
+      "corrected": "Een kajak kost €25 per dag. Ideaal voor individuele vaartochten door de natuur. Inclusief peddel en reddingsvest. Perfect voor het verkennen van de smalle waterwegen.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:33:00"
+    },
+    "wat kost een sup board?": {
+      "original": "Een SUP board kost €35 per dag.",
+      "corrected": "Een SUP board kost €35 per dag. Inclusief peddel en reddingsvest. Perfect voor een actieve dag op het water in het Weerribben-Wieden gebied.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:34:00"
+    },
+    "zijn de prijzen inclusief brandstof?": {
+      "original": "Ja, alle prijzen zijn inclusief brandstof.",
+      "corrected": "Ja, alle prijzen zijn inclusief brandstof en verzekering. U hoeft alleen nog maar te betalen voor eventuele schade die u veroorzaakt tijdens het gebruik van de boot.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:35:00"
+    },
+    "wat zijn jullie openingstijden?": {
+      "original": "We zijn open van 9:00 tot 18:00.",
+      "corrected": "We zijn dagelijks geopend van 09:00 tot 18:00 uur van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar. U kunt ons bellen op 0522 281 528.",
+      "language": "nl",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T13:36:00"
+    },
+    "wanneer zijn jullie gesloten?": {
+      "original": "We zijn gesloten in de winter.",
+      "corrected": "We zijn gesloten van 1 november tot 1 april. Buiten het seizoen zijn we op afspraak bereikbaar voor speciale gelegenheden. Neem contact met ons op via 0522 281 528.",
+      "language": "nl",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T13:37:00"
+    },
+    "hoe kan ik contact opnemen?": {
+      "original": "U kunt ons bellen op 0522 281 528.",
+      "corrected": "U kunt ons bereiken via telefoon op 0522 281 528 of bezoek onze locatie aan de Belterwijde 1, 8355 AA Giethoorn. We zijn dagelijks bereikbaar van 09:00 tot 18:00 uur.",
+      "language": "nl",
+      "response_type": "contact",
+      "timestamp": "2025-09-10T13:38:00"
+    },
+    "waar bevindt u zich?": {
+      "original": "We zitten in Giethoorn.",
+      "corrected": "We bevinden ons aan de Belterwijde 1, 8355 AA Giethoorn, in het prachtige Weerribben-Wieden natuurgebied. Perfect gelegen voor boottochten door de unieke waterwegen.",
+      "language": "nl",
+      "response_type": "location",
+      "timestamp": "2025-09-10T13:39:00"
+    },
+    "welke boten hebben jullie?": {
+      "original": "We hebben verschillende boten.",
+      "corrected": "We hebben verschillende boten beschikbaar: Tender 720 (12 personen), Tender 570 (8 personen), Electrosloep 10 (10 personen), Electrosloep 8 (8 personen), zeilboten (4-5 meter), kano's, kajaks en SUP boards. Alle boten zijn perfect voor het verkennen van het Weerribben-Wieden natuurgebied.",
+      "language": "nl",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T13:40:00"
+    },
+    "hoeveel personen passen er in de tender 720?": {
+      "original": "De Tender 720 is geschikt voor 12 personen.",
+      "corrected": "De Tender 720 is geschikt voor maximaal 12 personen. Deze elektrische boot is ideaal voor grotere groepen en heeft een comfortabele uitrusting met overkapping en verwarming.",
+      "language": "nl",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T13:41:00"
+    },
+    "is er een minimumleeftijd voor het huren?": {
+      "original": "Ja, er is een minimumleeftijd.",
+      "corrected": "Voor het huren van boten geldt een minimumleeftijd van 18 jaar. Voor zeilboten moet u een ervaren zeiler zijn. Alle boten worden uitgeleverd met instructies en veiligheidsmateriaal.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T13:42:00"
+    },
+    "kunnen we huisdieren meenemen?": {
+      "original": "Huisdieren zijn niet toegestaan.",
+      "corrected": "Huisdieren zijn helaas niet toegestaan op onze boten. Dit is vanwege veiligheids- en hygiëneregels. We hopen op uw begrip.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T13:43:00"
+    },
+    "wat als het regent?": {
+      "original": "Bij regen kunt u de boot annuleren.",
+      "corrected": "Bij slecht weer kunt u uw reservering kosteloos annuleren tot 24 uur van tevoren. Veel van onze boten hebben overkappingen voor bescherming tegen regen. Neem contact met ons op voor de beste opties.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T13:44:00"
+    },
+    "hoe lang van tevoren moet ik reserveren?": {
+      "original": "Het is aan te raden om vooraf te reserveren.",
+      "corrected": "We raden aan om vooral in het hoogseizoen (juli en augustus) minimaal een week van tevoren te reserveren. Buiten het seizoen is vaak nog ruimte beschikbaar. Bel ons op 0522 281 528 voor beschikbaarheid.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T13:45:00"
+    },
+    "kunnen we de boot langer huren?": {
+      "original": "Ja, dat is mogelijk.",
+      "corrected": "Ja, u kunt boten ook voor meerdere dagen huren. Voor langere periodes bieden we speciale tarieven. Neem contact met ons op via 0522 281 528 voor de mogelijkheden en prijzen.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T13:46:00"
+    },
+    "wat zit er bij de boot inbegrepen?": {
+      "original": "Reddingsvesten en peddels zijn inbegrepen.",
+      "corrected": "Bij alle boten zijn reddingsvesten, peddels en instructies inbegrepen. Voor elektrische boten is de accu en oplader inbegrepen. Zeilboten hebben zeilen en tuigage. Brandstof is ook inbegrepen in de prijs.",
+      "language": "nl",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T13:47:00"
+    },
+    "how much does the electrosloep 10 cost?": {
+      "original": "The Electrosloep 10 costs €200 per day.",
+      "corrected": "The Electrosloep 10 costs €200 per day and is suitable for up to 10 people. This electric boat is perfect for quiet trips through the Weerribben-Wieden nature reserve and has a canopy for sun protection.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:48:00"
+    },
+    "what is the price of electrosloep 8?": {
+      "original": "The Electrosloep 8 costs €175 per day.",
+      "corrected": "The Electrosloep 8 costs €175 per day and is suitable for up to 8 people. This electric boat is ideal for families and has comfortable seating and a canopy.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:49:00"
+    },
+    "how much is a canoe per day?": {
+      "original": "A canoe costs €25 per day.",
+      "corrected": "A canoe costs €25 per day. Perfect for a quiet trip through the narrow waterways of the Weerribben-Wieden nature reserve. Includes paddles and life jackets.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:50:00"
+    },
+    "what does a kayak cost?": {
+      "original": "A kayak costs €25 per day.",
+      "corrected": "A kayak costs €25 per day. Ideal for individual trips through nature. Includes paddle and life jacket. Perfect for exploring the narrow waterways.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:51:00"
+    },
+    "how much is a sup board?": {
+      "original": "A SUP board costs €35 per day.",
+      "corrected": "A SUP board costs €35 per day. Includes paddle and life jacket. Perfect for an active day on the water in the Weerribben-Wieden area.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:52:00"
+    },
+    "are prices including fuel?": {
+      "original": "Yes, all prices include fuel.",
+      "corrected": "Yes, all prices include fuel and insurance. You only need to pay for any damage you cause while using the boat.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T13:53:00"
+    },
+    "what are your opening hours?": {
+      "original": "We are open from 9:00 to 18:00.",
+      "corrected": "We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment. You can call us at 0522 281 528.",
+      "language": "en",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T13:54:00"
+    },
+    "when are you closed?": {
+      "original": "We are closed in winter.",
+      "corrected": "We are closed from November 1st to April 1st. Outside the season, we are available by appointment for special occasions. Contact us at 0522 281 528.",
+      "language": "en",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T13:55:00"
+    },
+    "how can I contact you?": {
+      "original": "You can call us at 0522 281 528.",
+      "corrected": "You can reach us by phone at 0522 281 528 or visit our location at Belterwijde 1, 8355 AA Giethoorn. We are available daily from 09:00 to 18:00.",
+      "language": "en",
+      "response_type": "contact",
+      "timestamp": "2025-09-10T13:56:00"
+    },
+    "where are you located?": {
+      "original": "We are in Giethoorn.",
+      "corrected": "We are located at Belterwijde 1, 8355 AA Giethoorn, in the beautiful Weerribben-Wieden nature reserve. Perfectly located for boat trips through the unique waterways.",
+      "language": "en",
+      "response_type": "location",
+      "timestamp": "2025-09-10T13:57:00"
+    },
+    "what boats do you have?": {
+      "original": "We have different boats.",
+      "corrected": "We have various boats available: Tender 720 (12 people), Tender 570 (8 people), Electrosloep 10 (10 people), Electrosloep 8 (8 people), sailboats (4-5 meters), canoes, kayaks and SUP boards. All boats are perfect for exploring the Weerribben-Wieden nature reserve.",
+      "language": "en",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T13:58:00"
+    },
+    "how many people fit in the tender 720?": {
+      "original": "The Tender 720 is suitable for 12 people.",
+      "corrected": "The Tender 720 is suitable for up to 12 people. This electric boat is ideal for larger groups and has comfortable equipment with canopy and heating.",
+      "language": "en",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T13:59:00"
+    },
+    "is there a minimum age for renting?": {
+      "original": "Yes, there is a minimum age.",
+      "corrected": "For renting boats, there is a minimum age of 18 years. For sailboats, you must be an experienced sailor. All boats are delivered with instructions and safety equipment.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:00:00"
+    },
+    "can we bring pets?": {
+      "original": "Pets are not allowed.",
+      "corrected": "Unfortunately, pets are not allowed on our boats. This is due to safety and hygiene regulations. We hope for your understanding.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:01:00"
+    },
+    "what if it rains?": {
+      "original": "In case of rain, you can cancel the boat.",
+      "corrected": "In case of bad weather, you can cancel your reservation free of charge up to 24 hours in advance. Many of our boats have canopies for protection against rain. Contact us for the best options.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:02:00"
+    },
+    "how far in advance should I book?": {
+      "original": "It is recommended to book in advance.",
+      "corrected": "We recommend booking at least a week in advance, especially during high season (July and August). Outside the season, there is often still availability. Call us at 0522 281 528 for availability.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:03:00"
+    },
+    "can we rent the boat longer?": {
+      "original": "Yes, that is possible.",
+      "corrected": "Yes, you can also rent boats for multiple days. For longer periods, we offer special rates. Contact us at 0522 281 528 for options and prices.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:04:00"
+    },
+    "what is included with the boat?": {
+      "original": "Life jackets and paddles are included.",
+      "corrected": "All boats include life jackets, paddles and instructions. For electric boats, the battery and charger are included. Sailboats have sails and rigging. Fuel is also included in the price.",
+      "language": "en",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T14:05:00"
+    },
+    "wie viel kostet die electrosloep 10?": {
+      "original": "Die Electrosloep 10 kostet €200 pro Tag.",
+      "corrected": "Die Electrosloep 10 kostet €200 pro Tag und ist für bis zu 10 Personen geeignet. Dieses Elektroboot ist perfekt für ruhige Fahrten durch das Weerribben-Wieden Naturschutzgebiet und hat ein Verdeck zum Sonnenschutz.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:06:00"
+    },
+    "was kostet die electrosloep 8?": {
+      "original": "Die Electrosloep 8 kostet €175 pro Tag.",
+      "corrected": "Die Electrosloep 8 kostet €175 pro Tag und ist für bis zu 8 Personen geeignet. Dieses Elektroboot ist ideal für Familien und hat bequeme Sitzplätze und ein Verdeck.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:07:00"
+    },
+    "wie viel kostet ein kanu pro tag?": {
+      "original": "Ein Kanu kostet €25 pro Tag.",
+      "corrected": "Ein Kanu kostet €25 pro Tag. Perfekt für eine ruhige Fahrt durch die schmalen Wasserwege des Weerribben-Wieden Naturschutzgebiets. Inklusive Paddel und Rettungswesten.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:08:00"
+    },
+    "was kostet ein kajak?": {
+      "original": "Ein Kajak kostet €25 pro Tag.",
+      "corrected": "Ein Kajak kostet €25 pro Tag. Ideal für individuelle Fahrten durch die Natur. Inklusive Paddel und Rettungsweste. Perfekt zum Erkunden der schmalen Wasserwege.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:09:00"
+    },
+    "wie viel kostet ein sup board?": {
+      "original": "Ein SUP Board kostet €35 pro Tag.",
+      "corrected": "Ein SUP Board kostet €35 pro Tag. Inklusive Paddel und Rettungsweste. Perfekt für einen aktiven Tag auf dem Wasser im Weerribben-Wieden Gebiet.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:10:00"
+    },
+    "sind die preise inklusive kraftstoff?": {
+      "original": "Ja, alle Preise sind inklusive Kraftstoff.",
+      "corrected": "Ja, alle Preise sind inklusive Kraftstoff und Versicherung. Sie müssen nur für eventuelle Schäden bezahlen, die Sie bei der Nutzung des Bootes verursachen.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-09-10T14:11:00"
+    },
+    "was sind eure öffnungszeiten?": {
+      "original": "Wir sind von 9:00 bis 18:00 geöffnet.",
+      "corrected": "Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar. Sie können uns unter 0522 281 528 anrufen.",
+      "language": "de",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T14:12:00"
+    },
+    "wann seid ihr geschlossen?": {
+      "original": "Wir sind im Winter geschlossen.",
+      "corrected": "Wir sind vom 1. November bis 1. April geschlossen. Außerhalb der Saison sind wir nach Vereinbarung für besondere Anlässe erreichbar. Kontaktieren Sie uns unter 0522 281 528.",
+      "language": "de",
+      "response_type": "opening_hours",
+      "timestamp": "2025-09-10T14:13:00"
+    },
+    "wie kann ich sie kontaktieren?": {
+      "original": "Sie können uns unter 0522 281 528 anrufen.",
+      "corrected": "Sie können uns telefonisch unter 0522 281 528 erreichen oder unseren Standort an der Belterwijde 1, 8355 AA Giethoorn besuchen. Wir sind täglich von 09:00 bis 18:00 Uhr erreichbar.",
+      "language": "de",
+      "response_type": "contact",
+      "timestamp": "2025-09-10T14:14:00"
+    },
+    "wo befinden sie sich?": {
+      "original": "Wir sind in Giethoorn.",
+      "corrected": "Wir befinden uns an der Belterwijde 1, 8355 AA Giethoorn, im wunderschönen Weerribben-Wieden Naturschutzgebiet. Perfekt gelegen für Bootsfahrten durch die einzigartigen Wasserwege.",
+      "language": "de",
+      "response_type": "location",
+      "timestamp": "2025-09-10T14:15:00"
+    },
+    "welche boote habt ihr?": {
+      "original": "Wir haben verschiedene Boote.",
+      "corrected": "Wir haben verschiedene Boote verfügbar: Tender 720 (12 Personen), Tender 570 (8 Personen), Electrosloep 10 (10 Personen), Electrosloep 8 (8 Personen), Segelboote (4-5 Meter), Kanus, Kajaks und SUP-Boards. Alle Boote sind perfekt zum Erkunden des Weerribben-Wieden Naturschutzgebiets.",
+      "language": "de",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T14:16:00"
+    },
+    "wie viele personen passen in die tender 720?": {
+      "original": "Die Tender 720 ist für 12 Personen geeignet.",
+      "corrected": "Die Tender 720 ist für bis zu 12 Personen geeignet. Dieses Elektroboot ist ideal für größere Gruppen und hat eine komfortable Ausstattung mit Verdeck und Heizung.",
+      "language": "de",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T14:17:00"
+    },
+    "gibt es ein mindestalter für das mieten?": {
+      "original": "Ja, es gibt ein Mindestalter.",
+      "corrected": "Für das Mieten von Booten gilt ein Mindestalter von 18 Jahren. Für Segelboote müssen Sie ein erfahrener Segler sein. Alle Boote werden mit Anweisungen und Sicherheitsausrüstung ausgeliefert.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:18:00"
+    },
+    "können wir haustiere mitbringen?": {
+      "original": "Haustiere sind nicht erlaubt.",
+      "corrected": "Leider sind Haustiere auf unseren Booten nicht erlaubt. Dies liegt an Sicherheits- und Hygienevorschriften. Wir hoffen auf Ihr Verständnis.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:19:00"
+    },
+    "was ist wenn es regnet?": {
+      "original": "Bei Regen können Sie das Boot stornieren.",
+      "corrected": "Bei schlechtem Wetter können Sie Ihre Reservierung bis zu 24 Stunden im Voraus kostenlos stornieren. Viele unserer Boote haben Verdeck zum Schutz vor Regen. Kontaktieren Sie uns für die besten Optionen.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:20:00"
+    },
+    "wie weit im voraus sollte ich buchen?": {
+      "original": "Es wird empfohlen, im Voraus zu buchen.",
+      "corrected": "Wir empfehlen, mindestens eine Woche im Voraus zu buchen, besonders in der Hauptsaison (Juli und August). Außerhalb der Saison ist oft noch Platz verfügbar. Rufen Sie uns unter 0522 281 528 für Verfügbarkeit an.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:21:00"
+    },
+    "können wir das boot länger mieten?": {
+      "original": "Ja, das ist möglich.",
+      "corrected": "Ja, Sie können Boote auch für mehrere Tage mieten. Für längere Zeiträume bieten wir spezielle Tarife. Kontaktieren Sie uns unter 0522 281 528 für Möglichkeiten und Preise.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-09-10T14:22:00"
+    },
+    "was ist beim boot inbegriffen?": {
+      "original": "Rettungswesten und Paddel sind inbegriffen.",
+      "corrected": "Bei allen Booten sind Rettungswesten, Paddel und Anweisungen inbegriffen. Für Elektroboote sind Akku und Ladegerät inbegriffen. Segelboote haben Segel und Takelage. Kraftstoff ist auch im Preis inbegriffen.",
+      "language": "de",
+      "response_type": "boats",
+      "timestamp": "2025-09-10T14:23:00"
     }
   },
   "statistics": {
-    "total_tests": 7,
-    "improved_responses": 7,
+    "total_tests": 67,
+    "improved_responses": 67,
     "accuracy_score": 100.0
   }
 }

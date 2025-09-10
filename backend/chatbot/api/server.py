@@ -22,7 +22,6 @@ sys.path.append(project_root)
 sys.path.append(current_dir)
 
 try:
-    from backend.chatbot.core.simple_chatbot import SimpleChatbot
     from backend.chatbot.core.enhanced_chatbot import EnhancedChatbot
     from backend.chatbot.core.security_manager import get_security_manager
     from backend.chatbot.core.connection_monitor import get_connection_monitor, start_connection_monitoring
@@ -66,14 +65,14 @@ connection_monitor = get_connection_monitor()
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Initialize enhanced chatbot (falls back to simple chatbot if training data not available)
+# Initialize enhanced chatbot
 try:
     chatbot = EnhancedChatbot()
     print("✅ Enhanced chatbot loaded with training data support")
 except Exception as e:
-    print(f"⚠️  Enhanced chatbot failed to load: {e}")
-    print("🔄 Falling back to simple chatbot")
-    chatbot = SimpleChatbot()
+    print(f"❌ Enhanced chatbot failed to load: {e}")
+    print("Please check the training data and dependencies.")
+    sys.exit(1)
 
 # Import boat translation function
 from backend.chatbot.core.boat_translations import translate_boat_names
