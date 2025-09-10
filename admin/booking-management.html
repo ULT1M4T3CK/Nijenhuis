@@ -601,6 +601,13 @@
                         this.filterBookingsByDate();
                     });
                 }
+                
+                // Listen for booking status changes
+                window.addEventListener('bookingStatusChanged', (e) => {
+                    console.log('Booking status changed:', e.detail);
+                    this.loadBookings();
+                    this.renderBookings();
+                });
             }
             
             saveBookings() {

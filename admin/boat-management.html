@@ -468,13 +468,13 @@
             
             .boat-item {
                 grid-template-columns: 1fr;
-                text-align: center;
+            text-align: center;
             }
             
             .booking-item {
                 grid-template-columns: 1fr;
-            text-align: center;
-        }
+                text-align: center;
+            }
         }
         
         /* Form Styles */
@@ -922,7 +922,16 @@
                         this.loadData();
                         this.renderRealTimeBoats();
                         this.renderBoats();
+                        this.filterBoatsByDate(); // Update calendar view if date is selected
                     }
+                });
+                
+                // Also listen for custom events
+                window.addEventListener('bookingStatusChanged', () => {
+                    this.loadData();
+                    this.renderRealTimeBoats();
+                    this.renderBoats();
+                    this.filterBoatsByDate();
                 });
                 
                 // Update every 30 seconds

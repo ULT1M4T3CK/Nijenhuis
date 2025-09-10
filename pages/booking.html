@@ -408,7 +408,7 @@
                             value: price.toFixed(2)
                         },
                         description: `Boat rental - ${this.getBoatName(bookingData.boatType)} on ${bookingData.date}`,
-                        redirectUrl: `${window.location.origin}/pages/payment-success.html?bookingId=${bookingData.id}`,
+                        redirectUrl: `${window.location.origin}/pages/booking-test.html?bookingId=${bookingData.id}`,
                         cancelUrl: `${window.location.origin}/pages/payment-failure.html`,
                         webhookUrl: `${window.location.origin}/mollie_api.php?action=webhook`,
                         metadata: {
