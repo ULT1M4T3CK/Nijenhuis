@@ -436,6 +436,25 @@
         document.addEventListener('DOMContentLoaded', function() {
             handleUrlParameters();
 
+            // Booking Form Functionality
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const date = document.getElementById('date').value;
+                    const boatType = document.getElementById('boatType').value;
+                    
+                    if (!date || !boatType) {
+                        alert('Please select both date and boat type');
+                        return;
+                    }
+                    
+                    // Check availability and redirect to booking page
+                    checkAvailabilityAndRedirect(date, boatType);
+                });
+            }
+
             // Chat Widget Functionality
             const chatButton = document.getElementById('chatButton');
             const chatWindow = document.getElementById('chatWindow');
@@ -457,6 +476,16 @@
                 });
             }
         });
+
+        // Function to check availability and redirect
+        function checkAvailabilityAndRedirect(date, boatType) {
+            // For demo purposes, we'll assume the boat is available
+            // In a real implementation, this would check against the boat management system
+            
+            // Redirect to booking page with parameters
+            const bookingUrl = `booking.html?date=${encodeURIComponent(date)}&boatType=${encodeURIComponent(boatType)}`;
+            window.location.href = bookingUrl;
+        }
     </script>
 
     <!-- Booking Modal -->

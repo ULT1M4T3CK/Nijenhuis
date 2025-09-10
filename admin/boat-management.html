@@ -5,543 +5,427 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boat Management - Nijenhuis Botenverhuur</title>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" type="image/svg+xml" href="../Images/logo-white.svg">
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
     <style>
         /* Boat Management Specific Styles */
-        .admin-dashboard {
+        .boat-management {
             min-height: 100vh;
             background: var(--bg-light);
         }
         
-        .admin-header {
+        .management-header {
             background: var(--primary-color);
             color: var(--white);
             padding: var(--spacing-lg) 0;
             box-shadow: var(--shadow-md);
         }
         
-        .admin-header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
+        .management-container {
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 var(--spacing-lg);
         }
         
-        .admin-header-left {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-lg);
-        }
-        
-        .admin-logo {
-            width: 50px;
-            height: 50px;
-            filter: brightness(0) saturate(100%) invert(100%);
-        }
-        
-        .admin-header-left h1 {
-            font-size: var(--font-size-xl);
+        .management-title {
+            font-size: var(--font-size-2xl);
             font-weight: 600;
-            margin: 0;
-        }
-        
-        .admin-header-right {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-        }
-        
-        .admin-nav-btn {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-            transition: var(--transition-normal);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-        }
-        
-        .admin-nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-            color: var(--white);
-            text-decoration: none;
-        }
-        
-        .admin-main {
-            padding: var(--spacing-xl) 0;
-        }
-        
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-        }
-        
-        .boat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-xl);
-        }
-        
-        .boat-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: var(--transition-normal);
-        }
-        
-        .boat-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-2px);
-        }
-        
-        .boat-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: var(--bg-light);
-        }
-        
-        .boat-info {
-            padding: var(--spacing-lg);
-        }
-        
-        .boat-name {
-            font-size: var(--font-size-lg);
-            font-weight: 600;
-            color: var(--text-primary);
             margin-bottom: var(--spacing-sm);
         }
         
-        .boat-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .boat-capacity {
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-        
-        .boat-price {
-            color: var(--primary-color);
-            font-weight: 600;
+        .management-subtitle {
+            opacity: 0.9;
             font-size: var(--font-size-base);
         }
         
-        .availability-controls {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-md);
+        .management-content {
+            padding: var(--spacing-2xl) 0;
         }
         
-        .availability-label {
-            font-size: var(--font-size-sm);
-            color: var(--text-secondary);
-            min-width: 80px;
+        .management-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
         }
         
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-        }
-        
-        .quantity-btn {
-            width: 32px;
-            height: 32px;
-            border: 1px solid var(--light-gray);
-            background: var(--white);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: var(--transition-normal);
-            font-weight: 600;
-        }
-        
-        .quantity-btn:hover {
-            background: var(--primary-color);
-            color: var(--white);
-            border-color: var(--primary-color);
-        }
-        
-        .quantity-display {
-            min-width: 40px;
-            text-align: center;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .boat-actions {
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-        
-        .btn-small {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            font-size: var(--font-size-xs);
-            border-radius: var(--radius-sm);
-        }
-        
-        .btn-manual-booking {
-            background: var(--primary-color) !important;
-            color: white !important;
-            font-weight: 600;
-            border: none;
-            transition: var(--transition-normal);
-        }
-        
-        .btn-manual-booking:hover {
-            background: var(--secondary-color) !important;
-            transform: translateY(-1px);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        
-        .modal.hidden {
-            display: none;
-        }
-        
-        .modal-content {
+        .management-section {
             background: var(--white);
             border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
-            max-width: 500px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
         
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .section-header {
+            background: var(--bg-light);
             padding: var(--spacing-lg);
             border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .modal-header h3 {
-            margin: 0;
-            color: var(--text-primary);
-        }
-        
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: var(--font-size-xl);
-            cursor: pointer;
-            color: var(--text-secondary);
-            padding: 0;
-            width: 30px;
-            height: 30px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
         }
         
-        .modal-close:hover {
+        .section-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
             color: var(--text-primary);
         }
         
-        .modal-body {
+        .section-content {
             padding: var(--spacing-lg);
         }
         
-        .form-group {
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: var(--spacing-xs);
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: var(--spacing-sm);
-            border: 1px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            box-sizing: border-box;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 2px rgba(0, 113, 187, 0.1);
-        }
-        
-        .form-actions {
-            display: flex;
-            gap: var(--spacing-sm);
-            justify-content: flex-end;
-            margin-top: var(--spacing-lg);
-        }
-        
-        .stats-summary {
-            background: var(--white);
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--spacing-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .stock-display {
-            background: var(--white);
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--spacing-xl);
-            box-shadow: var(--shadow-md);
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .stock-grid {
+        /* Real-time Updates Section */
+        .realtime-boats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--spacing-md);
         }
         
-        .stock-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--spacing-md);
-            background: var(--bg-light);
+        .realtime-boat-card {
+            background: var(--white);
+            border: 2px solid var(--light-gray);
             border-radius: var(--radius-md);
-            border-left: 4px solid var(--primary-color);
-        }
-        
-        .stock-item.low-stock {
-            border-left-color: #ff9800;
-            background: #fff3e0;
-        }
-        
-        .stock-item.out-of-stock {
-            border-left-color: #f44336;
-            background: #ffebee;
-        }
-        
-        .stock-item-name {
-            font-weight: 600;
-            color: var(--text-primary);
-            font-size: var(--font-size-sm);
-        }
-        
-        .stock-item-count {
-            font-weight: 700;
-            font-size: var(--font-size-lg);
-            color: var(--primary-color);
-        }
-        
-        .stock-item-count.low-stock {
-            color: #ff9800;
-        }
-        
-        .stock-item-count.out-of-stock {
-            color: #f44336;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: var(--spacing-lg);
-        }
-        
-        .stat-item {
+            padding: var(--spacing-md);
             text-align: center;
+            transition: var(--transition-normal);
         }
         
-        .stat-number {
+        .realtime-boat-card.available {
+            border-color: var(--success-color);
+            background: rgba(40, 167, 69, 0.1);
+        }
+        
+        .realtime-boat-card.unavailable {
+            border-color: var(--error-color);
+            background: rgba(220, 53, 69, 0.1);
+        }
+        
+        .boat-name {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+        
+        .boat-availability {
             font-size: var(--font-size-2xl);
-            font-weight: bold;
-            color: var(--primary-color);
+            font-weight: 700;
             margin-bottom: var(--spacing-xs);
         }
         
-        .stat-label {
+        .boat-availability.available {
+            color: var(--success-color);
+        }
+        
+        .boat-availability.unavailable {
+            color: var(--error-color);
+        }
+        
+        .boat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Manual Boat Management */
+        .boat-list {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+        
+        .boat-item {
+            display: grid;
+            grid-template-columns: 120px 1fr auto;
+            gap: var(--spacing-lg);
+            align-items: center;
+            padding: var(--spacing-lg);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            background: var(--white);
+        }
+        
+        .boat-image {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+        
+        .boat-info h3 {
+            margin: 0 0 var(--spacing-sm) 0;
+            color: var(--text-primary);
+            font-size: var(--font-size-lg);
+        }
+        
+        .boat-info p {
+            margin: 0;
             color: var(--text-secondary);
             font-size: var(--font-size-sm);
         }
         
-        .no-boats {
+        .boat-controls {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .availability-input {
+            width: 80px;
+            padding: var(--spacing-sm);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-sm);
             text-align: center;
-            padding: var(--spacing-3xl);
+            font-weight: 600;
+        }
+        
+        .availability-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .update-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .update-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Booking Management */
+        .booking-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: var(--spacing-lg);
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid;
+        }
+        
+        .booking-item.manual {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #ffc107;
+        }
+        
+        .booking-item.success {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: var(--success-color);
+        }
+        
+        .booking-item.rejected {
+            background: rgba(220, 53, 69, 0.1);
+            border-left-color: var(--error-color);
+        }
+        
+        .booking-item.picked-up {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: var(--success-color);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .booking-status {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-manual {
+            background: #ffc107;
+            color: var(--white);
+        }
+        
+        .status-success {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .status-rejected {
+            background: var(--error-color);
+            color: var(--white);
+        }
+        
+        .status-picked-up {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .booking-info h4 {
+            margin: 0 0 var(--spacing-xs) 0;
+            color: var(--text-primary);
+        }
+        
+        .booking-info p {
+            margin: 0;
             color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .status-select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+        }
+        
+        .save-btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--success-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+        }
+        
+        .add-booking-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .add-booking-btn:hover {
+            background: var(--primary-dark);
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .admin-header-content {
-                flex-direction: column;
-                gap: var(--spacing-md);
-                text-align: center;
-            }
-            
-            .admin-header-right {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .boat-grid {
+            .management-grid {
                 grid-template-columns: 1fr;
             }
             
-            .boat-details {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--spacing-xs);
+            .boat-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .booking-item {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="admin-dashboard">
-        <!-- Admin Header -->
-        <header class="admin-header">
-            <div class="admin-header-content">
-                <div class="admin-header-left">
-                    <img src="../Images/logo-white.svg" alt="Nijenhuis Botenverhuur" class="admin-logo">
-                    <h1>Boot Beheer</h1>
-                </div>
-                <div class="admin-header-right">
-                    <a href="admin-simple.html" class="admin-nav-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-                        </svg>
-                        Reserveringen
-                    </a>
-                    <a href="../pages/index.html" class="admin-nav-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                        </svg>
-                        Terug naar Website
-                    </a>
-                    <button onclick="boatManager.logout()" class="admin-nav-btn" style="cursor: pointer; border: none; font-family: inherit;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
-                        </svg>
-                        Uitloggen
-                    </button>
-                </div>
+    <div class="boat-management">
+        <div class="management-header">
+            <div class="management-container">
+                <h1 class="management-title">Boat Management</h1>
+                <p class="management-subtitle">Real-time boat availability and booking management</p>
             </div>
-        </header>
+        </div>
 
-        <!-- Main Content -->
-        <main class="admin-main">
-            <div class="admin-container">
-                <!-- Statistics Summary -->
-                <div class="stats-summary">
-                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Vloot Overzicht</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number" id="totalBoats">0</div>
-                                                    <div class="stat-label">Totaal Boten</div>
+        <div class="management-container">
+            <div class="management-content">
+                <div class="management-grid">
+                    <!-- Real-time Boat Availability -->
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Real-time Availability</h2>
+                            <span id="lastUpdate" class="text-muted"></span>
+                        </div>
+                        <div class="section-content">
+                            <div class="realtime-boats" id="realtimeBoats">
+                                <!-- Real-time boat cards will be populated here -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="availableBoats">0</div>
-                        <div class="stat-label">Beschikbaar</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="rentedBoats">0</div>
-                        <div class="stat-label">Momenteel Verhuurd</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="totalCapacity">0</div>
-                        <div class="stat-label">Totale Capaciteit</div>
+
+                    <!-- Manual Boat Management -->
+                    <div class="management-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Boat Inventory</h2>
+                        </div>
+                        <div class="section-content">
+                            <div class="boat-list" id="boatList">
+                                <!-- Boat management items will be populated here -->
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Real-time Stock Display -->
-                <div class="stock-display">
-                    <h3 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Huidige Voorraad Status</h3>
-                    <div class="stock-grid" id="stockGrid">
-                        <!-- Stock items will be loaded here -->
+                <!-- Booking Management -->
+                <div class="management-section">
+                    <div class="section-header">
+                        <h2 class="section-title">Booking Management</h2>
+                    </div>
+                    <div class="section-content">
+                        <button class="add-booking-btn" onclick="showAddBookingModal()">+ Add Manual Booking</button>
+                        <div id="bookingsList">
+                            <!-- Bookings will be populated here -->
+                        </div>
                     </div>
                 </div>
-
-                <!-- Boats Grid -->
-                <div class="boat-grid" id="boatsGrid">
-                    <!-- Boats will be loaded here -->
-                </div>
             </div>
-        </main>
+        </div>
     </div>
 
-    <!-- Manual Booking Modal -->
-    <div id="manualBookingModal" class="modal hidden">
+    <!-- Add Booking Modal -->
+    <div id="addBookingModal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Handmatige Reservering</h3>
-                <button class="modal-close" onclick="boatManager.closeManualBookingModal()">&times;</button>
+                <h3>Add Manual Booking</h3>
+                <span class="close" onclick="closeAddBookingModal()">&times;</span>
             </div>
             <div class="modal-body">
-                <form id="manualBookingForm">
+                <form id="addBookingForm">
                     <div class="form-group">
-                        <label for="manualCustomerName">Klantnaam *</label>
-                        <input type="text" id="manualCustomerName" name="customerName" required>
+                        <label for="bookingDate">Date</label>
+                        <input type="date" id="bookingDate" name="date" required>
                     </div>
                     <div class="form-group">
-                        <label for="manualCustomerEmail">E-mailadres *</label>
-                        <input type="email" id="manualCustomerEmail" name="customerEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="manualCustomerPhone">Telefoonnummer *</label>
-                        <input type="tel" id="manualCustomerPhone" name="customerPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="manualBookingDate">Datum *</label>
-                        <input type="date" id="manualBookingDate" name="bookingDate" required>
-                    </div>
-                    <div class="form-group" id="manualEngineOptionGroup" style="display: none;">
-                        <label for="manualEngineOption">Motor optie</label>
-                        <select id="manualEngineOption" name="engineOption">
-                            <option value="without">Zonder motor</option>
-                            <option value="with">Met motor</option>
+                        <label for="bookingBoatType">Boat Type</label>
+                        <select id="bookingBoatType" name="boatType" required>
+                            <option value="">Select Boat Type</option>
+                            <option value="classic-tender-720">Classic tender 720 10/12 pers</option>
+                            <option value="electrosloop-10">Electrosloep voor 10 pers</option>
+                            <option value="electrosloop-8">Electrosloep voor 8 pers</option>
+                            <option value="electroboat-5">Electrosloep voor 5 pers</option>
+                            <option value="sailboat-4-5">Zeilboot</option>
+                            <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
+                            <option value="canoe-3">Canadese kano 3 pers</option>
+                            <option value="kayak-2">Kajak 2 pers</option>
+                            <option value="kayak-1">Kajak 1 pers</option>
+                            <option value="sup-board">SUP board 1 pers</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="manualNotes">Opmerkingen</label>
-                        <textarea id="manualNotes" name="notes" rows="3"></textarea>
+                        <label for="bookingCustomerName">Customer Name</label>
+                        <input type="text" id="bookingCustomerName" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingCustomerEmail">Email</label>
+                        <input type="email" id="bookingCustomerEmail" name="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingCustomerPhone">Phone</label>
+                        <input type="tel" id="bookingCustomerPhone" name="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingNotes">Notes</label>
+                        <textarea id="bookingNotes" name="notes" rows="3"></textarea>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Reservering Maken</button>
-                        <button type="button" class="btn btn-outline" onclick="boatManager.closeManualBookingModal()">Annuleren</button>
+                        <button type="submit" class="btn btn-primary">Add Booking</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddBookingModal()">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -549,539 +433,291 @@
     </div>
 
     <script>
-        class BoatManager {
+        class BoatManagementSystem {
             constructor() {
-                this.storageKey = 'nijenhuis_boats';
+                this.boatsStorageKey = 'nijenhuis_boats';
+                this.bookingsStorageKey = 'nijenhuis_bookings';
                 this.boats = [];
+                this.bookings = [];
                 this.init();
             }
             
-            checkAuth() {
-                const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true';
-                const loginTime = localStorage.getItem('adminLoginTime');
-                
-                if (!isLoggedIn || !loginTime) {
-                    this.redirectToLogin();
-                    return false;
-                }
-                
-                // Check if login is still valid (24 hours)
-                const loginDate = new Date(loginTime);
-                const now = new Date();
-                const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
-                
-                if (hoursDiff >= 24) {
-                    this.logout();
-                    return false;
-                }
-                
-                return true;
-            }
-            
-            redirectToLogin() {
-                window.location.href = '../pages/admin-login.html';
-            }
-            
-            logout() {
-                localStorage.removeItem('adminLoggedIn');
-                localStorage.removeItem('adminUser');
-                localStorage.removeItem('adminLoginTime');
-                this.redirectToLogin();
-            }
-            
             init() {
-                if (!this.checkAuth()) {
-                    return;
-                }
-                
-                this.loadBoats();
+                this.loadData();
+                this.setupEventListeners();
                 this.renderBoats();
-                this.updateStats();
+                this.renderBookings();
                 this.startRealTimeUpdates();
-                console.log('Boat manager initialized');
             }
             
-            loadBoats() {
-                try {
-                    const stored = localStorage.getItem(this.storageKey);
-                    if (stored) {
-                        this.boats = JSON.parse(stored);
-                        console.log('Loaded boats from storage:', this.boats.length);
-                    } else {
-                        // Initialize with default boats only if no stored data exists
-                        this.boats = this.getDefaultBoats();
-                        this.saveBoats();
-                        console.log('Initialized with default boats:', this.boats.length);
-                    }
-                } catch (error) {
-                    console.error('Error loading boats:', error);
-                    this.boats = this.getDefaultBoats();
-                }
+            loadData() {
+                // Load boats data
+                const storedBoats = localStorage.getItem(this.boatsStorageKey);
+                this.boats = storedBoats ? JSON.parse(storedBoats) : this.getDefaultBoats();
+                
+                // Load bookings data
+                const storedBookings = localStorage.getItem(this.bookingsStorageKey);
+                this.bookings = storedBookings ? JSON.parse(storedBookings) : [];
             }
             
             getDefaultBoats() {
                 return [
                     {
                         id: 'classic-tender-720',
-                        name: 'Classic tender 720',
-                        capacity: 12,
-                        price: 230,
-                        deposit: 100,
-                        image: '../Images/Boats/tender-720/tender-720-10-12.jpg',
+                        name: 'Classic Tender 720',
+                        image: '../frontend/Images/Boats/tender-720/tender-720-1.jpg',
+                        total: 2,
                         available: 2,
-                        category: 'electric'
-                    },
-                    {
-                        id: 'classic-tender-570',
-                        name: 'Classic tender 570',
-                        capacity: 8,
-                        price: 200,
-                        deposit: 100,
-                        image: '../Images/Boats/tender-570/27725985231061602092021.jpg',
-                        available: 2,
-                        category: 'electric'
+                        description: '10/12 person boat'
                     },
                     {
                         id: 'electrosloop-10',
-                        name: 'Electrosloep voor 10 pers',
-                        capacity: 10,
-                        price: 200,
-                        deposit: 100,
-                        image: '../Images/Boats/electrosloep-10/electrosloop-10.jpg',
+                        name: 'Electrosloep 10 pers',
+                        image: '../frontend/Images/Boats/electrosloop-10/electrosloop-10.jpg',
+                        total: 1,
                         available: 1,
-                        category: 'electric'
+                        description: 'Electric boat for 10 people'
                     },
                     {
                         id: 'electrosloop-8',
-                        name: 'Electrosloep voor 8 pers',
-                        capacity: 8,
-                        price: 175,
-                        deposit: 100,
-                        image: '../Images/Boats/electrosloep-8/electrosloop-8.jpg',
+                        name: 'Electrosloep 8 pers',
+                        image: '../frontend/Images/Boats/electrosloop-8/electrosloop-8.jpg',
+                        total: 2,
                         available: 2,
-                        category: 'electric'
+                        description: 'Electric boat for 8 people'
                     },
                     {
                         id: 'electroboat-5',
-                        name: 'Electrosloep voor 5 pers',
-                        capacity: 5,
-                        price: 80,
-                        deposit: 0,
-                        image: '../Images/Boats/electrosloep-5/electroboat-5.jpg',
-                        available: 2,
-                        category: 'electric'
+                        name: 'Electroboat 5 pers',
+                        image: '../frontend/Images/Boats/electroboat-5/electroboat-5.jpg',
+                        total: 3,
+                        available: 3,
+                        description: 'Electric boat for 5 people'
                     },
                     {
                         id: 'sailboat-4-5',
                         name: 'Zeilboot',
-                        capacity: 5,
-                        price: 70,
-                        deposit: 50,
-                        image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg',
-                        available: 2,
-                        category: 'sailing',
-                        hasEngine: false
-                    },
-                    {
-                        id: 'sailboat-4-5-engine',
-                        name: 'Zeilboot (met motor)',
-                        capacity: 5,
-                        price: 85,
-                        deposit: 50,
-                        image: '../Images/Boats/zeilboot/zeilboot-4-5.jpg',
+                        image: '../frontend/Images/Boats/zeilboot-4-5.jpg',
+                        total: 1,
                         available: 1,
-                        category: 'sailing',
-                        hasEngine: true
+                        description: 'Sailboat for 4-5 people'
                     },
                     {
                         id: 'sailpunter-3-4',
-                        name: 'Zeilpunter 3/4 pers',
-                        capacity: 4,
-                        price: 40,
-                        deposit: 0,
-                        image: '../Images/Boats/zeilpunter/sailpunter-3-4.jpg',
-                        available: 1,
-                        category: 'sailing'
+                        name: 'Zeilpunter',
+                        image: '../frontend/Images/Boats/sailpunter-3-4.jpg',
+                        total: 2,
+                        available: 2,
+                        description: 'Sailpunter for 3-4 people'
                     },
                     {
                         id: 'canoe-3',
-                        name: 'Canadese kano 3 pers',
-                        capacity: 3,
-                        price: 25,
-                        deposit: 0,
-                        image: '../Images/Boats/canoe/canoe-3.jpg',
-                        available: 3,
-                        category: 'canoe'
+                        name: 'Canadese Kano',
+                        image: '../frontend/Images/Boats/canoe-3/canoe-3.jpg',
+                        total: 4,
+                        available: 4,
+                        description: 'Canadian canoe for 3 people'
                     },
                     {
                         id: 'kayak-2',
                         name: 'Kajak 2 pers',
-                        capacity: 2,
-                        price: 25,
-                        deposit: 0,
-                        image: '../Images/Boats/kayak-2/kayak-2.jpg',
-                        available: 4,
-                        category: 'canoe'
+                        image: '../frontend/Images/Boats/kayak-2/kayak-2.jpg',
+                        total: 6,
+                        available: 6,
+                        description: 'Kayak for 2 people'
                     },
                     {
                         id: 'kayak-1',
                         name: 'Kajak 1 pers',
-                        capacity: 1,
-                        price: 20,
-                        deposit: 0,
-                        image: '../Images/Boats/kayak-1/kayak-1.jpg',
-                        available: 4,
-                        category: 'canoe'
+                        image: '../frontend/Images/Boats/kayak-1/kayak-1.jpg',
+                        total: 8,
+                        available: 8,
+                        description: 'Single person kayak'
                     },
                     {
                         id: 'sup-board',
-                        name: 'SUP board 1 pers',
-                        capacity: 1,
-                        price: 35,
-                        deposit: 0,
-                        image: '../Images/Boats/Sup/sub-1.jpg',
-                        available: 2,
-                        category: 'sup'
+                        name: 'SUP Board',
+                        image: '../frontend/Images/Boats/Sup/sup-1.jpg',
+                        total: 5,
+                        available: 5,
+                        description: 'Stand-up paddleboard'
                     }
                 ];
             }
             
+            setupEventListeners() {
+                document.getElementById('addBookingForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addManualBooking();
+                });
+            }
+            
+            saveData() {
+                localStorage.setItem(this.boatsStorageKey, JSON.stringify(this.boats));
+                localStorage.setItem(this.bookingsStorageKey, JSON.stringify(this.bookings));
+            }
+            
             renderBoats() {
-                const container = document.getElementById('boatsGrid');
-                if (!container) return;
+                const boatList = document.getElementById('boatList');
+                boatList.innerHTML = '';
                 
-                if (this.boats.length === 0) {
-                    container.innerHTML = '<div class="no-boats"><p>No boats found.</p></div>';
-                    return;
-                }
+                this.boats.forEach(boat => {
+                    const boatItem = document.createElement('div');
+                    boatItem.className = 'boat-item';
+                    boatItem.innerHTML = `
+                        <img src="${boat.image}" alt="${boat.name}" class="boat-image" onerror="this.src='../frontend/Images/Boats/placeholder.jpg'">
+                        <div class="boat-info">
+                            <h3>${boat.name}</h3>
+                            <p>${boat.description}</p>
+                            <p>Total: ${boat.total} boats</p>
+                        </div>
+                        <div class="boat-controls">
+                            <input type="number" class="availability-input" value="${boat.available}" min="0" max="${boat.total}" id="available-${boat.id}">
+                            <button class="update-btn" onclick="boatSystem.updateBoatAvailability('${boat.id}')">Update</button>
+                        </div>
+                    `;
+                    boatList.appendChild(boatItem);
+                });
+            }
+            
+            renderRealTimeBoats() {
+                const realtimeBoats = document.getElementById('realtimeBoats');
+                realtimeBoats.innerHTML = '';
                 
-                // Sort boats by category and then by price (highest first)
-                const sortedBoats = [...this.boats].sort((a, b) => {
-                    // First sort by category: electric, sailing, canoe, sup
-                    const categoryOrder = { 'electric': 0, 'sailing': 1, 'canoe': 2, 'sup': 3 };
-                    const categoryDiff = categoryOrder[a.category] - categoryOrder[b.category];
-                    if (categoryDiff !== 0) return categoryDiff;
-                    
-                    // Within electric category, sort tenders first, then electrosloeps
-                    if (a.category === 'electric' && b.category === 'electric') {
-                        const aIsTender = a.name.includes('tender');
-                        const bIsTender = b.name.includes('tender');
-                        if (aIsTender && !bIsTender) return -1;
-                        if (!aIsTender && bIsTender) return 1;
-                    }
-                    
-                    // Then sort by price (highest first)
-                    if (b.price !== a.price) {
-                        return b.price - a.price;
-                    }
-                    return b.capacity - a.capacity;
+                this.boats.forEach(boat => {
+                    const isAvailable = boat.available > 0;
+                    const boatCard = document.createElement('div');
+                    boatCard.className = `realtime-boat-card ${isAvailable ? 'available' : 'unavailable'}`;
+                    boatCard.innerHTML = `
+                        <div class="boat-name">${boat.name}</div>
+                        <div class="boat-availability ${isAvailable ? 'available' : 'unavailable'}">${boat.available}</div>
+                        <div class="boat-label">Available</div>
+                    `;
+                    realtimeBoats.appendChild(boatCard);
                 });
                 
-                container.innerHTML = sortedBoats.map(boat => this.createBoatCard(boat)).join('');
+                // Update last update time
+                document.getElementById('lastUpdate').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
             }
             
-            createBoatCard(boat) {
-                const displayName = boat.hasEngine ? 'Zeilboot met motor' : boat.name;
+            renderBookings() {
+                const bookingsList = document.getElementById('bookingsList');
+                bookingsList.innerHTML = '';
                 
-                return `
-                    <div class="boat-card">
-                        <img src="${boat.image}" alt="${boat.name}" class="boat-image" onerror="this.src='../Images/Boats/placeholder.jpg'">
-                        <div class="boat-info">
-                            <div class="boat-name">${displayName}</div>
-                            <div class="boat-details">
-                                <div class="boat-capacity">${boat.capacity} personen</div>
-                                <div class="boat-price">€${boat.price}/dag</div>
-                            </div>
-                            <div class="availability-display">
-                                <div class="availability-label">Beschikbaar:</div>
-                                <div class="quantity-display">${boat.available}</div>
-                            </div>
-                            <div class="boat-actions">
-                                <button onclick="boatManager.manualBooking('${boat.id}')" class="btn btn-small btn-manual-booking">Handmatige Reservering</button>
-                            </div>
+                // Sort bookings by date (newest first)
+                const sortedBookings = [...this.bookings].sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                sortedBookings.forEach(booking => {
+                    const bookingItem = document.createElement('div');
+                    bookingItem.className = `booking-item ${booking.status}`;
+                    bookingItem.innerHTML = `
+                        <div class="booking-status status-${booking.status}">${booking.status}</div>
+                        <div class="booking-info">
+                            <h4>${booking.customerName}</h4>
+                            <p><strong>Date:</strong> ${booking.date}</p>
+                            <p><strong>Boat:</strong> ${this.getBoatName(booking.boatType)}</p>
+                            <p><strong>Contact:</strong> ${booking.customerEmail} | ${booking.customerPhone}</p>
+                            ${booking.notes ? `<p><strong>Notes:</strong> ${booking.notes}</p>` : ''}
                         </div>
-                    </div>
-                `;
+                        <select class="status-select" id="status-${booking.id}" onchange="boatSystem.updateBookingStatus('${booking.id}', this.value)">
+                            <option value="manual" ${booking.status === 'manual' ? 'selected' : ''}>Manual</option>
+                            <option value="success" ${booking.status === 'success' ? 'selected' : ''}>Success</option>
+                            <option value="rejected" ${booking.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                            <option value="picked-up" ${booking.status === 'picked-up' ? 'selected' : ''}>Picked Up</option>
+                        </select>
+                        <button class="save-btn" onclick="boatSystem.saveBookingStatus('${booking.id}')">Save</button>
+                    `;
+                    bookingsList.appendChild(bookingItem);
+                });
             }
             
-            updateQuantity(boatId, change) {
+            getBoatName(boatId) {
                 const boat = this.boats.find(b => b.id === boatId);
-                if (boat) {
-                    const newQuantity = Math.max(0, boat.available + change);
-                    boat.available = newQuantity;
-                    this.saveBoats();
-                    this.renderBoats();
-                    this.updateStats();
-                }
+                return boat ? boat.name : boatId;
             }
             
-            manualBooking(boatId) {
+            updateBoatAvailability(boatId) {
+                const input = document.getElementById(`available-${boatId}`);
+                const newAvailable = parseInt(input.value);
                 const boat = this.boats.find(b => b.id === boatId);
-                if (!boat) return;
                 
-                if (boat.available <= 0) {
-                    alert('Deze boot is niet beschikbaar voor reservering.');
-                    return;
-                }
-                
-                // Store the boat ID for the form submission
-                this.currentManualBookingBoatId = boatId;
-                this.currentManualBookingBoat = boat;
-                
-                // Show/hide engine option for sailboats
-                const engineOptionGroup = document.getElementById('manualEngineOptionGroup');
-                if (engineOptionGroup) {
-                    engineOptionGroup.style.display = boat.category === 'sailing' ? 'block' : 'none';
-                }
-                
-                // Set default date to today
-                const dateInput = document.getElementById('manualBookingDate');
-                if (dateInput) {
-                    const today = new Date().toISOString().split('T')[0];
-                    dateInput.value = today;
-                }
-                
-                // Show the modal
-                this.showManualBookingModal();
-            }
-            
-            showManualBookingModal() {
-                const modal = document.getElementById('manualBookingModal');
-                if (modal) {
-                    modal.classList.remove('hidden');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Set up form submission
-                    const form = document.getElementById('manualBookingForm');
-                    if (form) {
-                        form.onsubmit = (e) => this.handleManualBookingSubmit(e);
-                    }
+                if (boat && newAvailable >= 0 && newAvailable <= boat.total) {
+                    boat.available = newAvailable;
+                    this.saveData();
+                    this.renderRealTimeBoats();
+                } else {
+                    alert('Invalid availability number');
+                    input.value = boat.available;
                 }
             }
             
-            closeManualBookingModal() {
-                const modal = document.getElementById('manualBookingModal');
-                if (modal) {
-                    modal.classList.add('hidden');
-                    document.body.style.overflow = '';
-                    
-                    // Reset form
-                    const form = document.getElementById('manualBookingForm');
-                    if (form) {
-                        form.reset();
-                    }
-                }
-            }
-            
-            handleManualBookingSubmit(e) {
-                e.preventDefault();
+            addManualBooking() {
+                const form = document.getElementById('addBookingForm');
+                const formData = new FormData(form);
                 
-                const formData = new FormData(e.target);
-                const customerName = formData.get('customerName');
-                const customerEmail = formData.get('customerEmail');
-                const customerPhone = formData.get('customerPhone');
-                const bookingDate = formData.get('bookingDate');
-                const engineOption = formData.get('engineOption');
-                const notes = formData.get('notes') || '';
-                
-                if (!customerName || !customerEmail || !customerPhone || !bookingDate) {
-                    alert('Vul alle verplichte velden in');
-                    return;
-                }
-                
-                // Create booking object
-                const bookingData = {
-                    id: 'manual_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9),
-                    date: bookingDate,
-                    boatType: this.currentManualBookingBoatId,
-                    engineOption: this.currentManualBookingBoat.category === 'sailing' ? engineOption : null,
-                    customerName,
-                    customerEmail,
-                    customerPhone,
-                    notes,
-                    status: 'confirmed-not-paid',
-                    bookingType: 'manual', // Flag for manual bookings from admin
+                const newBooking = {
+                    id: 'manual_' + Date.now(),
+                    date: formData.get('date'),
+                    boatType: formData.get('boatType'),
+                    customerName: formData.get('customerName'),
+                    customerEmail: formData.get('customerEmail'),
+                    customerPhone: formData.get('customerPhone'),
+                    notes: formData.get('notes'),
+                    status: 'manual',
                     createdAt: new Date().toISOString(),
                     updatedAt: new Date().toISOString()
                 };
                 
-                // Save booking to booking system
-                this.saveManualBooking(bookingData);
-                
-                // Update boat availability
-                this.updateQuantity(this.currentManualBookingBoatId, -1);
-                
-                // Dispatch event for admin system update
-                window.dispatchEvent(new CustomEvent('boatStockUpdated', {
-                    detail: { boatType: this.currentManualBookingBoatId, change: -1 }
-                }));
-                
-                // Refresh admin booking display if available
-                if (typeof refreshAdminBookings === 'function') {
-                    refreshAdminBookings();
-                }
-                
-                // Close modal and show success message
-                this.closeManualBookingModal();
-                alert(`Handmatige reservering succesvol gemaakt voor ${this.currentManualBookingBoat.name}`);
+                this.bookings.push(newBooking);
+                this.saveData();
+                this.renderBookings();
+                this.closeAddBookingModal();
+                form.reset();
             }
             
-            saveManualBooking(bookingData) {
-                try {
-                    const bookingStorageKey = 'nijenhuis_bookings';
-                    const existingBookings = localStorage.getItem(bookingStorageKey);
-                    const bookings = existingBookings ? JSON.parse(existingBookings) : [];
-                    
-                    bookings.push(bookingData);
-                    localStorage.setItem(bookingStorageKey, JSON.stringify(bookings));
-                    
-                    console.log('Manual booking saved:', bookingData);
-                } catch (error) {
-                    console.error('Error saving manual booking:', error);
-                    alert('Fout bij opslaan van reservering');
+            updateBookingStatus(bookingId, newStatus) {
+                const booking = this.bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    booking.status = newStatus;
+                    booking.updatedAt = new Date().toISOString();
+                    this.saveData();
+                    this.renderBookings();
                 }
             }
             
-            saveBoats() {
-                try {
-                    localStorage.setItem(this.storageKey, JSON.stringify(this.boats));
-                    console.log('Boats saved successfully');
-                } catch (error) {
-                    console.error('Error saving boats:', error);
-                }
+            saveBookingStatus(bookingId) {
+                // Status is already updated in updateBookingStatus
+                this.saveData();
             }
             
-            updateStats() {
-                const total = this.boats.length;
-                const available = this.boats.reduce((sum, boat) => sum + boat.available, 0);
-                const totalCapacity = this.boats.reduce((sum, boat) => sum + (boat.capacity * boat.available), 0);
-                
-                // Calculate rented boats (this would need to be connected to booking system)
-                const rented = 0; // Placeholder
-                
-                document.getElementById('totalBoats').textContent = total;
-                document.getElementById('availableBoats').textContent = available;
-                document.getElementById('rentedBoats').textContent = rented;
-                document.getElementById('totalCapacity').textContent = totalCapacity;
-                
-                // Update stock display
-                this.renderStockDisplay();
-            }
-            
-            renderStockDisplay() {
-                const container = document.getElementById('stockGrid');
-                if (!container) return;
-                
-                if (this.boats.length === 0) {
-                    container.innerHTML = '<div class="no-boats"><p>Geen boten gevonden.</p></div>';
-                    return;
-                }
-                
-                // Group boats by category and combine sailboats
-                const groupedBoats = this.groupBoatsForStockDisplay();
-                
-                container.innerHTML = groupedBoats.map(boat => this.createStockItem(boat)).join('');
-            }
-            
-            groupBoatsForStockDisplay() {
-                const grouped = [];
-                const sailboats = this.boats.filter(b => b.category === 'sailing');
-                const otherBoats = this.boats.filter(b => b.category !== 'sailing');
-                
-                // Add non-sailing boats
-                otherBoats.forEach(boat => {
-                    grouped.push(boat);
-                });
-                
-                // Combine sailboats into one entry
-                if (sailboats.length > 0) {
-                    const totalSailboatAvailable = sailboats.reduce((sum, boat) => sum + boat.available, 0);
-                    const combinedSailboat = {
-                        id: 'sailboat-combined',
-                        name: 'Zeilboot',
-                        available: totalSailboatAvailable,
-                        category: 'sailing'
-                    };
-                    grouped.push(combinedSailboat);
-                }
-                
-                // Sort by category
-                return grouped.sort((a, b) => {
-                    const categoryOrder = { 'electric': 0, 'sailing': 1, 'canoe': 2, 'sup': 3 };
-                    const categoryDiff = categoryOrder[a.category] - categoryOrder[b.category];
-                    if (categoryDiff !== 0) return categoryDiff;
-                    return a.name.localeCompare(b.name);
-                });
-            }
-            
-            createStockItem(boat) {
-                const displayName = boat.id === 'sailboat-combined' ? 'Zeilboot' : boat.name;
-                let stockClass = '';
-                let countClass = '';
-                
-                if (boat.available === 0) {
-                    stockClass = 'out-of-stock';
-                    countClass = 'out-of-stock';
-                } else if (boat.available <= 1) {
-                    stockClass = 'low-stock';
-                    countClass = 'low-stock';
-                }
-                
-                return `
-                    <div class="stock-item ${stockClass}">
-                        <div class="stock-item-name">${displayName}</div>
-                        <div class="stock-item-count ${countClass}">${boat.available}</div>
-                    </div>
-                `;
-            }
-            
-            // Method to refresh stock display from external systems (like booking system)
-            refreshStockDisplay() {
-                console.log('refreshStockDisplay called');
-                this.loadBoats();
-                this.renderStockDisplay();
-                this.updateStats();
-                console.log('Stock display refreshed');
-            }
-            
-            // Start real-time updates
             startRealTimeUpdates() {
-                // Check for updates every 5 seconds
+                this.renderRealTimeBoats();
+                // Update every 30 seconds
                 setInterval(() => {
-                    this.refreshStockDisplay();
-                }, 5000);
+                    this.renderRealTimeBoats();
+                }, 30000);
             }
-        }
-        
-        // Initialize the boat manager
-        let boatManager;
-        document.addEventListener('DOMContentLoaded', () => {
-            boatManager = new BoatManager();
             
-            // Listen for stock updates from booking system
-            window.addEventListener('boatStockUpdated', (event) => {
-                console.log('boatStockUpdated event received:', event.detail);
-                if (window.boatManager) {
-                    window.boatManager.refreshStockDisplay();
-                }
-            });
-        });
-        
-        // Global function to refresh stock display (can be called from booking system)
-        function refreshBoatStockDisplay() {
-            if (window.boatManager) {
-                window.boatManager.refreshStockDisplay();
+            showAddBookingModal() {
+                document.getElementById('addBookingModal').style.display = 'block';
+            }
+            
+            closeAddBookingModal() {
+                document.getElementById('addBookingModal').style.display = 'none';
             }
         }
         
-        // Global function to refresh admin booking display
-        function refreshAdminBookings() {
-            if (window.adminSystem) {
-                window.adminSystem.loadBookings();
-                window.adminSystem.renderBookings();
-                window.adminSystem.updateStats();
-            }
+        // Global functions
+        function showAddBookingModal() {
+            boatSystem.showAddBookingModal();
         }
+        
+        function closeAddBookingModal() {
+            boatSystem.closeAddBookingModal();
+        }
+        
+        // Initialize the boat management system
+        const boatSystem = new BoatManagementSystem();
     </script>
 </body>
-</html> 
+</html>

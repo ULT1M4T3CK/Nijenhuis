@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Book Your Boat - Nijenhuis Botenverhuur</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Book your boat rental at Nijenhuis Botenverhuur. Complete your reservation for a perfect day on the water in the Weerribben nature area.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    
+    <style>
+        .booking-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: var(--spacing-2xl) 0;
+        }
+        
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .booking-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+        }
+        
+        .booking-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-2xl);
+            text-align: center;
+        }
+        
+        .booking-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .booking-subtitle {
+            opacity: 0.9;
+            font-size: var(--font-size-lg);
+        }
+        
+        .booking-content {
+            padding: var(--spacing-2xl);
+        }
+        
+        .booking-summary {
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .summary-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .summary-value {
+            color: var(--text-secondary);
+        }
+        
+        .booking-form {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            padding: var(--spacing-md);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: var(--transition-normal);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            margin-top: var(--spacing-2xl);
+        }
+        
+        .btn {
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-light);
+        }
+        
+        .error-message {
+            background: var(--error-color);
+            color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+        
+        .success-message {
+            background: var(--success-color);
+            color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+        
+        .spinner {
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--spacing-md);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="booking-page">
+        <div class="booking-container">
+            <div class="booking-card">
+                <div class="booking-header">
+                    <h1 class="booking-title">Complete Your Booking</h1>
+                    <p class="booking-subtitle">Your boat is available! Please fill in your details to confirm your reservation.</p>
+                </div>
+                
+                <div class="booking-content">
+                    <div class="error-message" id="errorMessage"></div>
+                    <div class="success-message" id="successMessage"></div>
+                    
+                    <div class="booking-summary">
+                        <h3 class="summary-title">Booking Summary</h3>
+                        <div class="summary-item">
+                            <span class="summary-label">Date:</span>
+                            <span class="summary-value" id="summaryDate">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Boat Type:</span>
+                            <span class="summary-value" id="summaryBoatType">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Status:</span>
+                            <span class="summary-value" style="color: var(--success-color); font-weight: 600;">Available ✓</span>
+                        </div>
+                    </div>
+                    
+                    <form id="bookingForm" class="booking-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerName">Full Name *</label>
+                                <input type="text" id="customerName" name="customerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerEmail">Email Address *</label>
+                                <input type="email" id="customerEmail" name="customerEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="customerPhone">Phone Number *</label>
+                                <input type="tel" id="customerPhone" name="customerPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="customerAddress">Address (Optional)</label>
+                                <input type="text" id="customerAddress" name="customerAddress">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests or Notes</label>
+                            <textarea id="specialRequests" name="specialRequests" placeholder="Any special requirements, dietary restrictions, or additional information..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                        </div>
+                    </form>
+                    
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <p>Processing your booking...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class BookingPage {
+            constructor() {
+                this.init();
+            }
+            
+            init() {
+                this.loadBookingData();
+                this.setupEventListeners();
+            }
+            
+            loadBookingData() {
+                // Get booking data from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const date = urlParams.get('date');
+                const boatType = urlParams.get('boatType');
+                
+                if (!date || !boatType) {
+                    this.showError('Invalid booking parameters. Please try again.');
+                    return;
+                }
+                
+                // Update summary
+                document.getElementById('summaryDate').textContent = this.formatDate(date);
+                document.getElementById('summaryBoatType').textContent = this.getBoatName(boatType);
+                
+                // Store booking data
+                this.bookingData = { date, boatType };
+            }
+            
+            getBoatName(boatType) {
+                const boatNames = {
+                    'classic-tender-720': 'Classic Tender 720 (10/12 pers)',
+                    'electrosloop-10': 'Electrosloep voor 10 pers',
+                    'electrosloop-8': 'Electrosloep voor 8 pers',
+                    'electroboat-5': 'Electrosloep voor 5 pers',
+                    'sailboat-4-5': 'Zeilboot (4/5 pers)',
+                    'sailpunter-3-4': 'Zeilpunter (3/4 pers)',
+                    'canoe-3': 'Canadese kano (3 pers)',
+                    'kayak-2': 'Kajak (2 pers)',
+                    'kayak-1': 'Kajak (1 pers)',
+                    'sup-board': 'SUP board (1 pers)'
+                };
+                return boatNames[boatType] || boatType;
+            }
+            
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            setupEventListeners() {
+                document.getElementById('bookingForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.submitBooking();
+                });
+            }
+            
+            async submitBooking() {
+                const form = document.getElementById('bookingForm');
+                const formData = new FormData(form);
+                
+                const bookingData = {
+                    ...this.bookingData,
+                    customerName: formData.get('customerName'),
+                    customerEmail: formData.get('customerEmail'),
+                    customerPhone: formData.get('customerPhone'),
+                    customerAddress: formData.get('customerAddress'),
+                    specialRequests: formData.get('specialRequests'),
+                    status: 'success',
+                    createdAt: new Date().toISOString()
+                };
+                
+                this.showLoading(true);
+                
+                try {
+                    // Save to localStorage (for demo purposes)
+                    const existingBookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
+                    bookingData.id = 'booking_' + Date.now();
+                    existingBookings.push(bookingData);
+                    localStorage.setItem('nijenhuis_bookings', JSON.stringify(existingBookings));
+                    
+                    // Update boat availability
+                    this.updateBoatAvailability(bookingData.boatType);
+                    
+                    // Show success message
+                    this.showSuccess('Booking confirmed! You will receive a confirmation email shortly.');
+                    
+                    // Hide form and show success
+                    form.style.display = 'none';
+                    
+                } catch (error) {
+                    this.showError('There was an error processing your booking. Please try again.');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+            
+            updateBoatAvailability(boatType) {
+                // Update boat availability in localStorage
+                const boats = JSON.parse(localStorage.getItem('nijenhuis_boats') || '[]');
+                const boat = boats.find(b => b.id === boatType);
+                if (boat && boat.available > 0) {
+                    boat.available -= 1;
+                    localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                }
+            }
+            
+            showError(message) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000);
+            }
+            
+            showSuccess(message) {
+                const successDiv = document.getElementById('successMessage');
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+            
+            showLoading(show) {
+                document.getElementById('loading').style.display = show ? 'block' : 'none';
+            }
+        }
+        
+        // Initialize the booking page
+        document.addEventListener('DOMContentLoaded', () => {
+            new BookingPage();
+        });
+    </script>
+</body>
+</html>
