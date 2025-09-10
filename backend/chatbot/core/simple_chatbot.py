@@ -16,10 +16,11 @@ class SimpleLanguageDetector:
     
     def __init__(self):
         self.language_patterns = {
+            'nl': ['de', 'het', 'een', 'en', 'van', 'in', 'op', 'voor', 'met', 'aan', 'bij', 'door', 'over', 'onder', 'tussen', 'na', 'tot', 'uit', 'zonder', 'tegen', 'langs', 'rond', 'om', 'doorheen'],
             'en': ['the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by'],
+            'de': ['der', 'die', 'das', 'und', 'oder', 'aber', 'in', 'mit', 'für', 'von', 'zu'],
             'es': ['el', 'la', 'los', 'las', 'y', 'o', 'pero', 'en', 'con', 'por', 'para', 'de'],
             'fr': ['le', 'la', 'les', 'et', 'ou', 'mais', 'dans', 'avec', 'pour', 'de', 'du'],
-            'de': ['der', 'die', 'das', 'und', 'oder', 'aber', 'in', 'mit', 'für', 'von', 'zu'],
             'it': ['il', 'la', 'gli', 'le', 'e', 'o', 'ma', 'in', 'con', 'per', 'di', 'da']
         }
     
@@ -34,7 +35,7 @@ class SimpleLanguageDetector:
         
         if scores:
             return max(scores, key=scores.get)
-        return 'en'  # Default to English
+        return 'nl'  # Default to Dutch for Nijenhuis
 
 class SimpleWebsiteAnalyzer:
     """Simple website content analyzer"""
@@ -130,40 +131,35 @@ class SimpleChatbot:
         self.language_detector = SimpleLanguageDetector()
         self.website_analyzer = SimpleWebsiteAnalyzer()
         self.language_responses = {
+            'nl': {
+                'greeting': 'Hallo! Welkom bij Nijenhuis Botenverhuur. Hoe kan ik u helpen met botenverhuur in het Weerribben-Wieden gebied?',
+                'pricing': 'Hier zijn onze actuele prijzen per dag: Tender 720 (12 personen): €230, Tender 570 (8 personen): €200, Electrosloep 10 (10 personen): €200, Electrosloep 8 (8 personen): €175, Zeilboot 4-5 meter: €70-85, Kano/Kajak: €25, Sup Board: €35. Alle prijzen zijn inclusief brandstof en verzekering.',
+                'booking': 'Je kunt alleen telefonisch reserveren via 0522 281 528 of via onze website. We raden je aan vooral in het hoogseizoen op tijd te boeken. Betalen kan je contant of met een pinpas.',
+                'opening_hours': 'We zijn dagelijks open van 09:00 tot 18:00 van 1 april tot 1 november. Buiten het seizoen zijn we op afspraak bereikbaar.',
+                'contact': 'Je kunt ons bereiken via telefoon: 0522 281 528, email: info@nijenhuis-botenverhuur.nl, of bezoek ons op Veneweg 199, 7946 LP Wanneperveen.',
+                'boats': 'We hebben verschillende boten beschikbaar: elektrische boten (Tender 720/570, Electrosloep 8/10), zeilboten, kano\'s, kajaks en sup boards. Alle boten zijn perfect voor het verkennen van het Weerribben-Wieden natuurgebied.',
+                'location': 'We bevinden ons aan de Veneweg 199, 7946 LP Wanneperveen, in het prachtige Weerribben-Wieden natuurgebied. Perfect gelegen voor boottochten door de unieke waterwegen.',
+                'fallback': 'Ik begrijp dat u hulp nodig heeft. Voor specifieke vragen over botenverhuur kunt u ons bellen op 0522 281 528 of een bezoek brengen aan onze locatie in Wanneperveen.'
+            },
             'en': {
-                'greeting': 'Hello! How can I help you today?',
-                'order_tracking': 'You can track your order by logging into your account.',
-                'returns': 'We offer a 30-day return policy for all items.',
-                'contact': 'You can contact us via email or phone.',
-                'fallback': 'I understand you need help. Let me assist you with that.'
-            },
-            'es': {
-                'greeting': '¡Hola! ¿Cómo puedo ayudarte hoy?',
-                'order_tracking': 'Puedes rastrear tu pedido iniciando sesión en tu cuenta.',
-                'returns': 'Ofrecemos una política de devolución de 30 días para todos los artículos.',
-                'contact': 'Puedes contactarnos por correo electrónico o teléfono.',
-                'fallback': 'Entiendo que necesitas ayuda. Permíteme ayudarte con eso.'
-            },
-            'fr': {
-                'greeting': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',
-                'order_tracking': 'Vous pouvez suivre votre commande en vous connectant à votre compte.',
-                'returns': 'Nous offrons une politique de retour de 30 jours pour tous les articles.',
-                'contact': 'Vous pouvez nous contacter par email ou téléphone.',
-                'fallback': 'Je comprends que vous avez besoin d\'aide. Laissez-moi vous aider avec cela.'
+                'greeting': 'Hello! Welcome to Nijenhuis Boat Rental. How can I help you with boat rental in the Weerribben-Wieden area?',
+                'pricing': 'Here are our current daily prices: Tender 720 (12 people): €230, Tender 570 (8 people): €200, Electrosloep 10 (10 people): €200, Electrosloep 8 (8 people): €175, Sailboat 4-5 meters: €70-85, Canoe/Kayak: €25, SUP Board: €35. All prices include fuel and insurance.',
+                'booking': 'You can only make reservations by phone at 0522 281 528 or through our website. We recommend booking in advance, especially during high season. Payment can be made in cash or with a debit card.',
+                'opening_hours': 'We are open daily from 09:00 to 18:00 from April 1st to November 1st. Outside the season, we are available by appointment.',
+                'contact': 'You can reach us by phone: 0522 281 528, email: info@nijenhuis-botenverhuur.nl, or visit us at Veneweg 199, 7946 LP Wanneperveen.',
+                'boats': 'We have various boats available: electric boats (Tender 720/570, Electrosloep 8/10), sailboats, canoes, kayaks and SUP boards. All boats are perfect for exploring the Weerribben-Wieden nature reserve.',
+                'location': 'We are located at Veneweg 199, 7946 LP Wanneperveen, in the beautiful Weerribben-Wieden nature reserve. Perfectly located for boat trips through the unique waterways.',
+                'fallback': 'I understand you need help. For specific questions about boat rental, you can call us at 0522 281 528 or visit our location in Wanneperveen.'
             },
             'de': {
-                'greeting': 'Hallo! Wie kann ich Ihnen heute helfen?',
-                'order_tracking': 'Sie können Ihre Bestellung verfolgen, indem Sie sich in Ihr Konto einloggen.',
-                'returns': 'Wir bieten eine 30-tägige Rückgabepolitik für alle Artikel.',
-                'contact': 'Sie können uns per E-Mail oder Telefon kontaktieren.',
-                'fallback': 'Ich verstehe, dass Sie Hilfe brauchen. Lassen Sie mich Ihnen dabei helfen.'
-            },
-            'it': {
-                'greeting': 'Ciao! Come posso aiutarti oggi?',
-                'order_tracking': 'Puoi tracciare il tuo ordine accedendo al tuo account.',
-                'returns': 'Offriamo una politica di reso di 30 giorni per tutti gli articoli.',
-                'contact': 'Puoi contattarci via email o telefono.',
-                'fallback': 'Capisco che hai bisogno di aiuto. Lasciami aiutarti con questo.'
+                'greeting': 'Hallo! Willkommen bei Nijenhuis Bootsverleih. Wie kann ich Ihnen beim Bootsverleih im Weerribben-Wieden Gebiet helfen?',
+                'pricing': 'Hier sind unsere aktuellen Tagespreise: Tender 720 (12 Personen): €230, Tender 570 (8 Personen): €200, Electrosloep 10 (10 Personen): €200, Electrosloep 8 (8 Personen): €175, Segelboot 4-5 Meter: €70-85, Kanu/Kajak: €25, SUP-Board: €35. Alle Preise inklusive Kraftstoff und Versicherung.',
+                'booking': 'Sie können nur telefonisch unter 0522 281 528 oder über unsere Website reservieren. Wir empfehlen, besonders in der Hauptsaison rechtzeitig zu buchen. Die Zahlung kann bar oder mit einer Debitkarte erfolgen.',
+                'opening_hours': 'Wir sind täglich von 09:00 bis 18:00 Uhr vom 1. April bis 1. November geöffnet. Außerhalb der Saison sind wir nach Vereinbarung erreichbar.',
+                'contact': 'Sie können uns telefonisch erreichen: 0522 281 528, E-Mail: info@nijenhuis-botenverhuur.nl, oder besuchen Sie uns in der Veneweg 199, 7946 LP Wanneperveen.',
+                'boats': 'Wir haben verschiedene Boote verfügbar: Elektroboote (Tender 720/570, Electrosloep 8/10), Segelboote, Kanus, Kajaks und SUP-Boards. Alle Boote sind perfekt für die Erkundung des Weerribben-Wieden Naturschutzgebiets.',
+                'location': 'Wir befinden uns in der Veneweg 199, 7946 LP Wanneperveen, im wunderschönen Weerribben-Wieden Naturschutzgebiet. Perfekt gelegen für Bootstouren durch die einzigartigen Wasserwege.',
+                'fallback': 'Ich verstehe, dass Sie Hilfe brauchen. Für spezifische Fragen zum Bootsverleih können Sie uns unter 0522 281 528 anrufen oder unseren Standort in Wanneperveen besuchen.'
             }
         }
     
@@ -194,13 +190,20 @@ class SimpleChatbot:
         """Classify the type of query"""
         query_lower = query.lower()
         
-        if any(word in query_lower for word in ['track', 'order', 'shipment', 'delivery']):
-            return 'order_tracking'
-        elif any(word in query_lower for word in ['return', 'refund', 'exchange']):
-            return 'returns'
-        elif any(word in query_lower for word in ['contact', 'email', 'phone', 'support']):
+        # Nijenhuis-specific classifications
+        if any(word in query_lower for word in ['prijs', 'kost', 'cost', 'price', 'preis', 'kosten', 'pricing']):
+            return 'pricing'
+        elif any(word in query_lower for word in ['reserveren', 'boeken', 'book', 'reserve', 'buchen', 'reservieren']):
+            return 'booking'
+        elif any(word in query_lower for word in ['openingstijden', 'open', 'hours', 'öffnungszeiten', 'geöffnet']):
+            return 'opening_hours'
+        elif any(word in query_lower for word in ['contact', 'email', 'phone', 'telefoon', 'telefon', 'bereiken', 'erreichen']):
             return 'contact'
-        elif any(word in query_lower for word in ['hello', 'hi', 'help']):
+        elif any(word in query_lower for word in ['boot', 'boat', 'bootje', 'schip', 'schiff', 'tender', 'zeilboot', 'sailboat', 'segelboot', 'kano', 'canoe', 'kajak', 'kayak', 'sup']):
+            return 'boats'
+        elif any(word in query_lower for word in ['locatie', 'adres', 'waar', 'where', 'wo', 'standort', 'wanneperveen', 'weerribben', 'wieden']):
+            return 'location'
+        elif any(word in query_lower for word in ['hello', 'hi', 'hallo', 'hey', 'help', 'help', 'hulp', 'hilfe']):
             return 'greeting'
         else:
             return 'fallback'

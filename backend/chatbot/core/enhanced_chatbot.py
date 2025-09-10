@@ -2,9 +2,16 @@ import json
 import os
 import time
 from typing import Dict, Any, Optional
-from backend.chatbot.core.simple_chatbot import SimpleChatbot
-from backend.chatbot.core.unsupervised_learning import UnsupervisedLearning
-from backend.chatbot.core.neural_network import ChatbotNeuralNetwork
+
+# Handle both relative and absolute imports
+try:
+    from .simple_chatbot import SimpleChatbot
+    from .unsupervised_learning import UnsupervisedLearning
+    from .neural_network import ChatbotNeuralNetwork
+except ImportError:
+    from backend.chatbot.core.simple_chatbot import SimpleChatbot
+    from backend.chatbot.core.unsupervised_learning import UnsupervisedLearning
+    from backend.chatbot.core.neural_network import ChatbotNeuralNetwork
 
 class EnhancedChatbot(SimpleChatbot):
     """Enhanced chatbot that uses training data to improve responses"""
@@ -126,12 +133,16 @@ class EnhancedChatbot(SimpleChatbot):
             
             # Import the translation function from boat_translations
             try:
-                from backend.chatbot.core.boat_translations import translate_boat_names
+                from .boat_translations import translate_boat_names
                 # Translate boat names in the response
                 result['response'] = translate_boat_names(result['response'], result['detected_language'])
             except ImportError:
-                # If import fails, return without translation
-                pass
+                try:
+                    from backend.chatbot.core.boat_translations import translate_boat_names
+                    result['response'] = translate_boat_names(result['response'], result['detected_language'])
+                except ImportError:
+                    # If import fails, return without translation
+                    pass
             
             # Record interaction for unsupervised learning
             response_time = time.time() - start_time

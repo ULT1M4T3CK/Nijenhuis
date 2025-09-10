@@ -16,7 +16,10 @@ from functools import wraps
 from datetime import datetime
 
 # Add the current directory to the path to import the chatbot
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.join(current_dir, '..', '..', '..')
+sys.path.append(project_root)
+sys.path.append(current_dir)
 
 try:
     from backend.chatbot.core.simple_chatbot import SimpleChatbot
