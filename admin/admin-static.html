@@ -454,6 +454,7 @@
             
             logout() {
                 localStorage.removeItem('adminAuthenticated');
+                localStorage.removeItem('adminUser');
                 localStorage.removeItem('adminLoginTime');
                 document.getElementById('loginSection').classList.remove('hidden');
                 document.getElementById('adminSection').classList.add('hidden');

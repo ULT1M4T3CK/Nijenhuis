@@ -88,7 +88,7 @@
         .admin-login-btn {
             width: 100%;
             padding: var(--spacing-md) var(--spacing-lg);
-            background: var(--primary-color);
+            background: #007bff;
             color: var(--white);
             border: none;
             border-radius: var(--radius-md);
@@ -100,7 +100,7 @@
         }
         
         .admin-login-btn:hover {
-            background: var(--primary-dark);
+            background: #0056b3;
         }
         
         .admin-login-btn:disabled {
@@ -162,7 +162,7 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-  <script src="../frontend/src/js/main.js"></script>
+  <!-- Admin login doesn't need translation functionality -->
 </head>
 <body>
     <div class="admin-login-container">
@@ -237,6 +237,7 @@
                 // Static authentication for GitHub Pages compatibility
                 if (username === 'admin' && password === 'nijenhuis2025') {
                     localStorage.setItem('adminUser', username);
+                    localStorage.setItem('adminAuthenticated', 'true');
                     localStorage.setItem('adminLoginTime', new Date().toISOString());
                     this.showSuccess('Inloggen succesvol! Doorverwijzen...');
                     this.showLoading(false);
@@ -253,8 +254,9 @@
             }
             
             isLoggedIn() {
+                const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
                 const loginTime = localStorage.getItem('adminLoginTime');
-                if (!loginTime) return false;
+                if (!isAuthenticated || !loginTime) return false;
                 
                 // Check if login is still valid (24 hours)
                 const loginDate = new Date(loginTime);
