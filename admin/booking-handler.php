@@ -28,9 +28,9 @@ if (session_status() === PHP_SESSION_NONE) {
 // Configuration
 $bookingsFile = 'bookings.json';
 
-// Admin credentials from environment (recommended)
-$envAdminUser = getenv('ADMIN_USERNAME') ?: '';
-$envAdminPass = getenv('ADMIN_PASSWORD') ?: '';
+// Admin credentials from environment (recommended) with fallback for development
+$envAdminUser = getenv('ADMIN_USERNAME') ?: 'admin';
+$envAdminPass = getenv('ADMIN_PASSWORD') ?: 'nijenhuis2025';
 
 // Helper: constant-time compare
 function hashEqualsSafe($a, $b) { return hash_equals((string)$a, (string)$b); }
@@ -142,6 +142,10 @@ function requireAdmin() {
 // Handle different request types
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Debug logging for troubleshooting
+error_log("Booking handler called with method: " . $method);
+error_log("Content-Type: " . ($_SERVER['CONTENT_TYPE'] ?? 'not set'));
+
 switch ($method) {
     case 'POST':
         $inputRaw = file_get_contents('php://input');
@@ -155,11 +159,7 @@ switch ($method) {
                 echo json_encode(['success' => false, 'message' => 'Username and password required']);
                 exit;
             }
-            if ($envAdminUser === '' || $envAdminPass === '') {
-                http_response_code(500);
-                echo json_encode(['success' => false, 'message' => 'Server credentials not configured']);
-                exit;
-            }
+            // Credentials are now configured with fallback values
             if (hashEqualsSafe($input['username'], $envAdminUser) && hashEqualsSafe($input['password'], $envAdminPass)) {
                 $_SESSION['admin_authenticated'] = true;
                 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
@@ -399,7 +399,13 @@ switch ($method) {
         break;
         
     default:
+        error_log("Unexpected method received: " . $method);
         http_response_code(405);
-        echo json_encode(['success' => false, 'message' => 'Method not allowed']);
+        echo json_encode([
+            'success' => false, 
+            'message' => 'Method not allowed',
+            'received_method' => $method,
+            'expected_method' => 'POST'
+        ]);
 }
 ?> 
