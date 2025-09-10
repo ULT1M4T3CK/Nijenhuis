@@ -88,8 +88,8 @@
         .admin-login-btn {
             width: 100%;
             padding: var(--spacing-md) var(--spacing-lg);
-            background: #007bff;
-            color: var(--white);
+            background: #007bff !important;
+            color: var(--white) !important;
             border: none;
             border-radius: var(--radius-md);
             font-size: var(--font-size-base);
@@ -97,10 +97,13 @@
             cursor: pointer;
             transition: var(--transition-normal);
             margin-bottom: var(--spacing-lg);
+            box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
         }
         
         .admin-login-btn:hover {
-            background: #0056b3;
+            background: #0056b3 !important;
+            box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+            transform: translateY(-1px);
         }
         
         .admin-login-btn:disabled {
