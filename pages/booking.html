@@ -299,6 +299,9 @@
         </div>
     </div>
 
+    <!-- Mollie API JavaScript Fallback -->
+    <script src="../mollie_api.js"></script>
+
     <script>
         class BookingPage {
             constructor() {
@@ -420,15 +423,8 @@
                         }
                     };
                     
-                    const response = await fetch('../mollie_api.php?action=createPayment', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(paymentData)
-                    });
-                    
-                    const result = await response.json();
+                    // Use JavaScript fallback for Mollie API
+                    const result = await createMolliePaymentJS(paymentData);
                     
                     if (result._links && result._links.checkout) {
                         // Redirect to Mollie payment page
