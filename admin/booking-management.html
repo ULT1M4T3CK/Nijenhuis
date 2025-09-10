@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
+    <style>
+        /* Admin Navigation Header */
+        .admin-nav {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-md) 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-nav-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+        
+        .admin-nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .admin-nav-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-normal);
+        }
+        
+        .admin-nav-link:hover,
+        .admin-nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .admin-nav-logout {
+            background: rgba(220, 53, 69, 0.8);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .admin-nav-logout:hover {
+            background: var(--error-color);
+        }
+        
+        /* Booking Management Styles */
+        .booking-management {
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+        
+        .management-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+        
+        .management-header {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .management-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .management-subtitle {
+            color: var(--text-secondary);
+            font-size: var(--font-size-lg);
+        }
+        
+        .management-content {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .section-header {
+            background: var(--bg-light);
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .section-content {
+            padding: var(--spacing-lg);
+        }
+        
+        .add-booking-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: var(--spacing-lg);
+            transition: var(--transition-normal);
+        }
+        
+        .add-booking-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Booking Status Colors */
+        .booking-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: var(--spacing-lg);
+            align-items: center;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid;
+        }
+        
+        .booking-item.manual {
+            background: rgba(255, 193, 7, 0.1);
+            border-left-color: #ffc107;
+        }
+        
+        .booking-item.success {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: var(--success-color);
+        }
+        
+        .booking-item.rejected {
+            background: rgba(220, 53, 69, 0.1);
+            border-left-color: var(--error-color);
+        }
+        
+        .booking-item.picked-up {
+            background: rgba(40, 167, 69, 0.1);
+            border-left-color: var(--success-color);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .booking-status {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-manual {
+            background: #ffc107;
+            color: var(--white);
+        }
+        
+        .status-success {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .status-rejected {
+            background: var(--error-color);
+            color: var(--white);
+        }
+        
+        .status-picked-up {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .booking-info h4 {
+            margin: 0 0 var(--spacing-xs) 0;
+            color: var(--text-primary);
+        }
+        
+        .booking-info p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        .status-select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+        }
+        
+        .save-btn {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            background: var(--success-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            cursor: pointer;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 0;
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+        }
+        
+        .close {
+            color: var(--white);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            opacity: 0.7;
+        }
+        
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: var(--transition-normal);
+            box-sizing: border-box;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .btn {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--text-primary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admin-nav-container {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .admin-nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .booking-item {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <div class="admin-nav-title">Nijenhuis Admin</div>
+            <div class="admin-nav-links">
+                <a href="admin-static.html" class="admin-nav-link">Dashboard</a>
+                <a href="boat-management.html" class="admin-nav-link">Boat Management</a>
+                <a href="booking-management.html" class="admin-nav-link active">Booking Management</a>
+            </div>
+            <button class="admin-nav-logout" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
+    <div class="booking-management">
+        <div class="management-container">
+            <div class="management-header">
+                <h1 class="management-title">Booking Management</h1>
+                <p class="management-subtitle">Manage all customer bookings and reservations</p>
+            </div>
+
+            <div class="management-content">
+                <div class="section-header">
+                    <h2 class="section-title">All Bookings</h2>
+                </div>
+                <div class="section-content">
+                    <button class="add-booking-btn" onclick="showAddBookingModal()">+ Add Manual Booking</button>
+                    <div id="bookingsList">
+                        <!-- Bookings will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Booking Modal -->
+    <div id="addBookingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Manual Booking</h3>
+                <span class="close" onclick="closeAddBookingModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addBookingForm">
+                    <div class="form-group">
+                        <label for="bookingDate">Date</label>
+                        <input type="date" id="bookingDate" name="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingBoatType">Boat Type</label>
+                        <select id="bookingBoatType" name="boatType" required>
+                            <option value="">Select Boat Type</option>
+                            <option value="classic-tender-720">Classic tender 720 10/12 pers</option>
+                            <option value="electrosloop-10">Electrosloep voor 10 pers</option>
+                            <option value="electrosloop-8">Electrosloep voor 8 pers</option>
+                            <option value="electroboat-5">Electrosloep voor 5 pers</option>
+                            <option value="sailboat-4-5">Zeilboot</option>
+                            <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
+                            <option value="canoe-3">Canadese kano 3 pers</option>
+                            <option value="kayak-2">Kajak 2 pers</option>
+                            <option value="kayak-1">Kajak 1 pers</option>
+                            <option value="sup-board">SUP board 1 pers</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingCustomerName">Customer Name</label>
+                        <input type="text" id="bookingCustomerName" name="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingCustomerEmail">Email</label>
+                        <input type="email" id="bookingCustomerEmail" name="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingCustomerPhone">Phone</label>
+                        <input type="tel" id="bookingCustomerPhone" name="customerPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingNotes">Notes</label>
+                        <textarea id="bookingNotes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Booking</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddBookingModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class BookingManagementSystem {
+            constructor() {
+                this.bookingsStorageKey = 'nijenhuis_bookings';
+                this.bookings = [];
+                this.init();
+            }
+            
+            init() {
+                this.loadBookings();
+                this.setupEventListeners();
+                this.renderBookings();
+            }
+            
+            loadBookings() {
+                const storedBookings = localStorage.getItem(this.bookingsStorageKey);
+                this.bookings = storedBookings ? JSON.parse(storedBookings) : [];
+            }
+            
+            setupEventListeners() {
+                document.getElementById('addBookingForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.addManualBooking();
+                });
+            }
+            
+            saveBookings() {
+                localStorage.setItem(this.bookingsStorageKey, JSON.stringify(this.bookings));
+            }
+            
+            renderBookings() {
+                const bookingsList = document.getElementById('bookingsList');
+                bookingsList.innerHTML = '';
+                
+                if (this.bookings.length === 0) {
+                    bookingsList.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);">No bookings found. Add a manual booking to get started.</p>';
+                    return;
+                }
+                
+                // Sort bookings by date (newest first)
+                const sortedBookings = [...this.bookings].sort((a, b) => new Date(b.date) - new Date(a.date));
+                
+                sortedBookings.forEach(booking => {
+                    const bookingItem = document.createElement('div');
+                    bookingItem.className = `booking-item ${booking.status}`;
+                    bookingItem.innerHTML = `
+                        <div class="booking-status status-${booking.status}">${booking.status}</div>
+                        <div class="booking-info">
+                            <h4>${booking.customerName}</h4>
+                            <p><strong>Date:</strong> ${booking.date}</p>
+                            <p><strong>Boat:</strong> ${this.getBoatName(booking.boatType)}</p>
+                            <p><strong>Contact:</strong> ${booking.customerEmail} | ${booking.customerPhone}</p>
+                            ${booking.notes ? `<p><strong>Notes:</strong> ${booking.notes}</p>` : ''}
+                        </div>
+                        <select class="status-select" id="status-${booking.id}" onchange="bookingSystem.updateBookingStatus('${booking.id}', this.value)">
+                            <option value="manual" ${booking.status === 'manual' ? 'selected' : ''}>Manual</option>
+                            <option value="success" ${booking.status === 'success' ? 'selected' : ''}>Success</option>
+                            <option value="rejected" ${booking.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                            <option value="picked-up" ${booking.status === 'picked-up' ? 'selected' : ''}>Picked Up</option>
+                        </select>
+                        <button class="save-btn" onclick="bookingSystem.saveBookingStatus('${booking.id}')">Save</button>
+                    `;
+                    bookingsList.appendChild(bookingItem);
+                });
+            }
+            
+            getBoatName(boatId) {
+                const boatNames = {
+                    'classic-tender-720': 'Classic Tender 720 (10/12 pers)',
+                    'electrosloop-10': 'Electrosloep voor 10 pers',
+                    'electrosloop-8': 'Electrosloep voor 8 pers',
+                    'electroboat-5': 'Electrosloep voor 5 pers',
+                    'sailboat-4-5': 'Zeilboot (4/5 pers)',
+                    'sailpunter-3-4': 'Zeilpunter (3/4 pers)',
+                    'canoe-3': 'Canadese kano (3 pers)',
+                    'kayak-2': 'Kajak (2 pers)',
+                    'kayak-1': 'Kajak (1 pers)',
+                    'sup-board': 'SUP board (1 pers)'
+                };
+                return boatNames[boatId] || boatId;
+            }
+            
+            addManualBooking() {
+                const form = document.getElementById('addBookingForm');
+                const formData = new FormData(form);
+                
+                const newBooking = {
+                    id: 'manual_' + Date.now(),
+                    date: formData.get('date'),
+                    boatType: formData.get('boatType'),
+                    customerName: formData.get('customerName'),
+                    customerEmail: formData.get('customerEmail'),
+                    customerPhone: formData.get('customerPhone'),
+                    notes: formData.get('notes'),
+                    status: 'manual',
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                
+                this.bookings.push(newBooking);
+                this.saveBookings();
+                this.renderBookings();
+                this.closeAddBookingModal();
+                form.reset();
+            }
+            
+            updateBookingStatus(bookingId, newStatus) {
+                const booking = this.bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    booking.status = newStatus;
+                    booking.updatedAt = new Date().toISOString();
+                    this.saveBookings();
+                    this.renderBookings();
+                }
+            }
+            
+            saveBookingStatus(bookingId) {
+                // Status is already updated in updateBookingStatus
+                this.saveBookings();
+            }
+            
+            showAddBookingModal() {
+                document.getElementById('addBookingModal').style.display = 'block';
+            }
+            
+            closeAddBookingModal() {
+                document.getElementById('addBookingModal').style.display = 'none';
+            }
+        }
+        
+        // Global functions
+        function showAddBookingModal() {
+            bookingSystem.showAddBookingModal();
+        }
+        
+        function closeAddBookingModal() {
+            bookingSystem.closeAddBookingModal();
+        }
+        
+        function logout() {
+            localStorage.removeItem('adminAuthenticated');
+            localStorage.removeItem('adminUser');
+            localStorage.removeItem('adminLoginTime');
+            window.location.href = '../pages/admin-login.html';
+        }
+        
+        // Initialize the booking management system
+        const bookingSystem = new BookingManagementSystem();
+    </script>
+</body>
+</html>

@@ -7,6 +7,60 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
     <style>
+        /* Admin Navigation Header */
+        .admin-nav {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-md) 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-nav-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+        }
+        
+        .admin-nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+        
+        .admin-nav-link {
+            color: var(--white);
+            text-decoration: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-normal);
+        }
+        
+        .admin-nav-link:hover,
+        .admin-nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .admin-nav-logout {
+            background: rgba(220, 53, 69, 0.8);
+            color: var(--white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .admin-nav-logout:hover {
+            background: var(--error-color);
+        }
+        
         /* Boat Management Specific Styles */
         .boat-management {
             min-height: 100vh;
@@ -325,11 +379,24 @@
     </style>
 </head>
 <body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <div class="admin-nav-title">Nijenhuis Admin</div>
+            <div class="admin-nav-links">
+                <a href="admin-static.html" class="admin-nav-link">Dashboard</a>
+                <a href="boat-management.html" class="admin-nav-link active">Boat Management</a>
+                <a href="booking-management.html" class="admin-nav-link">Booking Management</a>
+            </div>
+            <button class="admin-nav-logout" onclick="logout()">Logout</button>
+        </div>
+    </nav>
+
     <div class="boat-management">
         <div class="management-header">
             <div class="management-container">
                 <h1 class="management-title">Boat Management</h1>
-                <p class="management-subtitle">Real-time boat availability and booking management</p>
+                <p class="management-subtitle">Real-time boat availability and inventory management</p>
             </div>
         </div>
 
@@ -465,7 +532,7 @@
                     {
                         id: 'classic-tender-720',
                         name: 'Classic Tender 720',
-                        image: '../frontend/Images/Boats/tender-720/tender-720-1.jpg',
+                        image: '../frontend/Images/Boats/tender-720/tender-720-10-12.jpg',
                         total: 2,
                         available: 2,
                         description: '10/12 person boat'
@@ -473,7 +540,7 @@
                     {
                         id: 'electrosloop-10',
                         name: 'Electrosloep 10 pers',
-                        image: '../frontend/Images/Boats/electrosloop-10/electrosloop-10.jpg',
+                        image: '../frontend/Images/Boats/electrosloep-10/electrosloop-10.jpg',
                         total: 1,
                         available: 1,
                         description: 'Electric boat for 10 people'
@@ -481,7 +548,7 @@
                     {
                         id: 'electrosloop-8',
                         name: 'Electrosloep 8 pers',
-                        image: '../frontend/Images/Boats/electrosloop-8/electrosloop-8.jpg',
+                        image: '../frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg',
                         total: 2,
                         available: 2,
                         description: 'Electric boat for 8 people'
@@ -489,7 +556,7 @@
                     {
                         id: 'electroboat-5',
                         name: 'Electroboat 5 pers',
-                        image: '../frontend/Images/Boats/electroboat-5/electroboat-5.jpg',
+                        image: '../frontend/Images/Boats/electroboat-5.jpg',
                         total: 3,
                         available: 3,
                         description: 'Electric boat for 5 people'
@@ -497,7 +564,7 @@
                     {
                         id: 'sailboat-4-5',
                         name: 'Zeilboot',
-                        image: '../frontend/Images/Boats/zeilboot-4-5.jpg',
+                        image: '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg',
                         total: 1,
                         available: 1,
                         description: 'Sailboat for 4-5 people'
@@ -505,7 +572,7 @@
                     {
                         id: 'sailpunter-3-4',
                         name: 'Zeilpunter',
-                        image: '../frontend/Images/Boats/sailpunter-3-4.jpg',
+                        image: '../frontend/Images/Boats/zeilpunter/sailpunter-3-4.jpg',
                         total: 2,
                         available: 2,
                         description: 'Sailpunter for 3-4 people'
@@ -513,7 +580,7 @@
                     {
                         id: 'canoe-3',
                         name: 'Canadese Kano',
-                        image: '../frontend/Images/Boats/canoe-3/canoe-3.jpg',
+                        image: '../frontend/Images/Boats/canoe/canoe-3.jpg',
                         total: 4,
                         available: 4,
                         description: 'Canadian canoe for 3 people'
@@ -529,7 +596,7 @@
                     {
                         id: 'kayak-1',
                         name: 'Kajak 1 pers',
-                        image: '../frontend/Images/Boats/kayak-1/kayak-1.jpg',
+                        image: '../frontend/Images/Boats/Kayak-1/kayak-1.jpg',
                         total: 8,
                         available: 8,
                         description: 'Single person kayak'
@@ -537,7 +604,7 @@
                     {
                         id: 'sup-board',
                         name: 'SUP Board',
-                        image: '../frontend/Images/Boats/Sup/sup-1.jpg',
+                        image: '../frontend/Images/Boats/Sup/sub-1.jpg',
                         total: 5,
                         available: 5,
                         description: 'Stand-up paddleboard'
@@ -645,8 +712,17 @@
                     boat.available = newAvailable;
                     this.saveData();
                     this.renderRealTimeBoats();
+                    // Show success feedback
+                    const button = input.nextElementSibling;
+                    const originalText = button.textContent;
+                    button.textContent = 'Updated!';
+                    button.style.background = '#28a745';
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.background = '';
+                    }, 2000);
                 } else {
-                    alert('Invalid availability number');
+                    alert('Invalid availability number. Please enter a number between 0 and ' + boat.total);
                     input.value = boat.available;
                 }
             }
@@ -714,6 +790,14 @@
         
         function closeAddBookingModal() {
             boatSystem.closeAddBookingModal();
+        }
+        
+        // Global functions
+        function logout() {
+            localStorage.removeItem('adminAuthenticated');
+            localStorage.removeItem('adminUser');
+            localStorage.removeItem('adminLoginTime');
+            window.location.href = '../pages/admin-login.html';
         }
         
         // Initialize the boat management system
