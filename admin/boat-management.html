@@ -391,21 +391,67 @@
             cursor: pointer;
         }
         
-        .add-booking-btn {
-            width: 100%;
+        /* Modern Calendar Styles */
+        .calendar-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
             padding: var(--spacing-md);
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+        
+        .calendar-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+        
+        .modern-calendar {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 2px solid var(--light-gray);
             border-radius: var(--radius-md);
             font-size: var(--font-size-base);
             font-weight: 600;
+            background: var(--white);
+            color: var(--text-primary);
             cursor: pointer;
-            margin-bottom: var(--spacing-lg);
+            transition: all 0.3s ease;
+            min-width: 150px;
         }
         
-        .add-booking-btn:hover {
-            background: var(--primary-dark);
+        .modern-calendar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+        }
+        
+        .modern-calendar:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(0, 113, 187, 0.05);
+        }
+        
+        .clear-date-btn {
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--light-gray);
+            color: var(--text-primary);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .clear-date-btn:hover {
+            background: var(--text-light);
+        }
+        
+        .boat-booked {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
         }
         
         /* Responsive Design */
@@ -440,7 +486,7 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
-            width: 100%;
+                width: 100%;
             padding: var(--spacing-md);
             border: 2px solid var(--light-gray);
             border-radius: var(--radius-md);
@@ -493,7 +539,7 @@
                 <h1 class="management-title">Boat Management</h1>
                 <p class="management-subtitle">Real-time boat availability and inventory management</p>
                     </div>
-                    </div>
+                </div>
 
         <div class="management-container">
             <div class="management-content">
@@ -505,94 +551,34 @@
                             <span id="lastUpdate" class="text-muted"></span>
                     </div>
                         <div class="section-content">
+                            <div class="calendar-container">
+                                <label for="boatCalendar" class="calendar-label">Select Date:</label>
+                                <input type="date" id="boatCalendar" class="modern-calendar">
+                                <button class="clear-date-btn" onclick="clearDateFilter()">Show All</button>
+                </div>
                             <div class="realtime-boats" id="realtimeBoats">
                                 <!-- Real-time boat cards will be populated here -->
-                        </div>
-                    </div>
                 </div>
+            </div>
+    </div>
 
                     <!-- Manual Boat Management -->
                     <div class="management-section">
                         <div class="section-header">
                             <h2 class="section-title">Boat Inventory</h2>
-                        </div>
+            </div>
                         <div class="section-content">
                             <div class="boat-list" id="boatList">
                                 <!-- Boat management items will be populated here -->
-                            </div>
-                        </div>
                     </div>
-                </div>
+                    </div>
+                    </div>
+                    </div>
 
-                <!-- Booking Management -->
-                <div class="management-section">
-                    <div class="section-header">
-                        <h2 class="section-title">Booking Management</h2>
-                </div>
-                    <div class="section-content">
-                        <button class="add-booking-btn" onclick="showAddBookingModal()">+ Add Manual Booking</button>
-                        <div id="bookingsList">
-                            <!-- Bookings will be populated here -->
-            </div>
                     </div>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Add Booking Modal -->
-    <div id="addBookingModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Add Manual Booking</h3>
-                <span class="close" onclick="closeAddBookingModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <form id="addBookingForm">
-                    <div class="form-group">
-                        <label for="bookingDate">Date</label>
-                        <input type="date" id="bookingDate" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingBoatType">Boat Type</label>
-                        <select id="bookingBoatType" name="boatType" required>
-                            <option value="">Select Boat Type</option>
-                            <option value="classic-tender-720">Classic tender 720 10/12 pers</option>
-                            <option value="electrosloop-10">Electrosloep voor 10 pers</option>
-                            <option value="electrosloop-8">Electrosloep voor 8 pers</option>
-                            <option value="electroboat-5">Electrosloep voor 5 pers</option>
-                            <option value="sailboat-4-5">Zeilboot</option>
-                            <option value="sailpunter-3-4">Zeilpunter 3/4 pers</option>
-                            <option value="canoe-3">Canadese kano 3 pers</option>
-                            <option value="kayak-2">Kajak 2 pers</option>
-                            <option value="kayak-1">Kajak 1 pers</option>
-                            <option value="sup-board">SUP board 1 pers</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingCustomerName">Customer Name</label>
-                        <input type="text" id="bookingCustomerName" name="customerName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingCustomerEmail">Email</label>
-                        <input type="email" id="bookingCustomerEmail" name="customerEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingCustomerPhone">Phone</label>
-                        <input type="tel" id="bookingCustomerPhone" name="customerPhone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingNotes">Notes</label>
-                        <textarea id="bookingNotes" name="notes" rows="3"></textarea>
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Add Booking</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeAddBookingModal()">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script>
         class BoatManagementSystem {
@@ -719,10 +705,13 @@
             }
             
             setupEventListeners() {
-                document.getElementById('addBookingForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.addManualBooking();
-                });
+                // Setup calendar event listeners
+                const calendarInput = document.getElementById('boatCalendar');
+                if (calendarInput) {
+                    calendarInput.addEventListener('change', () => {
+                        this.filterBoatsByDate();
+                    });
+                }
             }
             
             saveData() {
@@ -743,12 +732,12 @@
                             <h3>${boat.name}</h3>
                             <p>${boat.description}</p>
                             <p>Total: ${boat.total} boats</p>
-                        </div>
+                            </div>
                         <div class="boat-controls">
                             <input type="number" class="availability-input" value="${boat.available}" min="0" id="available-${boat.id}">
                             <button class="update-btn" onclick="boatSystem.updateBoatAvailability('${boat.id}')">Update</button>
-                        </div>
-                    `;
+                    </div>
+                `;
                     boatList.appendChild(boatItem);
                 });
             }
@@ -838,43 +827,55 @@
                 }
             }
             
-            addManualBooking() {
-                const form = document.getElementById('addBookingForm');
-                const formData = new FormData(form);
-                
-                const newBooking = {
-                    id: 'manual_' + Date.now(),
-                    date: formData.get('date'),
-                    boatType: formData.get('boatType'),
-                    customerName: formData.get('customerName'),
-                    customerEmail: formData.get('customerEmail'),
-                    customerPhone: formData.get('customerPhone'),
-                    notes: formData.get('notes'),
-                    status: 'manual',
-                    createdAt: new Date().toISOString(),
-                    updatedAt: new Date().toISOString()
-                };
-                
-                this.bookings.push(newBooking);
-                this.saveData();
-                this.renderBookings();
-                this.closeAddBookingModal();
-                form.reset();
-            }
-            
-            updateBookingStatus(bookingId, newStatus) {
-                const booking = this.bookings.find(b => b.id === bookingId);
-                if (booking) {
-                    booking.status = newStatus;
-                    booking.updatedAt = new Date().toISOString();
-                    this.saveData();
-                    this.renderBookings();
+            filterBoatsByDate() {
+                const selectedDate = document.getElementById('boatCalendar').value;
+                if (!selectedDate) {
+                    this.renderRealTimeBoats();
+                    return;
                 }
+                
+                // Get bookings for selected date
+                const bookingsForDate = this.bookings.filter(booking => 
+                    booking.date === selectedDate && booking.status === 'success'
+                );
+                
+                // Calculate availability for selected date
+                const boatsWithAvailability = this.boats.map(boat => {
+                    const bookingsForBoat = bookingsForDate.filter(booking => 
+                        booking.boatType === boat.id
+                    );
+                    const bookedCount = bookingsForBoat.length;
+                    const availableForDate = Math.max(0, boat.available - bookedCount);
+                    
+                    return {
+                        ...boat,
+                        availableForDate,
+                        bookedForDate: bookedCount
+                    };
+                });
+                
+                this.renderRealTimeBoatsForDate(boatsWithAvailability, selectedDate);
             }
             
-            saveBookingStatus(bookingId) {
-                // Status is already updated in updateBookingStatus
-                this.saveData();
+            renderRealTimeBoatsForDate(boatsWithAvailability, selectedDate) {
+                const realtimeBoats = document.getElementById('realtimeBoats');
+                realtimeBoats.innerHTML = '';
+                
+                boatsWithAvailability.forEach(boat => {
+                    const isAvailable = boat.availableForDate > 0;
+                    const boatCard = document.createElement('div');
+                    boatCard.className = `realtime-boat-card ${isAvailable ? 'available' : 'unavailable'}`;
+                    boatCard.innerHTML = `
+                        <div class="boat-name">${boat.name}</div>
+                        <div class="boat-availability ${isAvailable ? 'available' : 'unavailable'}">${boat.availableForDate}</div>
+                        <div class="boat-label">Available</div>
+                        <div class="boat-booked">${boat.bookedForDate} booked</div>
+                    `;
+                    realtimeBoats.appendChild(boatCard);
+                });
+                
+                // Update last update time
+                document.getElementById('lastUpdate').textContent = `Availability for ${new Date(selectedDate).toLocaleDateString()}`;
             }
             
             startRealTimeUpdates() {
@@ -885,22 +886,6 @@
                 }, 30000);
             }
             
-            showAddBookingModal() {
-                document.getElementById('addBookingModal').style.display = 'block';
-            }
-            
-            closeAddBookingModal() {
-                document.getElementById('addBookingModal').style.display = 'none';
-            }
-        }
-        
-        // Global functions
-        function showAddBookingModal() {
-            boatSystem.showAddBookingModal();
-        }
-        
-        function closeAddBookingModal() {
-            boatSystem.closeAddBookingModal();
         }
         
         // Global functions
@@ -909,6 +894,11 @@
             localStorage.removeItem('adminUser');
             localStorage.removeItem('adminLoginTime');
             window.location.href = '../pages/admin-login.html';
+        }
+        
+        function clearDateFilter() {
+            document.getElementById('boatCalendar').value = '';
+            boatSystem.renderRealTimeBoats();
         }
         
         // Initialize the boat management system
