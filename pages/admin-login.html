@@ -233,32 +233,23 @@
                     return;
                 }
                 this.showLoading(true);
-                try {
-                    const res = await fetch('../admin/booking-handler.php', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'login', username, password })
-                    });
-                    const result = await res.json();
-                    if (res.ok && result.success) {
-                        if (result.csrfToken) localStorage.setItem('csrfToken', result.csrfToken);
-                        localStorage.setItem('adminUser', username);
-                        this.showSuccess('Inloggen succesvol! Doorverwijzen...');
-                        this.showLoading(false);
-                        setTimeout(() => { this.redirectToAdmin(); }, 800);
-                    } else {
-                        this.showError(result.message || 'Ongeldige gebruikersnaam of wachtwoord');
-                        this.showLoading(false);
-                    }
-                } catch (err) {
-                    this.showError('Inloggen mislukt');
+                
+                // Static authentication for GitHub Pages compatibility
+                if (username === 'admin' && password === 'nijenhuis2025') {
+                    localStorage.setItem('adminUser', username);
+                    localStorage.setItem('adminLoginTime', new Date().toISOString());
+                    this.showSuccess('Inloggen succesvol! Doorverwijzen...');
+                    this.showLoading(false);
+                    setTimeout(() => { this.redirectToAdmin(); }, 800);
+                } else {
+                    this.showError('Ongeldige gebruikersnaam of wachtwoord');
                     this.showLoading(false);
                 }
             }
             
             redirectToAdmin() {
-                // Always redirect to admin-simple.html (local storage system)
-                window.location.href = '../admin/admin-simple.html';
+                // Redirect to static admin system that works on GitHub Pages
+                window.location.href = '../admin/admin-static.html';
             }
             
             isLoggedIn() {

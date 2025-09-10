@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
+    <style>
+        /* Admin Dashboard Specific Styles */
+        .admin-dashboard {
+            min-height: 100vh;
+            background: var(--bg-light);
+        }
+        
+        .admin-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-lg) 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        .admin-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .admin-subtitle {
+            opacity: 0.9;
+            font-size: var(--font-size-base);
+        }
+        
+        .admin-content {
+            padding: var(--spacing-2xl) 0;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .stat-card {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .admin-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .section-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .section-content {
+            padding: var(--spacing-lg);
+        }
+        
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .bookings-table th,
+        .bookings-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .bookings-table th {
+            background: var(--bg-light);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .status-badge {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-confirmed {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .status-pending {
+            background: var(--warning-color);
+            color: var(--white);
+        }
+        
+        .status-cancelled {
+            background: var(--error-color);
+            color: var(--white);
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .btn-admin {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .btn-edit {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-delete {
+            background: var(--error-color);
+            color: var(--white);
+        }
+        
+        .btn-export {
+            background: var(--success-color);
+            color: var(--white);
+        }
+        
+        .btn-admin:hover {
+            opacity: 0.8;
+        }
+        
+        .login-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: var(--spacing-2xl);
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--light-gray);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: var(--transition-normal);
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: var(--spacing-md);
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+        }
+        
+        .login-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .error-message {
+            background: var(--error-color);
+            color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <!-- Login Form -->
+        <div id="loginSection" class="login-form">
+            <h2 style="text-align: center; margin-bottom: var(--spacing-2xl); color: var(--primary-color);">Admin Login</h2>
+            <div id="errorMessage" class="error-message"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminSection" class="hidden">
+            <div class="admin-header">
+                <div class="admin-container">
+                    <h1 class="admin-title">Admin Dashboard</h1>
+                    <p class="admin-subtitle">Nijenhuis Botenverhuur - Booking Management</p>
+                </div>
+            </div>
+
+            <div class="admin-container">
+                <div class="admin-content">
+                    <!-- Statistics -->
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalBookings">0</div>
+                            <div class="stat-label">Total Bookings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="pendingBookings">0</div>
+                            <div class="stat-label">Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="confirmedBookings">0</div>
+                            <div class="stat-label">Confirmed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="cancelledBookings">0</div>
+                            <div class="stat-label">Cancelled</div>
+                        </div>
+                    </div>
+
+                    <!-- Bookings Management -->
+                    <div class="admin-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Bookings Management</h2>
+                            <div class="admin-actions">
+                                <button class="btn-admin btn-export" onclick="exportBookings()">Export CSV</button>
+                                <button class="btn-admin btn-delete" onclick="logout()">Logout</button>
+                            </div>
+                        </div>
+                        <div class="section-content">
+                            <table class="bookings-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Date</th>
+                                        <th>Boat Type</th>
+                                        <th>Customer</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookingsTableBody">
+                                    <!-- Bookings will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class StaticAdminSystem {
+            constructor() {
+                this.storageKey = 'nijenhuis_bookings';
+                this.bookings = [];
+                this.init();
+            }
+            
+            init() {
+                this.loadBookings();
+                this.setupEventListeners();
+                this.checkAuth();
+            }
+            
+            setupEventListeners() {
+                document.getElementById('loginForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.handleLogin();
+                });
+            }
+            
+            handleLogin() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple static authentication
+                if (username === 'admin' && password === 'nijenhuis2025') {
+                    localStorage.setItem('adminAuthenticated', 'true');
+                    localStorage.setItem('adminLoginTime', new Date().toISOString());
+                    this.showAdminSection();
+                } else {
+                    this.showError('Invalid username or password');
+                }
+            }
+            
+            checkAuth() {
+                const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
+                const loginTime = localStorage.getItem('adminLoginTime');
+                
+                if (isAuthenticated && loginTime) {
+                    // Check if login is still valid (24 hours)
+                    const loginDate = new Date(loginTime);
+                    const now = new Date();
+                    const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+                    
+                    if (hoursDiff < 24) {
+                        this.showAdminSection();
+                    } else {
+                        this.logout();
+                    }
+                }
+            }
+            
+            showAdminSection() {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('adminSection').classList.remove('hidden');
+                this.updateStats();
+                this.renderBookings();
+            }
+            
+            showError(message) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 5000);
+            }
+            
+            loadBookings() {
+                const stored = localStorage.getItem(this.storageKey);
+                this.bookings = stored ? JSON.parse(stored) : [];
+            }
+            
+            saveBookings() {
+                localStorage.setItem(this.storageKey, JSON.stringify(this.bookings));
+            }
+            
+            updateStats() {
+                const total = this.bookings.length;
+                const pending = this.bookings.filter(b => b.status === 'not-confirmed').length;
+                const confirmed = this.bookings.filter(b => b.status === 'confirmed').length;
+                const cancelled = this.bookings.filter(b => b.status === 'cancelled').length;
+                
+                document.getElementById('totalBookings').textContent = total;
+                document.getElementById('pendingBookings').textContent = pending;
+                document.getElementById('confirmedBookings').textContent = confirmed;
+                document.getElementById('cancelledBookings').textContent = cancelled;
+            }
+            
+            renderBookings() {
+                const tbody = document.getElementById('bookingsTableBody');
+                tbody.innerHTML = '';
+                
+                this.bookings.forEach(booking => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${booking.id.substring(0, 8)}...</td>
+                        <td>${booking.date}</td>
+                        <td>${booking.boatType}</td>
+                        <td>${booking.customerName}</td>
+                        <td>${booking.customerEmail}</td>
+                        <td>${booking.customerPhone}</td>
+                        <td><span class="status-badge status-${booking.status}">${booking.status}</span></td>
+                        <td>
+                            <button class="btn-admin btn-edit" onclick="adminSystem.updateBookingStatus('${booking.id}', 'confirmed')">Confirm</button>
+                            <button class="btn-admin btn-delete" onclick="adminSystem.deleteBooking('${booking.id}')">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+            
+            updateBookingStatus(bookingId, newStatus) {
+                const booking = this.bookings.find(b => b.id === bookingId);
+                if (booking) {
+                    booking.status = newStatus;
+                    booking.updatedAt = new Date().toISOString();
+                    this.saveBookings();
+                    this.updateStats();
+                    this.renderBookings();
+                }
+            }
+            
+            deleteBooking(bookingId) {
+                if (confirm('Are you sure you want to delete this booking?')) {
+                    this.bookings = this.bookings.filter(b => b.id !== bookingId);
+                    this.saveBookings();
+                    this.updateStats();
+                    this.renderBookings();
+                }
+            }
+            
+            logout() {
+                localStorage.removeItem('adminAuthenticated');
+                localStorage.removeItem('adminLoginTime');
+                document.getElementById('loginSection').classList.remove('hidden');
+                document.getElementById('adminSection').classList.add('hidden');
+            }
+        }
+        
+        // Global functions for button clicks
+        function exportBookings() {
+            if (adminSystem.bookings.length === 0) {
+                alert('No bookings to export');
+                return;
+            }
+            
+            const csv = [
+                ['ID', 'Date', 'Boat Type', 'Customer', 'Email', 'Phone', 'Status', 'Created At'],
+                ...adminSystem.bookings.map(b => [
+                    b.id,
+                    b.date,
+                    b.boatType,
+                    b.customerName,
+                    b.customerEmail,
+                    b.customerPhone,
+                    b.status,
+                    b.createdAt
+                ])
+            ].map(row => row.join(',')).join('\n');
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bookings-${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function logout() {
+            adminSystem.logout();
+        }
+        
+        // Initialize the admin system
+        const adminSystem = new StaticAdminSystem();
+    </script>
+</body>
+</html>
