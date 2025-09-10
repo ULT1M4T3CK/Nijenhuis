@@ -28,7 +28,7 @@ if (!isSameOrigin()) {
     exit;
 }
 
-$mollieApiKey = getenv('MOLLIE_API_KEY') ?: '';
+$mollieApiKey = getenv('MOLLIE_API_KEY') ?: 'test_sHQfqTngBbCpEfMyMCPGH92gnm8P7m';
 if ($mollieApiKey === '') {
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Mollie API key not configured']);

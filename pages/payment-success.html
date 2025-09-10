@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Betaling Succesvol - Nijenhuis Botenverhuur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Payment Successful - Nijenhuis Botenverhuur</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your boat rental payment has been processed successfully. Thank you for choosing Nijenhuis Botenverhuur!">
+    <meta name="robots" content="noindex, nofollow">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
@@ -12,82 +16,108 @@
     <link rel="stylesheet" href="../styles.css">
     
     <style>
-        .payment-success-container {
+        .payment-success-page {
             min-height: 100vh;
+            background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-2xl) var(--spacing-lg);
         }
         
-        .payment-success-card {
+        .success-card {
             background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
             box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl);
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             width: 100%;
         }
         
         .success-icon {
-            font-size: 4rem;
-            color: var(--success-color);
-            margin-bottom: var(--spacing-lg);
+            width: 80px;
+            height: 80px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-2xl);
+            animation: successPulse 2s ease-in-out infinite;
         }
         
-        .payment-success-card h1 {
-            color: var(--primary-color);
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--white);
+        }
+        
+        .success-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
             margin-bottom: var(--spacing-md);
-            font-size: var(--font-size-xl);
         }
         
-        .payment-success-card p {
-            color: var(--text-color);
-            margin-bottom: var(--spacing-lg);
-            line-height: 1.6;
+        .success-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-2xl);
         }
         
         .booking-details {
-            background: var(--light-gray);
-            border-radius: var(--radius-md);
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
             padding: var(--spacing-lg);
-            margin: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-2xl);
             text-align: left;
         }
         
-        .booking-detail {
+        .detail-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: var(--spacing-sm);
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--light-gray);
         }
         
-        .booking-detail:last-child {
-            margin-bottom: 0;
+        .detail-item:last-child {
+            border-bottom: none;
         }
         
-        .booking-detail-label {
+        .detail-label {
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-primary);
         }
         
-        .action-buttons {
+        .detail-value {
+            color: var(--text-secondary);
+        }
+        
+        .success-actions {
             display: flex;
-            gap: var(--spacing-md);
+            gap: var(--spacing-lg);
             justify-content: center;
-            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
         }
         
         .btn {
-            padding: var(--spacing-sm) var(--spacing-lg);
+            padding: var(--spacing-md) var(--spacing-2xl);
             border: none;
             border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
             font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
             cursor: pointer;
             transition: var(--transition-normal);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         
         .btn-primary {
@@ -99,145 +129,251 @@
             background: var(--primary-dark);
         }
         
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--text-primary);
         }
         
-        .btn-outline:hover {
-            background: var(--primary-color);
+        .btn-secondary:hover {
+            background: var(--text-light);
+        }
+        
+        .error-message {
+            background: var(--error-color);
             color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: var(--spacing-lg);
+        }
+        
+        .spinner {
+            border: 3px solid var(--light-gray);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--spacing-md);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         @media (max-width: 768px) {
-            .payment-success-card {
-                padding: var(--spacing-lg);
+            .success-actions {
+                flex-direction: column;
             }
             
-            .action-buttons {
-                flex-direction: column;
+            .success-card {
+                padding: var(--spacing-2xl);
             }
         }
     </style>
-  <script src="../frontend/src/js/main.js"></script>
 </head>
 <body>
-    <div class="payment-success-container">
-        <div class="payment-success-card">
-            <div class="success-icon">✅</div>
-            <h1>Betaling Succesvol!</h1>
-            <p>Uw betaling is succesvol verwerkt. Uw reservering is bevestigd en betaald.</p>
-            
-            <div class="booking-details" id="bookingDetails">
-                <div class="booking-detail">
-                    <span class="booking-detail-label">Reservering ID:</span>
-                    <span id="bookingId">Laden...</span>
-                </div>
-                <div class="booking-detail">
-                    <span class="booking-detail-label">Datum:</span>
-                    <span id="bookingDate">Laden...</span>
-                </div>
-                <div class="booking-detail">
-                    <span class="booking-detail-label">Boot:</span>
-                    <span id="bookingBoat">Laden...</span>
-                </div>
-                <div class="booking-detail">
-                    <span class="booking-detail-label">Bedrag:</span>
-                    <span id="bookingAmount">Laden...</span>
-                </div>
+    <div class="payment-success-page">
+        <div class="success-card">
+            <div class="error-message" id="errorMessage"></div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing your payment...</p>
             </div>
             
-            <p>U ontvangt binnenkort een bevestigingsmail met alle details van uw reservering.</p>
-            
-            <div class="action-buttons">
-                <a href="index.html" class="btn btn-primary">Terug naar Homepage</a>
-                <a href="botenverhuur.html" class="btn btn-outline">Meer Boten Bekijken</a>
+            <div id="successContent">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+                
+                <h1 class="success-title">Payment Successful!</h1>
+                <p class="success-subtitle">Your boat rental has been confirmed. You will receive a confirmation email shortly.</p>
+                
+                <div class="booking-details" id="bookingDetails">
+                    <!-- Booking details will be populated here -->
+                </div>
+                
+                <div class="success-actions">
+                    <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Load booking details from URL parameters
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const bookingId = urlParams.get('booking_id');
+        class PaymentSuccessPage {
+            constructor() {
+                this.init();
+            }
             
-            if (bookingId) {
-                // Load booking details from localStorage
+            init() {
+                this.loadBookingData();
+                this.processPayment();
+            }
+            
+            loadBookingData() {
+                // Get booking ID from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const bookingId = urlParams.get('bookingId');
+                
+                if (!bookingId) {
+                    this.showError('Invalid booking reference. Please contact us for assistance.');
+                    return;
+                }
+                
+                // Load booking from localStorage
                 const bookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
                 const booking = bookings.find(b => b.id === bookingId);
                 
-                if (booking) {
-                    document.getElementById('bookingId').textContent = booking.id;
-                    document.getElementById('bookingDate').textContent = new Date(booking.date).toLocaleDateString('nl-NL', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
+                if (!booking) {
+                    this.showError('Booking not found. Please contact us for assistance.');
+                    return;
+                }
+                
+                this.booking = booking;
+                this.displayBookingDetails();
+            }
+            
+            displayBookingDetails() {
+                const detailsContainer = document.getElementById('bookingDetails');
+                detailsContainer.innerHTML = `
+                    <div class="detail-item">
+                        <span class="detail-label">Booking ID:</span>
+                        <span class="detail-value">${this.booking.id}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Date:</span>
+                        <span class="detail-value">${this.formatDate(this.booking.date)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Boat Type:</span>
+                        <span class="detail-value">${this.getBoatName(this.booking.boatType)}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Customer:</span>
+                        <span class="detail-value">${this.booking.customerName}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Email:</span>
+                        <span class="detail-value">${this.booking.customerEmail}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Phone:</span>
+                        <span class="detail-value">${this.booking.customerPhone}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Price:</span>
+                        <span class="detail-value" style="color: var(--primary-color); font-weight: 600;">€${this.calculatePrice(this.booking.boatType)}</span>
+                    </div>
+                `;
+            }
+            
+            async processPayment() {
+                this.showLoading(true);
+                
+                try {
+                    // Update booking status to success
+                    const bookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
+                    const bookingIndex = bookings.findIndex(b => b.id === this.booking.id);
                     
-                    // Get boat display name
-                    const boatNames = {
-                        'classic-tender-720': 'Classic tender 720 (10/12 pers)',
-                        'classic-tender-570': 'Classic tender 570 (8 pers)',
-                        'electrosloop-10': 'Electrosloep voor 10 pers',
-                        'electrosloop-8': 'Electrosloep voor 8 pers',
-                        'electroboat-5': 'Electrosloep voor 5 pers',
-                        'sailboat-4-5': booking.engineOption === 'with' ? 'Zeilboot (met motor)' : 'Zeilboot (zonder motor)',
-                        'sailpunter-3-4': 'Zeilpunter 3/4 pers',
-                        'canoe-3': 'Canadese kano 3 pers',
-                        'kayak-2': 'Kajak 2 pers',
-                        'kayak-1': 'Kajak 1 pers',
-                        'sup-board': 'SUP board 1 pers'
-                    };
-                    
-                    document.getElementById('bookingBoat').textContent = boatNames[booking.boatType] || booking.boatType;
-                    
-                    // Calculate and display amount
-                    const prices = {
-                        'classic-tender-720': '€120,00',
-                        'classic-tender-570': '€100,00',
-                        'electrosloop-10': '€95,00',
-                        'electrosloop-8': '€85,00',
-                        'electroboat-5': '€75,00',
-                        'sailboat-4-5': booking.engineOption === 'with' ? '€85,00' : '€70,00',
-                        'sailpunter-3-4': '€60,00',
-                        'canoe-3': '€35,00',
-                        'kayak-2': '€25,00',
-                        'kayak-1': '€20,00',
-                        'sup-board': '€25,00'
-                    };
-                    
-                    document.getElementById('bookingAmount').textContent = prices[booking.boatType] || '€50,00';
-                    
-                    // Update booking status to confirmed-paid if not already
-                    if (booking.status !== 'confirmed-paid') {
-                        booking.status = 'confirmed-paid';
-                        booking.paymentStatus = 'paid';
-                        booking.updatedAt = new Date().toISOString();
+                    if (bookingIndex !== -1) {
+                        bookings[bookingIndex].status = 'success';
+                        bookings[bookingIndex].paymentDate = new Date().toISOString();
                         localStorage.setItem('nijenhuis_bookings', JSON.stringify(bookings));
                         
-                        // Dispatch event for admin system
-                        window.dispatchEvent(new CustomEvent('paymentStatusUpdated', {
-                            detail: { bookingId: booking.id, newStatus: 'confirmed-paid', paymentStatus: 'paid' }
-                        }));
+                        // Update boat availability
+                        this.updateBoatAvailability(this.booking.boatType);
                     }
-                } else {
-                    const details = document.getElementById('bookingDetails');
-                    details.textContent = '';
-                    const p = document.createElement('p');
-                    p.textContent = 'Reservering niet gevonden.';
-                    details.appendChild(p);
+                    
+                    // Hide loading and show success
+                    this.showLoading(false);
+                    
+                } catch (error) {
+                    console.error('Payment processing error:', error);
+                    this.showError('There was an error processing your payment. Please contact us for assistance.');
+                    this.showLoading(false);
                 }
-            } else {
-                const details = document.getElementById('bookingDetails');
-                details.textContent = '';
-                const p = document.createElement('p');
-                p.textContent = 'Geen reservering ID opgegeven.';
-                details.appendChild(p);
             }
+            
+            getBoatName(boatType) {
+                const boatNames = {
+                    'classic-tender-720': 'Classic Tender 720 (10/12 pers)',
+                    'electrosloop-10': 'Electrosloep voor 10 pers',
+                    'electrosloop-8': 'Electrosloep voor 8 pers',
+                    'electroboat-5': 'Electrosloep voor 5 pers',
+                    'sailboat-4-5': 'Zeilboot (4/5 pers)',
+                    'sailpunter-3-4': 'Zeilpunter (3/4 pers)',
+                    'canoe-3': 'Canadese kano (3 pers)',
+                    'kayak-2': 'Kajak (2 pers)',
+                    'kayak-1': 'Kajak (1 pers)',
+                    'sup-board': 'SUP board (1 pers)'
+                };
+                return boatNames[boatType] || boatType;
+            }
+            
+            calculatePrice(boatType) {
+                const prices = {
+                    'classic-tender-720': 85,
+                    'electrosloop-10': 95,
+                    'electrosloop-8': 75,
+                    'electroboat-5': 65,
+                    'sailboat-4-5': 70,
+                    'sailpunter-3-4': 60,
+                    'canoe-3': 35,
+                    'kayak-2': 30,
+                    'kayak-1': 25,
+                    'sup-board': 20
+                };
+                return prices[boatType] || 50;
+            }
+            
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            updateBoatAvailability(boatType) {
+                // Update boat availability in localStorage
+                const boats = JSON.parse(localStorage.getItem('nijenhuis_boats') || '[]');
+                const boat = boats.find(b => b.id === boatType);
+                if (boat && boat.available > 0) {
+                    boat.available -= 1;
+                    localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                }
+            }
+            
+            showError(message) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+                document.getElementById('successContent').style.display = 'none';
+            }
+            
+            showLoading(show) {
+                document.getElementById('loading').style.display = show ? 'block' : 'none';
+                document.getElementById('successContent').style.display = show ? 'none' : 'block';
+            }
+        }
+        
+        // Initialize the payment success page
+        document.addEventListener('DOMContentLoaded', () => {
+            new PaymentSuccessPage();
         });
     </script>
 </body>
-</html> 
+</html>

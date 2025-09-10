@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Payment Failed - Nijenhuis Botenverhuur</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Your boat rental payment could not be processed. Please try again or contact us for assistance.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles.css">
+    
+    <style>
+        .payment-failure-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--error-color) 0%, #dc3545 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+        }
+        
+        .failure-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--spacing-3xl);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .failure-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--error-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-2xl);
+        }
+        
+        .failure-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--white);
+        }
+        
+        .failure-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .failure-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .failure-actions {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: var(--spacing-md) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--text-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-light);
+        }
+        
+        .help-text {
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-2xl);
+            text-align: left;
+        }
+        
+        .help-text h3 {
+            margin: 0 0 var(--spacing-md) 0;
+            color: var(--text-primary);
+        }
+        
+        .help-text p {
+            margin: 0 0 var(--spacing-sm) 0;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .failure-actions {
+                flex-direction: column;
+            }
+            
+            .failure-card {
+                padding: var(--spacing-2xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-failure-page">
+        <div class="failure-card">
+            <div class="failure-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </div>
+            
+            <h1 class="failure-title">Payment Failed</h1>
+            <p class="failure-subtitle">We're sorry, but your payment could not be processed. Please try again or contact us for assistance.</p>
+            
+            <div class="failure-actions">
+                <a href="booking.html" class="btn btn-primary">Try Again</a>
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+            
+            <div class="help-text">
+                <h3>Need Help?</h3>
+                <p>If you continue to experience issues with payment, please:</p>
+                <p>• Check that your payment details are correct</p>
+                <p>• Ensure you have sufficient funds in your account</p>
+                <p>• Try a different payment method</p>
+                <p>• Contact us directly at <strong>0522-281528</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

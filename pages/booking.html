@@ -247,6 +247,10 @@
                             <span class="summary-value" id="summaryBoatType">-</span>
                         </div>
                         <div class="summary-item">
+                            <span class="summary-label">Price:</span>
+                            <span class="summary-value" id="summaryPrice" style="color: var(--primary-color); font-weight: 600;">-</span>
+                        </div>
+                        <div class="summary-item">
                             <span class="summary-label">Status:</span>
                             <span class="summary-value" style="color: var(--success-color); font-weight: 600;">Available ✓</span>
                         </div>
@@ -320,6 +324,7 @@
                 // Update summary
                 document.getElementById('summaryDate').textContent = this.formatDate(date);
                 document.getElementById('summaryBoatType').textContent = this.getBoatName(boatType);
+                document.getElementById('summaryPrice').textContent = `€${this.calculatePrice(boatType)}`;
                 
                 // Store booking data
                 this.bookingData = { date, boatType };
@@ -369,33 +374,89 @@
                     customerPhone: formData.get('customerPhone'),
                     customerAddress: formData.get('customerAddress'),
                     specialRequests: formData.get('specialRequests'),
-                    status: 'success',
+                    status: 'pending',
                     createdAt: new Date().toISOString()
                 };
                 
                 this.showLoading(true);
                 
                 try {
-                    // Save to localStorage (for demo purposes)
+                    // Save booking data temporarily
                     const existingBookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
                     bookingData.id = 'booking_' + Date.now();
                     existingBookings.push(bookingData);
                     localStorage.setItem('nijenhuis_bookings', JSON.stringify(existingBookings));
                     
-                    // Update boat availability
-                    this.updateBoatAvailability(bookingData.boatType);
-                    
-                    // Show success message
-                    this.showSuccess('Booking confirmed! You will receive a confirmation email shortly.');
-                    
-                    // Hide form and show success
-                    form.style.display = 'none';
+                    // Create Mollie payment
+                    await this.createMolliePayment(bookingData);
                     
                 } catch (error) {
-                    this.showError('There was an error processing your booking. Please try again.');
-                } finally {
+                    console.error('Payment error:', error);
+                    this.showError('There was an error processing your payment. Please try again.');
                     this.showLoading(false);
                 }
+            }
+            
+            async createMolliePayment(bookingData) {
+                try {
+                    // Calculate price based on boat type
+                    const price = this.calculatePrice(bookingData.boatType);
+                    
+                    const paymentData = {
+                        amount: {
+                            currency: 'EUR',
+                            value: price.toFixed(2)
+                        },
+                        description: `Boat rental - ${this.getBoatName(bookingData.boatType)} on ${bookingData.date}`,
+                        redirectUrl: `${window.location.origin}/pages/payment-success.html?bookingId=${bookingData.id}`,
+                        cancelUrl: `${window.location.origin}/pages/payment-failure.html`,
+                        webhookUrl: `${window.location.origin}/mollie_api.php?action=webhook`,
+                        metadata: {
+                            bookingId: bookingData.id,
+                            boatType: bookingData.boatType,
+                            date: bookingData.date,
+                            customerName: bookingData.customerName,
+                            customerEmail: bookingData.customerEmail
+                        }
+                    };
+                    
+                    const response = await fetch('../mollie_api.php?action=createPayment', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(paymentData)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result._links && result._links.checkout) {
+                        // Redirect to Mollie payment page
+                        window.location.href = result._links.checkout.href;
+                    } else {
+                        throw new Error('No payment URL received from Mollie');
+                    }
+                    
+                } catch (error) {
+                    console.error('Mollie payment creation failed:', error);
+                    throw error;
+                }
+            }
+            
+            calculatePrice(boatType) {
+                const prices = {
+                    'classic-tender-720': 85,
+                    'electrosloop-10': 95,
+                    'electrosloop-8': 75,
+                    'electroboat-5': 65,
+                    'sailboat-4-5': 70,
+                    'sailpunter-3-4': 60,
+                    'canoe-3': 35,
+                    'kayak-2': 30,
+                    'kayak-1': 25,
+                    'sup-board': 20
+                };
+                return prices[boatType] || 50;
             }
             
             updateBoatAvailability(boatType) {
