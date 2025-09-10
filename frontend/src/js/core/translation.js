@@ -463,7 +463,7 @@
         intro_h3_li4: "👨‍👩‍👧‍👦 Perfekt für Familien und Gruppen",
         intro_h3_li5: "💰 Konkurrenzstarke Preise für alle Budgets",
         intro_h3_li6: "📞 Persönliche Service und Unterstützung", 
-                intro_cta_p: "Für mehr Informationen, rufen Sie uns an 0522 - 281 528",
+        intro_cta_p: "Für mehr Informationen, rufen Sie uns an 0522 - 281 528",
         intro_cta_p2: "Barzahlung und PIN-Zahlung akzeptiert",
         
         index_season_title: "Saisoncamping",
@@ -1115,6 +1115,7 @@
     function getStoredLang() {
       return localStorage.getItem(LANG_KEY) || DEFAULT_LANG;
     }
+    
   
     function storeLang(lang) {
       localStorage.setItem(LANG_KEY, lang);
@@ -1123,6 +1124,14 @@
     /* ---------- 3. APPLY TRANSLATION ------------------------- */
     function applyTranslations(lang) {
       const dict = t[lang] || t[DEFAULT_LANG];
+  
+      /* Update active language button */
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        }
+      });
   
       /* Text content */
       document.querySelectorAll("[data-i18n]").forEach(el => {
@@ -1159,7 +1168,9 @@
   
     /* ---------- 4. LANGUAGE SWITCHER UI ---------------------- */
     function buildSwitcher() {
+      console.log("buildSwitcher() called");
       let switcher = document.getElementById("languageSwitcher");
+      console.log("Language switcher element found:", switcher);
       if (!switcher) {
         // Create a fallback container if missing
         switcher = document.createElement('div');
@@ -1191,50 +1202,49 @@
         btn.setAttribute("aria-label", label);
         // Build flag element safely
         const img = document.createElement('img');
-        img.src = `/flags/${flag}`;
+        img.src = `../frontend/public/flags/${flag}`;
         img.alt = label;
         img.className = 'flag-icon';
+        
+        // Debug: Log flag path and handle load errors
+        console.log(`Loading flag: ${img.src}`);
+        img.onerror = () => console.error(`Failed to load flag: ${img.src}`);
+        img.onload = () => console.log(`Successfully loaded flag: ${img.src}`);
         while (btn.firstChild) btn.removeChild(btn.firstChild);
         btn.appendChild(img);
         btn.addEventListener("click", () => {
+          console.log(`Language switched to: ${code}`);
           storeLang(code);
           applyTranslations(code);
         });
         switcher.appendChild(btn);
       });
 
-      /* Minimal CSS-in-JS for circular flag buttons */
-      const css = document.createElement("style");
-      css.textContent = `
-        #languageSwitcher {
-          display: flex; gap: .75rem;
-        }
-        #languageSwitcher .lang-btn {
-          width: 32px; height: 32px;
-          border-radius: 50%;
-          border: 2px solid transparent;
-          padding: 0; cursor: pointer;
-          background: none;
-          display: flex; align-items: center; justify-content: center;
-        }
-        #languageSwitcher .lang-btn.active {
-          border-color: var(--primary-color, #007bff);
-        }
-        #languageSwitcher .flag-icon {
-          width: 24px; height: 24px;
-          border-radius: 50%;
-          object-fit: cover;
-          display: block;
-        }
-      `;
-      document.head.appendChild(css);
     }
   
     /* ---------- 5. INITIALISE ON DOM READY ------------------- */
-    document.addEventListener("DOMContentLoaded", () => {
+    function initializeTranslation() {
+      console.log("Initializing translation system...");
       buildSwitcher();
       applyTranslations(getStoredLang());
-    });
+    }
+    
+    // Initialize immediately if DOM is already ready, otherwise wait for DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener("DOMContentLoaded", initializeTranslation);
+    } else {
+      // DOM is already ready
+      initializeTranslation();
+    }
+    
+    // Fallback initialization after a short delay to ensure everything is loaded
+    setTimeout(() => {
+      const switcher = document.getElementById("languageSwitcher");
+      if (switcher && switcher.children.length === 0) {
+        console.log("Fallback initialization: rebuilding language switcher");
+        buildSwitcher();
+      }
+    }, 1000);
   
     /* --------- 6. Expose API for other scripts --------------- */
     window.setLanguage = lang => {
@@ -1243,4 +1253,8 @@
         applyTranslations(lang);
       }
     };
+    
+    // Expose buildSwitcher for manual debugging
+    window.rebuildLanguageSwitcher = buildSwitcher;
   })();
+  console.log("Translation.js IIFE executed");
