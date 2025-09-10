@@ -210,6 +210,15 @@
         </div>
     </div>
 
+    <!-- Load boat management functions for real-time updates -->
+    <script>
+        // Global function to handle boat rentals from other pages
+        function handleBoatRental(boatType, date) {
+            // This function will be called from the boat management system
+            console.log(`Boat rental handled: ${boatType} on ${date}`);
+        }
+    </script>
+
     <script>
         class PaymentSuccessPage {
             constructor() {
@@ -354,6 +363,12 @@
                 if (boat && boat.available > 0) {
                     boat.available -= 1;
                     localStorage.setItem('nijenhuis_boats', JSON.stringify(boats));
+                    console.log(`Boat ${boat.name} availability updated: ${boat.available}/${boat.total}`);
+                    
+                    // Trigger real-time update for boat management page
+                    if (typeof handleBoatRental === 'function') {
+                        handleBoatRental(boatType, this.booking.date);
+                    }
                 }
             }
             

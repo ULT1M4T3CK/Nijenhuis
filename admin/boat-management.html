@@ -454,6 +454,12 @@
             margin-top: var(--spacing-xs);
         }
         
+        .boat-total {
+            font-size: var(--font-size-xs);
+            color: var(--text-secondary);
+            margin-top: var(--spacing-xs);
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .management-grid {
@@ -744,7 +750,17 @@
             
             renderRealTimeBoats() {
                 const realtimeBoats = document.getElementById('realtimeBoats');
+                if (!realtimeBoats) {
+                    console.error('Real-time boats container not found');
+                    return;
+                }
+                
                 realtimeBoats.innerHTML = '';
+                
+                if (this.boats.length === 0) {
+                    realtimeBoats.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-lg);">No boats available. Please add boats to inventory.</p>';
+                    return;
+                }
                 
                 this.boats.forEach(boat => {
                     const isAvailable = boat.available > 0;
@@ -754,12 +770,16 @@
                         <div class="boat-name">${boat.name}</div>
                         <div class="boat-availability ${isAvailable ? 'available' : 'unavailable'}">${boat.available}</div>
                         <div class="boat-label">Available</div>
+                        <div class="boat-total">/ ${boat.total} total</div>
                     `;
                     realtimeBoats.appendChild(boatCard);
                 });
                 
                 // Update last update time
-                document.getElementById('lastUpdate').textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+                const lastUpdate = document.getElementById('lastUpdate');
+                if (lastUpdate) {
+                    lastUpdate.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+                }
             }
             
             renderBookings() {
@@ -811,7 +831,9 @@
                     boat.available = newAvailable;
                     this.saveData();
                     this.renderBoats(); // Re-render to update total display
-                    this.renderRealTimeBoats();
+                    this.renderRealTimeBoats(); // Update real-time display
+                    this.filterBoatsByDate(); // Update calendar view if date is selected
+                    
                     // Show success feedback
                     const button = input.nextElementSibling;
                     const originalText = button.textContent;
@@ -878,10 +900,34 @@
                 document.getElementById('lastUpdate').textContent = `Availability for ${new Date(selectedDate).toLocaleDateString()}`;
             }
             
+            handleBoatRental(boatType, date) {
+                // Find the boat and decrease availability
+                const boat = this.boats.find(b => b.id === boatType);
+                if (boat && boat.available > 0) {
+                    boat.available--;
+                    this.saveData();
+                    this.renderRealTimeBoats();
+                    this.renderBoats();
+                    this.filterBoatsByDate(); // Update calendar view if date is selected
+                    console.log(`Boat ${boat.name} rented. Available: ${boat.available}/${boat.total}`);
+                }
+            }
+            
             startRealTimeUpdates() {
                 this.renderRealTimeBoats();
+                
+                // Listen for storage changes from other tabs/pages
+                window.addEventListener('storage', (e) => {
+                    if (e.key === this.boatsStorageKey || e.key === this.bookingsStorageKey) {
+                        this.loadData();
+                        this.renderRealTimeBoats();
+                        this.renderBoats();
+                    }
+                });
+                
                 // Update every 30 seconds
                 setInterval(() => {
+                    this.loadData(); // Reload data to get latest changes
                     this.renderRealTimeBoats();
                 }, 30000);
             }
@@ -899,6 +945,13 @@
         function clearDateFilter() {
             document.getElementById('boatCalendar').value = '';
             boatSystem.renderRealTimeBoats();
+        }
+        
+        // Global function to handle boat rentals from other pages
+        function handleBoatRental(boatType, date) {
+            if (typeof boatSystem !== 'undefined') {
+                boatSystem.handleBoatRental(boatType, date);
+            }
         }
         
         // Initialize the boat management system
