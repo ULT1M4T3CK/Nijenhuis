@@ -15,7 +15,7 @@ class SimpleChatbot {
         this.conversationHistory = [];
         
         this.init();
-        this.injectBasicStyles();
+        // Don't inject CSS - use global CSS from styles.css
     }
 
     init() {
@@ -27,6 +27,9 @@ class SimpleChatbot {
             return;
         }
 
+        // Ensure chat window starts hidden (CSS handles this, but clear any inline styles)
+        this.chatWindow.style.display = '';
+        
         // Toggle chat window and add welcome message
         this.chatButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -36,7 +39,7 @@ class SimpleChatbot {
             this.chatWindow.classList.toggle('active');
             const isActive = this.chatWindow.classList.contains('active');
             
-            // Clear any inline display styles that might conflict
+            // Clear any inline display styles to let CSS handle it
             this.chatWindow.style.display = '';
             
             if (isActive) {
@@ -55,7 +58,7 @@ class SimpleChatbot {
             e.preventDefault();
             e.stopPropagation();
             this.chatWindow.classList.remove('active');
-            // Clear any inline display styles that might conflict
+            // Clear any inline display styles to let CSS handle it
             this.chatWindow.style.display = '';
         });
 
@@ -74,39 +77,8 @@ class SimpleChatbot {
         this.addLanguageIndicator();
     }
 
-    injectBasicStyles() {
-        // Minimal styling to ensure the chat UI renders correctly without external widget CSS
-        const style = document.createElement('style');
-        style.setAttribute('data-chat-style', 'basic');
-        style.textContent = `
-          .chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 10000; }
-          .chat-button { 
-            width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
-            background: var(--primary-color, #667eea); color: #fff; font-size: 22px;
-            box-shadow: 0 10px 20px rgba(0,0,0,.15);
-            display: inline-flex; align-items: center; justify-content: center;
-          }
-          .chat-window { 
-            display: none; width: 320px; max-width: calc(100vw - 40px);
-            background: #fff; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,.2); margin-top: 10px;
-          }
-          .chat-window.active { display: flex; flex-direction: column; height: 420px; }
-          .chat-header { background: linear-gradient(135deg,#667eea,#764ba2); color:#fff; padding: 10px 12px; display:flex; align-items:center; justify-content:space-between; }
-          .chat-close { background: transparent; border: 0; color: #fff; font-size: 18px; cursor: pointer; }
-          .chat-messages { flex: 1; padding: 12px; overflow-y: auto; background: #f8f9fa; }
-          .chat-message { margin-bottom: 10px; }
-          .chat-message .message-bubble { background: #fff; border: 1px solid #e5e7eb; padding: 8px 10px; border-radius: 10px; display: inline-block; max-width: 85%; }
-          .chat-message.user .message-bubble { background: #667eea; color: #fff; border-color: transparent; }
-          .chat-message .message-time { font-size: 11px; color: #6b7280; margin-top: 4px; }
-          .chat-input { display:flex; gap:8px; padding: 10px; border-top: 1px solid #e5e7eb; }
-          #chatInput { flex:1; border: 1px solid #d1d5db; border-radius: 20px; padding: 8px 12px; }
-          .chat-send { width: 36px; height:36px; border-radius: 50%; border: none; background: #667eea; color:#fff; cursor: pointer; display:inline-flex; align-items:center; justify-content:center; }
-        `;
-        if (!document.querySelector('style[data-chat-style="basic"]')) {
-            document.head.appendChild(style);
-        }
-    }
+    // CSS injection removed - using global CSS from styles.css instead
+    // This prevents conflicts with the main stylesheet
 
     async sendMessage() {
         const message = this.chatInput.value.trim();
@@ -311,24 +283,44 @@ class SimpleChatbot {
     }
 }
 
-// Initialize chat when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    window.simpleChatbot = new SimpleChatbot();
+// Initialize chat when DOM is loaded or immediately if already loaded
+function initializeChatbot() {
+    function tryInit() {
+        // Check if required elements exist
+        const chatButton = document.getElementById('chatButton');
+        const chatWindow = document.getElementById('chatWindow');
+        
+        if (!chatButton || !chatWindow) {
+            // Elements not ready yet, try again in 100ms
+            console.log('[Chat] Waiting for chat elements...');
+            setTimeout(tryInit, 100);
+            return;
+        }
+        
+        // Elements exist, initialize chatbot
+        window.simpleChatbot = new SimpleChatbot();
+        console.log('Simple Chatbot initialized!');
+    }
     
-    // Add some helpful console messages
-    console.log('?? Simple Chatbot initialized!');
-    console.log('?? Use window.simpleChatbot to interact with the chatbot programmatically');
-    console.log('?? Example: window.simpleChatbot.openChat()');
-});
+    // Check if DOM is already loaded
+    if (document.readyState === 'loading') {
+        // DOM is still loading, wait for DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+        // DOM is already loaded, try to initialize
+        tryInit();
+    }
+}
+
+// Initialize chatbot
+initializeChatbot();
 
 // Add keyboard shortcut to open chat (Ctrl/Cmd + Shift + C)
-document.addEventListener('DOMContentLoaded', () => {
-    document.addEventListener('keydown', (e) => {
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
-            e.preventDefault();
-            if (window.simpleChatbot) {
-                window.simpleChatbot.openChat();
-            }
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+        e.preventDefault();
+        if (window.simpleChatbot) {
+            window.simpleChatbot.openChat();
         }
-    });
+    }
 }); 

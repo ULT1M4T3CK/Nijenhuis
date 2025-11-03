@@ -90,11 +90,30 @@ function updateMobileMenuIcon() {
 function setupChatWidget() {
     // Check if SimpleChatbot is already initialized (from simple-chatbot.js)
     // If so, skip this setup to avoid conflicts
-    if (window.simpleChatbot) {
-        console.log('[Chat] SimpleChatbot already initialized, skipping shared.js setup');
+    // Also check if chat elements exist - if not, skip (chat might not be loaded yet)
+    const chatButton = document.getElementById('chatButton');
+    const chatWindow = document.getElementById('chatWindow');
+    
+    if (!chatButton || !chatWindow) {
+        // Chat elements not found, skip setup
         return;
     }
     
+    // Wait a bit for simple-chatbot.js to load (it loads asynchronously)
+    setTimeout(() => {
+        if (window.simpleChatbot) {
+            console.log('[Chat] SimpleChatbot already initialized, skipping shared.js setup');
+            return;
+        }
+        
+        // If simple-chatbot.js hasn't loaded after timeout, set up basic chat
+        // This is a fallback for pages that don't load simple-chatbot.js
+        console.log('[Chat] SimpleChatbot not found, using basic chat setup');
+        setupBasicChat();
+    }, 500);
+}
+
+function setupBasicChat() {
     const chatButton = document.getElementById('chatButton');
     const chatWindow = document.getElementById('chatWindow');
     const chatClose = document.getElementById('chatClose');
@@ -151,10 +170,12 @@ function setupChatWidget() {
             : '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.19V1h-1v2.19C6.16 3.72 2.72 7.16 2.19 12H1v1h2.19c.53 4.84 4.01 8.28 8.81 8.81V23h1v-2.19c4.84-.53 8.28-4.01 8.81-8.81H23v-1h-2.19c-.53-4.84-4.01-8.28-8.81-8.81zM12 21c-4.97 0-9-4.03-9-9s4.03-9 9-9 9 4.03 9 9-4.03 9-9 9z"/></svg>';
     }
 
-    // Toggle chat window
+    // Toggle chat window - use toggle instead of add for proper behavior
     chatButton.addEventListener('click', () => {
-        chatWindow.classList.add('active');
-        chatInput.focus();
+        chatWindow.classList.toggle('active');
+        if (chatWindow.classList.contains('active')) {
+            chatInput?.focus();
+        }
     });
 
     // Close chat window
@@ -164,7 +185,7 @@ function setupChatWidget() {
 
     // Send message
     function sendMessage() {
-        const message = chatInput.value.trim();
+        const message = chatInput?.value.trim();
         if (message) {
             addMessage(message, 'user');
             chatInput.value = '';
