@@ -170,11 +170,11 @@
                         
                         <h4 data-i18n="house_overview_h4">Bijzonderheden</h4>
                         <ul class="icon-list">
-                            <li><span class="icon">👶</span> Kinderbedje, box en kinderstoel kunnen aangevraagd worden in het Waterpark Belterwijde.</li>
-                            <li><span class="icon">🛏️</span> Kussens en dekbedden beschikbaar</li>
-                            <li><span class="icon">🧺</span> Linnengoed graag zelf meenemen</li>
-                            <li><span class="icon">🛒</span> Linnengoed ook te huur bij ons (graag vooraf melden)</li>
-                            <li><span class="icon">📞</span> Voor verdere vragen kunt u contact met ons opnemen</li>
+                            <li><span class="icon">??</span> Kinderbedje, box en kinderstoel kunnen aangevraagd worden in het Waterpark Belterwijde.</li>
+                            <li><span class="icon">???</span> Kussens en dekbedden beschikbaar</li>
+                            <li><span class="icon">??</span> Linnengoed graag zelf meenemen</li>
+                            <li><span class="icon">??</span> Linnengoed ook te huur bij ons (graag vooraf melden)</li>
+                            <li><span class="icon">??</span> Voor verdere vragen kunt u contact met ons opnemen</li>
                         </ul>
                     </div>
                 </div>
@@ -191,32 +191,32 @@
 
                 <div class="facilities-grid">
                     <div class="facility-card">
-                        <div class="facility-icon">🛏️</div>
+                        <div class="facility-icon">???</div>
                         <h3 data-i18n="house_amenities_h2">5 Slaapkamers</h3>
                         <p data-i18n="house_amenities_p2">1 slaapkamer beneden, 4 slaapkamers boven (2 met wastafel)</p>
                     </div>
                     <div class="facility-card">
-                        <div class="facility-icon">🍳</div>
+                        <div class="facility-icon">??</div>
                         <h3 data-i18n="house_amenities_h3">Open keuken</h3>
                         <p data-i18n="house_amenities_p3">Oven, magnetron, koelkast en alle huishoudelijke apparaten</p>
                     </div>
                     <div class="facility-card">
-                        <div class="facility-icon">🛁</div>
+                        <div class="facility-icon">??</div>
                         <h3 data-i18n="house_amenities_h4">2 Badkamers</h3>
                         <p data-i18n="house_amenities_p4">Douche en toilet op beide verdiepingen</p>
                     </div>
                     <div class="facility-card">
-                        <div class="facility-icon">📺</div>
+                        <div class="facility-icon">??</div>
                         <h3 data-i18n="house_amenities_h5">Woonkamer</h3>
                         <p data-i18n="house_amenities_p5">Ruime woonkamer met TV en radio</p>
                     </div>
                     <div class="facility-card">
-                        <div class="facility-icon">🧺</div>
+                        <div class="facility-icon">??</div>
                         <h3 data-i18n="house_amenities_h6">Wasmachine</h3>
                         <p data-i18n="house_amenities_p6">Wasmachine beschikbaar in het huis</p>
                     </div>
                     <div class="facility-card">
-                        <div class="facility-icon">🔥</div>
+                        <div class="facility-icon">??</div>
                         <h3 data-i18n="house_amenities_h7">Centrale verwarming</h3>
                         <p data-i18n="house_amenities_p7">Volledig verwarmd voor comfort het hele jaar door</p>
                     </div>
@@ -240,7 +240,7 @@
                             <p data-i18n="house_contact_p3"><strong>Telefoon:</strong> <a href="tel:0522281828">0522-281828</a></p>
                             <p style="margin-top: 1rem;">
                                 <a href="https://www.parkbelterwiede.com/?resortids=358403&subject=104108,2" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #0071bb; color: white; border: none; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; text-decoration: none; border-radius: 8px; display: inline-block; transition: background-color 0.3s ease;">
-                                    🌐 Bezoek Waterpark Belterwiede
+                                    ?? Bezoek Waterpark Belterwiede
                                 </a>
                             </p>
                         </div>
@@ -301,13 +301,13 @@
     <!-- Chat Widget -->
     <div class="chat-widget">
         <button class="chat-button" id="chatButton" aria-label="Open chat">
-            💬
+            ??
         </button>
         
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
                 <h3>Nijenhuis Support</h3>
-                <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+                <button class="chat-close" id="chatClose" aria-label="Close chat">?</button>
             </div>
             
             <div class="chat-messages" id="chatMessages">
@@ -423,81 +423,7 @@
             setupMobileMenu();
             
             // Chat Widget Functionality
-            const chatButton = document.getElementById('chatButton');
-            const chatWindow = document.getElementById('chatWindow');
-            const chatClose = document.getElementById('chatClose');
-            const chatInput = document.getElementById('chatInput');
-            const chatSend = document.getElementById('chatSend');
-            const chatMessages = document.getElementById('chatMessages');
-
-            // Toggle chat window
-            chatButton.addEventListener('click', () => {
-                chatWindow.classList.toggle('active');
-                if (chatWindow.classList.contains('active')) {
-                    chatInput.focus();
-                }
-            });
-
-            // Close chat window
-            chatClose.addEventListener('click', () => {
-                chatWindow.classList.remove('active');
-            });
-
-            // Send message on Enter key
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-
-            // Send message on button click
-            chatSend.addEventListener('click', sendMessage);
-
-            function sendMessage() {
-                const message = chatInput.value.trim();
-                if (!message) return;
-
-                // Add user message
-                addMessage(message, 'user');
-                chatInput.value = '';
-
-                // Simulate bot response
-                setTimeout(() => {
-                    const responses = [
-                        'Bedankt voor uw bericht! Wij nemen zo spoedig mogelijk contact met u op.',
-                        'Hallo! Hoe kan ik u helpen met uw vraag over ons vakantiehuis?',
-                        'Voor directe hulp kunt u ook bellen naar 0522 281 528.',
-                        'Wilt u meer informatie over ons vakantiehuis of reserveringen?'
-                    ];
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addMessage(randomResponse, 'bot');
-                }, 1000);
-            }
-
-            function addMessage(text, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `chat-message ${sender}`;
-                const bubble = document.createElement('div');
-                bubble.className = 'message-bubble';
-                bubble.textContent = text;
-                const timeEl = document.createElement('div');
-                timeEl.className = 'message-time';
-                timeEl.textContent = new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
-                messageDiv.appendChild(bubble);
-                messageDiv.appendChild(timeEl);
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-
-            // Add welcome message when chat is opened
-            chatButton.addEventListener('click', function() {
-                if (chatWindow.classList.contains('active') && chatMessages.children.length === 0) {
-                    setTimeout(() => {
-                        addMessage('Hallo! Welkom bij Nijenhuis Vakantiehuis. Hoe kan ik u helpen?', 'bot');
-                    }, 500);
-                }
-            }, { once: false });
+            // Handled by simple-chatbot.js - no inline script needed
         });
     </script>
 </body>
