@@ -88,6 +88,13 @@ function updateMobileMenuIcon() {
 
 // Chat Widget Functionality
 function setupChatWidget() {
+    // Check if SimpleChatbot is already initialized (from simple-chatbot.js)
+    // If so, skip this setup to avoid conflicts
+    if (window.simpleChatbot) {
+        console.log('[Chat] SimpleChatbot already initialized, skipping shared.js setup');
+        return;
+    }
+    
     const chatButton = document.getElementById('chatButton');
     const chatWindow = document.getElementById('chatWindow');
     const chatClose = document.getElementById('chatClose');
@@ -212,7 +219,7 @@ function showNotification(message, type = 'info') {
     const closeBtn = document.createElement('button');
     closeBtn.className = 'notification-close';
     closeBtn.setAttribute('aria-label', 'Close notification');
-    closeBtn.textContent = '×';
+    closeBtn.textContent = '?';
     content.appendChild(msg);
     content.appendChild(closeBtn);
     notification.appendChild(content);

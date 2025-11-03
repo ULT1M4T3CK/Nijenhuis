@@ -456,25 +456,7 @@
             }
 
             // Chat Widget Functionality
-            const chatButton = document.getElementById('chatButton');
-            const chatWindow = document.getElementById('chatWindow');
-            const chatClose = document.getElementById('chatClose');
-            const chatInput = document.getElementById('chatInput');
-
-            if (chatButton && chatWindow) {
-                chatButton.addEventListener('click', () => {
-                    chatWindow.classList.toggle('active');
-                    if (chatWindow.classList.contains('active')) {
-                        if (chatInput) chatInput.focus();
-                    }
-                });
-            }
-
-            if (chatClose && chatWindow) {
-                chatClose.addEventListener('click', () => {
-                    chatWindow.classList.remove('active');
-                });
-            }
+            // Handled by simple-chatbot.js - no inline script needed
         });
 
         // Function to check availability and redirect

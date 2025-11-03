@@ -32,9 +32,12 @@ class SimpleChatbot {
             e.preventDefault();
             e.stopPropagation();
             
+            // Toggle the active class - CSS handles visibility
             this.chatWindow.classList.toggle('active');
             const isActive = this.chatWindow.classList.contains('active');
-            this.chatWindow.style.display = isActive ? 'flex' : 'none';
+            
+            // Clear any inline display styles that might conflict
+            this.chatWindow.style.display = '';
             
             if (isActive) {
                 this.chatInput.focus();
@@ -52,7 +55,8 @@ class SimpleChatbot {
             e.preventDefault();
             e.stopPropagation();
             this.chatWindow.classList.remove('active');
-            this.chatWindow.style.display = 'none';
+            // Clear any inline display styles that might conflict
+            this.chatWindow.style.display = '';
         });
 
         // Send message on Enter key
@@ -188,7 +192,7 @@ class SimpleChatbot {
         
         // Add call button below the text if needed
         if (hasCallButton) {
-            messageContent += `<div class="chat-call-button-container"><a href="tel:0522281528" class="chat-call-button">📞 Bel Nu</a></div>`;
+            messageContent += `<div class="chat-call-button-container"><a href="tel:0522281528" class="chat-call-button">?? Bel Nu</a></div>`;
         }
         
         messageDiv.innerHTML = `
@@ -260,7 +264,7 @@ class SimpleChatbot {
             const languageIndicator = document.createElement('div');
             languageIndicator.className = 'language-indicator';
             languageIndicator.innerHTML = `
-                <span class="language-icon">🌍</span>
+                <span class="language-icon">??</span>
                 <span class="language-text">Nederlands</span>
             `;
             languageIndicator.style.cssText = `
@@ -312,9 +316,9 @@ document.addEventListener('DOMContentLoaded', function() {
     window.simpleChatbot = new SimpleChatbot();
     
     // Add some helpful console messages
-    console.log('🤖 Simple Chatbot initialized!');
-    console.log('💡 Use window.simpleChatbot to interact with the chatbot programmatically');
-    console.log('📝 Example: window.simpleChatbot.openChat()');
+    console.log('?? Simple Chatbot initialized!');
+    console.log('?? Use window.simpleChatbot to interact with the chatbot programmatically');
+    console.log('?? Example: window.simpleChatbot.openChat()');
 });
 
 // Add keyboard shortcut to open chat (Ctrl/Cmd + Shift + C)
