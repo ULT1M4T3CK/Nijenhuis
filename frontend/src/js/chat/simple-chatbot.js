@@ -43,9 +43,9 @@ class SimpleChatbot {
             this.chatWindow.style.display = '';
             
             if (isActive) {
-                this.chatInput.focus();
+                if (this.chatInput) this.chatInput.focus();
                 // Add welcome message if this is the first time opening
-                if (this.chatMessages.children.length === 0) {
+                if (this.chatMessages && this.chatMessages.children.length === 0) {
                     setTimeout(() => {
                         this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
                     }, 500);
@@ -54,24 +54,30 @@ class SimpleChatbot {
         });
 
         // Close chat window
-        this.chatClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.chatWindow.classList.remove('active');
-            // Clear any inline display styles to let CSS handle it
-            this.chatWindow.style.display = '';
-        });
+        if (this.chatClose) {
+            this.chatClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.chatWindow.classList.remove('active');
+                // Clear any inline display styles to let CSS handle it
+                this.chatWindow.style.display = '';
+            });
+        }
 
         // Send message on Enter key
-        this.chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                this.sendMessage();
-            }
-        });
+        if (this.chatInput) {
+            this.chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    this.sendMessage();
+                }
+            });
+        }
 
         // Send message on button click
-        this.chatSend.addEventListener('click', () => this.sendMessage());
+        if (this.chatSend) {
+            this.chatSend.addEventListener('click', () => this.sendMessage());
+        }
 
         // Add language detection indicator
         this.addLanguageIndicator();
@@ -81,6 +87,10 @@ class SimpleChatbot {
     // This prevents conflicts with the main stylesheet
 
     async sendMessage() {
+        if (!this.chatInput) {
+            console.warn('[Chat] chatInput not found, cannot send message');
+            return;
+        }
         const message = this.chatInput.value.trim();
         if (!message || this.isTyping) return;
 
@@ -140,6 +150,11 @@ class SimpleChatbot {
     }
 
     addMessage(text, sender) {
+        if (!this.chatMessages) {
+            console.warn('[Chat] chatMessages not found, cannot add message');
+            return;
+        }
+        
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${sender}`;
         
@@ -177,6 +192,11 @@ class SimpleChatbot {
     }
 
     addTypingIndicator() {
+        if (!this.chatMessages) {
+            console.warn('[Chat] chatMessages not found, cannot add typing indicator');
+            return null;
+        }
+        
         this.isTyping = true;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-message bot typing-indicator';
@@ -203,6 +223,11 @@ class SimpleChatbot {
     }
 
     showLanguageInfo(language) {
+        if (!this.chatMessages) {
+            console.warn('[Chat] chatMessages not found, cannot show language info');
+            return;
+        }
+        
         const languageNames = {
             'en': 'Engels',
             'de': 'Duits'
@@ -255,21 +280,27 @@ class SimpleChatbot {
     // Public methods for external control
     clearHistory() {
         this.conversationHistory = [];
-        this.chatMessages.innerHTML = '';
-        this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
+        if (this.chatMessages) {
+            this.chatMessages.innerHTML = '';
+            this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
+        }
     }
 
     // Public method to open chat
     openChat() {
-        if (!this.chatWindow.classList.contains('active')) {
+        if (this.chatWindow && this.chatButton && !this.chatWindow.classList.contains('active')) {
             this.chatButton.click();
         }
     }
 
     // Public method to close chat
     closeChat() {
-        if (this.chatWindow.classList.contains('active')) {
-            this.chatClose.click();
+        if (this.chatWindow && this.chatWindow.classList.contains('active')) {
+            if (this.chatClose) {
+                this.chatClose.click();
+            } else {
+                this.chatWindow.classList.remove('active');
+            }
         }
     }
 
@@ -285,10 +316,19 @@ class SimpleChatbot {
 
 // Initialize chat when DOM is loaded or immediately if already loaded
 function initializeChatbot() {
+    console.log('[Chat] initializeChatbot called, document.readyState:', document.readyState);
+    
     function tryInit() {
+        console.log('[Chat] tryInit called, checking for chat elements...');
         // Check if required elements exist
         const chatButton = document.getElementById('chatButton');
         const chatWindow = document.getElementById('chatWindow');
+        
+        console.log('[Chat] Element check:', {
+            chatButton: !!chatButton,
+            chatWindow: !!chatWindow,
+            documentReady: document.readyState
+        });
         
         if (!chatButton || !chatWindow) {
             // Elements not ready yet, try again in 100ms
@@ -298,21 +338,29 @@ function initializeChatbot() {
         }
         
         // Elements exist, initialize chatbot
-        window.simpleChatbot = new SimpleChatbot();
-        console.log('Simple Chatbot initialized!');
+        try {
+            console.log('[Chat] Creating SimpleChatbot instance...');
+            window.simpleChatbot = new SimpleChatbot();
+            console.log('[Chat] Simple Chatbot initialized successfully!', window.simpleChatbot);
+        } catch (error) {
+            console.error('[Chat] Error initializing SimpleChatbot:', error);
+        }
     }
     
     // Check if DOM is already loaded
     if (document.readyState === 'loading') {
         // DOM is still loading, wait for DOMContentLoaded
+        console.log('[Chat] DOM still loading, waiting for DOMContentLoaded...');
         document.addEventListener('DOMContentLoaded', tryInit);
     } else {
         // DOM is already loaded, try to initialize
+        console.log('[Chat] DOM already loaded, initializing immediately...');
         tryInit();
     }
 }
 
 // Initialize chatbot
+console.log('[Chat] simple-chatbot.js loaded, calling initializeChatbot...');
 initializeChatbot();
 
 // Add keyboard shortcut to open chat (Ctrl/Cmd + Shift + C)
