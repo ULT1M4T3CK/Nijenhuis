@@ -308,17 +308,28 @@ class SimpleChatbot {
 }
 
 // Initialize chat when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    window.simpleChatbot = new SimpleChatbot();
-    
-    // Add some helpful console messages
-    console.log('🤖 Simple Chatbot initialized!');
-    console.log('💡 Use window.simpleChatbot to interact with the chatbot programmatically');
-    console.log('📝 Example: window.simpleChatbot.openChat()');
-});
+function initializeChatbot() {
+    if (!window.simpleChatbot) {
+        window.simpleChatbot = new SimpleChatbot();
+        
+        // Add some helpful console messages
+        console.log('🤖 Simple Chatbot initialized!');
+        console.log('💡 Use window.simpleChatbot to interact with the chatbot programmatically');
+        console.log('📝 Example: window.simpleChatbot.openChat()');
+    }
+}
+
+// Check if DOM is already loaded
+if (document.readyState === 'loading') {
+    // DOM hasn't loaded yet, wait for it
+    document.addEventListener('DOMContentLoaded', initializeChatbot);
+} else {
+    // DOM already loaded, initialize immediately
+    initializeChatbot();
+}
 
 // Add keyboard shortcut to open chat (Ctrl/Cmd + Shift + C)
-document.addEventListener('DOMContentLoaded', () => {
+function setupKeyboardShortcut() {
     document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
             e.preventDefault();
@@ -327,4 +338,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-}); 
+}
+
+// Setup keyboard shortcut when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupKeyboardShortcut);
+} else {
+    setupKeyboardShortcut();
+} 

@@ -8,12 +8,15 @@
         script.src = src;
         script.onload = callback || function() {};
         script.onerror = function() {
-            console.warn('Failed to load script:', src);
+            console.error('[Chat] Failed to load script:', src);
+            console.error('[Chat] Make sure the chatbot server is running on http://localhost:5001');
+            console.error('[Chat] To start the server, run: python3 backend/chatbot/api/server.py');
         };
         document.head.appendChild(script);
     }
     
     // Load simple-chatbot.js
+    // The script will handle its own initialization (including late-loading scenarios)
     loadScript('../frontend/src/js/chat/simple-chatbot.js');
 })();
 
