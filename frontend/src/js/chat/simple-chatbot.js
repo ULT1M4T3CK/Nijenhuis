@@ -1,5 +1,6 @@
 // Simple Chatbot Integration for Nijenhuis Website
 // Lightweight, multilingual chatbot with website content analysis
+// Version: 2.0 - Fixed import.meta issue, added proper initialization retry
 
 class SimpleChatbot {
     constructor() {

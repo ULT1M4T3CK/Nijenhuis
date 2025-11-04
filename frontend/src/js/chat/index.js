@@ -15,9 +15,10 @@
         document.head.appendChild(script);
     }
     
-    // Load simple-chatbot.js
+    // Load simple-chatbot.js with cache busting to ensure latest version
     // The script will handle its own initialization (including late-loading scenarios)
-    loadScript('../frontend/src/js/chat/simple-chatbot.js');
+    const scriptSrc = '../frontend/src/js/chat/simple-chatbot.js?v=' + Date.now();
+    loadScript(scriptSrc);
 })();
 
 // widget disabled for now; using simple-chatbot markup and logic only
