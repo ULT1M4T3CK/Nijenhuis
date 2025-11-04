@@ -1,5 +1,6 @@
 // Simple Chatbot Integration for Nijenhuis Website
 // Lightweight, multilingual chatbot with website content analysis
+// Version: 2.0 - Fixed import.meta issue, added proper initialization retry
 
 class SimpleChatbot {
     constructor() {
@@ -14,6 +15,16 @@ class SimpleChatbot {
         this.isTyping = false;
         this.conversationHistory = [];
         
+        // Debug logging
+        console.log('[Chat] Elements found:', {
+            chatButton: !!this.chatButton,
+            chatWindow: !!this.chatWindow,
+            chatClose: !!this.chatClose,
+            chatInput: !!this.chatInput,
+            chatSend: !!this.chatSend,
+            chatMessages: !!this.chatMessages
+        });
+        
         this.init();
         this.injectBasicStyles();
     }
@@ -23,6 +34,16 @@ class SimpleChatbot {
             console.warn('[Chat] Missing chat elements:', {
                 chatButton: !!this.chatButton,
                 chatWindow: !!this.chatWindow
+            });
+            return;
+        }
+
+        // Check for all required elements
+        if (!this.chatInput || !this.chatSend || !this.chatMessages) {
+            console.error('[Chat] Missing required chat elements:', {
+                chatInput: !!this.chatInput,
+                chatSend: !!this.chatSend,
+                chatMessages: !!this.chatMessages
             });
             return;
         }
@@ -37,34 +58,71 @@ class SimpleChatbot {
             this.chatWindow.style.display = isActive ? 'flex' : 'none';
             
             if (isActive) {
-                this.chatInput.focus();
+                if (this.chatInput) {
+                    this.chatInput.focus();
+                }
                 // Add welcome message if this is the first time opening
-                if (this.chatMessages.children.length === 0) {
-                    setTimeout(() => {
-                        this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
-                    }, 500);
+                if (this.chatMessages) {
+                    console.log('[Chat] Chat opened, message count:', this.chatMessages.children.length);
+                    if (this.chatMessages.children.length === 0) {
+                        console.log('[Chat] Adding welcome message');
+                        // Use requestAnimationFrame to ensure DOM is ready
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                if (this.chatMessages && this.chatMessages.children.length === 0) {
+                                    this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
+                                }
+                            }, 300);
+                        });
+                    } else {
+                        console.log('[Chat] Welcome message already exists, skipping');
+                    }
+                } else {
+                    console.error('[Chat] Cannot add welcome message: chatMessages not found');
                 }
             }
         });
 
         // Close chat window
-        this.chatClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.chatWindow.classList.remove('active');
-            this.chatWindow.style.display = 'none';
-        });
+        if (this.chatClose) {
+            this.chatClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.chatWindow.classList.remove('active');
+                this.chatWindow.style.display = 'none';
+            });
+        }
 
         // Send message on Enter key
         this.chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
+                console.log('[Chat] Enter key pressed');
                 this.sendMessage();
             }
         });
 
-        // Send message on button click
-        this.chatSend.addEventListener('click', () => this.sendMessage());
+        // Send message on button click (handle clicks on button and SVG)
+        const handleSendClick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('[Chat] Send button clicked');
+            console.log('[Chat] Input value:', this.chatInput ? this.chatInput.value : 'N/A');
+            console.log('[Chat] Is typing:', this.isTyping);
+            if (this.chatInput && this.chatInput.value.trim()) {
+                this.sendMessage();
+            } else {
+                console.warn('[Chat] Cannot send: input is empty or not found');
+            }
+        };
+        
+        this.chatSend.addEventListener('click', handleSendClick);
+        
+        // Also handle clicks on SVG inside the button
+        const svg = this.chatSend.querySelector('svg');
+        if (svg) {
+            svg.style.pointerEvents = 'none'; // Let clicks pass through to button
+        }
 
         // Add language detection indicator
         this.addLanguageIndicator();
@@ -105,6 +163,11 @@ class SimpleChatbot {
     }
 
     async sendMessage() {
+        if (!this.chatInput || !this.chatMessages) {
+            console.error('[Chat] Cannot send message: chatInput or chatMessages not found');
+            return;
+        }
+
         const message = this.chatInput.value.trim();
         if (!message || this.isTyping) return;
 
@@ -164,6 +227,11 @@ class SimpleChatbot {
     }
 
     addMessage(text, sender) {
+        if (!this.chatMessages) {
+            console.error('[Chat] Cannot add message: chatMessages not found');
+            return;
+        }
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${sender}`;
         
@@ -201,6 +269,12 @@ class SimpleChatbot {
     }
 
     addTypingIndicator() {
+        if (!this.chatMessages) {
+            console.error('[Chat] Cannot add typing indicator: chatMessages not found');
+            this.isTyping = false;
+            return null;
+        }
+
         this.isTyping = true;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-message bot typing-indicator';
@@ -299,26 +373,58 @@ class SimpleChatbot {
 
     // Public method to send a message programmatically
     sendMessageProgrammatically(message) {
-        const chatInput = document.getElementById('chat-input');
-        if (chatInput) {
-            chatInput.value = message;
+        if (this.chatInput) {
+            this.chatInput.value = message;
             this.sendMessage();
+        } else {
+            console.error('[Chat] Cannot send message programmatically: chatInput not found');
         }
     }
 }
 
 // Initialize chat when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    window.simpleChatbot = new SimpleChatbot();
-    
-    // Add some helpful console messages
-    console.log('🤖 Simple Chatbot initialized!');
-    console.log('💡 Use window.simpleChatbot to interact with the chatbot programmatically');
-    console.log('📝 Example: window.simpleChatbot.openChat()');
-});
+function initializeChatbot() {
+    if (!window.simpleChatbot) {
+        // Check if all required elements exist
+        const chatButton = document.getElementById('chatButton');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        if (!chatButton || !chatWindow || !chatInput || !chatSend || !chatMessages) {
+            console.warn('[Chat] Not all elements found, retrying in 100ms...', {
+                chatButton: !!chatButton,
+                chatWindow: !!chatWindow,
+                chatInput: !!chatInput,
+                chatSend: !!chatSend,
+                chatMessages: !!chatMessages
+            });
+            // Retry after a short delay
+            setTimeout(initializeChatbot, 100);
+            return;
+        }
+        
+        window.simpleChatbot = new SimpleChatbot();
+        
+        // Add some helpful console messages
+        console.log('🤖 Simple Chatbot initialized!');
+        console.log('💡 Use window.simpleChatbot to interact with the chatbot programmatically');
+        console.log('📝 Example: window.simpleChatbot.openChat()');
+    }
+}
+
+// Check if DOM is already loaded
+if (document.readyState === 'loading') {
+    // DOM hasn't loaded yet, wait for it
+    document.addEventListener('DOMContentLoaded', initializeChatbot);
+} else {
+    // DOM already loaded, initialize immediately (but might need retry)
+    initializeChatbot();
+}
 
 // Add keyboard shortcut to open chat (Ctrl/Cmd + Shift + C)
-document.addEventListener('DOMContentLoaded', () => {
+function setupKeyboardShortcut() {
     document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
             e.preventDefault();
@@ -327,4 +433,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-}); 
+}
+
+// Setup keyboard shortcut when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupKeyboardShortcut);
+} else {
+    setupKeyboardShortcut();
+} 
