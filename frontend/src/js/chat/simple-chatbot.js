@@ -14,6 +14,16 @@ class SimpleChatbot {
         this.isTyping = false;
         this.conversationHistory = [];
         
+        // Debug logging
+        console.log('[Chat] Elements found:', {
+            chatButton: !!this.chatButton,
+            chatWindow: !!this.chatWindow,
+            chatClose: !!this.chatClose,
+            chatInput: !!this.chatInput,
+            chatSend: !!this.chatSend,
+            chatMessages: !!this.chatMessages
+        });
+        
         this.init();
         this.injectBasicStyles();
     }
@@ -23,6 +33,16 @@ class SimpleChatbot {
             console.warn('[Chat] Missing chat elements:', {
                 chatButton: !!this.chatButton,
                 chatWindow: !!this.chatWindow
+            });
+            return;
+        }
+
+        // Check for all required elements
+        if (!this.chatInput || !this.chatSend || !this.chatMessages) {
+            console.error('[Chat] Missing required chat elements:', {
+                chatInput: !!this.chatInput,
+                chatSend: !!this.chatSend,
+                chatMessages: !!this.chatMessages
             });
             return;
         }
@@ -37,34 +57,50 @@ class SimpleChatbot {
             this.chatWindow.style.display = isActive ? 'flex' : 'none';
             
             if (isActive) {
-                this.chatInput.focus();
+                if (this.chatInput) {
+                    this.chatInput.focus();
+                }
                 // Add welcome message if this is the first time opening
-                if (this.chatMessages.children.length === 0) {
-                    setTimeout(() => {
-                        this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
-                    }, 500);
+                if (this.chatMessages) {
+                    console.log('[Chat] Chat opened, message count:', this.chatMessages.children.length);
+                    if (this.chatMessages.children.length === 0) {
+                        console.log('[Chat] Adding welcome message');
+                        setTimeout(() => {
+                            this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
+                        }, 500);
+                    }
+                } else {
+                    console.error('[Chat] Cannot add welcome message: chatMessages not found');
                 }
             }
         });
 
         // Close chat window
-        this.chatClose.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            this.chatWindow.classList.remove('active');
-            this.chatWindow.style.display = 'none';
-        });
+        if (this.chatClose) {
+            this.chatClose.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.chatWindow.classList.remove('active');
+                this.chatWindow.style.display = 'none';
+            });
+        }
 
         // Send message on Enter key
         this.chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
+                console.log('[Chat] Enter key pressed');
                 this.sendMessage();
             }
         });
 
         // Send message on button click
-        this.chatSend.addEventListener('click', () => this.sendMessage());
+        this.chatSend.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('[Chat] Send button clicked');
+            this.sendMessage();
+        });
 
         // Add language detection indicator
         this.addLanguageIndicator();
@@ -105,6 +141,11 @@ class SimpleChatbot {
     }
 
     async sendMessage() {
+        if (!this.chatInput || !this.chatMessages) {
+            console.error('[Chat] Cannot send message: chatInput or chatMessages not found');
+            return;
+        }
+
         const message = this.chatInput.value.trim();
         if (!message || this.isTyping) return;
 
@@ -164,6 +205,11 @@ class SimpleChatbot {
     }
 
     addMessage(text, sender) {
+        if (!this.chatMessages) {
+            console.error('[Chat] Cannot add message: chatMessages not found');
+            return;
+        }
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message ${sender}`;
         
@@ -201,6 +247,12 @@ class SimpleChatbot {
     }
 
     addTypingIndicator() {
+        if (!this.chatMessages) {
+            console.error('[Chat] Cannot add typing indicator: chatMessages not found');
+            this.isTyping = false;
+            return null;
+        }
+
         this.isTyping = true;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'chat-message bot typing-indicator';
