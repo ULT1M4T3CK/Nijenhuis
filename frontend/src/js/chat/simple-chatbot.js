@@ -65,9 +65,16 @@ class SimpleChatbot {
                     console.log('[Chat] Chat opened, message count:', this.chatMessages.children.length);
                     if (this.chatMessages.children.length === 0) {
                         console.log('[Chat] Adding welcome message');
-                        setTimeout(() => {
-                            this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
-                        }, 500);
+                        // Use requestAnimationFrame to ensure DOM is ready
+                        requestAnimationFrame(() => {
+                            setTimeout(() => {
+                                if (this.chatMessages && this.chatMessages.children.length === 0) {
+                                    this.addMessage('Hallo! Hoe kan ik u helpen met botenverhuur?', 'bot');
+                                }
+                            }, 300);
+                        });
+                    } else {
+                        console.log('[Chat] Welcome message already exists, skipping');
                     }
                 } else {
                     console.error('[Chat] Cannot add welcome message: chatMessages not found');
@@ -94,13 +101,27 @@ class SimpleChatbot {
             }
         });
 
-        // Send message on button click
-        this.chatSend.addEventListener('click', (e) => {
+        // Send message on button click (handle clicks on button and SVG)
+        const handleSendClick = (e) => {
             e.preventDefault();
             e.stopPropagation();
             console.log('[Chat] Send button clicked');
-            this.sendMessage();
-        });
+            console.log('[Chat] Input value:', this.chatInput ? this.chatInput.value : 'N/A');
+            console.log('[Chat] Is typing:', this.isTyping);
+            if (this.chatInput && this.chatInput.value.trim()) {
+                this.sendMessage();
+            } else {
+                console.warn('[Chat] Cannot send: input is empty or not found');
+            }
+        };
+        
+        this.chatSend.addEventListener('click', handleSendClick);
+        
+        // Also handle clicks on SVG inside the button
+        const svg = this.chatSend.querySelector('svg');
+        if (svg) {
+            svg.style.pointerEvents = 'none'; // Let clicks pass through to button
+        }
 
         // Add language detection indicator
         this.addLanguageIndicator();
@@ -351,10 +372,11 @@ class SimpleChatbot {
 
     // Public method to send a message programmatically
     sendMessageProgrammatically(message) {
-        const chatInput = document.getElementById('chat-input');
-        if (chatInput) {
-            chatInput.value = message;
+        if (this.chatInput) {
+            this.chatInput.value = message;
             this.sendMessage();
+        } else {
+            console.error('[Chat] Cannot send message programmatically: chatInput not found');
         }
     }
 }
@@ -362,6 +384,26 @@ class SimpleChatbot {
 // Initialize chat when DOM is loaded
 function initializeChatbot() {
     if (!window.simpleChatbot) {
+        // Check if all required elements exist
+        const chatButton = document.getElementById('chatButton');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        if (!chatButton || !chatWindow || !chatInput || !chatSend || !chatMessages) {
+            console.warn('[Chat] Not all elements found, retrying in 100ms...', {
+                chatButton: !!chatButton,
+                chatWindow: !!chatWindow,
+                chatInput: !!chatInput,
+                chatSend: !!chatSend,
+                chatMessages: !!chatMessages
+            });
+            // Retry after a short delay
+            setTimeout(initializeChatbot, 100);
+            return;
+        }
+        
         window.simpleChatbot = new SimpleChatbot();
         
         // Add some helpful console messages
@@ -376,7 +418,7 @@ if (document.readyState === 'loading') {
     // DOM hasn't loaded yet, wait for it
     document.addEventListener('DOMContentLoaded', initializeChatbot);
 } else {
-    // DOM already loaded, initialize immediately
+    // DOM already loaded, initialize immediately (but might need retry)
     initializeChatbot();
 }
 
