@@ -1,0 +1,53 @@
+/* Home Page Specific Styles */
+
+/* Destinations section - responsive destination cards, buttons aligned */
+.destinations-grid-three {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.destinations-grid-three .destination-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.destinations-grid-three .destination-card-inner > p {
+    flex: 1;
+}
+
+.destinations-grid-three .destination-card-inner > a {
+    margin-top: auto;
+}
+
+@media (max-width: 900px) {
+    .destinations-grid-three {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .destinations-grid-three .destination-card-inner {
+        min-width: 0;
+        padding: 1.5rem !important;
+    }
+}
+
+/* Facts Grid Responsive */
+@media (max-width: 768px) {
+    .facts-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+.fact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.fact-sub {
+    font-size: 0.9em;
+    opacity: 0.8;
+}

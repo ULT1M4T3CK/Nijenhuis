@@ -1,0 +1,800 @@
+/* ========================================================================
+   PAGES CONSOLIDATED STYLESHEET
+   All page-specific styles consolidated from inline CSS in HTML files
+   ======================================================================== */
+
+/* ---------------------------------------------------------------------
+   --- BOOKING PAGE STYLES
+   ------------------------------------------------------------------ */
+.booking-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: var(--spacing-2xl) 0;
+}
+
+.booking-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.booking-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    overflow: hidden;
+}
+
+.booking-header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-2xl);
+    text-align: center;
+}
+
+.booking-logo {
+    height: 60px;
+    width: auto;
+    margin: 0 auto var(--spacing-lg);
+    display: block;
+}
+
+.booking-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+.booking-subtitle {
+    opacity: 0.9;
+    font-size: var(--font-size-lg);
+}
+
+.booking-content {
+    padding: var(--spacing-2xl);
+}
+
+.booking-summary {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.summary-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.summary-value {
+    color: var(--text-secondary);
+}
+
+.booking-form {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+    background-color: var(--white);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%230071bb' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--spacing-md) center;
+    background-repeat: no-repeat;
+    background-size: 18px;
+    padding-right: var(--spacing-2xl);
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.form-group select:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 113, 187, 0.03);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.form-group select:active {
+    transform: translateY(0);
+}
+
+.form-group select option {
+    padding: var(--spacing-md);
+    font-weight: 500;
+    background-color: var(--white);
+    color: var(--text-primary);
+}
+
+.form-group select option:hover {
+    background-color: rgba(0, 113, 187, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.total-price-display {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    box-shadow: 0 8px 16px rgba(0, 113, 187, 0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.total-price-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--white);
+}
+
+.total-price-label {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    opacity: 0.95;
+}
+
+.total-price-amount {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    margin-top: var(--spacing-2xl);
+}
+
+.btn {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--light-gray);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--text-light);
+}
+
+.error-message {
+    background: var(--error-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    display: none;
+}
+
+.success-message {
+    background: var(--success-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    display: none;
+}
+
+.loading {
+    display: none;
+    text-align: center;
+    padding: var(--spacing-lg);
+}
+
+.spinner {
+    border: 3px solid var(--light-gray);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-md);
+}
+
+.booking-form-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-2xl);
+}
+
+.booking-step {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.booking-step-title {
+    font-size: var(--font-size-xl);
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--bg-secondary);
+}
+
+.booking-form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.booking-form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.booking-form-group input,
+.booking-form-group select,
+.booking-form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+}
+
+.booking-form-group input:focus,
+.booking-form-group select:focus,
+.booking-form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.booking-summary-card {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.booking-summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+.booking-summary-row:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+}
+
+.booking-submit-btn {
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    margin-top: var(--spacing-lg);
+}
+
+.booking-submit-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.booking-submit-btn:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---------------------------------------------------------------------
+   --- PAYMENT SUCCESS PAGE STYLES
+   ------------------------------------------------------------------ */
+.payment-success-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.success-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-3xl);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--success-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-2xl);
+    animation: successPulse 2s ease-in-out infinite;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.success-icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--white);
+}
+
+.success-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.success-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.booking-details {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.detail-value {
+    color: var(--text-secondary);
+}
+
+.success-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ---------------------------------------------------------------------
+   --- PAYMENT FAILURE PAGE STYLES
+   ------------------------------------------------------------------ */
+.payment-failure-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--error-color) 0%, #dc3545 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.failure-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-3xl);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.failure-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--error-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-2xl);
+}
+
+.failure-icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--white);
+}
+
+.failure-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.failure-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.failure-actions {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help-text {
+    background: var(--bg-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+    text-align: left;
+}
+
+.help-text h3 {
+    margin: 0 0 var(--spacing-md) 0;
+    color: var(--text-primary);
+}
+
+.help-text p {
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-secondary);
+}
+
+/* ---------------------------------------------------------------------
+   --- OFFLINE PAGE STYLES
+   ------------------------------------------------------------------ */
+.offline-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.offline-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 2rem;
+}
+
+.offline-container h1 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.offline-container p {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.contact-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.contact-info h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.contact-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.retry-button {
+    margin-top: 20px;
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN LOGIN PAGE STYLES (in pages folder)
+   ------------------------------------------------------------------ */
+.admin-login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: var(--spacing-lg);
+}
+
+.admin-login-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-3xl);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.admin-login-logo {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.admin-login-logo img {
+    height: 60px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.admin-login-title {
+    color: var(--primary-color);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.admin-login-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.admin-form-group {
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+    box-sizing: border-box;
+}
+
+.admin-form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.admin-login-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: #007bff;
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    margin-bottom: var(--spacing-lg);
+}
+
+.admin-login-btn:hover {
+    background: #0056b3;
+}
+
+.admin-login-btn:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+}
+
+.admin-back-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-lg);
+    transition: var(--transition-normal);
+}
+
+.admin-back-link:hover {
+    color: var(--primary-dark);
+}
+
+.admin-error {
+    background: var(--error-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    display: none;
+}
+
+.admin-success {
+    background: var(--success-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    display: none;
+}
+
+.admin-loading {
+    display: none;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+}
+
+.admin-spinner {
+    border: 3px solid var(--light-gray);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-sm);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------------------------------------
+   --- RESPONSIVE DESIGN
+   ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .booking-hero h1 {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .booking-form-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .payment-result-card,
+    .offline-card,
+    .admin-login-card {
+        padding: var(--spacing-xl);
+    }
+    
+    .payment-result-actions {
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .booking-container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .payment-result-container,
+    .offline-container,
+    .admin-login-container {
+        padding: var(--spacing-md);
+    }
+}
+

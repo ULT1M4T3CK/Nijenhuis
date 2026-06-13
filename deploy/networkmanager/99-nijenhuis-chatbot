@@ -1,0 +1,87 @@
+#!/bin/bash
+# ============================================================================
+# NetworkManager Dispatcher Script for Nijenhuis Chatbot
+# Restarts the chatbot service when network connectivity is restored
+#
+# Installation:
+#   sudo cp 99-nijenhuis-chatbot /etc/NetworkManager/dispatcher.d/
+#   sudo chmod +x /etc/NetworkManager/dispatcher.d/99-nijenhuis-chatbot
+#   sudo chown root:root /etc/NetworkManager/dispatcher.d/99-nijenhuis-chatbot
+#
+# This script is called by NetworkManager when network interfaces change state.
+# ============================================================================
+
+INTERFACE="$1"
+STATUS="$2"
+
+# Log function
+log_message() {
+    logger -t "nijenhuis-chatbot-network" "$1"
+}
+
+# Check actual internet connectivity
+check_internet() {
+    # Try multiple DNS servers
+    for host in 8.8.8.8 1.1.1.1 208.67.222.222; do
+        if ping -c 1 -W 3 "$host" >/dev/null 2>&1; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+# Get service status
+get_service_status() {
+    systemctl is-active --quiet nijenhuis-chatbot.service
+    return $?
+}
+
+case "$STATUS" in
+    up)
+        log_message "Network interface $INTERFACE is up"
+        
+        # Wait for network to fully establish
+        sleep 5
+        
+        # Verify actual internet connectivity
+        if check_internet; then
+            log_message "Internet connectivity confirmed via $INTERFACE"
+            
+            # Check if chatbot service is running
+            if get_service_status; then
+                log_message "Chatbot service is already running - sending reload signal"
+                systemctl reload-or-restart nijenhuis-chatbot.service || \
+                    log_message "Failed to reload chatbot service"
+            else
+                log_message "Chatbot service is not running - starting it"
+                systemctl start nijenhuis-chatbot.service || \
+                    log_message "Failed to start chatbot service"
+            fi
+        else
+            log_message "No internet connectivity despite $INTERFACE being up"
+        fi
+        ;;
+        
+    down)
+        log_message "Network interface $INTERFACE is down"
+        # We don't stop the service here - let it handle the offline state gracefully
+        ;;
+        
+    connectivity-change)
+        log_message "Connectivity changed on $INTERFACE"
+        
+        if check_internet; then
+            log_message "Internet connectivity restored - restarting chatbot"
+            systemctl restart nijenhuis-chatbot.service || \
+                log_message "Failed to restart chatbot service"
+        fi
+        ;;
+        
+    *)
+        # Other states: pre-up, pre-down, vpn-up, vpn-down, etc.
+        # We don't need to handle these
+        ;;
+esac
+
+exit 0
+

@@ -1,0 +1,49 @@
+/* Employee Portal Specific Styles */
+.admin-bar {
+    background: #2c3e50;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.manual-booking-badge {
+    background: #ffc107;
+    color: #000;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* Deposit Note Styles */
+.deposit-note {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.deposit-note strong {
+    font-weight: 700;
+}
+
+/* Login Modal - Use standard modal styling */
+.portal-login-modal {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.portal-login-modal .modal-content {
+    max-width: 450px;
+    width: 90%;
+}

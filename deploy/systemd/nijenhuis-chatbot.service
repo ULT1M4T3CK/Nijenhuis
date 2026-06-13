@@ -1,0 +1,60 @@
+[Unit]
+Description=Nijenhuis Chatbot API Server
+After=network-online.target
+Wants=network-online.target
+# Restart when network changes
+Wants=NetworkManager-wait-online.service
+After=NetworkManager-wait-online.service
+
+[Service]
+Type=notify
+User=andre
+Group=andre
+WorkingDirectory=/home/andre/Desktop/Projects/Nijenhuis
+Environment="PATH=/home/andre/Desktop/Projects/Nijenhuis/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONUNBUFFERED=1"
+EnvironmentFile=-/home/andre/Desktop/Projects/Nijenhuis/.env
+
+# Use Gunicorn for production with systemd notify
+ExecStart=/home/andre/Desktop/Projects/Nijenhuis/venv/bin/gunicorn \
+    --config /home/andre/Desktop/Projects/Nijenhuis/gunicorn.conf.py \
+    'backend.chatbot.api.server:app'
+
+# Fallback: Direct Python execution (comment out Gunicorn above and uncomment this)
+# ExecStart=/home/andre/Desktop/Projects/Nijenhuis/venv/bin/python3 /home/andre/Desktop/Projects/Nijenhuis/backend/chatbot/api/server.py
+
+# Watchdog for dead process detection (60 seconds)
+WatchdogSec=60s
+NotifyAccess=all
+
+# Enhanced restart configuration
+Restart=always
+RestartSec=5
+StartLimitInterval=600
+StartLimitBurst=10
+
+# Graceful shutdown
+TimeoutStopSec=30
+KillMode=mixed
+KillSignal=SIGTERM
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=nijenhuis-chatbot
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/andre/Desktop/Projects/Nijenhuis/logs /home/andre/Desktop/Projects/Nijenhuis/config /home/andre/Desktop/Projects/Nijenhuis/backend/chatbot/data
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=1G
+MemoryHigh=768M
+CPUQuota=200%
+
+[Install]
+WantedBy=multi-user.target

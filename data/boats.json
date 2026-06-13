@@ -1,0 +1,361 @@
+[
+    {
+        "id": "classic-tender-720",
+        "name": "Classic Tender 720 10/12 pers",
+        "category": "electric",
+        "description": "De Classic Tender 720 is een robuuste aluminium sloep met ruime zitplaatsen voor 10 tot 12 personen. Dankzij de elektrische motor vaart u geruisloos en milieuvriendelijk door het natuurgebied - ideaal voor een gezellige dag met familie, vrienden of een bedrijfsuitje. Comfortabele kussens nodigen uit om lang te tafelen en te genieten van het uitzicht. Huisdieren zijn aan boord niet toegestaan. Let op: met deze boot mag u niet door Giethoorn heen varen.",
+        "passengerCount": "10 tot 12 personen",
+        "deposit": 100,
+        "pricePerDay": 230,
+        "total": 2,
+        "available": 2,
+        "orderId": 1,
+        "image": "../frontend/Images/Boats/tender-720/tender-720-10-12.jpg",
+        "headerImage": "../frontend/Images/Boats/tender-720/tender-720-10-12.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            230,
+            410,
+            510,
+            570,
+            640,
+            730,
+            800
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "classic-tender-570",
+        "name": "Classic Tender 570 8 pers",
+        "category": "electric",
+        "description": "De Classic Tender 570 biedt plaats aan acht personen en combineert een strakke, moderne uitstraling met het gemak van een elektrische motor. Stil varen, geen uitlaatgassen en volop ruimte om bij elkaar te zitten: perfect voor gezinnen en vriendengroepen die ontspannen het water op willen. De boot is comfortabel ingericht en geschikt voor langere tochten langs riet, weilanden en dorpen. Huisdieren zijn aan boord niet toegestaan.",
+        "passengerCount": "8 personen",
+        "deposit": 100,
+        "pricePerDay": 200,
+        "total": 4,
+        "available": 2,
+        "orderId": 2,
+        "image": "../frontend/Images/Boats/tender-570/tender-570-8.jpg",
+        "headerImage": "../frontend/Images/Boats/tender-570/tender-570-8.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            350,
+            420,
+            490,
+            560,
+            630,
+            700
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "electrosloop-10",
+        "name": "Electrosloep 10 pers",
+        "category": "electric",
+        "description": "Onze electrosloep voor tien personen is de meest ruime keuze voor grotere gezelschappen. De elektrische aandrijving maakt varen eenvoudig en aangenaam: geen gerommel met een benzinemotor, wel voldoende dekruimte om te eten, drinken en te kletsen. Ideaal voor verjaardagen, familiedagen of een teamuitje waarbij iedereen comfortabel mee kan. Huisdieren zijn welkom aan boord.",
+        "passengerCount": "10 personen",
+        "deposit": 100,
+        "pricePerDay": 200,
+        "total": 3,
+        "available": 1,
+        "orderId": 3,
+        "image": "../frontend/Images/Boats/electrosloep-10/electrosloop-10.jpg",
+        "headerImage": "../frontend/Images/Boats/electrosloep-10/electrosloop-10.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            310,
+            390,
+            470,
+            550,
+            630,
+            700
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "electrosloop-8",
+        "name": "Electrosloep 8 pers",
+        "category": "electric",
+        "description": "De electrosloep voor acht personen slaat een mooie balans tussen ruimte en wendbaarheid. Met elektrische motor stuurt u rustig door smalle vaarten en bredere plassen - fijn met kinderen of oudere passagiers aan boord. Ruim zitcomfort en een stabiele gang maken deze boot bij uitstek geschikt voor een ontspannen familiedag of een dagje uit met vrienden. Huisdieren zijn welkom aan boord.",
+        "passengerCount": "8 personen",
+        "deposit": 100,
+        "pricePerDay": 175,
+        "total": 7,
+        "available": 2,
+        "orderId": 4,
+        "image": "../frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg",
+        "headerImage": "../frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            280,
+            345,
+            410,
+            475,
+            540,
+            600
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "electroboat-5",
+        "name": "Electroboot 5 pers",
+        "category": "electric",
+        "description": "De compacte electroboot voor vijf personen is ideaal wie zonder vaarbewijs of grote bootervaring toch het water op wil. Hij is wendbaar, overzichtelijk en stil door de elektromotor - perfect voor een stel met kinderen of een klein gezelschap dat rustig wil genieten van natuur en water. Een fijne instap naar sloepvaren zonder direct de grootste boot te hoeven huren.",
+        "passengerCount": "5 personen",
+        "deposit": 0,
+        "pricePerDay": 80,
+        "total": 12,
+        "available": 3,
+        "orderId": 5,
+        "image": "../frontend/Images/Boats/electroboat-5.jpg",
+        "headerImage": "../frontend/Images/Boats/electroboat-5.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            140,
+            175,
+            210,
+            245,
+            280,
+            310
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "sailboat-4-5",
+        "name": "Zeilboot 4/5 pers",
+        "category": "sailing",
+        "description": "Vaar klassiek met onze traditionele zeilboot voor vier tot vijf personen. Zonder hulpmotor geniet u puur van wind en zeil - geschikt voor zeilers die hun vaardigheden kennen. Met optionele motor heeft u extra zekerheid bij weinig wind of in smalle vaarten, zodat u flexibel blijft in route en tijd. Een authentieke manier om het water te beleven, ver weg van massatoerisme. Huisdieren zijn aan boord niet toegestaan.",
+        "passengerCount": "4 tot 5 personen",
+        "deposit": 50,
+        "pricePerDay": 70,
+        "total": 9,
+        "available": 1,
+        "orderId": 6,
+        "image": "../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg",
+        "headerImage": "../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            70,
+            130,
+            160,
+            190,
+            220,
+            250,
+            280
+        ],
+        "pricingWithEngine": [
+            85,
+            150,
+            200,
+            230,
+            260,
+            290,
+            320
+        ]
+    },
+    {
+        "id": "sailpunter-3-4",
+        "name": "Zeilpunter 3/4 pers",
+        "category": "sailing",
+        "description": "De zeilpunter voor drie tot vier personen is een echte klassieker: smal, wendbaar en vol traditie. Dit type boot vraagt zeilervaring; beloning is een intieme, rustige vaart waarbij u het ritme van wind en water voelt. Perfect voor liefhebbers van authentiek zeilen in een weids natuurgebied.",
+        "passengerCount": "3 tot 4 personen",
+        "deposit": 0,
+        "pricePerDay": 40,
+        "total": 1,
+        "available": 1,
+        "orderId": 7,
+        "image": "../frontend/Images/Boats/sailpunter-3-4.jpg",
+        "headerImage": "../frontend/Images/Boats/sailpunter-3-4.jpg",
+        "availableDays": [
+            1
+        ],
+        "pricing": [
+            40
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "canoe-3",
+        "name": "Canadese kano 3 pers",
+        "category": "canoe",
+        "description": "Met de Canadese kano voor drie personen peddelt u zelfstandig door kreken, vaarten en rustige stukken open water. De brede romp zorgt voor stabiliteit - handig met kinderen of als u spullen meeneemt voor een picknick. Ideaal voor wie actief bezig wil zijn en dicht bij het water en de natuur wil komen, ver van de motorboot.",
+        "passengerCount": "3 personen",
+        "deposit": 0,
+        "pricePerDay": 25,
+        "total": 6,
+        "available": 3,
+        "orderId": 8,
+        "image": "../frontend/Images/Boats/canoe/canoe-3.jpg",
+        "headerImage": "../frontend/Images/Boats/canoe/canoe-3.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            40,
+            55,
+            70,
+            85,
+            100,
+            115
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "kayak-2",
+        "name": "Kajak 2 pers",
+        "category": "canoe",
+        "description": "De tweepersoonskajak is gebouwd voor samen peddelen: voorin en achterin in hetzelfde tempo het water op. Lekker sportief, wendbaar en geschikt voor langere tochten of kortere rondjes. Een leuke optie voor stellen, vrienden of ouder met kind dat al wat paddle-ervaring heeft.",
+        "passengerCount": "2 personen",
+        "deposit": 0,
+        "pricePerDay": 25,
+        "total": 2,
+        "available": 5,
+        "orderId": 9,
+        "image": "../frontend/Images/Boats/kayak-2/kayak-2.jpg",
+        "headerImage": "../frontend/Images/Boats/kayak-2/kayak-2.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            40,
+            55,
+            70,
+            85,
+            100,
+            115
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "kayak-1",
+        "name": "Kajak 1 pers",
+        "category": "canoe",
+        "description": "De eenpersoonskajak geeft u volledige vrijheid: eigen tempo, eigen route. Licht en wendbaar, ideaal om even helemaal op te gaan in het peddelen en de omgeving. Geschikt voor wie zelfstandig wil varen en van een actieve dag op het water houdt.",
+        "passengerCount": "1 persoon",
+        "deposit": 0,
+        "pricePerDay": 20,
+        "total": 5,
+        "available": 5,
+        "orderId": 10,
+        "image": "../frontend/Images/Boats/Kayak-1/kayak-1.jpg",
+        "headerImage": "../frontend/Images/Boats/Kayak-1/kayak-1.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            30,
+            40,
+            60,
+            75,
+            90,
+            105
+        ],
+        "pricingWithEngine": []
+    },
+    {
+        "id": "sup-board",
+        "name": "SUP board 1 pers",
+        "category": "sup",
+        "description": "Op het SUP-board staat u rechtop op het water en peddelt u met een lange peddel - een mix van balans, ontspanning en een beetje workout. Vanaf het board ziet u het landschap en het water op een andere manier dan vanuit een boot. Geschikt voor wie een beetje waterervaring heeft en een rustige, bijzondere beleving zoekt.",
+        "passengerCount": "1 persoon",
+        "deposit": 0,
+        "pricePerDay": 35,
+        "total": 3,
+        "available": 3,
+        "orderId": 11,
+        "image": "../frontend/Images/Boats/Sup/sub-1.jpg",
+        "headerImage": "../frontend/Images/Boats/Sup/sub-1.jpg",
+        "availableDays": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "pricing": [
+            0,
+            55,
+            75,
+            95,
+            115,
+            135,
+            150
+        ],
+        "pricingWithEngine": []
+    }
+]

@@ -1,0 +1,343 @@
+{
+  "name": "bitext_customer_support_multilingual",
+  "source": "synthetic_based_on_bitext_patterns",
+  "language": "multilingual",
+  "conversations": [
+    {
+      "language": "nl",
+      "intent": "pricing",
+      "question": "Wat zijn jullie prijzen?",
+      "response": "Onze prijzen variëren per dienst. Voor actuele prijzen kunt u contact met ons opnemen.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "pricing",
+      "question": "Hoeveel kost het?",
+      "response": "De prijs hangt af van verschillende factoren. Neem contact met ons op voor een offerte.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "booking",
+      "question": "Hoe kan ik reserveren?",
+      "response": "U kunt reserveren via onze website of telefonisch. We helpen u graag verder.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "booking",
+      "question": "Kan ik online boeken?",
+      "response": "Ja, u kunt online boeken via onze website. U kunt ook telefonisch reserveren.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "availability",
+      "question": "Zijn er nog plaatsen beschikbaar?",
+      "response": "Controleer de beschikbaarheid op onze website of bel ons voor actuele informatie.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "availability",
+      "question": "Wanneer zijn jullie beschikbaar?",
+      "response": "We zijn beschikbaar tijdens onze openingstijden. Bekijk onze website voor details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "contact",
+      "question": "Hoe kan ik contact opnemen?",
+      "response": "U kunt ons bereiken via telefoon, e-mail of bezoek onze locatie.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "contact",
+      "question": "Wat is jullie telefoonnummer?",
+      "response": "Ons telefoonnummer is te vinden op onze website onder contactgegevens.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "location",
+      "question": "Waar bevindt u zich?",
+      "response": "Onze locatie en adresgegevens staan op onze website vermeld.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "location",
+      "question": "Hoe kom ik bij jullie?",
+      "response": "U vindt routebeschrijvingen en adresgegevens op onze website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "hours",
+      "question": "Wat zijn jullie openingstijden?",
+      "response": "Onze openingstijden zijn te vinden op onze website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "hours",
+      "question": "Wanneer zijn jullie open?",
+      "response": "Bekijk onze website voor actuele openingstijden.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "cancellation",
+      "question": "Kan ik annuleren?",
+      "response": "Annuleringsvoorwaarden verschillen per reservering. Neem contact met ons op voor details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "cancellation",
+      "question": "Wat is jullie annuleringsbeleid?",
+      "response": "Ons annuleringsbeleid staat beschreven in onze algemene voorwaarden.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "refund",
+      "question": "Kan ik mijn geld terugkrijgen?",
+      "response": "Voor vragen over terugbetaling kunt u contact met ons opnemen.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "nl",
+      "intent": "refund",
+      "question": "Hoe werkt de terugbetaling?",
+      "response": "Terugbetalingsvoorwaarden zijn afhankelijk van de specifieke situatie. Neem contact op.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "pricing",
+      "question": "What are your prices?",
+      "response": "Our prices vary by service. Please contact us for current pricing.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "pricing",
+      "question": "How much does it cost?",
+      "response": "The price depends on various factors. Contact us for a quote.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "booking",
+      "question": "How can I make a reservation?",
+      "response": "You can book via our website or by phone. We are happy to help.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "booking",
+      "question": "Can I book online?",
+      "response": "Yes, you can book online via our website. You can also reserve by phone.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "availability",
+      "question": "Are there any spots available?",
+      "response": "Check availability on our website or call us for current information.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "availability",
+      "question": "When are you available?",
+      "response": "We are available during our opening hours. Check our website for details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "contact",
+      "question": "How can I contact you?",
+      "response": "You can reach us by phone, email or visit our location.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "contact",
+      "question": "What is your phone number?",
+      "response": "Our phone number can be found on our website under contact details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "location",
+      "question": "Where are you located?",
+      "response": "Our location and address are listed on our website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "location",
+      "question": "How do I get to you?",
+      "response": "You can find directions and address information on our website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "hours",
+      "question": "What are your opening hours?",
+      "response": "Our opening hours can be found on our website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "hours",
+      "question": "When are you open?",
+      "response": "Check our website for current opening hours.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "cancellation",
+      "question": "Can I cancel?",
+      "response": "Cancellation terms vary by reservation. Contact us for details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "cancellation",
+      "question": "What is your cancellation policy?",
+      "response": "Our cancellation policy is described in our terms and conditions.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "refund",
+      "question": "Can I get my money back?",
+      "response": "For questions about refunds, please contact us.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "en",
+      "intent": "refund",
+      "question": "How does the refund work?",
+      "response": "Refund terms depend on the specific situation. Please contact us.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "pricing",
+      "question": "Was sind eure Preise?",
+      "response": "Unsere Preise variieren je nach Service. Bitte kontaktieren Sie uns für aktuelle Preise.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "pricing",
+      "question": "Wie viel kostet es?",
+      "response": "Der Preis hängt von verschiedenen Faktoren ab. Kontaktieren Sie uns für ein Angebot.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "booking",
+      "question": "Wie kann ich reservieren?",
+      "response": "Sie können über unsere Website oder telefonisch buchen. Wir helfen Ihnen gerne.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "booking",
+      "question": "Kann ich online buchen?",
+      "response": "Ja, Sie können online über unsere Website buchen. Sie können auch telefonisch reservieren.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "availability",
+      "question": "Gibt es noch Plätze verfügbar?",
+      "response": "Prüfen Sie die Verfügbarkeit auf unserer Website oder rufen Sie uns für aktuelle Informationen an.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "availability",
+      "question": "Wann seid ihr verfügbar?",
+      "response": "Wir sind während unserer Öffnungszeiten verfügbar. Sehen Sie unsere Website für Details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "contact",
+      "question": "Wie kann ich euch kontaktieren?",
+      "response": "Sie können uns telefonisch, per E-Mail erreichen oder unseren Standort besuchen.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "contact",
+      "question": "Was ist eure Telefonnummer?",
+      "response": "Unsere Telefonnummer finden Sie auf unserer Website unter Kontaktdaten.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "location",
+      "question": "Wo befindet ihr euch?",
+      "response": "Unser Standort und Adresse sind auf unserer Website aufgeführt.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "location",
+      "question": "Wie komme ich zu euch?",
+      "response": "Sie finden Wegbeschreibungen und Adressinformationen auf unserer Website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "hours",
+      "question": "Was sind eure Öffnungszeiten?",
+      "response": "Unsere Öffnungszeiten finden Sie auf unserer Website.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "hours",
+      "question": "Wann seid ihr geöffnet?",
+      "response": "Sehen Sie unsere Website für aktuelle Öffnungszeiten.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "cancellation",
+      "question": "Kann ich stornieren?",
+      "response": "Stornierungsbedingungen variieren je nach Reservierung. Kontaktieren Sie uns für Details.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "cancellation",
+      "question": "Was ist eure Stornierungsrichtlinie?",
+      "response": "Unsere Stornierungsrichtlinie ist in unseren Allgemeinen Geschäftsbedingungen beschrieben.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "refund",
+      "question": "Kann ich mein Geld zurückbekommen?",
+      "response": "Für Fragen zu Rückerstattungen kontaktieren Sie uns bitte.",
+      "source": "bitext_patterns"
+    },
+    {
+      "language": "de",
+      "intent": "refund",
+      "question": "Wie funktioniert die Rückerstattung?",
+      "response": "Rückerstattungsbedingungen hängen von der spezifischen Situation ab. Bitte kontaktieren Sie uns.",
+      "source": "bitext_patterns"
+    }
+  ]
+}

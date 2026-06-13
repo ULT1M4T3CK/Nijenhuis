@@ -1,0 +1,49 @@
+[Unit]
+Description=Nijenhuis Chatbot API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/nijenhuis
+Environment="PATH=/home/ec2-user/nijenhuis/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONUNBUFFERED=1"
+EnvironmentFile=-/home/ec2-user/nijenhuis/.env
+
+# Use Gunicorn for production
+ExecStart=/home/ec2-user/nijenhuis/venv/bin/gunicorn \
+    --bind 0.0.0.0:5001 \
+    --workers 2 \
+    --timeout 120 \
+    --access-logfile /home/ec2-user/nijenhuis/logs/chatbot_access.log \
+    --error-logfile /home/ec2-user/nijenhuis/logs/chatbot_error.log \
+    'backend.chatbot.api.server:app'
+
+# Restart configuration
+Restart=always
+RestartSec=5
+StartLimitInterval=600
+StartLimitBurst=10
+
+# Graceful shutdown
+TimeoutStopSec=30
+KillMode=mixed
+KillSignal=SIGTERM
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=nijenhuis-chatbot
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=1G
+
+[Install]
+WantedBy=multi-user.target

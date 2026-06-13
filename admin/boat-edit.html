@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewerk Boot - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="../frontend/css/styles.css">
+    <link rel="stylesheet" href="admin-consolidated.css">
+    <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
+    <!-- Boat Data Service (Single Source of Truth) -->
+    <script src="../js/boat-data-service.js"></script>
+    <script src="../js/image-compress.js"></script>
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <img src="../frontend/Images/logo-white.svg" alt="Nijenhuis" class="admin-nav-logo" style="height: 40px; width: auto;">
+            <div class="admin-nav-links">
+                <a href="admin-static.html" class="admin-nav-link">Dashboard</a>
+                <a href="boat-management.html" class="admin-nav-link active">Bootbeheer</a>
+                <a href="booking-management.html" class="admin-nav-link">Reserveringsbeheer</a>
+                <a href="booking-history.html" class="admin-nav-link">Boekingsgeschiedenis</a>
+            </div>
+            <button class="admin-nav-logout" onclick="logout()">Uitloggen</button>
+        </div>
+    </nav>
+
+    <!-- Admin Header Section -->
+    <div class="admin-header">
+        <div class="admin-container">
+            <h1 class="admin-title">Bewerk Boot</h1>
+            <p class="admin-subtitle">Nijenhuis Botenverhuur - Bewerk bootgegevens</p>
+        </div>
+    </div>
+    
+    <div class="boat-edit-page">
+        <div class="edit-container">
+            
+            <form id="boatEditForm" class="edit-form-container">
+                <!-- Left Column - Images -->
+                <div class="image-section">
+                    <!-- Header Afbeelding -->
+                    <div class="image-upload-group">
+                        <label class="image-upload-label">Header Afbeelding</label>
+                        <img id="headerImagePreview" src="../frontend/Images/Boats/tender-720/tender-720-10-12.jpg" alt="Header" class="image-display">
+                        <div class="file-input-wrapper">
+                            <label for="headerImageInput" class="file-input-label">Bestand kiezen</label>
+                            <input type="file" id="headerImageInput" class="file-input" accept="image/*">
+                            <span class="file-name" id="headerImageName">Geen bestand gekozen</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Afbeelding -->
+                    <div class="image-upload-group">
+                        <label class="image-upload-label">Afbeelding</label>
+                        <img id="mainImagePreview" src="../frontend/Images/Boats/tender-720/tender-720-10-12.jpg" alt="Main" class="image-display">
+                        <div class="file-input-wrapper">
+                            <label for="mainImageInput" class="file-input-label">Bestand kiezen</label>
+                            <input type="file" id="mainImageInput" class="file-input" accept="image/*">
+                            <span class="file-name" id="mainImageName">Geen bestand gekozen</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column - Form Fields -->
+                <div class="form-section">
+                    <!-- Naam -->
+                    <div class="form-group">
+                        <label for="boatName" class="form-label">Naam</label>
+                        <input type="text" id="boatName" name="name" class="form-input" value="Classic Tender 720 10/12pers" required>
+                    </div>
+                    
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label for="boatCategory" class="form-label">Categorie</label>
+                        <select id="boatCategory" name="category" class="form-input" required>
+                            <option value="electric">Elektrische boten</option>
+                            <option value="sailing">Zeilboten</option>
+                            <option value="canoe">Kano's & Kajaks</option>
+                            <option value="sup">SUP boards</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Borg -->
+                    <div class="form-group">
+                        <label for="boatDeposit" class="form-label">Borg</label>
+                        <input type="number" id="boatDeposit" name="deposit" class="form-input" value="100" required>
+                    </div>
+                    
+                    <!-- Prijs per dag -->
+                    <div class="form-group">
+                        <label for="boatPricePerDay" class="form-label">Prijs per dag</label>
+                        <input type="number" id="boatPricePerDay" name="pricePerDay" class="form-input" value="230" required>
+                    </div>
+                    
+                    <!-- Omschrijving -->
+                    <div class="form-group">
+                        <label for="boatDescription" class="form-label">Omschrijving</label>
+                        <textarea id="boatDescription" name="description" class="form-textarea" required>De sloep is een boot van Aluminium waar je met 10/12 personen in kunt. De boot is voorzien van kussens en er zit een electro motor in.
+
+Huisdieren zijn aan boord niet toegestaan.
+
+Met deze boot mag u niet door Giethoorn heen varen.</textarea>
+                    </div>
+                    
+                    <!-- Available Days Selection -->
+                    <div class="form-group">
+                        <label for="availableDaysSelect" class="form-label">Beschikbare huurdagen selecteren</label>
+                        <select id="availableDaysSelect" name="availableDays" class="form-input">
+                            <option value="1">1 dag</option>
+                            <option value="2">2 dagen</option>
+                            <option value="3">3 dagen</option>
+                            <option value="4">4 dagen</option>
+                            <option value="5">5 dagen</option>
+                            <option value="6">6 dagen</option>
+                            <option value="7">7 dagen</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Multi-day Pricing -->
+                    <div class="form-group">
+                        <label id="pricingLabel" class="form-label">Meerdaagse prijzen</label>
+                        <div id="pricingGrid" class="pricing-grid">
+                            <!-- Dynamic pricing inputs will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Engine Pricing for Sailboats -->
+                    <div class="form-group" id="enginePricingSection" style="display: none;">
+                        <label class="form-label">Meerdaagse prijzen (met motor)</label>
+                        <div id="enginePricingGrid" class="pricing-grid">
+                            <!-- Dynamic pricing inputs for engine will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Bottom Info -->
+                    <div class="info-grid">
+                        <div class="form-group">
+                            <label for="passengerCount" class="form-label">Aantal passagiers</label>
+                            <input type="text" id="passengerCount" name="passengerCount" class="form-input" value="10 tot 12 personen">
+                        </div>
+                        <div class="form-group">
+                            <label for="boatCount" class="form-label">Aantal boten</label>
+                            <input type="number" id="boatCount" name="boatCount" class="form-input" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label for="orderId" class="form-label">Order_id</label>
+                            <input type="number" id="orderId" name="orderId" class="form-input" value="1">
+                        </div>
+                    </div>
+                    
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='boat-management.html'">Annuleren</button>
+                        <button type="submit" class="btn btn-primary">Opslaan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Image preview handlers
+        document.getElementById('headerImageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                (async function () {
+                    try {
+                        const dataUrl = typeof compressToDataURL === 'function'
+                            ? await compressToDataURL(file)
+                            : await new Promise((resolve, reject) => {
+                                const reader = new FileReader();
+                                reader.onload = () => resolve(reader.result);
+                                reader.onerror = () => reject(reader.error);
+                                reader.readAsDataURL(file);
+                            });
+                        headerImageData = dataUrl;
+                        document.getElementById('headerImagePreview').src = headerImageData;
+                        document.getElementById('headerImageName').textContent = file.name;
+                        if (currentBoat) {
+                            currentBoat.headerImage = headerImageData;
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                })();
+            }
+        });
+        
+        document.getElementById('mainImageInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                (async function () {
+                    try {
+                        const dataUrl = typeof compressToDataURL === 'function'
+                            ? await compressToDataURL(file)
+                            : await new Promise((resolve, reject) => {
+                                const reader = new FileReader();
+                                reader.onload = () => resolve(reader.result);
+                                reader.onerror = () => reject(reader.error);
+                                reader.readAsDataURL(file);
+                            });
+                        mainImageData = dataUrl;
+                        document.getElementById('mainImagePreview').src = mainImageData;
+                        document.getElementById('mainImageName').textContent = file.name;
+                        if (currentBoat) {
+                            currentBoat.image = mainImageData;
+                        }
+                    } catch (err) {
+                        console.error(err);
+                    }
+                })();
+            }
+        });
+        
+        // Boat data storage key
+        const boatsStorageKey = 'nijenhuis_boats';
+        
+        // Load boat data if ID is provided
+        const urlParams = new URLSearchParams(window.location.search);
+        const boatId = urlParams.get('id');
+        let currentBoat = null;
+        
+        // Use centralized boat data from BoatDataService (../js/boat-data-service.js)
+        function getDefaultBoats() {
+            return window.BoatDataService ? window.BoatDataService.getDefaultBoats() : [];
+        }
+        
+        function loadBoatData() {
+            if (!boatId) {
+                alert('Geen boot ID opgegeven.');
+                window.location.href = 'boat-management.html';
+                return;
+            }
+            
+            let boats = JSON.parse(localStorage.getItem(boatsStorageKey) || '[]');
+            
+            // If no boats in localStorage, initialize with defaults
+            if (boats.length === 0) {
+                boats = getDefaultBoats();
+                localStorage.setItem(boatsStorageKey, JSON.stringify(boats));
+            }
+            
+            currentBoat = boats.find(b => b.id === boatId);
+            
+            if (!currentBoat) {
+                alert(`Boot met ID "${boatId}" niet gevonden. Beschikbare boten: ${boats.map(b => b.id).join(', ')}`);
+                window.location.href = 'boat-management.html';
+                return;
+            }
+            
+            // Populate form with boat data
+            document.getElementById('boatName').value = currentBoat.name || '';
+            document.getElementById('boatCategory').value = currentBoat.category || 'electric';
+            document.getElementById('boatDeposit').value = currentBoat.deposit || 0;
+            document.getElementById('boatPricePerDay').value = currentBoat.pricePerDay || 0;
+            document.getElementById('boatDescription').value = currentBoat.description || '';
+            document.getElementById('passengerCount').value = currentBoat.passengerCount || '';
+            document.getElementById('boatCount').value = currentBoat.total || 0;
+            document.getElementById('orderId').value = currentBoat.orderId || 1;
+            
+            // Load available days - set dropdown to maximum day value
+            const availableDays = currentBoat.availableDays || [1, 2, 3, 4, 5, 6, 7];
+            const maxDay = availableDays.length > 0 ? Math.max(...availableDays) : 7;
+            const daysSelect = document.getElementById('availableDaysSelect');
+            if (daysSelect) {
+                daysSelect.value = maxDay.toString();
+            }
+            
+            // Optional outboard pricing: only Zeilboot (fixed product id sailboat-4-5)
+            const engineSection = document.getElementById('enginePricingSection');
+            if (currentBoat.id === 'sailboat-4-5') {
+                engineSection.style.display = 'block';
+            } else {
+                engineSection.style.display = 'none';
+            }
+            
+            // Update pricing label for Zeilpunter
+            const pricingLabel = document.getElementById('pricingLabel');
+            if (pricingLabel) {
+                if (currentBoat.name.toLowerCase().includes('zeilpunter') || currentBoat.id === 'sailpunter-3-4') {
+                    pricingLabel.textContent = 'Prijz';
+                } else {
+                    pricingLabel.textContent = 'Meerdaagse prijzen';
+                }
+            }
+            
+            // Generate pricing inputs based on available days
+            updatePricingInputs();
+            
+            // Load images
+            if (currentBoat.headerImage) {
+                document.getElementById('headerImagePreview').src = currentBoat.headerImage;
+            }
+            if (currentBoat.image) {
+                document.getElementById('mainImagePreview').src = currentBoat.image;
+            }
+        }
+        
+        // Form submission
+        document.getElementById('boatEditForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            if (!currentBoat) {
+                alert('Boot data niet geladen.');
+                return;
+            }
+            
+            // Get selected available days - generate array from 1 to selected value
+            const daysSelect = document.getElementById('availableDaysSelect');
+            const maxDays = parseInt(daysSelect.value) || 7;
+            const selectedDays = Array.from({ length: maxDays }, (_, i) => i + 1);
+            
+            if (selectedDays.length === 0) {
+                alert('Selecteer minimaal één huurdag.');
+                return;
+            }
+            
+            // Build pricing object (keys are 0-indexed: 0=1 day, 1=2 days, etc.)
+            const pricing = {};
+            selectedDays.forEach(day => {
+                const input = document.getElementById(`Price${day}Days`);
+                if (input) {
+                    pricing[day - 1] = parseFloat(input.value) || 0;
+                }
+            });
+            
+            // Optional outboard pricing only for Zeilboot (sailboat-4-5)
+            const category = document.getElementById('boatCategory').value || 'electric';
+            let pricingWithEngine = null;
+            if (currentBoat.id === 'sailboat-4-5') {
+                pricingWithEngine = {};
+                selectedDays.forEach(day => {
+                    const input = document.getElementById(`enginePrice${day}Days`);
+                    if (input) {
+                        pricingWithEngine[day - 1] = parseFloat(input.value) || 0;
+                    }
+                });
+            }
+            
+            // Collect form data
+            const formData = {
+                id: currentBoat.id,
+                name: document.getElementById('boatName').value,
+                category: category,
+                deposit: parseFloat(document.getElementById('boatDeposit').value) || 0,
+                pricePerDay: parseFloat(document.getElementById('boatPricePerDay').value) || 0,
+                description: document.getElementById('boatDescription').value,
+                passengerCount: document.getElementById('passengerCount').value,
+                total: parseInt(document.getElementById('boatCount').value) || 0,
+                available: currentBoat.available !== undefined ? currentBoat.available : currentBoat.total || 0,
+                orderId: parseInt(document.getElementById('orderId').value) || 1,
+                image: mainImageData || currentBoat.image || document.getElementById('mainImagePreview').src,
+                headerImage: headerImageData || currentBoat.headerImage || document.getElementById('headerImagePreview').src,
+                availableDays: selectedDays,
+                pricing: pricing,
+                pricingWithEngine: pricingWithEngine,
+                photos: currentBoat.photos || []
+            };
+            
+            // Update boat in boats array
+            const boats = JSON.parse(localStorage.getItem(boatsStorageKey) || '[]');
+            const boatIndex = boats.findIndex(b => b.id === boatId);
+            
+            if (boatIndex !== -1) {
+                boats[boatIndex] = formData;
+            } else {
+                boats.push(formData);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem(boatsStorageKey, JSON.stringify(boats));
+            
+            // Push to server
+            async function pushBoatsToServer() {
+                try {
+                    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+                    const endpoint = isLocal
+                        ? 'http://localhost:8000/admin/booking-handler.py'
+                        : `${window.location.origin}/admin/booking-handler.php`;
+                    
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ action: 'saveBoats', boats: boats })
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        if (result.success) {
+                            console.log(`✅ Successfully saved ${boats.length} boats to server`);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Failed to push boats to server:', e);
+                }
+            }
+            
+            // Push to server
+            await pushBoatsToServer();
+            
+            // Force a storage event by removing and re-setting (workaround for same-tab updates)
+            const currentValue = localStorage.getItem(boatsStorageKey);
+            localStorage.removeItem(boatsStorageKey);
+            localStorage.setItem(boatsStorageKey, currentValue);
+            
+            // Trigger custom events for same-tab and cross-tab updates
+            // Use a small delay to ensure events are processed before redirect
+            window.dispatchEvent(new CustomEvent('boatsUpdated', { detail: boats }));
+            window.dispatchEvent(new CustomEvent('boatsStorageUpdated'));
+            
+            console.log('✅ Boat data saved and events triggered');
+            
+            // Give events time to propagate before redirecting
+            setTimeout(() => {
+                alert('Bootgegevens opgeslagen! Booking formulieren worden automatisch bijgewerkt.');
+                window.location.href = 'boat-management.html';
+            }, 100);
+        });
+        
+        // Day selection change handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            const daysSelect = document.getElementById('availableDaysSelect');
+            if (daysSelect) {
+                daysSelect.addEventListener('change', updatePricingInputs);
+            }
+            
+            // Category change: engine block only for boot id sailboat-4-5
+            const categorySelect = document.getElementById('boatCategory');
+            if (categorySelect) {
+                categorySelect.addEventListener('change', function() {
+                    const engineSection = document.getElementById('enginePricingSection');
+                    const boatId = new URLSearchParams(window.location.search).get('id') || '';
+                    if (this.value === 'sailing' && boatId === 'sailboat-4-5') {
+                        engineSection.style.display = 'block';
+                        updatePricingInputs();
+                    } else {
+                        engineSection.style.display = 'none';
+                        updatePricingInputs();
+                    }
+                });
+            }
+        });
+        
+        // Load data on page load
+        if (boatId) {
+            loadBoatData();
+        } else {
+            alert('Geen boot ID opgegeven.');
+            window.location.href = 'boat-management.html';
+        }
+        
+        // Handle image uploads
+        let headerImageData = null;
+        let mainImageData = null;
+        
+        // Function to generate dynamic pricing inputs
+        function generatePricingInputs(containerId, prefix, selectedDays, existingPrices = {}) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            selectedDays.forEach(day => {
+                const pricingItem = document.createElement('div');
+                pricingItem.className = 'pricing-item';
+                
+                const label = document.createElement('label');
+                label.className = 'pricing-label';
+                label.textContent = `Prijs ${day} ${day === 1 ? 'dag' : 'dagen'}`;
+                label.setAttribute('for', `${prefix}Price${day}Days`);
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `${prefix}Price${day}Days`;
+                input.name = `price${day}Days`;
+                input.className = 'pricing-input';
+                // Get price from existingPrices (key is day-1 for 0-indexed)
+                const priceKey = day - 1;
+                input.value = existingPrices[priceKey] !== undefined ? existingPrices[priceKey] : '0';
+                input.min = '0';
+                input.step = '0.01';
+                
+                pricingItem.appendChild(label);
+                pricingItem.appendChild(input);
+                container.appendChild(pricingItem);
+            });
+        }
+        
+        // Function to update pricing inputs based on selected days
+        function updatePricingInputs() {
+            const daysSelect = document.getElementById('availableDaysSelect');
+            const maxDays = parseInt(daysSelect.value) || 1;
+            const selectedDays = Array.from({ length: maxDays }, (_, i) => i + 1);
+            
+            // Get existing pricing from currentBoat if available
+            const existingPricing = currentBoat?.pricing || {};
+            const existingEnginePricing = currentBoat?.pricingWithEngine || {};
+            
+            generatePricingInputs('pricingGrid', '', selectedDays, existingPricing);
+            
+            const boatIdParam = new URLSearchParams(window.location.search).get('id') || '';
+            if (boatIdParam === 'sailboat-4-5') {
+                generatePricingInputs('enginePricingGrid', 'engine', selectedDays, existingEnginePricing);
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('adminAuthenticated');
+            localStorage.removeItem('adminUser');
+            sessionStorage.removeItem('adminLoginTime');
+            window.location.href = '../pages/admin-login.html';
+        }
+    </script>
+</body>
+</html>
+

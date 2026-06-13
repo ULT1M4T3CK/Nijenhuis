@@ -1,0 +1,1318 @@
+{
+  "AlBot.png": {
+    "original": "AlBot.png",
+    "webp": "AlBot.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "AlBot-400w.png",
+        "webp": "AlBot-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "AlBot-800w.png",
+        "webp": "AlBot-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "AlBot-1200w.png",
+        "webp": "AlBot-1200w.webp"
+      },
+      {
+        "width": 1920,
+        "original": "AlBot-1920w.png",
+        "webp": "AlBot-1920w.webp"
+      }
+    ]
+  },
+  "Boats/Kayak-1/kayak-1.jpg": {
+    "original": "Boats/Kayak-1/kayak-1.jpg",
+    "webp": "Boats/Kayak-1/kayak-1.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/Kayak-1/kayak-1-400w.jpg",
+        "webp": "Boats/Kayak-1/kayak-1-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/Kayak-1/kayak-1-800w.jpg",
+        "webp": "Boats/Kayak-1/kayak-1-800w.webp"
+      }
+    ]
+  },
+  "Boats/Sup/sub-1.jpg": {
+    "original": "Boats/Sup/sub-1.jpg",
+    "webp": "Boats/Sup/sub-1.webp",
+    "variants": []
+  },
+  "Boats/Sup/tender-570-8.jpg": {
+    "original": "Boats/Sup/tender-570-8.jpg",
+    "webp": "Boats/Sup/tender-570-8.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/Sup/tender-570-8-400w.jpg",
+        "webp": "Boats/Sup/tender-570-8-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/Sup/tender-570-8-800w.jpg",
+        "webp": "Boats/Sup/tender-570-8-800w.webp"
+      }
+    ]
+  },
+  "Boats/canoe/canoe-3.jpg": {
+    "original": "Boats/canoe/canoe-3.jpg",
+    "webp": "Boats/canoe/canoe-3.webp",
+    "variants": []
+  },
+  "Boats/canoe-3.jpg": {
+    "original": "Boats/canoe-3.jpg",
+    "webp": "Boats/canoe-3.webp",
+    "variants": []
+  },
+  "Boats/electroboat-5.jpg": {
+    "original": "Boats/electroboat-5.jpg",
+    "webp": "Boats/electroboat-5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electroboat-5-400w.jpg",
+        "webp": "Boats/electroboat-5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electroboat-5-800w.jpg",
+        "webp": "Boats/electroboat-5-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-10/electrosloop-10.jpg": {
+    "original": "Boats/electrosloep-10/electrosloop-10.jpg",
+    "webp": "Boats/electrosloep-10/electrosloop-10.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-10/electrosloop-10-400w.jpg",
+        "webp": "Boats/electrosloep-10/electrosloop-10-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-10/electrosloop-10-800w.jpg",
+        "webp": "Boats/electrosloep-10/electrosloop-10-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-5/electroboat-5.jpg": {
+    "original": "Boats/electrosloep-5/electroboat-5.jpg",
+    "webp": "Boats/electrosloep-5/electroboat-5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-5/electroboat-5-400w.jpg",
+        "webp": "Boats/electrosloep-5/electroboat-5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-5/electroboat-5-800w.jpg",
+        "webp": "Boats/electrosloep-5/electroboat-5-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-8/40156326328291526032019 (1).jpg": {
+    "original": "Boats/electrosloep-8/40156326328291526032019 (1).jpg",
+    "webp": "Boats/electrosloep-8/40156326328291526032019 (1).webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-8/40156326328291526032019 (1)-400w.jpg",
+        "webp": "Boats/electrosloep-8/40156326328291526032019 (1)-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-8/40156326328291526032019 (1)-800w.jpg",
+        "webp": "Boats/electrosloep-8/40156326328291526032019 (1)-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-8/40156326328291526032019.jpg": {
+    "original": "Boats/electrosloep-8/40156326328291526032019.jpg",
+    "webp": "Boats/electrosloep-8/40156326328291526032019.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-8/40156326328291526032019-400w.jpg",
+        "webp": "Boats/electrosloep-8/40156326328291526032019-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-8/40156326328291526032019-800w.jpg",
+        "webp": "Boats/electrosloep-8/40156326328291526032019-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-8/61374455328291526032019.jpg": {
+    "original": "Boats/electrosloep-8/61374455328291526032019.jpg",
+    "webp": "Boats/electrosloep-8/61374455328291526032019.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-8/61374455328291526032019-400w.jpg",
+        "webp": "Boats/electrosloep-8/61374455328291526032019-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-8/61374455328291526032019-800w.jpg",
+        "webp": "Boats/electrosloep-8/61374455328291526032019-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-8/92961705928291526032019.jpg": {
+    "original": "Boats/electrosloep-8/92961705928291526032019.jpg",
+    "webp": "Boats/electrosloep-8/92961705928291526032019.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-8/92961705928291526032019-400w.jpg",
+        "webp": "Boats/electrosloep-8/92961705928291526032019-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-8/92961705928291526032019-800w.jpg",
+        "webp": "Boats/electrosloep-8/92961705928291526032019-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloep-8/electrosloop-8.jpg": {
+    "original": "Boats/electrosloep-8/electrosloop-8.jpg",
+    "webp": "Boats/electrosloep-8/electrosloop-8.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloep-8/electrosloop-8-400w.jpg",
+        "webp": "Boats/electrosloep-8/electrosloop-8-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloep-8/electrosloop-8-800w.jpg",
+        "webp": "Boats/electrosloep-8/electrosloop-8-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloop-10.jpg": {
+    "original": "Boats/electrosloop-10.jpg",
+    "webp": "Boats/electrosloop-10.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloop-10-400w.jpg",
+        "webp": "Boats/electrosloop-10-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloop-10-800w.jpg",
+        "webp": "Boats/electrosloop-10-800w.webp"
+      }
+    ]
+  },
+  "Boats/electrosloop-8.jpg": {
+    "original": "Boats/electrosloop-8.jpg",
+    "webp": "Boats/electrosloop-8.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/electrosloop-8-400w.jpg",
+        "webp": "Boats/electrosloop-8-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/electrosloop-8-800w.jpg",
+        "webp": "Boats/electrosloop-8-800w.webp"
+      }
+    ]
+  },
+  "Boats/jachthaven_10.jpg": {
+    "original": "Boats/jachthaven_10.jpg",
+    "webp": "Boats/jachthaven_10.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/jachthaven_10-400w.jpg",
+        "webp": "Boats/jachthaven_10-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/jachthaven_10-800w.jpg",
+        "webp": "Boats/jachthaven_10-800w.webp"
+      }
+    ]
+  },
+  "Boats/kayak-1.jpg": {
+    "original": "Boats/kayak-1.jpg",
+    "webp": "Boats/kayak-1.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/kayak-1-400w.jpg",
+        "webp": "Boats/kayak-1-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/kayak-1-800w.jpg",
+        "webp": "Boats/kayak-1-800w.webp"
+      }
+    ]
+  },
+  "Boats/kayak-2/kayak-2.jpg": {
+    "original": "Boats/kayak-2/kayak-2.jpg",
+    "webp": "Boats/kayak-2/kayak-2.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/kayak-2/kayak-2-400w.jpg",
+        "webp": "Boats/kayak-2/kayak-2-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/kayak-2/kayak-2-800w.jpg",
+        "webp": "Boats/kayak-2/kayak-2-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Boats/kayak-2/kayak-2-1200w.jpg",
+        "webp": "Boats/kayak-2/kayak-2-1200w.webp"
+      }
+    ]
+  },
+  "Boats/kayak-2.jpg": {
+    "original": "Boats/kayak-2.jpg",
+    "webp": "Boats/kayak-2.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/kayak-2-400w.jpg",
+        "webp": "Boats/kayak-2-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/kayak-2-800w.jpg",
+        "webp": "Boats/kayak-2-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Boats/kayak-2-1200w.jpg",
+        "webp": "Boats/kayak-2-1200w.webp"
+      }
+    ]
+  },
+  "Boats/sailpunter-3-4.jpg": {
+    "original": "Boats/sailpunter-3-4.jpg",
+    "webp": "Boats/sailpunter-3-4.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/sailpunter-3-4-400w.jpg",
+        "webp": "Boats/sailpunter-3-4-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/sailpunter-3-4-800w.jpg",
+        "webp": "Boats/sailpunter-3-4-800w.webp"
+      }
+    ]
+  },
+  "Boats/sub-1.jpg": {
+    "original": "Boats/sub-1.jpg",
+    "webp": "Boats/sub-1.webp",
+    "variants": []
+  },
+  "Boats/tender-570/170165100030061602092021.jpg": {
+    "original": "Boats/tender-570/170165100030061602092021.jpg",
+    "webp": "Boats/tender-570/170165100030061602092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/170165100030061602092021-400w.jpg",
+        "webp": "Boats/tender-570/170165100030061602092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/170165100030061602092021-800w.jpg",
+        "webp": "Boats/tender-570/170165100030061602092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-570/209200032731061602092021 (1).jpg": {
+    "original": "Boats/tender-570/209200032731061602092021 (1).jpg",
+    "webp": "Boats/tender-570/209200032731061602092021 (1).webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/209200032731061602092021 (1)-400w.jpg",
+        "webp": "Boats/tender-570/209200032731061602092021 (1)-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/209200032731061602092021 (1)-800w.jpg",
+        "webp": "Boats/tender-570/209200032731061602092021 (1)-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-570/27725985231061602092021.jpg": {
+    "original": "Boats/tender-570/27725985231061602092021.jpg",
+    "webp": "Boats/tender-570/27725985231061602092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/27725985231061602092021-400w.jpg",
+        "webp": "Boats/tender-570/27725985231061602092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/27725985231061602092021-800w.jpg",
+        "webp": "Boats/tender-570/27725985231061602092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-570/63307108531061602092021.jpg": {
+    "original": "Boats/tender-570/63307108531061602092021.jpg",
+    "webp": "Boats/tender-570/63307108531061602092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/63307108531061602092021-400w.jpg",
+        "webp": "Boats/tender-570/63307108531061602092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/63307108531061602092021-800w.jpg",
+        "webp": "Boats/tender-570/63307108531061602092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-570/79334617131061602092021.jpg": {
+    "original": "Boats/tender-570/79334617131061602092021.jpg",
+    "webp": "Boats/tender-570/79334617131061602092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/79334617131061602092021-400w.jpg",
+        "webp": "Boats/tender-570/79334617131061602092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/79334617131061602092021-800w.jpg",
+        "webp": "Boats/tender-570/79334617131061602092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-570/90106743031061602092021.jpg": {
+    "original": "Boats/tender-570/90106743031061602092021.jpg",
+    "webp": "Boats/tender-570/90106743031061602092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-570/90106743031061602092021-400w.jpg",
+        "webp": "Boats/tender-570/90106743031061602092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-570/90106743031061602092021-800w.jpg",
+        "webp": "Boats/tender-570/90106743031061602092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/104831747849501502092021.jpg": {
+    "original": "Boats/tender-720/104831747849501502092021.jpg",
+    "webp": "Boats/tender-720/104831747849501502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/104831747849501502092021-400w.jpg",
+        "webp": "Boats/tender-720/104831747849501502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/104831747849501502092021-800w.jpg",
+        "webp": "Boats/tender-720/104831747849501502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/125324337810511502092021.jpg": {
+    "original": "Boats/tender-720/125324337810511502092021.jpg",
+    "webp": "Boats/tender-720/125324337810511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/125324337810511502092021-400w.jpg",
+        "webp": "Boats/tender-720/125324337810511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/125324337810511502092021-800w.jpg",
+        "webp": "Boats/tender-720/125324337810511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/149033913309511502092021.jpg": {
+    "original": "Boats/tender-720/149033913309511502092021.jpg",
+    "webp": "Boats/tender-720/149033913309511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/149033913309511502092021-400w.jpg",
+        "webp": "Boats/tender-720/149033913309511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/149033913309511502092021-800w.jpg",
+        "webp": "Boats/tender-720/149033913309511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/168856508710511502092021 (1).jpg": {
+    "original": "Boats/tender-720/168856508710511502092021 (1).jpg",
+    "webp": "Boats/tender-720/168856508710511502092021 (1).webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/168856508710511502092021 (1)-400w.jpg",
+        "webp": "Boats/tender-720/168856508710511502092021 (1)-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/168856508710511502092021 (1)-800w.jpg",
+        "webp": "Boats/tender-720/168856508710511502092021 (1)-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/168856508710511502092021.jpg": {
+    "original": "Boats/tender-720/168856508710511502092021.jpg",
+    "webp": "Boats/tender-720/168856508710511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/168856508710511502092021-400w.jpg",
+        "webp": "Boats/tender-720/168856508710511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/168856508710511502092021-800w.jpg",
+        "webp": "Boats/tender-720/168856508710511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/192454903409511502092021.jpg": {
+    "original": "Boats/tender-720/192454903409511502092021.jpg",
+    "webp": "Boats/tender-720/192454903409511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/192454903409511502092021-400w.jpg",
+        "webp": "Boats/tender-720/192454903409511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/192454903409511502092021-800w.jpg",
+        "webp": "Boats/tender-720/192454903409511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/193735011109511502092021.jpg": {
+    "original": "Boats/tender-720/193735011109511502092021.jpg",
+    "webp": "Boats/tender-720/193735011109511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/193735011109511502092021-400w.jpg",
+        "webp": "Boats/tender-720/193735011109511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/193735011109511502092021-800w.jpg",
+        "webp": "Boats/tender-720/193735011109511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/24662537210511502092021.jpg": {
+    "original": "Boats/tender-720/24662537210511502092021.jpg",
+    "webp": "Boats/tender-720/24662537210511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/24662537210511502092021-400w.jpg",
+        "webp": "Boats/tender-720/24662537210511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/24662537210511502092021-800w.jpg",
+        "webp": "Boats/tender-720/24662537210511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/51263685510511502092021.jpg": {
+    "original": "Boats/tender-720/51263685510511502092021.jpg",
+    "webp": "Boats/tender-720/51263685510511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/51263685510511502092021-400w.jpg",
+        "webp": "Boats/tender-720/51263685510511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/51263685510511502092021-800w.jpg",
+        "webp": "Boats/tender-720/51263685510511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/60035623109511502092021.jpg": {
+    "original": "Boats/tender-720/60035623109511502092021.jpg",
+    "webp": "Boats/tender-720/60035623109511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/60035623109511502092021-400w.jpg",
+        "webp": "Boats/tender-720/60035623109511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/60035623109511502092021-800w.jpg",
+        "webp": "Boats/tender-720/60035623109511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/90763066509511502092021.jpg": {
+    "original": "Boats/tender-720/90763066509511502092021.jpg",
+    "webp": "Boats/tender-720/90763066509511502092021.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/90763066509511502092021-400w.jpg",
+        "webp": "Boats/tender-720/90763066509511502092021-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/90763066509511502092021-800w.jpg",
+        "webp": "Boats/tender-720/90763066509511502092021-800w.webp"
+      }
+    ]
+  },
+  "Boats/tender-720/tender-720-10-12.jpg": {
+    "original": "Boats/tender-720/tender-720-10-12.jpg",
+    "webp": "Boats/tender-720/tender-720-10-12.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/tender-720/tender-720-10-12-400w.jpg",
+        "webp": "Boats/tender-720/tender-720-10-12-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/tender-720/tender-720-10-12-800w.jpg",
+        "webp": "Boats/tender-720/tender-720-10-12-800w.webp"
+      }
+    ]
+  },
+  "Boats/zeilboot/zeilboot-4-5.jpg": {
+    "original": "Boats/zeilboot/zeilboot-4-5.jpg",
+    "webp": "Boats/zeilboot/zeilboot-4-5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/zeilboot/zeilboot-4-5-400w.jpg",
+        "webp": "Boats/zeilboot/zeilboot-4-5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/zeilboot/zeilboot-4-5-800w.jpg",
+        "webp": "Boats/zeilboot/zeilboot-4-5-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Boats/zeilboot/zeilboot-4-5-1200w.jpg",
+        "webp": "Boats/zeilboot/zeilboot-4-5-1200w.webp"
+      }
+    ]
+  },
+  "Boats/zeilboot-4-5.jpg": {
+    "original": "Boats/zeilboot-4-5.jpg",
+    "webp": "Boats/zeilboot-4-5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/zeilboot-4-5-400w.jpg",
+        "webp": "Boats/zeilboot-4-5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/zeilboot-4-5-800w.jpg",
+        "webp": "Boats/zeilboot-4-5-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Boats/zeilboot-4-5-1200w.jpg",
+        "webp": "Boats/zeilboot-4-5-1200w.webp"
+      }
+    ]
+  },
+  "Boats/zeilpunter/109252711110511012042019.jpg": {
+    "original": "Boats/zeilpunter/109252711110511012042019.jpg",
+    "webp": "Boats/zeilpunter/109252711110511012042019.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/zeilpunter/109252711110511012042019-400w.jpg",
+        "webp": "Boats/zeilpunter/109252711110511012042019-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/zeilpunter/109252711110511012042019-800w.jpg",
+        "webp": "Boats/zeilpunter/109252711110511012042019-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Boats/zeilpunter/109252711110511012042019-1200w.jpg",
+        "webp": "Boats/zeilpunter/109252711110511012042019-1200w.webp"
+      }
+    ]
+  },
+  "Boats/zeilpunter/55025709223531328012021.jpg": {
+    "original": "Boats/zeilpunter/55025709223531328012021.jpg",
+    "webp": "Boats/zeilpunter/55025709223531328012021.webp",
+    "variants": []
+  },
+  "Boats/zeilpunter/sailpunter-3-4.jpg": {
+    "original": "Boats/zeilpunter/sailpunter-3-4.jpg",
+    "webp": "Boats/zeilpunter/sailpunter-3-4.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Boats/zeilpunter/sailpunter-3-4-400w.jpg",
+        "webp": "Boats/zeilpunter/sailpunter-3-4-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Boats/zeilpunter/sailpunter-3-4-800w.jpg",
+        "webp": "Boats/zeilpunter/sailpunter-3-4-800w.webp"
+      }
+    ]
+  },
+  "Giethoorn/Giethoorn1.png": {
+    "original": "Giethoorn/Giethoorn1.png",
+    "webp": "Giethoorn/Giethoorn1.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Giethoorn/Giethoorn1-400w.png",
+        "webp": "Giethoorn/Giethoorn1-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Giethoorn/Giethoorn1-800w.png",
+        "webp": "Giethoorn/Giethoorn1-800w.webp"
+      }
+    ]
+  },
+  "Giethoorn/giethoorn2.png": {
+    "original": "Giethoorn/giethoorn2.png",
+    "webp": "Giethoorn/giethoorn2.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Giethoorn/giethoorn2-400w.png",
+        "webp": "Giethoorn/giethoorn2-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Giethoorn/giethoorn2-800w.png",
+        "webp": "Giethoorn/giethoorn2-800w.webp"
+      }
+    ]
+  },
+  "Giethoorn/giethoorn3.jpeg": {
+    "original": "Giethoorn/giethoorn3.jpeg",
+    "webp": "Giethoorn/giethoorn3.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Giethoorn/giethoorn3-400w.jpeg",
+        "webp": "Giethoorn/giethoorn3-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Giethoorn/giethoorn3-800w.jpeg",
+        "webp": "Giethoorn/giethoorn3-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Giethoorn/giethoorn3-1200w.jpeg",
+        "webp": "Giethoorn/giethoorn3-1200w.webp"
+      },
+      {
+        "width": 1920,
+        "original": "Giethoorn/giethoorn3-1920w.jpeg",
+        "webp": "Giethoorn/giethoorn3-1920w.webp"
+      }
+    ]
+  },
+  "Giethoorn/giethoorn4.jpeg": {
+    "original": "Giethoorn/giethoorn4.jpeg",
+    "webp": "Giethoorn/giethoorn4.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Giethoorn/giethoorn4-400w.jpeg",
+        "webp": "Giethoorn/giethoorn4-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Giethoorn/giethoorn4-800w.jpeg",
+        "webp": "Giethoorn/giethoorn4-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Giethoorn/giethoorn4-1200w.jpeg",
+        "webp": "Giethoorn/giethoorn4-1200w.webp"
+      },
+      {
+        "width": 1920,
+        "original": "Giethoorn/giethoorn4-1920w.jpeg",
+        "webp": "Giethoorn/giethoorn4-1920w.webp"
+      }
+    ]
+  },
+  "Giethoorn/giethoorn5.jpeg": {
+    "original": "Giethoorn/giethoorn5.jpeg",
+    "webp": "Giethoorn/giethoorn5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Giethoorn/giethoorn5-400w.jpeg",
+        "webp": "Giethoorn/giethoorn5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Giethoorn/giethoorn5-800w.jpeg",
+        "webp": "Giethoorn/giethoorn5-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Giethoorn/giethoorn5-1200w.jpeg",
+        "webp": "Giethoorn/giethoorn5-1200w.webp"
+      },
+      {
+        "width": 1920,
+        "original": "Giethoorn/giethoorn5-1920w.jpeg",
+        "webp": "Giethoorn/giethoorn5-1920w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/1.jpg": {
+    "original": "Vakantiehuis/1.jpg",
+    "webp": "Vakantiehuis/1.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/1-400w.jpg",
+        "webp": "Vakantiehuis/1-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/1-800w.jpg",
+        "webp": "Vakantiehuis/1-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/10.jpg": {
+    "original": "Vakantiehuis/10.jpg",
+    "webp": "Vakantiehuis/10.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/10-400w.jpg",
+        "webp": "Vakantiehuis/10-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/10-800w.jpg",
+        "webp": "Vakantiehuis/10-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/11.jpg": {
+    "original": "Vakantiehuis/11.jpg",
+    "webp": "Vakantiehuis/11.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/11-400w.jpg",
+        "webp": "Vakantiehuis/11-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/11-800w.jpg",
+        "webp": "Vakantiehuis/11-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/12.jpg": {
+    "original": "Vakantiehuis/12.jpg",
+    "webp": "Vakantiehuis/12.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/12-400w.jpg",
+        "webp": "Vakantiehuis/12-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/12-800w.jpg",
+        "webp": "Vakantiehuis/12-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/13.jpg": {
+    "original": "Vakantiehuis/13.jpg",
+    "webp": "Vakantiehuis/13.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/13-400w.jpg",
+        "webp": "Vakantiehuis/13-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/13-800w.jpg",
+        "webp": "Vakantiehuis/13-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/14.jpg": {
+    "original": "Vakantiehuis/14.jpg",
+    "webp": "Vakantiehuis/14.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/14-400w.jpg",
+        "webp": "Vakantiehuis/14-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/14-800w.jpg",
+        "webp": "Vakantiehuis/14-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/15.jpg": {
+    "original": "Vakantiehuis/15.jpg",
+    "webp": "Vakantiehuis/15.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/15-400w.jpg",
+        "webp": "Vakantiehuis/15-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/15-800w.jpg",
+        "webp": "Vakantiehuis/15-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "Vakantiehuis/15-1200w.jpg",
+        "webp": "Vakantiehuis/15-1200w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/16.jpg": {
+    "original": "Vakantiehuis/16.jpg",
+    "webp": "Vakantiehuis/16.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/16-400w.jpg",
+        "webp": "Vakantiehuis/16-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/16-800w.jpg",
+        "webp": "Vakantiehuis/16-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/17.jpg": {
+    "original": "Vakantiehuis/17.jpg",
+    "webp": "Vakantiehuis/17.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/17-400w.jpg",
+        "webp": "Vakantiehuis/17-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/17-800w.jpg",
+        "webp": "Vakantiehuis/17-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/2.jpg": {
+    "original": "Vakantiehuis/2.jpg",
+    "webp": "Vakantiehuis/2.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/2-400w.jpg",
+        "webp": "Vakantiehuis/2-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/2-800w.jpg",
+        "webp": "Vakantiehuis/2-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/3.jpg": {
+    "original": "Vakantiehuis/3.jpg",
+    "webp": "Vakantiehuis/3.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/3-400w.jpg",
+        "webp": "Vakantiehuis/3-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/3-800w.jpg",
+        "webp": "Vakantiehuis/3-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/4.jpg": {
+    "original": "Vakantiehuis/4.jpg",
+    "webp": "Vakantiehuis/4.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/4-400w.jpg",
+        "webp": "Vakantiehuis/4-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/4-800w.jpg",
+        "webp": "Vakantiehuis/4-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/5.jpg": {
+    "original": "Vakantiehuis/5.jpg",
+    "webp": "Vakantiehuis/5.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/5-400w.jpg",
+        "webp": "Vakantiehuis/5-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/5-800w.jpg",
+        "webp": "Vakantiehuis/5-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/6.jpg": {
+    "original": "Vakantiehuis/6.jpg",
+    "webp": "Vakantiehuis/6.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/6-400w.jpg",
+        "webp": "Vakantiehuis/6-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/6-800w.jpg",
+        "webp": "Vakantiehuis/6-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/7.jpg": {
+    "original": "Vakantiehuis/7.jpg",
+    "webp": "Vakantiehuis/7.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/7-400w.jpg",
+        "webp": "Vakantiehuis/7-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/7-800w.jpg",
+        "webp": "Vakantiehuis/7-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/8.jpg": {
+    "original": "Vakantiehuis/8.jpg",
+    "webp": "Vakantiehuis/8.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/8-400w.jpg",
+        "webp": "Vakantiehuis/8-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/8-800w.jpg",
+        "webp": "Vakantiehuis/8-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/9.jpg": {
+    "original": "Vakantiehuis/9.jpg",
+    "webp": "Vakantiehuis/9.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/9-400w.jpg",
+        "webp": "Vakantiehuis/9-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/9-800w.jpg",
+        "webp": "Vakantiehuis/9-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/vakantiehuis_belterwiede.jpg": {
+    "original": "Vakantiehuis/vakantiehuis_belterwiede.jpg",
+    "webp": "Vakantiehuis/vakantiehuis_belterwiede.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede-400w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede-800w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/vakantiehuis_belterwiede_1.jpg": {
+    "original": "Vakantiehuis/vakantiehuis_belterwiede_1.jpg",
+    "webp": "Vakantiehuis/vakantiehuis_belterwiede_1.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede_1-400w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede_1-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede_1-800w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede_1-800w.webp"
+      }
+    ]
+  },
+  "Vakantiehuis/vakantiehuis_belterwiede_2.jpg": {
+    "original": "Vakantiehuis/vakantiehuis_belterwiede_2.jpg",
+    "webp": "Vakantiehuis/vakantiehuis_belterwiede_2.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede_2-400w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede_2-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "Vakantiehuis/vakantiehuis_belterwiede_2-800w.jpg",
+        "webp": "Vakantiehuis/vakantiehuis_belterwiede_2-800w.webp"
+      }
+    ]
+  },
+  "Wanneperveen/beulakerwijde-view.jpg": {
+    "original": "Wanneperveen/beulakerwijde-view.jpg",
+    "webp": "Wanneperveen/beulakerwijde-view.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Wanneperveen/beulakerwijde-view-400w.jpg",
+        "webp": "Wanneperveen/beulakerwijde-view-400w.webp"
+      }
+    ]
+  },
+  "Wanneperveen/consoleboat-wanneperveen.jpg": {
+    "original": "Wanneperveen/consoleboat-wanneperveen.jpg",
+    "webp": "Wanneperveen/consoleboat-wanneperveen.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Wanneperveen/consoleboat-wanneperveen-400w.jpg",
+        "webp": "Wanneperveen/consoleboat-wanneperveen-400w.webp"
+      }
+    ]
+  },
+  "Wanneperveen/fluisterboot-wanneperveen.jpg": {
+    "original": "Wanneperveen/fluisterboot-wanneperveen.jpg",
+    "webp": "Wanneperveen/fluisterboot-wanneperveen.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Wanneperveen/fluisterboot-wanneperveen-400w.jpg",
+        "webp": "Wanneperveen/fluisterboot-wanneperveen-400w.webp"
+      }
+    ]
+  },
+  "Wanneperveen/giethoorn-route-wanneperveen.jpg": {
+    "original": "Wanneperveen/giethoorn-route-wanneperveen.jpg",
+    "webp": "Wanneperveen/giethoorn-route-wanneperveen.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Wanneperveen/giethoorn-route-wanneperveen-400w.jpg",
+        "webp": "Wanneperveen/giethoorn-route-wanneperveen-400w.webp"
+      }
+    ]
+  },
+  "Wanneperveen/wanneperveen-nature.jpg": {
+    "original": "Wanneperveen/wanneperveen-nature.jpg",
+    "webp": "Wanneperveen/wanneperveen-nature.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "Wanneperveen/wanneperveen-nature-400w.jpg",
+        "webp": "Wanneperveen/wanneperveen-nature-400w.webp"
+      }
+    ]
+  },
+  "banner-img.jpg": {
+    "original": "banner-img.jpg",
+    "webp": "banner-img.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "banner-img-400w.jpg",
+        "webp": "banner-img-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "banner-img-800w.jpg",
+        "webp": "banner-img-800w.webp"
+      }
+    ]
+  },
+  "belterwijde.jpg": {
+    "original": "belterwijde.jpg",
+    "webp": "belterwijde.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "belterwijde-400w.jpg",
+        "webp": "belterwijde-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "belterwijde-800w.jpg",
+        "webp": "belterwijde-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "belterwijde-1200w.jpg",
+        "webp": "belterwijde-1200w.webp"
+      }
+    ]
+  },
+  "blog/blog_1775122347_5d64cca6129b3493.png": {
+    "original": "blog/blog_1775122347_5d64cca6129b3493.png",
+    "webp": "blog/blog_1775122347_5d64cca6129b3493.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "blog/blog_1775122347_5d64cca6129b3493-400w.png",
+        "webp": "blog/blog_1775122347_5d64cca6129b3493-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "blog/blog_1775122347_5d64cca6129b3493-800w.png",
+        "webp": "blog/blog_1775122347_5d64cca6129b3493-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "blog/blog_1775122347_5d64cca6129b3493-1200w.png",
+        "webp": "blog/blog_1775122347_5d64cca6129b3493-1200w.webp"
+      }
+    ]
+  },
+  "blog/blog_1775122499_7fef4a2dc6eec1a3.png": {
+    "original": "blog/blog_1775122499_7fef4a2dc6eec1a3.png",
+    "webp": "blog/blog_1775122499_7fef4a2dc6eec1a3.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "blog/blog_1775122499_7fef4a2dc6eec1a3-400w.png",
+        "webp": "blog/blog_1775122499_7fef4a2dc6eec1a3-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "blog/blog_1775122499_7fef4a2dc6eec1a3-800w.png",
+        "webp": "blog/blog_1775122499_7fef4a2dc6eec1a3-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "blog/blog_1775122499_7fef4a2dc6eec1a3-1200w.png",
+        "webp": "blog/blog_1775122499_7fef4a2dc6eec1a3-1200w.webp"
+      }
+    ]
+  },
+  "blog/blog_1775122532_6099a3dd734cfdfe.png": {
+    "original": "blog/blog_1775122532_6099a3dd734cfdfe.png",
+    "webp": "blog/blog_1775122532_6099a3dd734cfdfe.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "blog/blog_1775122532_6099a3dd734cfdfe-400w.png",
+        "webp": "blog/blog_1775122532_6099a3dd734cfdfe-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "blog/blog_1775122532_6099a3dd734cfdfe-800w.png",
+        "webp": "blog/blog_1775122532_6099a3dd734cfdfe-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "blog/blog_1775122532_6099a3dd734cfdfe-1200w.png",
+        "webp": "blog/blog_1775122532_6099a3dd734cfdfe-1200w.webp"
+      }
+    ]
+  },
+  "logo-white.png": {
+    "original": "logo-white.png",
+    "webp": "logo-white.webp",
+    "variants": []
+  },
+  "new-hero.jpeg": {
+    "original": "new-hero.jpeg",
+    "webp": "new-hero.webp",
+    "variants": [
+      {
+        "width": 400,
+        "original": "new-hero-400w.jpeg",
+        "webp": "new-hero-400w.webp"
+      },
+      {
+        "width": 800,
+        "original": "new-hero-800w.jpeg",
+        "webp": "new-hero-800w.webp"
+      },
+      {
+        "width": 1200,
+        "original": "new-hero-1200w.jpeg",
+        "webp": "new-hero-1200w.webp"
+      }
+    ]
+  }
+}

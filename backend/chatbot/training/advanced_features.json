@@ -1,0 +1,649 @@
+{
+  "hoe kan ik mijn bestelling annuleren?": {
+    "features": {
+      "basic": {
+        "length": 37,
+        "word_count": 6,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "nl"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "ADV",
+          "AUX",
+          "PRON",
+          "PRON",
+          "NOUN",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "hoe",
+          "kunnen",
+          "ik",
+          "mijn",
+          "bestelling",
+          "annuleren",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "U kunt uw bestelling annuleren door contact op te nemen met onze klantenservice.",
+      "corrected": "U kunt uw bestelling annuleren door contact op te nemen met onze klantenservice.",
+      "language": "nl",
+      "response_type": "cancellation",
+      "timestamp": "2025-09-10T16:51:46.940114",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "wat is de levertijd?": {
+    "features": {
+      "basic": {
+        "length": 20,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "PRON",
+          "AUX",
+          "DET",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "wat",
+          "zijn",
+          "de",
+          "levertijd",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "De levertijd is meestal 2-3 werkdagen binnen Nederland.",
+      "corrected": "De levertijd is meestal 2-3 werkdagen binnen Nederland.",
+      "language": "nl",
+      "response_type": "shipping",
+      "timestamp": "2025-09-10T16:51:46.940134",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "hoe kan ik betalen?": {
+    "features": {
+      "basic": {
+        "length": 19,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "nl"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "ADV",
+          "AUX",
+          "PRON",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "hoe",
+          "kunnen",
+          "ik",
+          "betalen",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "U kunt betalen met iDEAL, creditcard of PayPal.",
+      "corrected": "U kunt betalen met iDEAL, creditcard of PayPal.",
+      "language": "nl",
+      "response_type": "payment",
+      "timestamp": "2025-09-10T16:51:46.940138",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "is er een garantie?": {
+    "features": {
+      "basic": {
+        "length": 19,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "nl"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "VERB",
+          "ADV",
+          "DET",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "zijn",
+          "er",
+          "een",
+          "garantie",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Ja, alle producten hebben 2 jaar garantie.",
+      "corrected": "Ja, alle producten hebben 2 jaar garantie.",
+      "language": "nl",
+      "response_type": "warranty",
+      "timestamp": "2025-09-10T16:51:46.940142",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "kan ik mijn bestelling retourneren?": {
+    "features": {
+      "basic": {
+        "length": 35,
+        "word_count": 5,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "AUX",
+          "PRON",
+          "PRON",
+          "NOUN",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "kunnen",
+          "ik",
+          "mijn",
+          "bestelling",
+          "retourneren",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Ja, u heeft 14 dagen bedenktijd om uw bestelling retour te sturen.",
+      "corrected": "Ja, u heeft 14 dagen bedenktijd om uw bestelling retour te sturen.",
+      "language": "nl",
+      "response_type": "returns",
+      "timestamp": "2025-09-10T16:51:46.940146",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "wie kann ich meine bestellung stornieren?": {
+    "features": {
+      "basic": {
+        "length": 41,
+        "word_count": 6,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [
+          [
+            "ich meine",
+            "GPE"
+          ]
+        ],
+        "pos_tags": [
+          "PRON",
+          "SYM",
+          "SYM",
+          "ADJ",
+          "NOUN",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "wie",
+          "kann",
+          "ich",
+          "meine",
+          "bestellung",
+          "stornieren",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Sie können Ihre Bestellung stornieren, indem Sie unseren Kundenservice kontaktieren.",
+      "corrected": "Sie können Ihre Bestellung stornieren, indem Sie unseren Kundenservice kontaktieren.",
+      "language": "de",
+      "response_type": "cancellation",
+      "timestamp": "2025-09-10T16:51:46.940149",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "wie lange dauert die lieferung?": {
+    "features": {
+      "basic": {
+        "length": 31,
+        "word_count": 5,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "de"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "PRON",
+          "ADJ",
+          "VERB",
+          "DET",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "wie",
+          "lang",
+          "dauren",
+          "die",
+          "lieferung",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Die Lieferzeit beträgt normalerweise 2-3 Werktage innerhalb Deutschlands.",
+      "corrected": "Die Lieferzeit beträgt normalerweise 2-3 Werktage innerhalb Deutschlands.",
+      "language": "de",
+      "response_type": "shipping",
+      "timestamp": "2025-09-10T16:51:46.940152",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "wie kann ich bezahlen?": {
+    "features": {
+      "basic": {
+        "length": 22,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "nl"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "PRON",
+          "SYM",
+          "SYM",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "wie",
+          "kann",
+          "ich",
+          "bezahlen",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Sie können mit Kreditkarte, PayPal oder SEPA-Lastschrift bezahlen.",
+      "corrected": "Sie können mit Kreditkarte, PayPal oder SEPA-Lastschrift bezahlen.",
+      "language": "de",
+      "response_type": "payment",
+      "timestamp": "2025-09-10T16:51:46.940156",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "gibt es eine garantie?": {
+    "features": {
+      "basic": {
+        "length": 22,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "NOUN",
+          "DET",
+          "ADJ",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "gibt",
+          "es",
+          "ein",
+          "garantie",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Ja, alle Produkte haben 2 Jahre Garantie.",
+      "corrected": "Ja, alle Produkte haben 2 Jahre Garantie.",
+      "language": "de",
+      "response_type": "warranty",
+      "timestamp": "2025-09-10T16:51:46.940159",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "kann ich meine bestellung zurückgeben?": {
+    "features": {
+      "basic": {
+        "length": 38,
+        "word_count": 5,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "nl"
+      },
+      "linguistic": {
+        "entities": [
+          [
+            "ich",
+            "ORDINAL"
+          ]
+        ],
+        "pos_tags": [
+          "SYM",
+          "SYM",
+          "ADJ",
+          "NOUN",
+          "VERB",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "kann",
+          "ich",
+          "meine",
+          "bestellung",
+          "zurückgeben",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Ja, Sie haben 14 Tage Zeit, um Ihre Bestellung zurückzugeben.",
+      "corrected": "Ja, Sie haben 14 Tage Zeit, um Ihre Bestellung zurückzugeben.",
+      "language": "de",
+      "response_type": "returns",
+      "timestamp": "2025-09-10T16:51:46.940163",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "how can i cancel my order?": {
+    "features": {
+      "basic": {
+        "length": 26,
+        "word_count": 6,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "SYM",
+          "SYM",
+          "SYM",
+          "SYM",
+          "SYM",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "how",
+          "can",
+          "I",
+          "cancel",
+          "my",
+          "order",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "You can cancel your order by contacting our customer service.",
+      "corrected": "You can cancel your order by contacting our customer service.",
+      "language": "en",
+      "response_type": "cancellation",
+      "timestamp": "2025-09-10T16:51:46.940167",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "what is the delivery time?": {
+    "features": {
+      "basic": {
+        "length": 26,
+        "word_count": 5,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "NOUN",
+          "AUX",
+          "SYM",
+          "SYM",
+          "SYM",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "what",
+          "zijn",
+          "the",
+          "delivery",
+          "time",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Delivery time is usually 2-3 business days within the Netherlands.",
+      "corrected": "Delivery time is usually 2-3 business days within the Netherlands.",
+      "language": "en",
+      "response_type": "shipping",
+      "timestamp": "2025-09-10T16:51:46.940170",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "how can i pay?": {
+    "features": {
+      "basic": {
+        "length": 14,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "SYM",
+          "SYM",
+          "SYM",
+          "ADV",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "how",
+          "can",
+          "I",
+          "pay",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "You can pay with iDEAL, credit card, or PayPal.",
+      "corrected": "You can pay with iDEAL, credit card, or PayPal.",
+      "language": "en",
+      "response_type": "payment",
+      "timestamp": "2025-09-10T16:51:46.940173",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "is there a warranty?": {
+    "features": {
+      "basic": {
+        "length": 20,
+        "word_count": 4,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "AUX",
+          "ADJ",
+          "CCONJ",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "zijn",
+          "there",
+          "a",
+          "warranty",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Yes, all products have a 2-year warranty.",
+      "corrected": "Yes, all products have a 2-year warranty.",
+      "language": "en",
+      "response_type": "warranty",
+      "timestamp": "2025-09-10T16:51:46.940176",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  },
+  "can i return my order?": {
+    "features": {
+      "basic": {
+        "length": 22,
+        "word_count": 5,
+        "sentence_count": 2,
+        "has_question": true,
+        "has_exclamation": false,
+        "language": "en"
+      },
+      "linguistic": {
+        "entities": [],
+        "pos_tags": [
+          "SYM",
+          "SYM",
+          "SYM",
+          "SYM",
+          "NOUN",
+          "PUNCT"
+        ],
+        "lemmas": [
+          "can",
+          "I",
+          "return",
+          "my",
+          "order",
+          "?"
+        ],
+        "is_question": true,
+        "sentiment": "neutral"
+      },
+      "semantic": {}
+    },
+    "response_data": {
+      "original": "Yes, you have 14 days to return your order.",
+      "corrected": "Yes, you have 14 days to return your order.",
+      "language": "en",
+      "response_type": "returns",
+      "timestamp": "2025-09-10T16:51:46.940179",
+      "source": "external_multilingual",
+      "confidence": 0.9
+    }
+  }
+}

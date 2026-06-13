@@ -1,0 +1,112 @@
+{
+  "name": "dialogstudio_sample",
+  "source": "synthetic_based_on_dialogstudio_patterns",
+  "language": "multilingual",
+  "conversations": [
+    {
+      "language": "nl",
+      "context": "Begroeting",
+      "user": "Hallo",
+      "assistant": "Hallo! Hoe kan ik u helpen vandaag?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "nl",
+      "context": "Begroeting",
+      "user": "Goedemorgen",
+      "assistant": "Goedemorgen! Waarmee kan ik u van dienst zijn?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "nl",
+      "context": "Vraag stellen",
+      "user": "Ik heb een vraag",
+      "assistant": "Natuurlijk, stel uw vraag gerust. Ik help u graag verder.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "nl",
+      "context": "Bedankt",
+      "user": "Bedankt voor je hulp",
+      "assistant": "Graag gedaan! Als u nog vragen heeft, help ik u graag verder.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "nl",
+      "context": "Afscheid",
+      "user": "Tot ziens",
+      "assistant": "Tot ziens! Ik wens u een fijne dag.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "en",
+      "context": "Greeting",
+      "user": "Hello",
+      "assistant": "Hello! How can I help you today?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "en",
+      "context": "Greeting",
+      "user": "Good morning",
+      "assistant": "Good morning! How can I assist you?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "en",
+      "context": "Question",
+      "user": "I have a question",
+      "assistant": "Of course, feel free to ask. I am happy to help.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "en",
+      "context": "Thanks",
+      "user": "Thanks for your help",
+      "assistant": "You are welcome! If you have more questions, I am happy to help.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "en",
+      "context": "Farewell",
+      "user": "Goodbye",
+      "assistant": "Goodbye! Have a nice day.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "de",
+      "context": "Begrüßung",
+      "user": "Hallo",
+      "assistant": "Hallo! Wie kann ich Ihnen heute helfen?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "de",
+      "context": "Begrüßung",
+      "user": "Guten Morgen",
+      "assistant": "Guten Morgen! Wie kann ich Ihnen helfen?",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "de",
+      "context": "Frage",
+      "user": "Ich habe eine Frage",
+      "assistant": "Natürlich, stellen Sie Ihre Frage gerne. Ich helfe Ihnen gerne weiter.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "de",
+      "context": "Dank",
+      "user": "Danke für Ihre Hilfe",
+      "assistant": "Gern geschehen! Wenn Sie weitere Fragen haben, helfe ich Ihnen gerne weiter.",
+      "source": "dialogstudio_patterns"
+    },
+    {
+      "language": "de",
+      "context": "Abschied",
+      "user": "Auf Wiedersehen",
+      "assistant": "Auf Wiedersehen! Einen schönen Tag noch.",
+      "source": "dialogstudio_patterns"
+    }
+  ]
+}

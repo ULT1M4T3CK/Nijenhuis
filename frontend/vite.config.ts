@@ -1,37 +1,41 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 export default defineConfig({
-  root: '.',
+  root: '..',
   publicDir: 'public',
   build: {
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: 'src/pages/index.html',
-        botenverhuur: 'src/pages/botenverhuur.html',
-        camping: 'src/pages/camping.html',
-        contact: 'src/pages/contact.html',
-        jachthaven: 'src/pages/jachthaven.html',
-        paymentSuccess: 'src/pages/payment-success.html',
-        paymentSimulation: 'src/pages/payment-simulation.html',
-        teKoop: 'src/pages/te-koop.html',
-        vakantiehuis: 'src/pages/vakantiehuis.html',
-        vaarkaart: 'src/pages/vaarkaart.html',
-        adminLogin: 'src/pages/admin-login.html',
-        admin: 'src/pages/admin/admin-simple.html'
+        main: 'pages/index.html',
+        botenverhuur: 'pages/botenverhuur.html',
+        camping: 'pages/camping.html',
+        contact: 'pages/contact.html',
+        booking: 'pages/booking.html',
+        paymentSuccess: 'pages/payment-success.html',
+        paymentFailure: 'pages/payment-failure.html',
+        offline: 'pages/offline.html',
+        teKoop: 'pages/te-koop.html',
+        vakantiehuis: 'pages/vakantiehuis.html',
+        vaarkaart: 'pages/vaarkaart.html',
+        adminLogin: 'pages/admin-login.html'
       }
     },
     assetsDir: 'assets',
-    sourcemap: true
+    sourcemap: process.env.NODE_ENV !== 'production'
   },
   server: {
+    port: 8888,
+    host: '0.0.0.0',
+    open: '/pages/index.html',
     proxy: {
       '/api': {
         target: 'http://localhost:5001',
         changeOrigin: true,
-        secure: false,
+        secure: false
       }
     }
-  }
+  },
+  envPrefix: 'VITE_'
 });
-

@@ -1,0 +1,17 @@
+{
+  "name": "Bitext Customer Support",
+  "source": "Hugging Face",
+  "total_samples": 0,
+  "original_samples": 26872,
+  "cleaning_stats": {
+    "total": 26872,
+    "empty_question": 26872,
+    "empty_answer": 0,
+    "too_short_question": 0,
+    "too_short_answer": 0,
+    "too_long_question": 0,
+    "too_long_answer": 0,
+    "valid": 0
+  },
+  "samples": []
+}

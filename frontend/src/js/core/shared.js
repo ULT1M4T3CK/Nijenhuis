@@ -1,6 +1,33 @@
 // Shared JavaScript functionality for Nijenhuis website
 
+// SECURITY: One-time cleanup of legacy PII cached in localStorage. Older
+// versions of this site stored full customer bookings (name, email, phone,
+// address, notes) under `nijenhuis_bookings`. That data is now served from
+// the backend only; remove any leftover entries from previous sessions so
+// an attacker exploiting a future XSS can't read historical PII.
+(function () {
+    try {
+        if (localStorage.getItem('nijenhuis_bookings') !== null) {
+            localStorage.removeItem('nijenhuis_bookings');
+        }
+    } catch (e) { /* storage unavailable */ }
+})();
+
 // Mobile Menu Functionality
+function setMobileMenuOpen(isOpen) {
+    const navMenu = document.querySelector('.nav-menu');
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    if (!navMenu) {
+        return;
+    }
+    navMenu.classList.toggle('active', isOpen);
+    document.body.classList.toggle('nav-menu-open', isOpen);
+    if (mobileToggle) {
+        mobileToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+    updateMobileMenuIcon();
+}
+
 function setupMobileMenu() {
     const mobileToggle = document.getElementById('mobileMenuToggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -17,43 +44,34 @@ function setupMobileMenu() {
         console.log('Toggle menu called', e.type);
         e.preventDefault();
         e.stopPropagation();
-        const isActive = navMenu.classList.contains('active');
-        navMenu.classList.toggle('active');
-        mobileToggle.setAttribute('aria-expanded', !isActive);
-        updateMobileMenuIcon();
-        console.log('Menu toggled, active:', !isActive);
+        setMobileMenuOpen(!navMenu.classList.contains('active'));
+        console.log('Menu toggled, active:', navMenu.classList.contains('active'));
     };
 
     // Remove any existing event listeners by cloning the element
     const newMobileToggle = mobileToggle.cloneNode(true);
     mobileToggle.parentNode.replaceChild(newMobileToggle, mobileToggle);
-    
+
     // Add event listeners to the new element
     newMobileToggle.addEventListener('click', toggleMenu);
     newMobileToggle.addEventListener('touchend', toggleMenu);
-    
+
     // Also add touchstart to prevent any issues
     newMobileToggle.addEventListener('touchstart', (e) => {
         e.preventDefault();
     });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
+    const closeMenuIfOutside = (e) => {
         if (!newMobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            newMobileToggle.setAttribute('aria-expanded', 'false');
-            updateMobileMenuIcon();
+            setMobileMenuOpen(false);
         }
-    });
+    };
+
+    // Close menu when clicking outside
+    document.addEventListener('click', closeMenuIfOutside);
 
     // Close menu when touching outside (for mobile)
-    document.addEventListener('touchend', (e) => {
-        if (!newMobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            newMobileToggle.setAttribute('aria-expanded', 'false');
-            updateMobileMenuIcon();
-        }
-    });
+    document.addEventListener('touchend', closeMenuIfOutside);
 
     console.log('Mobile menu setup complete');
 }
@@ -66,7 +84,7 @@ function updateMobileMenuIcon() {
 
     // Find the existing SVG element
     const existingSvg = mobileToggle.querySelector('svg');
-    
+
     if (navMenu.classList.contains('active')) {
         // Change to close icon (X)
         if (existingSvg) {
@@ -84,6 +102,37 @@ function updateMobileMenuIcon() {
             existingSvg.appendChild(path);
         }
     }
+}
+
+// Nav "More" Dropdown
+function setupNavMoreDropdown() {
+    const trigger = document.getElementById('navMoreTrigger');
+    const dropdown = document.getElementById('navMoreDropdown');
+    const wrapper = document.querySelector('.nav-dropdown-wrapper');
+
+    if (!trigger || !dropdown || !wrapper) return;
+
+    trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = wrapper.classList.contains('active');
+        wrapper.classList.toggle('active');
+        trigger.setAttribute('aria-expanded', !isOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            wrapper.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 // Chat Widget Functionality
@@ -161,7 +210,7 @@ function setupChatWidget() {
         if (message) {
             addMessage(message, 'user');
             chatInput.value = '';
-            
+
             // Simulate bot response
             setTimeout(() => {
                 addMessage('Bedankt voor uw bericht. We nemen zo snel mogelijk contact met u op.', 'bot');
@@ -224,11 +273,20 @@ function showNotification(message, type = 'info') {
 // Form Handling
 function setupForms() {
     const forms = document.querySelectorAll('form');
-    
+
     forms.forEach(form => {
         form.addEventListener('submit', (e) => {
+            // Skip booking form - it handles its own state
+            if (form.id === 'bookingForm') {
+                return;
+            }
+            
             const submitBtn = form.querySelector('button[type="submit"]');
             if (submitBtn) {
+                // Store original text if not already stored
+                if (!submitBtn.dataset.originalText) {
+                    submitBtn.dataset.originalText = submitBtn.textContent || submitBtn.innerText;
+                }
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Versturen...';
             }
@@ -238,30 +296,111 @@ function setupForms() {
 
 // --- Removed language switching and translation system code ---
 
-    // Initialize all functionality when DOM is loaded
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM loaded, setting up mobile menu...');
-        setupMobileMenu();
-        setupChatWidget();
-        setupForms();
-        
-        // Test mobile menu functionality
-        setTimeout(() => {
-            const mobileToggle = document.getElementById('mobileMenuToggle');
-            const navMenu = document.querySelector('.nav-menu');
-            console.log('Mobile menu test:', {
-                mobileToggle: mobileToggle,
-                navMenu: navMenu,
-                mobileToggleVisible: mobileToggle ? window.getComputedStyle(mobileToggle).display : 'not found',
-                navMenuVisible: navMenu ? window.getComputedStyle(navMenu).display : 'not found'
-            });
-        }, 1000);
-    });
+// Service Worker Registration
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        // Register service worker after page loads
+        window.addEventListener('load', () => {
+            // Always use absolute path to avoid path resolution issues
+            const swPath = '/frontend/public/sw.js';
+            const swUrl = new URL(swPath, window.location.origin).href;
+            
+            navigator.serviceWorker.register(swUrl, {
+                scope: '/' // Register for entire site
+            })
+                .then((registration) => {
+                    console.log('✅ Service Worker registered:', registration.scope);
+                    
+                    // Check for updates periodically (every hour)
+                    setInterval(() => {
+                        registration.update();
+                    }, 60 * 60 * 1000);
+                    
+                    // Handle service worker updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        if (newWorker) {
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed') {
+                                    if (navigator.serviceWorker.controller) {
+                                        // New service worker available, force reload
+                                        console.log('🔄 New service worker available. Reloading page...');
+                                        window.location.reload();
+                                    } else {
+                                        // First time installation
+                                        console.log('✅ Service Worker installed for the first time');
+                                    }
+                                }
+                            });
+                        }
+                    });
+                    
+                    // Listen for controller changes (when new SW takes control)
+                    navigator.serviceWorker.addEventListener('controllerchange', () => {
+                        console.log('🔄 Service Worker controller changed, reloading...');
+                        window.location.reload();
+                    });
+                })
+                .catch((error) => {
+                    console.warn('Service Worker registration failed:', error);
+                    // Don't show error to user - service worker is optional
+                });
+        });
+    } else {
+        console.log('Service Worker not supported in this browser');
+    }
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, setting up mobile menu...');
+    setupMobileMenu();
+    setupNavMoreDropdown();
+    setupChatWidget();
+    setupForms();
+    registerServiceWorker(); // Register service worker
+
+    // Test mobile menu functionality
+    setTimeout(() => {
+        const mobileToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.querySelector('.nav-menu');
+        console.log('Mobile menu test:', {
+            mobileToggle: mobileToggle,
+            navMenu: navMenu,
+            mobileToggleVisible: mobileToggle ? window.getComputedStyle(mobileToggle).display : 'not found',
+            navMenuVisible: navMenu ? window.getComputedStyle(navMenu).display : 'not found'
+        });
+    }, 1000);
+});
 
 // Export functions for use in other scripts
 window.NijenhuisShared = {
     setupMobileMenu,
+    setupNavMoreDropdown,
     setupChatWidget,
     showNotification,
     setupForms
+};
+
+// Centralized Application Configuration
+window.AppConfig = {
+    /**
+     * Detects the appropriate API endpoint based on the current environment.
+     * Handles transitions between local development (PHP or Python) and production.
+     * 
+     * @param {string} scriptName - The name of the PHP script (e.g., 'booking-handler.php')
+     * @returns {string} The full URL to the endpoint
+     */
+    detectServerEndpoint: function (scriptName = 'booking-handler.php') {
+        const isLocalPy = window.location.hostname === 'localhost' && window.location.port === '8000';
+        const isFileProtocol = window.location.protocol === 'file:';
+
+        if (isLocalPy || isFileProtocol) {
+            // Fallback for Python local dev server or direct file access
+            return 'http://localhost:8000/admin/' + scriptName.replace('.php', '.py');
+        }
+
+        // Standard PHP environment
+        return window.location.origin + '/admin/' + scriptName;
+    }
 }; 

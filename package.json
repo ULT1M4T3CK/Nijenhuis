@@ -4,23 +4,15 @@
   "description": "Modern boat rental website for Nijenhuis in the Weerribben nature reserve",
   "main": "index.html",
   "scripts": {
-    "dev": "live-server --port=3000 --open=/en/",
-    "build": "npm run build:css && npm run build:js && npm run build:images",
-    "build:css": "postcss styles.css -o dist/styles.min.css",
-    "build:js": "esbuild script.js --bundle --minify --outfile=dist/script.min.js",
-    "build:images": "imagemin images/* --out-dir=dist/images",
-    "lint": "eslint script.js",
-    "lint:css": "stylelint styles.css",
-    "format": "prettier --write \"**/*.{js,css,html,json}\"",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "audit": "npm audit && npm audit fix",
-    "lighthouse": "lighthouse https://nijenhuis-botenverhuur.com/en/ --output=html --output-path=./lighthouse-report.html",
-    "pwa:generate": "pwa-asset-generator logo.svg ./images/icons",
-    "deploy": "npm run build && rsync -avz dist/ user@server:/var/www/nijenhuis/",
-    "analyze": "webpack-bundle-analyzer dist/script.min.js",
-    "performance": "npm run lighthouse && npm run analyze"
+    "dev": "php -S localhost:8888 router.php",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build:frontend": "cd frontend && npm run build",
+    "minify": "npm run minify:css && npm run minify:js",
+    "minify:css": "npx cleancss -o frontend/css/styles.min.css frontend/css/styles.css && npx cleancss -o frontend/css/pages/boats.min.css frontend/css/pages/boats.css && npx cleancss -o frontend/css/pages/destination-pages.min.css frontend/css/pages/destination-pages.css && npx cleancss -o frontend/css/pages/vaarkaart.min.css frontend/css/pages/vaarkaart.css && npx cleancss -o frontend/css/pages/booking.min.css frontend/css/pages/booking.css && npx cleancss -o frontend/css/pages/home.min.css frontend/css/pages/home.css && npx cleancss -o frontend/css/pages/faq.min.css frontend/css/pages/faq.css && npx cleancss -o js/booking-system.min.css js/booking-system.css && npx cleancss -o pages/pages-consolidated.min.css pages/pages-consolidated.css",
+    "minify:js": "npx terser mollie_api.js -o mollie_api.min.js -c -m && npx terser frontend/src/js/core/security.js -o frontend/src/js/core/security.min.js -c -m && npx terser frontend/src/js/core/shared.js -o frontend/src/js/core/shared.min.js -c -m && npx terser frontend/src/js/core/translation-core.js -o frontend/src/js/core/translation-core.min.js -c -m && npx terser frontend/src/js/booking/mollie-payment.js -o frontend/src/js/booking/mollie-payment.min.js -c -m && npx terser frontend/src/js/booking/cart.js -o frontend/src/js/booking/cart.min.js -c -m && npx terser frontend/src/js/hooks/useBoatData.js -o frontend/src/js/hooks/useBoatData.min.js -c -m && npx terser frontend/src/js/hooks/useBookingAvailability.js -o frontend/src/js/hooks/useBookingAvailability.min.js -c -m && npx terser frontend/src/js/pages/home.js -o frontend/src/js/pages/home.min.js -c -m && npx terser frontend/src/js/pages/booking.js -o frontend/src/js/pages/booking.min.js -c -m && npx terser frontend/src/js/pages/boats.js -o frontend/src/js/pages/boats.min.js -c -m && npx terser frontend/src/js/pages/te-koop.js -o frontend/src/js/pages/te-koop.min.js -c -m && npx terser frontend/src/js/pages/faq-prices.js -o frontend/src/js/pages/faq-prices.min.js -c -m && npx terser js/boat-data-service.js -o js/boat-data-service.min.js -c -m && npx terser js/for-sale-data-service.js -o js/for-sale-data-service.min.js -c -m",
+    "images:optimize": "node scripts/convert-webp.js",
+    "audit": "npm audit && cd frontend && npm audit",
+    "install:all": "npm install && cd frontend && npm install"
   },
   "keywords": [
     "boat-rental",
@@ -36,46 +28,16 @@
     "url": "https://nijenhuis-botenverhuur.com"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/nijenhuis/boat-rental-website.git"
-  },
-  "bugs": {
-    "url": "https://github.com/nijenhuis/boat-rental-website/issues"
-  },
   "homepage": "https://nijenhuis-botenverhuur.com",
   "engines": {
     "node": ">=16.0.0",
     "npm": ">=8.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.0",
-    "@babel/preset-env": "^7.23.0",
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.1",
-    "esbuild": "^0.19.0",
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-jsdoc": "^46.9.0",
-    "imagemin": "^8.0.1",
-    "imagemin-cli": "^7.0.0",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-pngquant": "^9.0.2",
-    "imagemin-webp": "^8.0.0",
-    "jest": "^29.7.0",
-    "lighthouse": "^11.3.0",
-    "live-server": "^1.2.2",
-    "postcss": "^8.4.31",
-    "postcss-cli": "^10.1.0",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.1",
-    "prettier": "^3.0.3",
-    "pwa-asset-generator": "^6.1.0",
-    "stylelint": "^15.11.0",
-    "stylelint-config-standard": "^34.0.0",
-    "stylelint-order": "^6.0.3",
-    "webpack-bundle-analyzer": "^4.9.1"
+    "clean-css-cli": "^5.6.0",
+    "live-server": "^1.2.0",
+    "sharp": "^0.33.5",
+    "terser": "^5.36.0"
   },
   "dependencies": {
     "flag-icons": "^7.5.0",
@@ -87,90 +49,11 @@
     "not dead",
     "not ie 11"
   ],
-  "postcss": {
-    "plugins": {
-      "postcss-import": {},
-      "autoprefixer": {},
-      "postcss-nested": {},
-      "cssnano": {
-        "preset": "default"
-      }
-    }
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es2021": true,
-      "node": true
-    },
-    "extends": [
-      "eslint:recommended",
-      "prettier"
-    ],
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "rules": {
-      "no-console": "warn",
-      "no-unused-vars": "warn",
-      "prefer-const": "error"
-    }
-  },
-  "prettier": {
-    "semi": true,
-    "trailingComma": "es5",
-    "singleQuote": true,
-    "printWidth": 80,
-    "tabWidth": 2
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "plugins": [
-      "stylelint-order"
-    ],
-    "rules": {
-      "order/properties-alphabetical-order": true,
-      "no-descending-specificity": null
-    }
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "<rootDir>/tests/setup.js"
-    ],
-    "collectCoverageFrom": [
-      "script.js",
-      "!**/node_modules/**"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.css": [
-      "stylelint --fix",
-      "prettier --write"
-    ],
-    "*.html": [
-      "prettier --write"
-    ],
-    "*.json": [
-      "prettier --write"
-    ]
-  },
   "pwa": {
     "name": "Nijenhuis Boat Rental",
     "short_name": "Nijenhuis",
     "description": "Boat rental in Weerribben nature reserve",
-    "start_url": "/en/",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#0071BB",

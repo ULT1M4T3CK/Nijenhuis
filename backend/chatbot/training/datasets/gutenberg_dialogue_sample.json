@@ -1,0 +1,61 @@
+{
+  "name": "gutenberg_dialogue_sample",
+  "source": "synthetic_based_on_gutenberg_patterns",
+  "language": "multilingual",
+  "conversations": [
+    {
+      "language": "nl",
+      "user": "Kunt u me meer vertellen over jullie diensten?",
+      "assistant": "Zeker, ik vertel u graag meer. We bieden verschillende diensten aan die passen bij uw behoeften. Wat interesseert u het meest?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "nl",
+      "user": "Ik overweeg een reservering te maken",
+      "assistant": "Dat is een goede keuze! Ik kan u helpen met het vinden van de beste optie voor u. Wanneer heeft u het voor ogen?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "nl",
+      "user": "Zijn er speciale aanbiedingen?",
+      "assistant": "We hebben regelmatig speciale aanbiedingen. Laat me voor u kijken wat er momenteel beschikbaar is.",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "en",
+      "user": "Can you tell me more about your services?",
+      "assistant": "Certainly, I would be happy to tell you more. We offer various services that suit your needs. What interests you most?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "en",
+      "user": "I am considering making a reservation",
+      "assistant": "That is a good choice! I can help you find the best option for you. When are you thinking?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "en",
+      "user": "Are there any special offers?",
+      "assistant": "We regularly have special offers. Let me check what is currently available for you.",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "de",
+      "user": "Können Sie mir mehr über eure Dienstleistungen erzählen?",
+      "assistant": "Sicher, ich erzähle Ihnen gerne mehr. Wir bieten verschiedene Dienstleistungen an, die zu Ihren Bedürfnissen passen. Was interessiert Sie am meisten?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "de",
+      "user": "Ich überlege, eine Reservierung zu machen",
+      "assistant": "Das ist eine gute Wahl! Ich kann Ihnen helfen, die beste Option für Sie zu finden. Wann haben Sie es vor?",
+      "source": "gutenberg_patterns"
+    },
+    {
+      "language": "de",
+      "user": "Gibt es besondere Angebote?",
+      "assistant": "Wir haben regelmäßig besondere Angebote. Lassen Sie mich für Sie schauen, was derzeit verfügbar ist.",
+      "source": "gutenberg_patterns"
+    }
+  ]
+}

@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-dark-primary text-light antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    @apply bg-primary-500/30 text-light;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-dark-card/90 backdrop-blur-xl border border-dark-border rounded-2xl shadow-2xl;
+  }
+
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #8049cc, #6643c5);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-400 hover:to-primary-500 
+           text-white font-semibold rounded-xl shadow-lg shadow-primary-500/25 
+           transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/30 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-dark-card hover:bg-dark-border text-light font-medium rounded-xl
+           border border-dark-border hover:border-primary-600 transition-all duration-300
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+
+  .btn-success {
+    @apply px-6 py-3 bg-gradient-to-r from-success-500 to-success-600 hover:from-success-400 hover:to-success-500
+           text-white font-semibold rounded-xl shadow-lg shadow-success-500/25
+           transition-all duration-300 hover:shadow-xl hover:shadow-success-500/30 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-success-500 focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 bg-gradient-to-r from-error-500 to-error-600 hover:from-error-400 hover:to-error-500
+           text-white font-semibold rounded-xl shadow-lg shadow-error-500/25
+           transition-all duration-300 hover:shadow-xl hover:shadow-error-500/30 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-error-500 focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+
+  .btn-warning {
+    @apply px-6 py-3 bg-gradient-to-r from-warning-500 to-warning-600 hover:from-warning-400 hover:to-warning-500
+           text-white font-semibold rounded-xl shadow-lg shadow-warning-500/25
+           transition-all duration-300 hover:shadow-xl hover:shadow-warning-500/30 hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-warning-500 focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-dark-card border border-dark-border rounded-xl
+           text-light placeholder-muted
+           focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500
+           transition-all duration-300;
+  }
+
+  .textarea-field {
+    @apply w-full px-4 py-3 bg-dark-card border border-dark-border rounded-xl
+           text-light placeholder-muted resize-none
+           focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500
+           transition-all duration-300 font-mono text-sm leading-relaxed;
+  }
+
+  .card {
+    @apply glass-panel p-6 animate-fade-in;
+  }
+
+  .chat-bubble {
+    @apply max-w-[85%] p-4 rounded-2xl animate-slide-up;
+  }
+
+  .chat-bubble-user {
+    @apply bg-gradient-to-br from-primary-500 to-primary-600 text-white ml-auto rounded-br-md;
+  }
+
+  .chat-bubble-bot {
+    @apply bg-dark-card text-light mr-auto rounded-bl-md border border-dark-border;
+  }
+
+  .stat-card {
+    @apply glass-panel p-6 flex flex-col items-center justify-center text-center;
+  }
+
+  .diff-added {
+    @apply bg-success-900/30 text-success-300 border-l-4 border-success-500;
+  }
+
+  .diff-removed {
+    @apply bg-error-900/30 text-error-300 border-l-4 border-error-500 line-through opacity-70;
+  }
+
+  /* Status badges */
+  .badge-success {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-success-500/20 text-success-400 border border-success-500/30;
+  }
+
+  .badge-error {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-error-500/20 text-error-400 border border-error-500/30;
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-warning-500/20 text-warning-400 border border-warning-500/30;
+  }
+
+  .badge-primary {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary-500/20 text-primary-400 border border-primary-500/30;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 bg-clip-text text-transparent;
+  }
+
+  .glow {
+    box-shadow: 0 0 40px rgba(128, 73, 204, 0.2),
+                0 0 80px rgba(128, 73, 204, 0.1);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px rgba(102, 67, 197, 0.2),
+                0 0 80px rgba(102, 67, 197, 0.1);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 40px rgba(76, 175, 80, 0.2),
+                0 0 80px rgba(76, 175, 80, 0.1);
+  }
+
+  .glow-error {
+    box-shadow: 0 0 40px rgba(244, 67, 54, 0.2),
+                0 0 80px rgba(244, 67, 54, 0.1);
+  }
+}

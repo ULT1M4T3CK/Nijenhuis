@@ -4,7 +4,14 @@ Neural Network Architecture for Nijenhuis Chatbot
 Advanced neural network with multiple layers and activation functions
 """
 
-import numpy as np
+try:
+    import numpy as np
+    NUMPY_AVAILABLE = True
+except ImportError:
+    NUMPY_AVAILABLE = False
+    print("⚠️ NumPy not available. Neural network features will be limited.")
+    print("   Install with: pip install numpy>=1.21.0")
+
 import json
 import os
 from typing import List, Tuple, Dict, Any, Optional

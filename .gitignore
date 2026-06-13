@@ -1,50 +1,86 @@
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# ================================================
+# Nijenhuis Botenverhuur - .gitignore
+# Production Security Configuration
+# ================================================
 
-# Package files
-package-lock.json
-yarn.lock
-
-# Build files
-dist/
-build/
-
-# Environment variables
+# ===================
+# Environment & Secrets
+# ===================
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+.env.backup.*
+!.env.example
+config/api_keys.json
 
-# IDE files
+# ===================
+# Dependencies
+# ===================
+node_modules/
+venv/
+__pycache__/
+*.pyc
+
+# ===================
+# Logs & Temporary Files
+# ===================
+logs/
+*.log
+*.log.*
+cookies.txt
+
+# ===================
+# Session & Auth Data
+# ===================
+admin/admin_sessions.json
+data/bookings.json
+data/bookings_archive.json
+data/for-sale.json
+data/articles.json
+data/blog-styles.json
+data/blog-redirects.json
+data/backups/
+
+# ===================
+# IDE & Editor
+# ===================
 .vscode/
 .idea/
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
+*~
 
-# OS files
+# ===================
+# Build Artifacts
+# ===================
+dist/
+build/
+*.min.js
+*.min.css
+
+# ===================
+# OS Files
+# ===================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
-# Logs
-logs
-*.log
+# ===================
+# Test & Debug Files
+# ===================
+check_availability_test.php
+widget_debug.js
+admin/test-*.php
+admin/debug_*.php
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Temporary folders
-tmp/
-temp/
-
-# Downloaded files
-Unconfirmed *.crdownload 
+# ===================
+# Backup Files
+# ===================
+*.bak
+*.backup
+*.orig

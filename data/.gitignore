@@ -1,0 +1,11 @@
+# Sensitive / environment-specific (do not commit)
+/bookings.json
+/bookings_archive.json
+/for-sale.json
+/articles.json
+/blog-styles.json
+/blog-redirects.json
+/backups/
+
+# Fleet config is often versioned — uncomment to ignore:
+# /boats.json

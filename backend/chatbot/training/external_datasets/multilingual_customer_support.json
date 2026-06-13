@@ -1,0 +1,97 @@
+{
+  "name": "Multilingual Customer Support",
+  "source": "Generated",
+  "total_samples": 15,
+  "samples": [
+    {
+      "question": "Hoe kan ik mijn bestelling annuleren?",
+      "answer": "U kunt uw bestelling annuleren door contact op te nemen met onze klantenservice.",
+      "intent": "cancellation",
+      "language": "nl"
+    },
+    {
+      "question": "Wat is de levertijd?",
+      "answer": "De levertijd is meestal 2-3 werkdagen binnen Nederland.",
+      "intent": "shipping",
+      "language": "nl"
+    },
+    {
+      "question": "Hoe kan ik betalen?",
+      "answer": "U kunt betalen met iDEAL, creditcard of PayPal.",
+      "intent": "payment",
+      "language": "nl"
+    },
+    {
+      "question": "Is er een garantie?",
+      "answer": "Ja, alle producten hebben 2 jaar garantie.",
+      "intent": "warranty",
+      "language": "nl"
+    },
+    {
+      "question": "Kan ik mijn bestelling retourneren?",
+      "answer": "Ja, u heeft 14 dagen bedenktijd om uw bestelling retour te sturen.",
+      "intent": "returns",
+      "language": "nl"
+    },
+    {
+      "question": "Wie kann ich meine Bestellung stornieren?",
+      "answer": "Sie können Ihre Bestellung stornieren, indem Sie unseren Kundenservice kontaktieren.",
+      "intent": "cancellation",
+      "language": "de"
+    },
+    {
+      "question": "Wie lange dauert die Lieferung?",
+      "answer": "Die Lieferzeit beträgt normalerweise 2-3 Werktage innerhalb Deutschlands.",
+      "intent": "shipping",
+      "language": "de"
+    },
+    {
+      "question": "Wie kann ich bezahlen?",
+      "answer": "Sie können mit Kreditkarte, PayPal oder SEPA-Lastschrift bezahlen.",
+      "intent": "payment",
+      "language": "de"
+    },
+    {
+      "question": "Gibt es eine Garantie?",
+      "answer": "Ja, alle Produkte haben 2 Jahre Garantie.",
+      "intent": "warranty",
+      "language": "de"
+    },
+    {
+      "question": "Kann ich meine Bestellung zurückgeben?",
+      "answer": "Ja, Sie haben 14 Tage Zeit, um Ihre Bestellung zurückzugeben.",
+      "intent": "returns",
+      "language": "de"
+    },
+    {
+      "question": "How can I cancel my order?",
+      "answer": "You can cancel your order by contacting our customer service.",
+      "intent": "cancellation",
+      "language": "en"
+    },
+    {
+      "question": "What is the delivery time?",
+      "answer": "Delivery time is usually 2-3 business days within the Netherlands.",
+      "intent": "shipping",
+      "language": "en"
+    },
+    {
+      "question": "How can I pay?",
+      "answer": "You can pay with iDEAL, credit card, or PayPal.",
+      "intent": "payment",
+      "language": "en"
+    },
+    {
+      "question": "Is there a warranty?",
+      "answer": "Yes, all products have a 2-year warranty.",
+      "intent": "warranty",
+      "language": "en"
+    },
+    {
+      "question": "Can I return my order?",
+      "answer": "Yes, you have 14 days to return your order.",
+      "intent": "returns",
+      "language": "en"
+    }
+  ]
+}

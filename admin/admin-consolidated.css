@@ -1,0 +1,1946 @@
+/* ========================================================================
+   ADMIN CONSOLIDATED STYLESHEET
+   All admin-specific styles consolidated from inline CSS in admin HTML files
+   ======================================================================== */
+
+/* ---------------------------------------------------------------------
+   --- ADMIN NAVIGATION HEADER
+   ------------------------------------------------------------------ */
+.admin-nav {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-md) 0;
+    box-shadow: var(--shadow-md);
+}
+
+.admin-nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-nav-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.admin-nav-logo {
+    height: 40px;
+    width: auto;
+}
+
+.admin-nav-links {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.admin-nav-link {
+    color: var(--white);
+    text-decoration: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-normal);
+}
+
+.admin-nav-link:hover,
+.admin-nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.admin-nav-logout {
+    background: rgba(220, 53, 69, 0.8);
+    color: var(--white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.admin-nav-logout:hover {
+    background: var(--error-color);
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN DASHBOARD
+   ------------------------------------------------------------------ */
+.admin-dashboard {
+    min-height: 100vh;
+    background: var(--bg-light);
+}
+
+.admin-header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-lg) 0;
+    box-shadow: var(--shadow-md);
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.admin-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.admin-subtitle {
+    opacity: 0.9;
+    font-size: var(--font-size-base);
+}
+
+.admin-content {
+    padding: var(--spacing-2xl) 0;
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN STATISTICS
+   ------------------------------------------------------------------ */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.stat-card {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.stat-number {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN SECTIONS
+   ------------------------------------------------------------------ */
+.admin-section {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.section-content {
+    padding: var(--spacing-lg);
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN TABLES
+   ------------------------------------------------------------------ */
+.bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.bookings-table th {
+    background: var(--bg-light);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ---------------------------------------------------------------------
+   --- STATUS BADGES
+   ------------------------------------------------------------------ */
+.status-badge {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-confirmed {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.status-pending {
+    background: var(--warning-color);
+    color: var(--white);
+}
+
+.status-canceled {
+    background: var(--error-color);
+    color: var(--white);
+}
+
+.status-cancelled {
+    background: var(--error-color);
+    color: var(--white);
+}
+
+.status-manual {
+    background: #ffc107;
+    color: var(--white);
+}
+
+.status-success {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.status-rejected {
+    background: var(--error-color);
+    color: var(--white);
+}
+
+.status-picked-up {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN ACTION BUTTONS
+   ------------------------------------------------------------------ */
+.admin-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.btn-admin {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.btn-edit {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-delete {
+    background: var(--error-color);
+    color: var(--white);
+}
+
+.btn-export {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.btn-admin:hover {
+    opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------------
+   --- LOGIN FORM
+   ------------------------------------------------------------------ */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+    box-sizing: border-box;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--spacing-md) center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: var(--spacing-2xl);
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.form-group select:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 113, 187, 0.05);
+}
+
+.login-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.login-btn:hover {
+    background: var(--primary-dark);
+}
+
+.error-message {
+    background: var(--error-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING STATUS COLORS
+   ------------------------------------------------------------------ */
+.booking-row.booking-manual {
+    background: rgba(255, 193, 7, 0.1);
+    border-left: 4px solid #ffc107;
+}
+
+.booking-row.booking-success {
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--success-color);
+}
+
+.booking-row.booking-rejected {
+    background: rgba(220, 53, 69, 0.1);
+    border-left: 4px solid var(--error-color);
+}
+
+.booking-row.booking-picked-up {
+    background: rgba(40, 167, 69, 0.1);
+    border-left: 4px solid var(--success-color);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* ---------------------------------------------------------------------
+   --- STATUS SELECT DROPDOWN
+   ------------------------------------------------------------------ */
+.status-select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    background: var(--white);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--spacing-sm) center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: var(--spacing-2xl);
+    min-width: 120px;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.status-select:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 113, 187, 0.05);
+}
+
+.status-select option {
+    padding: var(--spacing-sm);
+    font-weight: 600;
+}
+
+.status-select option[value="manual"] {
+    background: #ffc107;
+    color: var(--white);
+}
+
+.status-select option[value="success"] {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+.status-select option[value="rejected"] {
+    background: var(--error-color);
+    color: var(--white);
+}
+
+.status-select option[value="picked-up"] {
+    background: var(--success-color);
+    color: var(--white);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING MANAGEMENT
+   ------------------------------------------------------------------ */
+.booking-management {
+    min-height: 100vh;
+    background: var(--white);
+}
+
+.management-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+.booking-management .management-container {
+    max-width: min(100%, 1720px);
+}
+
+.management-content {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+/* Status Box Container */
+.status-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}
+
+/* Status Box */
+.status-box {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-size-base);
+    text-align: right;
+    box-shadow: var(--shadow-md);
+    min-width: 300px;
+    transition: var(--transition-normal);
+}
+
+.status-box:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.status-box .status-text {
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+}
+
+.status-box .status-time {
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    opacity: 0.95;
+}
+
+/* ---------------------------------------------------------------------
+   --- THREE-MONTH CALENDAR
+   ------------------------------------------------------------------ */
+.calendar-months-container {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    min-height: 480px;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .calendar-months-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-months-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.calendar-month {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 420px;
+}
+
+.calendar-month-header {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 50px;
+}
+
+.calendar-month-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: lowercase;
+}
+
+.calendar-nav-arrow {
+    background: none;
+    border: none;
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+.calendar-nav-arrow:hover {
+    background: var(--bg-light);
+    border-radius: var(--radius-sm);
+}
+
+.calendar-month-grid {
+    display: grid !important;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-rows: minmax(48px, auto);
+    gap: 1px;
+    background: var(--light-gray);
+    padding: 1px;
+    min-height: 400px;
+}
+
+.calendar-day-header {
+    background: var(--bg-secondary);
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: lowercase;
+}
+
+.calendar-day-cell {
+    background: var(--white);
+    min-height: 48px;
+    padding: var(--spacing-xs);
+    text-align: center;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.calendar-day-cell.other-month {
+    background: var(--bg-secondary);
+    color: var(--text-light);
+}
+
+.calendar-day-cell:hover:not(.other-month) {
+    background: var(--bg-light);
+    font-weight: 600;
+}
+
+/* Calendar Navigation */
+.calendar-nav-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+}
+
+.calendar-nav-button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    transition: var(--transition-normal);
+}
+
+.calendar-nav-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.calendar-nav-button:disabled {
+    background: var(--light-gray);
+    cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------
+   --- DAY BOOKINGS SECTION
+   ------------------------------------------------------------------ */
+.day-bookings-section {
+    margin-top: var(--spacing-2xl);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+}
+
+.day-bookings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.day-bookings-header-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex: 1;
+    min-width: 0;
+}
+
+.day-bookings-nav-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: var(--radius-md);
+    color: var(--white);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.day-bookings-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.day-bookings-nav-btn:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+}
+
+.day-bookings-nav-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.day-bookings-nav-btn:disabled:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.day-bookings-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--white);
+    margin: 0;
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+}
+
+.close-day-bookings {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    color: var(--white);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-normal);
+}
+
+.close-day-bookings:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.day-bookings-content {
+    padding: var(--spacing-xl);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.day-booking-item {
+    background: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition-normal);
+}
+
+.day-booking-item:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+}
+
+.day-booking-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Day Bookings Modal */
+.day-bookings-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.day-bookings-modal-content {
+    background-color: var(--white);
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    max-width: 800px;
+    box-shadow: var(--shadow-xl);
+    position: relative;
+}
+
+.day-bookings-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--light-gray);
+}
+
+.day-bookings-modal-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.close-day-modal {
+    background: none;
+    border: none;
+    font-size: var(--font-size-2xl);
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-day-modal:hover {
+    color: var(--text-primary);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING ITEMS
+   ------------------------------------------------------------------ */
+.booking-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: var(--spacing-lg);
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    border-left: 4px solid;
+}
+
+.booking-item.manual {
+    background: rgba(255, 193, 7, 0.1);
+    border-left-color: #ffc107;
+}
+
+.booking-item.success {
+    background: rgba(40, 167, 69, 0.1);
+    border-left-color: var(--success-color);
+}
+
+.booking-item.rejected {
+    background: rgba(220, 53, 69, 0.1);
+    border-left-color: var(--error-color);
+}
+
+.booking-item.picked-up {
+    background: rgba(40, 167, 69, 0.1);
+    border-left-color: var(--success-color);
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.booking-status {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.booking-info h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--text-primary);
+}
+
+.booking-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.save-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.save-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------------------------------------------------------------------
+   --- ADD BOOKING BUTTON
+   ------------------------------------------------------------------ */
+.add-booking-btn {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: var(--spacing-lg);
+    transition: var(--transition-normal);
+}
+
+.add-booking-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------------------------------------------------------------------
+   --- MODERN BUTTONS
+   ------------------------------------------------------------------ */
+.btn {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--spacing-lg);
+}
+
+/* ---------------------------------------------------------------------
+   --- MODAL STYLES
+   ------------------------------------------------------------------ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: 5% auto;
+    padding: 0;
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2,
+.modal-header h3 {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+}
+
+.modal-header h3 {
+    color: var(--white);
+}
+
+.close {
+    color: var(--white);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-normal);
+}
+
+.close:hover {
+    opacity: 0.7;
+    background: var(--bg-light);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: var(--spacing-lg);
+}
+
+/* ---------------------------------------------------------------------
+   --- MODERN CALENDAR STYLES
+   ------------------------------------------------------------------ */
+.calendar-container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+}
+
+.calendar-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.modern-calendar {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    background: var(--white);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.modern-calendar:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.modern-calendar:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 113, 187, 0.05);
+}
+
+.clear-date-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--light-gray);
+    color: var(--text-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+}
+
+.clear-date-btn:hover {
+    background: var(--text-light);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOAT MANAGEMENT
+   ------------------------------------------------------------------ */
+.boat-management {
+    min-height: 100vh;
+    background: var(--white);
+}
+
+/* Navigation Links Section */
+.nav-links-section {
+    padding: var(--spacing-lg) 0;
+    border-bottom: 2px dotted var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.nav-links {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    padding: 0.85rem 1.5rem;
+    border-radius: 2rem;
+    background: var(--white);
+    border: 2px solid var(--primary-color);
+    transition: var(--transition-normal);
+    font-weight: 700;
+    box-shadow: var(--shadow-sm);
+    display: inline-block;
+}
+
+.nav-link:hover {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.nav-separator {
+    color: var(--text-secondary);
+}
+
+/* Boat Grid */
+.boat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    padding: var(--spacing-lg) 0;
+}
+
+.boat-card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.boat-card.featured {
+    border: 2px solid #f59e0b;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+    background: linear-gradient(to bottom, rgba(245, 158, 11, 0.05), var(--white));
+}
+
+.boat-card.featured:hover {
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
+}
+
+.boat-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.boat-card-content {
+    padding: var(--spacing-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.boat-card-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.boat-card-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: auto;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--light-gray);
+}
+
+.boat-action-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    transition: var(--transition-normal);
+}
+
+.boat-action-link:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+.boat-booked {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+.boat-total {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-xs);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOAT EDIT PAGE
+   ------------------------------------------------------------------ */
+.boat-edit-page {
+    min-height: 100vh;
+    background: var(--white);
+    padding: var(--spacing-xl) 0;
+}
+
+.edit-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.edit-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+/* Left Column - Images */
+.image-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.image-upload-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.image-upload-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.image-display {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border: 2px dashed var(--light-gray);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.file-input {
+    display: none;
+}
+
+.file-input-label {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    transition: var(--transition-normal);
+}
+
+.file-input-label:hover {
+    background: var(--primary-dark);
+}
+
+.file-name {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+/* Right Column - Form Fields */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    transition: var(--transition-normal);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Multi-day Pricing Grid */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+}
+
+.pricing-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.pricing-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.pricing-input {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+}
+
+.days-selection label {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    transition: var(--transition-normal);
+}
+
+.days-selection label:hover {
+    border-color: var(--primary-color);
+    background: rgba(0, 113, 187, 0.05);
+}
+
+.days-selection input[type="checkbox"]:checked + span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Bottom Info Section */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+/* ---------------------------------------------------------------------
+   --- BOOKING HISTORY
+   ------------------------------------------------------------------ */
+.booking-history {
+    min-height: 100vh;
+    background: var(--white);
+}
+
+/* Main Content Layout */
+.content-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+/* Filters Section */
+.filters-section {
+    background: var(--bg-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--light-gray);
+    position: sticky;
+    top: var(--spacing-lg);
+}
+
+.filters-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.filter-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.filter-input,
+.filter-select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    transition: var(--transition-normal);
+    background: var(--white);
+    width: 100%;
+}
+
+.filter-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right var(--spacing-sm) center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+    padding-right: var(--spacing-xl);
+    cursor: pointer;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 113, 187, 0.1);
+}
+
+.filter-select:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(0, 113, 187, 0.05);
+}
+
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+/* Bookings List */
+.bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.year-group {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+}
+
+.year-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.months-container {
+    padding: var(--spacing-lg);
+}
+
+.month-group {
+    margin-bottom: var(--spacing-xl);
+}
+
+.month-group:last-child {
+    margin-bottom: 0;
+}
+
+.month-header {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--secondary-color);
+    padding: var(--spacing-md);
+    background: var(--bg-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.days-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+}
+
+.day-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.day-header {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 2px solid var(--light-gray);
+    margin-bottom: var(--spacing-md);
+}
+
+.history-booking-item {
+    display: grid;
+    grid-template-columns: minmax(150px, 2fr) minmax(150px, 2fr) 100px 100px 100px auto;
+    gap: 15px;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: var(--white);
+    color: #000000;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.history-booking-item:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.history-booking-item.status-manual,
+.history-booking-item.status-pay-on-arrival {
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+}
+
+.history-booking-item.status-paid,
+.history-booking-item.status-picked_up,
+.history-booking-item.status-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+.history-booking-item.status-canceled,
+.history-booking-item.status-failed,
+.history-booking-item.status-rejected,
+.history-booking-item.status-pending,
+.history-booking-item.status-open {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.history-booking-item .booking-col {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-booking-item .booking-name {
+    font-weight: 600;
+}
+
+.history-booking-item .booking-price {
+    font-weight: 500;
+    text-align: right;
+}
+
+.history-booking-item .btn-action-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.history-booking-item .expand-arrow {
+    font-size: 0.8em;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.history-booking-item.expanded .expand-arrow {
+    transform: rotate(180deg);
+}
+
+.history-booking-item .booking-details-expand {
+    display: none;
+    grid-column: 1 / -1;
+    padding-top: 15px;
+    margin-top: 5px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    cursor: default;
+}
+
+.history-booking-item.expanded .booking-details-expand {
+    display: block;
+}
+
+.history-booking-item .details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.booking-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.booking-customer {
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.booking-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+}
+
+.booking-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.booking-detail-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+.booking-detail-value {
+    color: var(--text-secondary);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    color: var(--text-secondary);
+    font-size: var(--font-size-lg);
+}
+
+/* ---------------------------------------------------------------------
+   --- ADMIN LOGIN PAGE
+   ------------------------------------------------------------------ */
+.admin-login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: var(--spacing-lg);
+}
+
+.admin-login-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-3xl);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.admin-login-logo {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.admin-login-logo img {
+    height: 60px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.admin-login-title {
+    color: var(--primary-color);
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+}
+
+.admin-login-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.admin-form-group {
+    margin-bottom: var(--spacing-lg);
+    text-align: left;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.admin-form-group input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    transition: var(--transition-normal);
+    box-sizing: border-box;
+}
+
+.admin-form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
+}
+
+.admin-login-btn {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: #007bff;
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    margin-bottom: var(--spacing-lg);
+}
+
+.admin-login-btn:hover {
+    background: #0056b3;
+}
+
+.admin-login-btn:disabled {
+    background: var(--text-light);
+    cursor: not-allowed;
+}
+
+.admin-back-link {
+    display: inline-block;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-lg);
+    transition: var(--transition-normal);
+}
+
+.admin-back-link:hover {
+    color: var(--primary-dark);
+}
+
+.admin-error {
+    background: var(--error-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    display: none;
+}
+
+.admin-success {
+    background: var(--success-color);
+    color: var(--white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    font-size: var(--font-size-sm);
+    display: none;
+}
+
+.admin-loading {
+    display: none;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+}
+
+.admin-spinner {
+    border: 3px solid var(--light-gray);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--spacing-sm);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------------------------------------
+   --- RESPONSIVE DESIGN
+   ------------------------------------------------------------------ */
+@media (max-width: 1024px) {
+    .edit-form-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters-section {
+        position: static;
+    }
+    
+    .booking-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-nav-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .admin-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .booking-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .history-booking-item {
+        grid-template-columns: 1fr;
+    }
+
+    .history-booking-item .booking-price,
+    .history-booking-item .btn-action-group {
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .history-booking-item .details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .management-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .boat-item {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   --- FOR SALE MANAGEMENT (Admin)
+   ------------------------------------------------------------------ */
+
+/* Additional Images Grid for Admin */
+.additional-images-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.additional-image-wrapper {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 2px solid var(--light-gray);
+    position: relative;
+}
+
+.additional-image-wrapper img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+}
+

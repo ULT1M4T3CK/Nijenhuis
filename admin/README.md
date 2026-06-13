@@ -1,50 +1,46 @@
 # Admin System - Nijenhuis Botenverhuur
 
 ## Overview
-This directory contains the admin system for managing bookings and website content.
 
-## Files Structure
+The admin system provides booking and boat management for Nijenhuis Botenverhuur.
 
-### 🎯 **Primary Admin System (Recommended)**
-- **`admin-static.html`** - Main admin dashboard (GitHub Pages compatible)
-- **`../pages/admin-login.html`** - Admin login page
+## Pages
 
-### 🔧 **Development/Server Files**
-- **`booking-handler.php`** - PHP backend for server deployments
-- **`booking-handler.py`** - Python backend alternative
-- **`test-login.php`** - Debug tool for login issues
+| Page | Description |
+|------|-------------|
+| `admin-static.php` | Dashboard overview |
+| `boat-management.php` | Manage boats (add, edit, delete) |
+| `boat-edit.php` | Edit individual boat details |
+| `booking-management.php` | Calendar view of bookings |
+| `booking-history.php` | Historical booking archive |
 
-### 📁 **Legacy/Unused Files**
-- **`admin-simple.html`** - Old admin system (removed - use admin-static.html)
-- **`boat-management.html`** - Boat management interface
-- **`index.html`** - Admin index page
-- **`index-local.html`** - Local development admin
+## Access
 
-## 🚀 **How to Access Admin**
+Login at: `/pages/admin-login.php`
 
-### For GitHub Pages (Static Hosting):
-1. Go to: `https://ult1m4t3ck.github.io/Nijenhuis/pages/admin-login.html`
-2. Login with: `admin` / `nijenhuis2025`
-3. Access: `admin-static.html` dashboard
+Credentials are configured via environment variables:
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
 
-### For Server Deployment (PHP/Python):
-1. Go to: `your-domain.com/pages/admin-login.html`
-2. Login with: `admin` / `nijenhuis2025`
-3. Access: `admin-simple.html` dashboard (if using PHP backend)
+## Features
 
-## 🔐 **Login Credentials**
-- **Username**: `admin`
-- **Password**: `nijenhuis2025`
+- **Boat Management**: Add, edit, delete boats with images and pricing
+- **Booking Calendar**: 3-month calendar view with booking indicators
+- **Status Management**: Track booking statuses (confirmed, paid, rejected)
+- **Session Security**: 24-hour sessions with 15-minute inactivity timeout
 
-## 📋 **Admin Features**
-- ✅ View all bookings
-- ✅ Update booking status
-- ✅ Delete bookings
-- ✅ Export bookings to CSV
-- ✅ Real-time statistics
-- ✅ 24-hour session management
+## Backend
 
-## 🛠 **Development Notes**
-- `admin-static.html` works entirely with localStorage (no server needed)
-- `booking-handler.php` requires PHP server for full functionality
-- All admin systems use the same login credentials for consistency
+- `booking-handler.php` - API for bookings and authentication
+- `boats.json` - Boat data storage
+- `bookings.json` - Booking data storage
+
+## Booking Statuses
+
+| Status | Color | Description |
+|--------|-------|-------------|
+| `not-confirmed` | Yellow | New booking pending review |
+| `confirmed-not-paid` | Orange | Confirmed, awaiting payment |
+| `confirmed-paid` | Green | Fully confirmed and paid |
+| `payment-rejected` | Red | Payment failed |
+| `manual` | Blue | Manually added booking |

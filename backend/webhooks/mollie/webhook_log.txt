@@ -1,0 +1,186 @@
+[2026-01-13 14:07:55] Warning: Webhook signature verification skipped - no secret configured
+[2026-01-13 14:07:55] Webhook received: {"id":"tr_fake_email_test"}
+[2026-01-13 14:07:55] Payment tr_fake_email_test: paid -> confirmed-paid
+[2026-01-13 14:07:55] Updated booking email_test_booking status to confirmed-paid
+[2026-01-13 14:07:55] Failed to send confirmation email to hasslerandre01@gmail.com
+[2026-01-13 14:07:55] Bookings file updated successfully
+[2026-01-13 14:07:55] Payment tr_fake_email_test processed successfully: paid
+[2026-01-15 22:38:59] Webhook signature verified successfully
+[2026-01-15 22:38:59] Error: Invalid JSON data received
+[2026-01-15 22:42:26] Webhook signature verified successfully
+[2026-01-15 22:42:26] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_test_fix_verification
+[2026-01-16 19:18:52] Failed to send confirmation email to info@ultimaitech.com. Error: Undefined array key "REQUEST_METHOD"
+[2026-01-16 19:18:52] Email debugging - To: info@ultimaitech.com, Subject: Boeking Bevestigd - Nijenhuis Botenverhuur, Headers length: 194
+[2026-01-16 19:18:52] Sendmail path: /usr/sbin/sendmail -t -i
+[2026-01-27 14:41:02] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 14:41:02] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 14:41:02] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 14:50:14] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 14:50:14] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 14:50:14] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 14:50:14] Failed to send confirmation email to info@ultimaitech.com via Microsoft Graph. Error: access_token_missing
+[2026-01-27 14:50:14] Bookings file updated successfully
+[2026-01-27 14:56:02] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 14:56:02] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 14:56:02] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 14:56:03] Failed to send confirmation email to info@ultimaitech.com via Microsoft Graph. Error: sendmail_failed HTTP: 403 Response: {"error":{"code":"ErrorAccessDenied","message":"Access is denied. Check credentials and try again."}}
+[2026-01-27 14:56:03] Bookings file updated successfully
+[2026-01-27 14:59:41] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 14:59:41] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 14:59:41] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 14:59:42] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 14:59:42] Bookings file updated successfully
+[2026-01-27 15:03:01] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 15:03:01] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 15:03:01] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 15:03:02] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 15:03:02] Bookings file updated successfully
+[2026-01-27 15:05:08] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 15:05:08] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 15:05:08] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 15:05:09] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 15:05:09] Bookings file updated successfully
+[2026-01-27 15:09:44] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 15:09:44] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 15:09:44] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 15:09:45] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 15:09:45] Bookings file updated successfully
+[2026-01-27 15:15:07] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 15:15:07] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 15:15:07] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 15:15:07] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 15:15:07] Bookings file updated successfully
+[2026-01-27 15:16:46] Local simulatePaid triggered for paymentId: tr_test_info_ultimaitech
+[2026-01-27 15:16:46] Payment tr_test_info_ultimaitech: paid -> paid
+[2026-01-27 15:16:46] Updated booking test_booking_info_ultimaitech status to paid
+[2026-01-27 15:16:46] Confirmation email sent to info@ultimaitech.com via Microsoft Graph
+[2026-01-27 15:16:46] Bookings file updated successfully
+[2026-02-17 13:23:58] Warning: Processing webhook without signature verification (MOLLIE_WEBHOOK_SECRET not properly configured)
+[2026-02-17 13:23:58] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_WtNJe2QQnY85r9GQmaHMJ
+[2026-02-17 13:23:59] Payment tr_WtNJe2QQnY85r9GQmaHMJ: expired -> canceled
+[2026-02-17 13:23:59] Updated booking cart_1771331023_036ddf25_0 status to canceled
+[2026-02-17 13:23:59] Bookings file updated successfully
+[2026-02-17 13:23:59] Payment tr_WtNJe2QQnY85r9GQmaHMJ processed successfully: expired
+[2026-02-19 10:35:59] Warning: Processing webhook without signature verification (MOLLIE_WEBHOOK_SECRET not properly configured)
+[2026-02-19 10:35:59] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_UoxzNedmYhWyKpDMhZNMJ
+[2026-02-19 10:35:59] Payment tr_UoxzNedmYhWyKpDMhZNMJ: paid -> paid
+[2026-02-19 10:35:59] Updated booking cart_1771497243_7250489a_0 status to paid
+[2026-02-19 10:36:01] Confirmation email sent to awm.matla@kpnmail.nl via Microsoft Graph
+[2026-02-19 10:36:01] Bookings file updated successfully
+[2026-02-19 10:36:01] Payment tr_UoxzNedmYhWyKpDMhZNMJ processed successfully: paid
+[2026-02-20 12:10:06] Warning: Processing webhook without signature verification (MOLLIE_WEBHOOK_SECRET not properly configured)
+[2026-02-20 12:10:06] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_NvJ8ik6UBickpwynwKRMJ
+[2026-02-20 12:10:06] Payment tr_NvJ8ik6UBickpwynwKRMJ: paid -> paid
+[2026-02-20 12:10:06] Updated booking cart_1771589303_07a04cb9_0 status to paid
+[2026-02-20 12:10:07] Confirmation email sent to l.a.reijmer@gmail.com via Microsoft Graph
+[2026-02-20 12:10:07] Bookings file updated successfully
+[2026-02-20 12:10:07] Payment tr_NvJ8ik6UBickpwynwKRMJ processed successfully: paid
+[2026-02-23 13:13:05] Warning: Processing webhook without signature verification (MOLLIE_WEBHOOK_SECRET not properly configured)
+[2026-02-23 13:13:05] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_iGn6P8isUTATMCHfHDZMJ
+[2026-02-23 13:13:05] Payment tr_iGn6P8isUTATMCHfHDZMJ: paid -> paid
+[2026-02-23 13:13:05] Updated booking cart_1771852354_d582d5d4_0 status to paid
+[2026-02-23 13:13:06] Confirmation email sent to noahsmit0516@gmail.com via Microsoft Graph
+[2026-02-23 13:13:06] Bookings file updated successfully
+[2026-02-23 13:13:06] Payment tr_iGn6P8isUTATMCHfHDZMJ processed successfully: paid
+[2026-06-05 12:35:39] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-05 12:35:39] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_4jmEVNrMT6Fk5WBq5FCSJ
+[2026-06-05 12:35:39] Payment tr_4jmEVNrMT6Fk5WBq5FCSJ: paid -> paid (poaReservation=0)
+[2026-06-05 12:35:39] Updated booking cart_1780662912_909a4b87_0 status to paid
+[2026-06-05 12:35:40] Confirmation email sent to esmeebosma.eb@gmail.com via Microsoft Graph
+[2026-06-05 12:35:40] Updated booking cart_1780662912_909a4b87_1 status to paid
+[2026-06-05 12:35:40] Bookings file updated successfully
+[2026-06-05 12:35:40] Payment tr_4jmEVNrMT6Fk5WBq5FCSJ processed successfully: paid
+[2026-06-08 13:29:45] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-08 13:29:45] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_ayRWTS9s6UPvFDvzP7LSJ
+[2026-06-08 13:29:45] Payment tr_ayRWTS9s6UPvFDvzP7LSJ: paid -> paid (poaReservation=0)
+[2026-06-08 13:29:45] Updated booking cart_1780925369_48f59c1d_0 status to paid
+[2026-06-08 13:29:46] Confirmation email sent to andre2meter@hotmail.com via Microsoft Graph
+[2026-06-08 13:29:46] Bookings file updated successfully
+[2026-06-08 13:29:46] Payment tr_ayRWTS9s6UPvFDvzP7LSJ processed successfully: paid
+[2026-06-09 12:08:05] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 12:08:05] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_RoiboPdTzAtwFXpxaYNSJ
+[2026-06-09 12:08:05] Payment tr_RoiboPdTzAtwFXpxaYNSJ: paid -> paid (poaReservation=1)
+[2026-06-09 12:08:05] Updated booking cart_1781006856_625d8bf5_0 status to confirmed
+[2026-06-09 12:08:06] Confirmation email sent to mariekebrekelmans@gmail.com via Microsoft Graph
+[2026-06-09 12:08:06] Bookings file updated successfully
+[2026-06-09 12:08:06] Payment tr_RoiboPdTzAtwFXpxaYNSJ processed successfully: paid
+[2026-06-09 14:00:13] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 14:00:13] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_g62owAJWicD78L9G8kNSJ
+[2026-06-09 14:00:13] Payment tr_g62owAJWicD78L9G8kNSJ: canceled -> canceled (poaReservation=0)
+[2026-06-09 14:00:13] Updated booking cart_1781013607_c808d025_0 status to canceled
+[2026-06-09 14:00:13] Updated booking cart_1781013607_c808d025_1 status to canceled
+[2026-06-09 14:00:13] Bookings file updated successfully
+[2026-06-09 14:00:13] Payment tr_g62owAJWicD78L9G8kNSJ processed successfully: canceled
+[2026-06-09 14:06:48] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 14:06:48] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_ncmvA8K2b9xoutnoCjNSJ
+[2026-06-09 14:06:48] Payment tr_ncmvA8K2b9xoutnoCjNSJ: expired -> canceled (poaReservation=0)
+[2026-06-09 14:06:48] Updated booking cart_1781013069_c0194de9_0 status to canceled
+[2026-06-09 14:06:48] Updated booking cart_1781013069_c0194de9_1 status to canceled
+[2026-06-09 14:06:48] Bookings file updated successfully
+[2026-06-09 14:06:48] Payment tr_ncmvA8K2b9xoutnoCjNSJ processed successfully: expired
+[2026-06-09 14:19:09] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 14:19:09] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_pKpA5W9Jp4ii9xMhTkNSJ
+[2026-06-09 14:19:09] Payment tr_pKpA5W9Jp4ii9xMhTkNSJ: expired -> canceled (poaReservation=0)
+[2026-06-09 14:19:09] No booking found with payment ID: tr_pKpA5W9Jp4ii9xMhTkNSJ
+[2026-06-09 14:19:09] Payment tr_pKpA5W9Jp4ii9xMhTkNSJ processed successfully: expired
+[2026-06-09 14:55:49] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 14:55:49] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_hUFRoJvKNPGt53UzfjNSJ
+[2026-06-09 14:55:50] Payment tr_hUFRoJvKNPGt53UzfjNSJ: expired -> canceled (poaReservation=0)
+[2026-06-09 14:55:50] No booking found with payment ID: tr_hUFRoJvKNPGt53UzfjNSJ
+[2026-06-09 14:55:50] Payment tr_hUFRoJvKNPGt53UzfjNSJ processed successfully: expired
+[2026-06-09 16:06:20] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 16:06:20] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_Yf2YkNJPCkwPMqke2yNSJ
+[2026-06-09 16:06:20] Payment tr_Yf2YkNJPCkwPMqke2yNSJ: paid -> paid (poaReservation=1)
+[2026-06-09 16:06:20] Updated booking cart_1781021160_9acfca3d_0 status to confirmed
+[2026-06-09 16:06:21] Confirmation email sent to hardermach85@gmail.com via Microsoft Graph
+[2026-06-09 16:06:21] Bookings file updated successfully
+[2026-06-09 16:06:21] Payment tr_Yf2YkNJPCkwPMqke2yNSJ processed successfully: paid
+[2026-06-09 16:53:40] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-09 16:53:40] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_WKqfwF7xZEnFvMNms4PSJ
+[2026-06-09 16:53:40] Payment tr_WKqfwF7xZEnFvMNms4PSJ: paid -> paid (poaReservation=0)
+[2026-06-09 16:53:40] Updated booking cart_1781024006_860fae64_0 status to paid
+[2026-06-09 16:53:42] Confirmation email sent to binnenwerkbouw@gmail.com via Microsoft Graph
+[2026-06-09 16:53:42] Bookings file updated successfully
+[2026-06-09 16:53:42] Payment tr_WKqfwF7xZEnFvMNms4PSJ processed successfully: paid
+[2026-06-10 04:48:12] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-10 04:48:12] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_fkj5mL5EKcUHocH55MQSJ
+[2026-06-10 04:48:13] Payment tr_fkj5mL5EKcUHocH55MQSJ: paid -> paid (poaReservation=1)
+[2026-06-10 04:48:13] Updated booking cart_1781066848_c7917692_0 status to confirmed
+[2026-06-10 04:48:14] Confirmation email sent to dorritgieling@gmail.com via Microsoft Graph
+[2026-06-10 04:48:14] Bookings file updated successfully
+[2026-06-10 04:48:14] Payment tr_fkj5mL5EKcUHocH55MQSJ processed successfully: paid
+[2026-06-10 09:58:17] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-10 09:58:17] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_HzETu9ZQMywER9cprtQSJ
+[2026-06-10 09:58:17] Payment tr_HzETu9ZQMywER9cprtQSJ: paid -> paid (poaReservation=0)
+[2026-06-10 09:58:17] Updated booking cart_1781085467_f938f9b4_0 status to paid
+[2026-06-10 09:58:18] Confirmation email sent to robert.kamper@hetnet.nl via Microsoft Graph
+[2026-06-10 09:58:18] Bookings file updated successfully
+[2026-06-10 09:58:18] Payment tr_HzETu9ZQMywER9cprtQSJ processed successfully: paid
+[2026-06-12 08:00:01] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-12 08:00:01] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_kB2SMhYv42FUHbAXvrVSJ
+[2026-06-12 08:00:01] Payment tr_kB2SMhYv42FUHbAXvrVSJ: paid -> paid (poaReservation=1)
+[2026-06-12 08:00:01] Updated booking cart_1781251180_e0a73742_0 status to confirmed
+[2026-06-12 08:00:07] Confirmation email sent to jennifer-meijer@hotmail.com via Microsoft Graph
+[2026-06-12 08:00:07] Bookings file updated successfully
+[2026-06-12 08:00:07] Payment tr_kB2SMhYv42FUHbAXvrVSJ processed successfully: paid
+[2026-06-12 09:52:46] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-12 09:52:46] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_V5Vfh6Ps4fJe7Rt3V5WSJ
+[2026-06-12 09:52:46] Payment tr_V5Vfh6Ps4fJe7Rt3V5WSJ: paid -> paid (poaReservation=0)
+[2026-06-12 09:52:46] Updated booking cart_1781257944_2bd2a183_0 status to paid
+[2026-06-12 09:52:47] Confirmation email sent to mennovasse@hotmail.com via Microsoft Graph
+[2026-06-12 09:52:47] Bookings file updated successfully
+[2026-06-12 09:52:47] Payment tr_V5Vfh6Ps4fJe7Rt3V5WSJ processed successfully: paid
+[2026-06-12 12:58:58] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-12 12:58:58] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_rt6eszDz5fDmma3nZQWSJ
+[2026-06-12 12:58:58] Payment tr_rt6eszDz5fDmma3nZQWSJ: paid -> paid (poaReservation=1)
+[2026-06-12 12:58:58] Updated booking cart_1781269116_62845e67_0 status to confirmed
+[2026-06-12 12:58:59] Confirmation email sent to manoninholland@hotmail.com via Microsoft Graph
+[2026-06-12 12:58:59] Bookings file updated successfully
+[2026-06-12 12:58:59] Payment tr_rt6eszDz5fDmma3nZQWSJ processed successfully: paid
+[2026-06-12 13:21:06] Warning: Webhook processed without signature verification (production; set MOLLIE_WEBHOOK_SECRET when ready)
+[2026-06-12 13:21:06] Webhook received - Content-Type: application/x-www-form-urlencoded, Payment ID: tr_AkkJKbqcVXrE3NkAqSWSJ
+[2026-06-12 13:21:07] Payment tr_AkkJKbqcVXrE3NkAqSWSJ: paid -> paid (poaReservation=0)
+[2026-06-12 13:21:07] Updated booking cart_1781270445_57168f7d_0 status to paid
+[2026-06-12 13:21:07] Confirmation email sent to jessicaechten@hotmail.com.com via Microsoft Graph
+[2026-06-12 13:21:07] Bookings file updated successfully
+[2026-06-12 13:21:07] Payment tr_AkkJKbqcVXrE3NkAqSWSJ processed successfully: paid

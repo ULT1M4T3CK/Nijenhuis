@@ -6,7 +6,7 @@ Demonstrates the training and improvement functionality
 
 import json
 import os
-from backend.chatbot.core.enhanced_chatbot import EnhancedChatbot
+from backend.chatbot.core.chatbot import Chatbot as EnhancedChatbot
 
 def create_sample_training_data():
     """Create sample training data to demonstrate the framework"""

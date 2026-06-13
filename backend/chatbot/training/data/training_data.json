@@ -495,11 +495,534 @@
       "language": "de",
       "response_type": "boats",
       "timestamp": "2025-09-10T14:23:00"
+    },
+    "hallo": {
+      "original": "Hallo! Hoe kan ik u helpen vandaag?",
+      "corrected": "Hallo! Hoe kan ik u helpen vandaag?",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428128",
+      "source": "dialogstudio_patterns"
+    },
+    "goedemorgen": {
+      "original": "Goedemorgen! Waarmee kan ik u van dienst zijn?",
+      "corrected": "Goedemorgen! Waarmee kan ik u van dienst zijn?",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428137",
+      "source": "dialogstudio_patterns"
+    },
+    "ik heb een vraag": {
+      "original": "Natuurlijk, stel uw vraag gerust. Ik help u graag verder.",
+      "corrected": "Natuurlijk, stel uw vraag gerust. Ik help u graag verder.",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428141",
+      "source": "dialogstudio_patterns"
+    },
+    "bedankt voor je hulp": {
+      "original": "Graag gedaan! Als u nog vragen heeft, help ik u graag verder.",
+      "corrected": "Graag gedaan! Als u nog vragen heeft, help ik u graag verder.",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428143",
+      "source": "dialogstudio_patterns"
+    },
+    "tot ziens": {
+      "original": "Tot ziens! Ik wens u een fijne dag.",
+      "corrected": "Tot ziens! Ik wens u een fijne dag.",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428145",
+      "source": "dialogstudio_patterns"
+    },
+    "hello": {
+      "original": "Hello! How can I help you today?",
+      "corrected": "Hello! How can I help you today?",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428147",
+      "source": "dialogstudio_patterns"
+    },
+    "good morning": {
+      "original": "Good morning! How can I assist you?",
+      "corrected": "Good morning! How can I assist you?",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428149",
+      "source": "dialogstudio_patterns"
+    },
+    "i have a question": {
+      "original": "Of course, feel free to ask. I am happy to help.",
+      "corrected": "Of course, feel free to ask. I am happy to help.",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428151",
+      "source": "dialogstudio_patterns"
+    },
+    "thanks for your help": {
+      "original": "You are welcome! If you have more questions, I am happy to help.",
+      "corrected": "You are welcome! If you have more questions, I am happy to help.",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428153",
+      "source": "dialogstudio_patterns"
+    },
+    "goodbye": {
+      "original": "Goodbye! Have a nice day.",
+      "corrected": "Goodbye! Have a nice day.",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428155",
+      "source": "dialogstudio_patterns"
+    },
+    "guten morgen": {
+      "original": "Guten Morgen! Wie kann ich Ihnen helfen?",
+      "corrected": "Guten Morgen! Wie kann ich Ihnen helfen?",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428158",
+      "source": "dialogstudio_patterns"
+    },
+    "ich habe eine frage": {
+      "original": "Natürlich, stellen Sie Ihre Frage gerne. Ich helfe Ihnen gerne weiter.",
+      "corrected": "Natürlich, stellen Sie Ihre Frage gerne. Ich helfe Ihnen gerne weiter.",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428163",
+      "source": "dialogstudio_patterns"
+    },
+    "danke für ihre hilfe": {
+      "original": "Gern geschehen! Wenn Sie weitere Fragen haben, helfe ich Ihnen gerne weiter.",
+      "corrected": "Gern geschehen! Wenn Sie weitere Fragen haben, helfe ich Ihnen gerne weiter.",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428166",
+      "source": "dialogstudio_patterns"
+    },
+    "auf wiedersehen": {
+      "original": "Auf Wiedersehen! Einen schönen Tag noch.",
+      "corrected": "Auf Wiedersehen! Einen schönen Tag noch.",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428168",
+      "source": "dialogstudio_patterns"
+    },
+    "wat zijn jullie prijzen?": {
+      "original": "Onze prijzen variëren per dienst. Voor actuele prijzen kunt u contact met ons opnemen.",
+      "corrected": "Onze prijzen variëren per dienst. Voor actuele prijzen kunt u contact met ons opnemen.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428170",
+      "source": "bitext_patterns"
+    },
+    "hoeveel kost het?": {
+      "original": "De prijs hangt af van verschillende factoren. Neem contact met ons op voor een offerte.",
+      "corrected": "De prijs hangt af van verschillende factoren. Neem contact met ons op voor een offerte.",
+      "language": "nl",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428173",
+      "source": "bitext_patterns"
+    },
+    "hoe kan ik reserveren?": {
+      "original": "U kunt reserveren via onze website of telefonisch. We helpen u graag verder.",
+      "corrected": "U kunt reserveren via onze website of telefonisch. We helpen u graag verder.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428174",
+      "source": "bitext_patterns"
+    },
+    "kan ik online boeken?": {
+      "original": "Ja, u kunt online boeken via onze website. U kunt ook telefonisch reserveren.",
+      "corrected": "Ja, u kunt online boeken via onze website. U kunt ook telefonisch reserveren.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428176",
+      "source": "bitext_patterns"
+    },
+    "zijn er nog plaatsen beschikbaar?": {
+      "original": "Controleer de beschikbaarheid op onze website of bel ons voor actuele informatie.",
+      "corrected": "Controleer de beschikbaarheid op onze website of bel ons voor actuele informatie.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428178",
+      "source": "bitext_patterns"
+    },
+    "wanneer zijn jullie beschikbaar?": {
+      "original": "We zijn beschikbaar tijdens onze openingstijden. Bekijk onze website voor details.",
+      "corrected": "We zijn beschikbaar tijdens onze openingstijden. Bekijk onze website voor details.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428180",
+      "source": "bitext_patterns"
+    },
+    "wat is jullie telefoonnummer?": {
+      "original": "Ons telefoonnummer is te vinden op onze website onder contactgegevens.",
+      "corrected": "Ons telefoonnummer is te vinden op onze website onder contactgegevens.",
+      "language": "nl",
+      "response_type": "contact",
+      "timestamp": "2025-11-04T16:27:14.428184",
+      "source": "bitext_patterns"
+    },
+    "hoe kom ik bij jullie?": {
+      "original": "U vindt routebeschrijvingen en adresgegevens op onze website.",
+      "corrected": "U vindt routebeschrijvingen en adresgegevens op onze website.",
+      "language": "nl",
+      "response_type": "location",
+      "timestamp": "2025-11-04T16:27:14.428187",
+      "source": "bitext_patterns"
+    },
+    "wanneer zijn jullie open?": {
+      "original": "Bekijk onze website voor actuele openingstijden.",
+      "corrected": "Bekijk onze website voor actuele openingstijden.",
+      "language": "nl",
+      "response_type": "opening_hours",
+      "timestamp": "2025-11-04T16:27:14.428191",
+      "source": "bitext_patterns"
+    },
+    "kan ik annuleren?": {
+      "original": "Annuleringsvoorwaarden verschillen per reservering. Neem contact met ons op voor details.",
+      "corrected": "Annuleringsvoorwaarden verschillen per reservering. Neem contact met ons op voor details.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428193",
+      "source": "bitext_patterns"
+    },
+    "wat is jullie annuleringsbeleid?": {
+      "original": "Ons annuleringsbeleid staat beschreven in onze algemene voorwaarden.",
+      "corrected": "Ons annuleringsbeleid staat beschreven in onze algemene voorwaarden.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428195",
+      "source": "bitext_patterns"
+    },
+    "kan ik mijn geld terugkrijgen?": {
+      "original": "Voor vragen over terugbetaling kunt u contact met ons opnemen.",
+      "corrected": "Voor vragen over terugbetaling kunt u contact met ons opnemen.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428198",
+      "source": "bitext_patterns"
+    },
+    "hoe werkt de terugbetaling?": {
+      "original": "Terugbetalingsvoorwaarden zijn afhankelijk van de specifieke situatie. Neem contact op.",
+      "corrected": "Terugbetalingsvoorwaarden zijn afhankelijk van de specifieke situatie. Neem contact op.",
+      "language": "nl",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428200",
+      "source": "bitext_patterns"
+    },
+    "what are your prices?": {
+      "original": "Our prices vary by service. Please contact us for current pricing.",
+      "corrected": "Our prices vary by service. Please contact us for current pricing.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428201",
+      "source": "bitext_patterns"
+    },
+    "how much does it cost?": {
+      "original": "The price depends on various factors. Contact us for a quote.",
+      "corrected": "The price depends on various factors. Contact us for a quote.",
+      "language": "en",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428203",
+      "source": "bitext_patterns"
+    },
+    "how can i make a reservation?": {
+      "original": "You can book via our website or by phone. We are happy to help.",
+      "corrected": "You can book via our website or by phone. We are happy to help.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428205",
+      "source": "bitext_patterns"
+    },
+    "can i book online?": {
+      "original": "Yes, you can book online via our website. You can also reserve by phone.",
+      "corrected": "Yes, you can book online via our website. You can also reserve by phone.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428209",
+      "source": "bitext_patterns"
+    },
+    "are there any spots available?": {
+      "original": "Check availability on our website or call us for current information.",
+      "corrected": "Check availability on our website or call us for current information.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428211",
+      "source": "bitext_patterns"
+    },
+    "when are you available?": {
+      "original": "We are available during our opening hours. Check our website for details.",
+      "corrected": "We are available during our opening hours. Check our website for details.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428212",
+      "source": "bitext_patterns"
+    },
+    "how can i contact you?": {
+      "original": "You can reach us by phone, email or visit our location.",
+      "corrected": "You can reach us by phone, email or visit our location.",
+      "language": "en",
+      "response_type": "contact",
+      "timestamp": "2025-11-04T16:27:14.428214",
+      "source": "bitext_patterns"
+    },
+    "what is your phone number?": {
+      "original": "Our phone number can be found on our website under contact details.",
+      "corrected": "Our phone number can be found on our website under contact details.",
+      "language": "en",
+      "response_type": "contact",
+      "timestamp": "2025-11-04T16:27:14.428216",
+      "source": "bitext_patterns"
+    },
+    "how do i get to you?": {
+      "original": "You can find directions and address information on our website.",
+      "corrected": "You can find directions and address information on our website.",
+      "language": "en",
+      "response_type": "location",
+      "timestamp": "2025-11-04T16:27:14.428219",
+      "source": "bitext_patterns"
+    },
+    "when are you open?": {
+      "original": "Check our website for current opening hours.",
+      "corrected": "Check our website for current opening hours.",
+      "language": "en",
+      "response_type": "opening_hours",
+      "timestamp": "2025-11-04T16:27:14.428222",
+      "source": "bitext_patterns"
+    },
+    "can i cancel?": {
+      "original": "Cancellation terms vary by reservation. Contact us for details.",
+      "corrected": "Cancellation terms vary by reservation. Contact us for details.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428224",
+      "source": "bitext_patterns"
+    },
+    "what is your cancellation policy?": {
+      "original": "Our cancellation policy is described in our terms and conditions.",
+      "corrected": "Our cancellation policy is described in our terms and conditions.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428226",
+      "source": "bitext_patterns"
+    },
+    "can i get my money back?": {
+      "original": "For questions about refunds, please contact us.",
+      "corrected": "For questions about refunds, please contact us.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428228",
+      "source": "bitext_patterns"
+    },
+    "how does the refund work?": {
+      "original": "Refund terms depend on the specific situation. Please contact us.",
+      "corrected": "Refund terms depend on the specific situation. Please contact us.",
+      "language": "en",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428231",
+      "source": "bitext_patterns"
+    },
+    "was sind eure preise?": {
+      "original": "Unsere Preise variieren je nach Service. Bitte kontaktieren Sie uns für aktuelle Preise.",
+      "corrected": "Unsere Preise variieren je nach Service. Bitte kontaktieren Sie uns für aktuelle Preise.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428233",
+      "source": "bitext_patterns"
+    },
+    "wie viel kostet es?": {
+      "original": "Der Preis hängt von verschiedenen Faktoren ab. Kontaktieren Sie uns für ein Angebot.",
+      "corrected": "Der Preis hängt von verschiedenen Faktoren ab. Kontaktieren Sie uns für ein Angebot.",
+      "language": "de",
+      "response_type": "pricing",
+      "timestamp": "2025-11-04T16:27:14.428235",
+      "source": "bitext_patterns"
+    },
+    "wie kann ich reservieren?": {
+      "original": "Sie können über unsere Website oder telefonisch buchen. Wir helfen Ihnen gerne.",
+      "corrected": "Sie können über unsere Website oder telefonisch buchen. Wir helfen Ihnen gerne.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428237",
+      "source": "bitext_patterns"
+    },
+    "kann ich online buchen?": {
+      "original": "Ja, Sie können online über unsere Website buchen. Sie können auch telefonisch reservieren.",
+      "corrected": "Ja, Sie können online über unsere Website buchen. Sie können auch telefonisch reservieren.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428239",
+      "source": "bitext_patterns"
+    },
+    "gibt es noch plätze verfügbar?": {
+      "original": "Prüfen Sie die Verfügbarkeit auf unserer Website oder rufen Sie uns für aktuelle Informationen an.",
+      "corrected": "Prüfen Sie die Verfügbarkeit auf unserer Website oder rufen Sie uns für aktuelle Informationen an.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428241",
+      "source": "bitext_patterns"
+    },
+    "wann seid ihr verfügbar?": {
+      "original": "Wir sind während unserer Öffnungszeiten verfügbar. Sehen Sie unsere Website für Details.",
+      "corrected": "Wir sind während unserer Öffnungszeiten verfügbar. Sehen Sie unsere Website für Details.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428243",
+      "source": "bitext_patterns"
+    },
+    "wie kann ich euch kontaktieren?": {
+      "original": "Sie können uns telefonisch, per E-Mail erreichen oder unseren Standort besuchen.",
+      "corrected": "Sie können uns telefonisch, per E-Mail erreichen oder unseren Standort besuchen.",
+      "language": "de",
+      "response_type": "contact",
+      "timestamp": "2025-11-04T16:27:14.428244",
+      "source": "bitext_patterns"
+    },
+    "was ist eure telefonnummer?": {
+      "original": "Unsere Telefonnummer finden Sie auf unserer Website unter Kontaktdaten.",
+      "corrected": "Unsere Telefonnummer finden Sie auf unserer Website unter Kontaktdaten.",
+      "language": "de",
+      "response_type": "contact",
+      "timestamp": "2025-11-04T16:27:14.428246",
+      "source": "bitext_patterns"
+    },
+    "wo befindet ihr euch?": {
+      "original": "Unser Standort und Adresse sind auf unserer Website aufgeführt.",
+      "corrected": "Unser Standort und Adresse sind auf unserer Website aufgeführt.",
+      "language": "de",
+      "response_type": "location",
+      "timestamp": "2025-11-04T16:27:14.428248",
+      "source": "bitext_patterns"
+    },
+    "wie komme ich zu euch?": {
+      "original": "Sie finden Wegbeschreibungen und Adressinformationen auf unserer Website.",
+      "corrected": "Sie finden Wegbeschreibungen und Adressinformationen auf unserer Website.",
+      "language": "de",
+      "response_type": "location",
+      "timestamp": "2025-11-04T16:27:14.428251",
+      "source": "bitext_patterns"
+    },
+    "wann seid ihr geöffnet?": {
+      "original": "Sehen Sie unsere Website für aktuelle Öffnungszeiten.",
+      "corrected": "Sehen Sie unsere Website für aktuelle Öffnungszeiten.",
+      "language": "de",
+      "response_type": "opening_hours",
+      "timestamp": "2025-11-04T16:27:14.428255",
+      "source": "bitext_patterns"
+    },
+    "kann ich stornieren?": {
+      "original": "Stornierungsbedingungen variieren je nach Reservierung. Kontaktieren Sie uns für Details.",
+      "corrected": "Stornierungsbedingungen variieren je nach Reservierung. Kontaktieren Sie uns für Details.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428257",
+      "source": "bitext_patterns"
+    },
+    "was ist eure stornierungsrichtlinie?": {
+      "original": "Unsere Stornierungsrichtlinie ist in unseren Allgemeinen Geschäftsbedingungen beschrieben.",
+      "corrected": "Unsere Stornierungsrichtlinie ist in unseren Allgemeinen Geschäftsbedingungen beschrieben.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428259",
+      "source": "bitext_patterns"
+    },
+    "kann ich mein geld zurückbekommen?": {
+      "original": "Für Fragen zu Rückerstattungen kontaktieren Sie uns bitte.",
+      "corrected": "Für Fragen zu Rückerstattungen kontaktieren Sie uns bitte.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428261",
+      "source": "bitext_patterns"
+    },
+    "wie funktioniert die rückerstattung?": {
+      "original": "Rückerstattungsbedingungen hängen von der spezifischen Situation ab. Bitte kontaktieren Sie uns.",
+      "corrected": "Rückerstattungsbedingungen hängen von der spezifischen Situation ab. Bitte kontaktieren Sie uns.",
+      "language": "de",
+      "response_type": "booking",
+      "timestamp": "2025-11-04T16:27:14.428263",
+      "source": "bitext_patterns"
+    },
+    "kunt u me meer vertellen over jullie diensten?": {
+      "original": "Zeker, ik vertel u graag meer. We bieden verschillende diensten aan die passen bij uw behoeften. Wat interesseert u het meest?",
+      "corrected": "Zeker, ik vertel u graag meer. We bieden verschillende diensten aan die passen bij uw behoeften. Wat interesseert u het meest?",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428265",
+      "source": "gutenberg_patterns"
+    },
+    "ik overweeg een reservering te maken": {
+      "original": "Dat is een goede keuze! Ik kan u helpen met het vinden van de beste optie voor u. Wanneer heeft u het voor ogen?",
+      "corrected": "Dat is een goede keuze! Ik kan u helpen met het vinden van de beste optie voor u. Wanneer heeft u het voor ogen?",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428267",
+      "source": "gutenberg_patterns"
+    },
+    "zijn er speciale aanbiedingen?": {
+      "original": "We hebben regelmatig speciale aanbiedingen. Laat me voor u kijken wat er momenteel beschikbaar is.",
+      "corrected": "We hebben regelmatig speciale aanbiedingen. Laat me voor u kijken wat er momenteel beschikbaar is.",
+      "language": "nl",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428269",
+      "source": "gutenberg_patterns"
+    },
+    "can you tell me more about your services?": {
+      "original": "Certainly, I would be happy to tell you more. We offer various services that suit your needs. What interests you most?",
+      "corrected": "Certainly, I would be happy to tell you more. We offer various services that suit your needs. What interests you most?",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428272",
+      "source": "gutenberg_patterns"
+    },
+    "i am considering making a reservation": {
+      "original": "That is a good choice! I can help you find the best option for you. When are you thinking?",
+      "corrected": "That is a good choice! I can help you find the best option for you. When are you thinking?",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428274",
+      "source": "gutenberg_patterns"
+    },
+    "are there any special offers?": {
+      "original": "We regularly have special offers. Let me check what is currently available for you.",
+      "corrected": "We regularly have special offers. Let me check what is currently available for you.",
+      "language": "en",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428276",
+      "source": "gutenberg_patterns"
+    },
+    "können sie mir mehr über eure dienstleistungen erzählen?": {
+      "original": "Sicher, ich erzähle Ihnen gerne mehr. Wir bieten verschiedene Dienstleistungen an, die zu Ihren Bedürfnissen passen. Was interessiert Sie am meisten?",
+      "corrected": "Sicher, ich erzähle Ihnen gerne mehr. Wir bieten verschiedene Dienstleistungen an, die zu Ihren Bedürfnissen passen. Was interessiert Sie am meisten?",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428278",
+      "source": "gutenberg_patterns"
+    },
+    "ich überlege, eine reservierung zu machen": {
+      "original": "Das ist eine gute Wahl! Ich kann Ihnen helfen, die beste Option für Sie zu finden. Wann haben Sie es vor?",
+      "corrected": "Das ist eine gute Wahl! Ich kann Ihnen helfen, die beste Option für Sie zu finden. Wann haben Sie es vor?",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428280",
+      "source": "gutenberg_patterns"
+    },
+    "gibt es besondere angebote?": {
+      "original": "Wir haben regelmäßig besondere Angebote. Lassen Sie mich für Sie schauen, was derzeit verfügbar ist.",
+      "corrected": "Wir haben regelmäßig besondere Angebote. Lassen Sie mich für Sie schauen, was derzeit verfügbar ist.",
+      "language": "de",
+      "response_type": "general",
+      "timestamp": "2025-11-04T16:27:14.428282",
+      "source": "gutenberg_patterns"
     }
   },
   "statistics": {
     "total_tests": 67,
     "improved_responses": 67,
-    "accuracy_score": 100.0
+    "accuracy_score": 100.0,
+    "total_responses": 126,
+    "public_dataset_responses": 65,
+    "last_updated": "2025-11-04T16:27:14.428286"
   }
 }

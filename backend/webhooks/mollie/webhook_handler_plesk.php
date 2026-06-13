@@ -9,8 +9,25 @@
 error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 ini_set('display_errors', 0);
 
-// Set content type
+// Set content type and security headers
 header('Content-Type: application/json');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+header('X-XSS-Protection: 1; mode=block');
+header('Referrer-Policy: no-referrer');
+$__isHttps = (
+    (!empty($_SERVER['HTTPS']) && strtolower((string)$_SERVER['HTTPS']) !== 'off')
+    || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower((string)$_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https')
+    || (isset($_SERVER['SERVER_PORT']) && (int)$_SERVER['SERVER_PORT'] === 443)
+);
+if ($__isHttps) {
+    header('Strict-Transport-Security: max-age=31536000; includeSubDomains; preload');
+}
+header('Cross-Origin-Resource-Policy: same-origin');
+
+// Load shared components
+require_once __DIR__ . '/../../../components/data_access.php';
+require_once __DIR__ . '/../../../components/booking_confirmation_email.php';
 
 // Log function
 function logWebhook($message) {
@@ -20,15 +37,78 @@ function logWebhook($message) {
     file_put_contents($logFile, $logEntry, FILE_APPEND | LOCK_EX);
 }
 
+// Load .env file safely
+loadEnvSafe(__DIR__ . '/../../../.env');
+
 // Configuration
 $mollieApiKey = getenv('MOLLIE_API_KEY') ?: '';
-$bookingsFile = __DIR__ . '/local_bookings.json';
+$mollieWebhookSecret = getenv('MOLLIE_WEBHOOK_SECRET') ?: '';
+$appEnv = getenv('APP_ENV') ?: ($_ENV['APP_ENV'] ?? 'production');
+$bookingsFile = nijenhuis_data_path('bookings.json');
 $logFile = __DIR__ . '/webhook_log.txt';
 
+// Validate Microsoft Graph env vars (log to webhook log for local debugging)
+$requiredGraphVars = [
+    'MS_GRAPH_TENANT_ID',
+    'MS_GRAPH_CLIENT_ID',
+    'MS_GRAPH_CLIENT_SECRET',
+    'MS_GRAPH_MAILBOX'
+];
+foreach ($requiredGraphVars as $varName) {
+    $value = getenv($varName) ?: ($_ENV[$varName] ?? '');
+    if (empty($value)) {
+        logWebhook("Warning: Missing env var $varName (Graph email may fail)");
+    }
+}
+
+// Webhook signature verification function
+function verifyWebhookSignature($input, $signature, $secret) {
+    if (empty($secret)) {
+        return false;
+    }
+    if (empty($signature)) {
+        return false;
+    }
+    $expectedSignature = hash_hmac('sha256', $input, $secret);
+    return hash_equals('sha256=' . $expectedSignature, $signature);
+}
+
 // Handle different request methods
-$method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'] ?? null;
+if (!$method) {
+    // Some server contexts (e.g. CLI/test) may not set REQUEST_METHOD
+    logWebhook('Warning: REQUEST_METHOD missing; assuming POST');
+    $method = 'POST';
+}
 
 if ($method === 'GET') {
+    $action = $_GET['action'] ?? '';
+    if ($action === 'simulatePaid' && $appEnv !== 'production') {
+        $paymentId = trim($_GET['paymentId'] ?? '');
+        $bookingId = trim($_GET['bookingId'] ?? '');
+
+        if (empty($paymentId) && !empty($bookingId)) {
+            $bookings = loadJsonSafe($bookingsFile);
+            foreach ($bookings as $b) {
+                if (($b['id'] ?? '') === $bookingId) {
+                    $paymentId = $b['paymentId'] ?? '';
+                    break;
+                }
+            }
+        }
+
+        if (empty($paymentId)) {
+            http_response_code(400);
+            echo json_encode(['status' => 'error', 'message' => 'paymentId or bookingId is required']);
+            exit;
+        }
+
+        logWebhook("Local simulatePaid triggered for paymentId: $paymentId");
+        updateBookingStatus($paymentId, 'paid');
+        echo json_encode(['status' => 'success', 'message' => 'Simulated paid webhook', 'paymentId' => $paymentId]);
+        exit;
+    }
+
     // Health check endpoint
     echo json_encode([
         'status' => 'success',
@@ -43,27 +123,60 @@ if ($method === 'POST') {
     try {
         // Get POST data
         $input = file_get_contents('php://input');
-        $webhookData = json_decode($input, true);
         
-        if (!$webhookData) {
-            throw new Exception('Invalid JSON data received');
+        // SECURITY: When MOLLIE_WEBHOOK_SECRET is set, require valid X-Mollie-Signature.
+        // When unset, webhooks are still processed (Mollie confirms payment via API) — set the secret when you can.
+        $signature = $_SERVER['HTTP_X_MOLLIE_SIGNATURE'] ?? '';
+        $hasRealSecret = !empty($mollieWebhookSecret) &&
+                         $mollieWebhookSecret !== 'your_webhook_secret_here' &&
+                         strlen($mollieWebhookSecret) > 20;
+
+        if ($hasRealSecret) {
+            if (empty($signature)) {
+                logWebhook('Webhook rejected: Missing X-Mollie-Signature header (secret is configured)');
+                http_response_code(401);
+                echo json_encode(['status' => 'error', 'message' => 'Missing signature']);
+                exit;
+            }
+            if (!verifyWebhookSignature($input, $signature, $mollieWebhookSecret)) {
+                logWebhook('Webhook signature verification failed');
+                http_response_code(401);
+                echo json_encode(['status' => 'error', 'message' => 'Invalid signature']);
+                exit;
+            }
+            logWebhook('Webhook signature verified successfully');
+        } else {
+            $envNote = $appEnv === 'production' ? 'production' : 'non-production';
+            logWebhook("Warning: Webhook processed without signature verification ($envNote; set MOLLIE_WEBHOOK_SECRET when ready)");
         }
         
-        logWebhook("Webhook received: " . json_encode($webhookData));
+        // CRITICAL: Mollie sends form-urlencoded data (id=tr_xxx), not JSON!
+        // Try form-urlencoded first (POST data), then raw parse, then JSON fallback
+        $paymentId = $_POST['id'] ?? null;
         
-        // Extract payment ID
-        $paymentId = $webhookData['id'] ?? null;
+        if (!$paymentId) {
+            // Try parsing raw input as form-urlencoded
+            parse_str($input, $formData);
+            $paymentId = $formData['id'] ?? null;
+        }
+        
+        if (!$paymentId) {
+            // Last resort: try JSON (for manual testing)
+            $webhookData = json_decode($input, true);
+            $paymentId = $webhookData['id'] ?? null;
+        }
+        
+        logWebhook("Webhook received - Content-Type: " . ($_SERVER['CONTENT_TYPE'] ?? 'not set') . ", Payment ID: " . ($paymentId ?? 'NONE'));
         
         if (!$paymentId) {
             throw new Exception('No payment ID in webhook data');
         }
         
-        // Get payment status from Mollie API
-        $paymentStatus = getPaymentStatus($paymentId);
+        $paymentPayload = getPaymentPayload($paymentId);
+        $paymentStatus = $paymentPayload['status'] ?? null;
         
         if ($paymentStatus) {
-            // Update booking status
-            updateBookingStatus($paymentId, $paymentStatus);
+            updateBookingStatus($paymentId, $paymentStatus, $paymentPayload);
             
             // Send success response
             http_response_code(200);
@@ -80,11 +193,12 @@ if ($method === 'POST') {
         }
         
     } catch (Exception $e) {
+        // SECURITY: Log detailed error but don't expose to client
         logWebhook("Error: " . $e->getMessage());
         http_response_code(500);
         echo json_encode([
             'status' => 'error',
-            'message' => $e->getMessage()
+            'message' => 'Webhook processing failed. Please contact support.'
         ]);
     }
 } else {
@@ -96,9 +210,11 @@ if ($method === 'POST') {
 }
 
 /**
- * Get payment status from Mollie API
+ * Get full payment object from Mollie API
+ *
+ * @return array<string, mixed>|null
  */
-function getPaymentStatus($paymentId) {
+function getPaymentPayload($paymentId) {
     global $mollieApiKey;
     
     $url = "https://api.mollie.com/v2/payments/$paymentId";
@@ -120,55 +236,79 @@ function getPaymentStatus($paymentId) {
     
     if ($httpCode === 200 && $response) {
         $paymentData = json_decode($response, true);
-        return $paymentData['status'] ?? null;
+        return is_array($paymentData) ? $paymentData : null;
     }
     
-    logWebhook("Failed to get payment status. HTTP Code: $httpCode, Response: $response");
+    logWebhook("Failed to get payment. HTTP Code: $httpCode, Response: $response");
     return null;
 }
 
 /**
- * Update booking status based on payment status
+ * Update booking status based on payment status (all rows sharing this Mollie payment id).
+ *
+ * @param array<string, mixed>|null $paymentPayload Full Mollie payment JSON when available
  */
-function updateBookingStatus($paymentId, $paymentStatus) {
+function updateBookingStatus($paymentId, $paymentStatus, $paymentPayload = null) {
     global $bookingsFile;
     
-    // Map Mollie status to booking status
+    $metadata = is_array($paymentPayload) && isset($paymentPayload['metadata']) && is_array($paymentPayload['metadata'])
+        ? $paymentPayload['metadata']
+        : [];
+    $isPoaReservation = ($metadata['paymentKind'] ?? '') === 'pay_on_arrival_reservation'
+        || ($metadata['payOnArrival'] ?? '') === '1';
+    
     $statusMapping = [
-        'paid' => 'confirmed-paid',
-        'failed' => 'payment-rejected',
-        'expired' => 'payment-rejected',
-        'canceled' => 'payment-rejected',
-        'pending' => 'confirmed-not-paid'
+        'paid' => 'paid',
+        'failed' => 'canceled',
+        'expired' => 'canceled',
+        'canceled' => 'canceled',
+        'pending' => 'pending',
+        'open' => 'pending'
     ];
     
-    $newBookingStatus = $statusMapping[$paymentStatus] ?? 'not-confirmed';
+    $newBookingStatus = $statusMapping[$paymentStatus] ?? 'canceled';
     
-    logWebhook("Payment $paymentId: $paymentStatus -> $newBookingStatus");
+    logWebhook("Payment $paymentId: $paymentStatus -> $newBookingStatus (poaReservation=" . ($isPoaReservation ? '1' : '0') . ")");
     
-    // Load existing bookings
-    $bookings = [];
-    if (file_exists($bookingsFile)) {
-        $bookingsData = file_get_contents($bookingsFile);
-        $bookings = json_decode($bookingsData, true) ?: [];
-    }
-    
-    // Find and update booking with this payment ID
+    $bookings = loadJsonSafe($bookingsFile);
     $updated = false;
+    $emailSentForCart = false;
+    
     foreach ($bookings as &$booking) {
-        if (isset($booking['paymentId']) && $booking['paymentId'] === $paymentId) {
-            $booking['status'] = $newBookingStatus;
-            $booking['paymentStatus'] = $paymentStatus;
-            $booking['updatedAt'] = date('c');
-            $updated = true;
-            logWebhook("Updated booking " . $booking['id'] . " status to $newBookingStatus");
-            break;
+        if (!isset($booking['paymentId']) || $booking['paymentId'] !== $paymentId) {
+            continue;
+        }
+        $emailAlreadySent = $booking['confirmationEmailSent'] ?? false;
+        $mapped = $newBookingStatus;
+        $isPoaReservationRow = $isPoaReservation || !empty($booking['payOnArrivalReservation']);
+        if ($mapped === 'paid' && $isPoaReservationRow
+            && (($booking['paymentMethod'] ?? '') === (defined('CHECKOUT_PAY_ON_ARRIVAL_METHOD') ? CHECKOUT_PAY_ON_ARRIVAL_METHOD : 'pay_on_arrival')
+                || !empty($booking['payOnArrivalReservation']))) {
+            $mapped = 'confirmed';
+        }
+        $booking['status'] = $mapped;
+        $booking['paymentStatus'] = $paymentStatus;
+        $booking['updatedAt'] = date('c');
+        $updated = true;
+        logWebhook("Updated booking " . ($booking['id'] ?? '') . " status to $mapped");
+        
+        $sendMail = ($mapped === 'paid' || $mapped === 'confirmed') && !$emailAlreadySent && !$emailSentForCart;
+        if ($sendMail) {
+            $emailSent = sendBookingConfirmationEmail($booking, true);
+            $booking['confirmationEmailSent'] = $emailSent;
+            if ($emailSent) {
+                $booking['confirmationEmailSentAt'] = date('c');
+                logWebhook("Confirmation email sent to " . ($booking['customerEmail'] ?? '') . " via Microsoft Graph");
+            } else {
+                logWebhook("Failed to send confirmation email for booking " . ($booking['id'] ?? ''));
+            }
+            $emailSentForCart = true;
         }
     }
+    unset($booking);
     
     if ($updated) {
-        // Save updated bookings
-        file_put_contents($bookingsFile, json_encode($bookings, JSON_PRETTY_PRINT));
+        saveJsonSafe($bookingsFile, $bookings);
         logWebhook("Bookings file updated successfully");
     } else {
         logWebhook("No booking found with payment ID: $paymentId");

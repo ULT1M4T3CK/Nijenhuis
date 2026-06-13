@@ -1,0 +1,15 @@
+# Nijenhuis Botenverhuur - AWS Production Dependencies
+# Lightweight version without heavy ML packages
+
+# Core API
+flask>=2.0.0
+flask-cors>=3.0.0
+requests>=2.25.0
+beautifulsoup4>=4.9.0
+pyjwt>=2.0.0
+cryptography>=3.4.0
+
+# Production WSGI Server
+gunicorn>=21.0.0
+
+

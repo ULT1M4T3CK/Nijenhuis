@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    
+    <!-- Homepage -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/"/>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Main Service Pages -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/botenverhuur</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/botenverhuur"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/botenverhuur?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/botenverhuur?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/botenverhuur"/>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/camping</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/camping"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/camping?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/camping?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/camping"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/vakantiehuis</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/vakantiehuis"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/vakantiehuis?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/vakantiehuis?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/vakantiehuis"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/te-koop</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/te-koop"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/te-koop?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/te-koop?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/te-koop"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    
+    <!-- Informational Pages -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/vaarkaart</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/vaarkaart"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/vaarkaart?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/vaarkaart?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/vaarkaart"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/contact</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/contact"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/contact?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/contact?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/contact"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/booking</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/booking"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/booking?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/booking?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/booking"/>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/tarieven</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/tarieven"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/tarieven?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/tarieven?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/tarieven"/>
+        <lastmod>2026-06-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- FAQ Page - optimized for AI visibility -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/veelgestelde-vragen</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/veelgestelde-vragen"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/veelgestelde-vragen?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/veelgestelde-vragen?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/veelgestelde-vragen"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Location/Destination Pages - optimized for SEO and AI search -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/giethoorn</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/giethoorn"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/giethoorn?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/giethoorn?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/giethoorn"/>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/weerribben</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/weerribben"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/weerribben?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/weerribben?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/weerribben"/>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Wanneperveen/beulakerwijde-view.jpg</image:loc>
+            <image:caption>Bootje huren in de Weerribben-Wieden vanuit Wanneperveen</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/belt-schutsloot</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/belt-schutsloot"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/belt-schutsloot?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/belt-schutsloot?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/belt-schutsloot"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/wanneperveen</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/wanneperveen"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/wanneperveen?lang=en"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/wanneperveen?lang=de"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/wanneperveen"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    
+    <!-- Blog Pages -->
+    <!-- Blog Pages AUTO-GENERATED START -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/bootje-huren-drenthe</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-drenthe"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/bootje-huren-drenthe"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/bootje-huren-drenthe"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-drenthe"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Wanneperveen/beulakerwijde-view.jpg</image:loc>
+            <image:caption>Bootje huren in Drenthe: varen door de mooiste watergebieden</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/motorboot-huren-giethoorn-weerribben</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/motorboot-huren-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/motorboot-huren-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/motorboot-huren-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/motorboot-huren-giethoorn-weerribben"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg</image:loc>
+            <image:caption>Motorboot huren bij Giethoorn &amp; Weerribben: alles wat je moet weten</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/fluisterboot-huren-weerribben-wieden</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/fluisterboot-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/fluisterboot-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/fluisterboot-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/fluisterboot-huren-weerribben-wieden"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Giethoorn/Giethoorn1.png</image:loc>
+            <image:caption>Fluisterboot huren in de Weerribben-Wieden: stil over het water</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/wanneperveen-startpunt-varen-giethoorn-weerribben</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/wanneperveen-startpunt-varen-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/wanneperveen-startpunt-varen-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/wanneperveen-startpunt-varen-giethoorn-weerribben"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/wanneperveen-startpunt-varen-giethoorn-weerribben"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/belterwijde.jpg</image:loc>
+            <image:caption>Waarom Wanneperveen het beste startpunt is voor varen bij Giethoorn</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/bedrijfsuitje-varen-weerribben-giethoorn-teambuilding</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/bedrijfsuitje-varen-weerribben-giethoorn-teambuilding"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/bedrijfsuitje-varen-weerribben-giethoorn-teambuilding"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/bedrijfsuitje-varen-weerribben-giethoorn-teambuilding"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/bedrijfsuitje-varen-weerribben-giethoorn-teambuilding"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Wanneperveen/beulakerwijde-view.jpg</image:loc>
+            <image:caption>Bedrijfsuitje op het water: varen met je team door de Weerribben-Wieden</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/varen-herfst-naseizoen-weerribben-wieden</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/varen-herfst-naseizoen-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/varen-herfst-naseizoen-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/varen-herfst-naseizoen-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/varen-herfst-naseizoen-weerribben-wieden"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electroboat-5.jpg</image:loc>
+            <image:caption>Varen in het naseizoen: waarom herfst de mooiste tijd is op het water</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/dagje-uit-giethoorn-omgeving-wat-te-doen</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/dagje-uit-giethoorn-omgeving-wat-te-doen"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/dagje-uit-giethoorn-omgeving-wat-te-doen"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/dagje-uit-giethoorn-omgeving-wat-te-doen"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/dagje-uit-giethoorn-omgeving-wat-te-doen"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg</image:loc>
+            <image:caption>Dagje uit naar Giethoorn en omgeving: de complete gids voor 2026</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/sloep-huren-groep-8-10-12-personen</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/sloep-huren-groep-8-10-12-personen"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/sloep-huren-groep-8-10-12-personen"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/sloep-huren-groep-8-10-12-personen"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/sloep-huren-groep-8-10-12-personen"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Giethoorn/Giethoorn1.png</image:loc>
+            <image:caption>Sloep huren voor een groep: met 8, 10 of 12 personen het water op</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/bootje-huren-weerribben-wieden</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/bootje-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/bootje-huren-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-weerribben-wieden"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/belterwijde.jpg</image:loc>
+            <image:caption>Bootje huren in de Weerribben-Wieden: varen door het mooiste natuurgebied van Nederland</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/boot-huren-overijssel-mooiste-vaargebieden</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-overijssel-mooiste-vaargebieden"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/boot-huren-overijssel-mooiste-vaargebieden"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/boot-huren-overijssel-mooiste-vaargebieden"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-overijssel-mooiste-vaargebieden"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Wanneperveen/beulakerwijde-view.jpg</image:loc>
+            <image:caption>Boot huren in Overijssel: de 5 mooiste vaargebieden</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/bootje-huren-belt-schutsloot-waterdorp</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-belt-schutsloot-waterdorp"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/bootje-huren-belt-schutsloot-waterdorp"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/bootje-huren-belt-schutsloot-waterdorp"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/bootje-huren-belt-schutsloot-waterdorp"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electroboat-5.jpg</image:loc>
+            <image:caption>Belt-Schutsloot: varen door het onontdekte waterdorp naast Giethoorn</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/natuur-weerribben-wieden-otters-vogels</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/natuur-weerribben-wieden-otters-vogels"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/natuur-weerribben-wieden-otters-vogels"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/natuur-weerribben-wieden-otters-vogels"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/natuur-weerribben-wieden-otters-vogels"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg</image:loc>
+            <image:caption>Natuur in de Weerribben-Wieden: otters, vogels en wilde orchideeën</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/boot-huren-giethoorn-complete-gids</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-giethoorn-complete-gids"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/boot-huren-giethoorn-complete-gids"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/boot-huren-giethoorn-complete-gids"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-giethoorn-complete-gids"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Giethoorn/Giethoorn1.png</image:loc>
+            <image:caption>Giethoorn per boot ontdekken: routes, tips en drukte vermijden</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/mooiste-vaarroutes-weerribben-wieden</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/mooiste-vaarroutes-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/mooiste-vaarroutes-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/mooiste-vaarroutes-weerribben-wieden"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/mooiste-vaarroutes-weerribben-wieden"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/belterwijde.jpg</image:loc>
+            <image:caption>De 5 mooiste vaarroutes door de Weerribben-Wieden</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/giethoorn-drukte-vermijden-rustig-varen</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/giethoorn-drukte-vermijden-rustig-varen"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/giethoorn-drukte-vermijden-rustig-varen"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/giethoorn-drukte-vermijden-rustig-varen"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/giethoorn-drukte-vermijden-rustig-varen"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Wanneperveen/beulakerwijde-view.jpg</image:loc>
+            <image:caption>Giethoorn te druk? Zo vaar je wél rustig door de Weerribben</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/dagje-uit-kinderen-op-het-water</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/dagje-uit-kinderen-op-het-water"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/dagje-uit-kinderen-op-het-water"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/dagje-uit-kinderen-op-het-water"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/dagje-uit-kinderen-op-het-water"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electroboat-5.jpg</image:loc>
+            <image:caption>Dagje uit met kinderen op het water: tips voor een zorgeloos vaardag</image:caption>
+        </image:image>
+    </url>
+    
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/blog/boot-huren-zonder-vaarbewijs</loc>
+        <xhtml:link rel="alternate" hreflang="nl" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-zonder-vaarbewijs"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://nijenhuis-botenverhuur.com/en/blog/boot-huren-zonder-vaarbewijs"/>
+        <xhtml:link rel="alternate" hreflang="de" href="https://nijenhuis-botenverhuur.com/de/blog/boot-huren-zonder-vaarbewijs"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://nijenhuis-botenverhuur.com/blog/boot-huren-zonder-vaarbewijs"/>
+        <lastmod>2026-06-05</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg</image:loc>
+            <image:caption>Boot huren zonder vaarbewijs: wat mag wel en wat mag niet?</image:caption>
+        </image:image>
+    </url>
+
+<!-- Blog Pages AUTO-GENERATED END -->
+    
+    <!-- Boat Landing Pages (with image sitemap for AI multimodal) -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/classic-tender-720</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/tender-720/tender-720-10-12.jpg</image:loc>
+            <image:caption>Classic Tender 720 – Luxe electrosloep 10-12 personen, Nijenhuis Botenverhuur Wanneperveen</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/classic-tender-570</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/tender-720/tender-720-10-12.jpg</image:loc>
+            <image:caption>Classic Tender 570 – Electrosloep 8 personen, Nijenhuis Botenverhuur Wanneperveen</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/electrosloop-10</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-10/electrosloop-10.jpg</image:loc>
+            <image:caption>Electrosloep 10 personen – Fluisterboot huren bij Giethoorn, Nijenhuis Botenverhuur</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/electrosloop-8</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg</image:loc>
+            <image:caption>Electrosloep 8 personen – Sloepverhuur Giethoorn, Nijenhuis Botenverhuur</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/electroboat-5</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/electroboat-5.jpg</image:loc>
+            <image:caption>Electroboot 5 personen – Bootje huren Weerribben, Nijenhuis Botenverhuur</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/sailboat-4-5</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg</image:loc>
+            <image:caption>Zeilboot 4-5 personen – Zeilen in de Weerribben, Nijenhuis Botenverhuur</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/sailpunter-3-4</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/sailpunter-3-4.jpg</image:loc>
+            <image:caption>Zeilpunter 3-4 personen – Traditioneel zeilen in de Weerribben</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/canoe-3</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/canoe/canoe-3.jpg</image:loc>
+            <image:caption>Canadese kano 3 personen – Kano huren bij Giethoorn, Nijenhuis Botenverhuur</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/kayak-2</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/kayak-2/kayak-2.jpg</image:loc>
+            <image:caption>Kajak 2 personen – Kajak huren Weerribben bij Giethoorn</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/kayak-1</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/Kayak-1/kayak-1.jpg</image:loc>
+            <image:caption>Kajak 1 persoon – Solo kajak huren Weerribben</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/sup-board</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+        <image:image>
+            <image:loc>https://nijenhuis-botenverhuur.com/frontend/Images/Boats/Sup/sub-1.jpg</image:loc>
+            <image:caption>SUP board – Stand-up paddleboarden in de Weerribben bij Giethoorn</image:caption>
+            <image:geo_location>Wanneperveen, Overijssel, Netherlands</image:geo_location>
+        </image:image>
+    </url>
+    
+    <!-- AI crawler content endpoints -->
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/llms.txt</loc>
+        <lastmod>2026-04-26</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://nijenhuis-botenverhuur.com/llms-nijenhuis.txt</loc>
+        <lastmod>2026-05-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    
+</urlset>

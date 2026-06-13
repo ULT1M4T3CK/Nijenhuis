@@ -5,9 +5,38 @@
 
 class SecureChatbotWidget {
     constructor(config = {}) {
+        // Get API key from multiple sources: window config, Vite env, or config parameter
+        let apiKey = config.apiKey;
+        
+        // Check window.CHATBOT_API_KEY (for static HTML pages)
+        if (!apiKey && typeof window !== 'undefined' && window.CHATBOT_API_KEY) {
+            apiKey = window.CHATBOT_API_KEY;
+        }
+        
+        // Check Vite environment variable exposed on window (for Vite builds with injection)
+        if (!apiKey && typeof window !== 'undefined' && window.VITE_CHATBOT_API_KEY) {
+            apiKey = window.VITE_CHATBOT_API_KEY;
+        }
+        
+        if (!apiKey) {
+            console.warn('Chatbot API key not configured. Proceeding without API key (token-based auth expected).');
+        }
+        
+        // Get API endpoint from multiple sources
+        let apiEndpoint = config.apiEndpoint;
+        if (!apiEndpoint && typeof window !== 'undefined' && window.CHATBOT_API_ENDPOINT) {
+            apiEndpoint = window.CHATBOT_API_ENDPOINT;
+        }
+        if (!apiEndpoint && typeof window !== 'undefined' && window.VITE_CHATBOT_API_ENDPOINT) {
+            apiEndpoint = window.VITE_CHATBOT_API_ENDPOINT;
+        }
+        if (!apiEndpoint) {
+            apiEndpoint = 'http://localhost:5001/api/chat';
+        }
+        
         this.config = {
-            apiEndpoint: config.apiEndpoint || 'http://localhost:5001/api/chat',
-            apiKey: config.apiKey || 'default_development_key',
+            apiEndpoint: apiEndpoint,
+            apiKey: apiKey,
             showConnectionStatus: config.showConnectionStatus !== false,
             showSecurityIndicator: config.showSecurityIndicator !== false,
             autoReconnect: config.autoReconnect !== false,
@@ -18,7 +47,33 @@ class SecureChatbotWidget {
         this.isOpen = false;
         this.isTyping = false;
         this.messageHistory = [];
+        this.conversationHistory = [];  // Full conversation context for token prediction
+        this.maxConversationHistory = 50;  // Maximum number of messages to keep in history
+        this.sessionId = this.generateSessionId();  // Unique session ID for context tracking
         this.connectionStatus = 'unknown';
+        this.userLanguage = this.detectUserLanguage();  // Detect user's preferred language
+        
+        // Listen for language changes from the language switcher
+        window.addEventListener('languageChanged', (e) => {
+            if (e.detail && e.detail.language) {
+                this.userLanguage = e.detail.language;
+                // Store in sessionStorage for chatbot-specific use
+                sessionStorage.setItem('chatbot_language', this.userLanguage);
+                // Update welcome message
+                this.setWelcomeMessage();
+                // Update input placeholder if elements exist
+                if (this.elements && this.elements.input) {
+                    const placeholders = {
+                        'nl': 'Typ uw bericht...',
+                        'en': 'Type your message...',
+                        'de': 'Geben Sie Ihre Nachricht ein...'
+                    };
+                    if (!this.elements.input.disabled) {
+                        this.elements.input.placeholder = placeholders[this.userLanguage] || placeholders['nl'];
+                    }
+                }
+            }
+        });
         
         // Initialize secure client
         this.client = new SecureChatbotClient({
@@ -39,24 +94,140 @@ class SecureChatbotWidget {
     
     init() {
         this.createWidget();
+        this.setWelcomeMessage();
         this.bindEvents();
         this.setupClientListeners();
         this.addSecurityIndicators();
+        
+        // Enable input initially if we have internet connection
+        // The connection status will be updated after health check
+        // Use setTimeout to ensure elements are fully created
+        setTimeout(() => {
+            if (this.elements && this.elements.input && navigator.onLine !== false) {
+                this.elements.input.disabled = false;
+                this.elements.send.disabled = false;
+                const placeholders = {
+                    'nl': 'Typ uw bericht...',
+                    'en': 'Type your message...',
+                    'de': 'Geben Sie Ihre Nachricht ein...'
+                };
+                this.elements.input.placeholder = placeholders[this.userLanguage] || placeholders['nl'];
+            }
+        }, 100);
+    }
+    
+    detectUserLanguage() {
+        // First check the main language switcher's stored preference (localStorage)
+        const mainLang = localStorage.getItem('selected-language');
+        if (mainLang && ['nl', 'en', 'de'].includes(mainLang)) {
+            // Store in sessionStorage for chatbot-specific use
+            sessionStorage.setItem('chatbot_language', mainLang);
+            return mainLang;
+        }
+        
+        // Fallback to chatbot-specific language preference
+        const storedLang = sessionStorage.getItem('chatbot_language');
+        if (storedLang && ['nl', 'en', 'de'].includes(storedLang)) {
+            return storedLang;
+        }
+        
+        // Detect from browser language
+        const browserLang = navigator.language || navigator.userLanguage || 'nl';
+        let detectedLang = 'nl'; // Default to Dutch
+        
+        if (browserLang.toLowerCase().startsWith('en')) {
+            detectedLang = 'en';
+        } else if (browserLang.toLowerCase().startsWith('de')) {
+            detectedLang = 'de';
+        }
+        
+        // Store detected language
+        sessionStorage.setItem('chatbot_language', detectedLang);
+        return detectedLang;
+    }
+    
+    setWelcomeMessage() {
+        // Set welcome message based on detected language
+        const welcomeMessages = {
+            'nl': { greeting: 'Hallo! 👋', text: 'Ik ben AlBot. Hoe kan ik u helpen met botenverhuur?' },
+            'en': { greeting: 'Hello! 👋', text: 'I\'m AlBot. How can I help you with boat rental?' },
+            'de': { greeting: 'Hallo! 👋', text: 'Ich bin AlBot. Wie kann ich Ihnen bei der Bootsvermietung helfen?' }
+        };
+        
+        const welcome = welcomeMessages[this.userLanguage] || welcomeMessages['nl'];
+        
+        // Set welcome message after widget is created (using safe DOM manipulation)
+        // Use requestAnimationFrame for better timing
+        const updateWelcome = () => {
+            const welcomeElement = document.getElementById('welcome-message-content');
+            if (welcomeElement) {
+                // Clear existing content
+                welcomeElement.textContent = '';
+                
+                // Create greeting element
+                const greetingEl = document.createElement('strong');
+                greetingEl.textContent = welcome.greeting;
+                welcomeElement.appendChild(greetingEl);
+                
+                // Add line break
+                welcomeElement.appendChild(document.createElement('br'));
+                
+                // Add main text
+                const textEl = document.createTextNode(welcome.text);
+                welcomeElement.appendChild(textEl);
+            } else {
+                // If element not found, try again after a short delay
+                setTimeout(updateWelcome, 100);
+            }
+        };
+        
+        // Try immediately, then with delay if needed
+        if (document.getElementById('welcome-message-content')) {
+            updateWelcome();
+        } else {
+            setTimeout(updateWelcome, 100);
+        }
     }
     
     createWidget() {
+        // Detect logo path from existing logo on page, or use default
+        let logoPath = '../frontend/Images/logo-white.svg';
+        const existingLogo = document.querySelector('.logo, .footer-logo, img[alt*="Nijenhuis"]');
+        if (existingLogo && existingLogo.src) {
+            try {
+                const logoUrl = new URL(existingLogo.src);
+                logoPath = logoUrl.pathname;
+            } catch (e) {
+                // If URL parsing fails, try to get relative path
+                if (existingLogo.src.includes('logo-white.svg')) {
+                    const src = existingLogo.src;
+                    const pathMatch = src.match(/(\/|\.\.\/).*logo-white\.svg/);
+                    if (pathMatch) {
+                        logoPath = pathMatch[0].startsWith('/') ? pathMatch[0] : pathMatch[0];
+                    }
+                }
+            }
+        }
+        
+        // Determine AlBot avatar path (same directory as logo)
+        let avatarPath = '../frontend/Images/AlBot.png';
+        if (logoPath.includes('/Images/')) {
+            avatarPath = logoPath.replace('logo-white.svg', 'AlBot.png');
+        }
+        
         // Create widget HTML
         const widgetHTML = `
             <div class="secure-chat-widget" id="secure-chat-widget">
                 <button class="chat-toggle" id="secure-chat-toggle" aria-label="Open secure chat">
-                    <i class="fas fa-comments"></i>
+                    <img src="${logoPath}" alt="Nijenhuis" class="chat-toggle-logo" />
                     <span class="connection-indicator" id="connection-indicator"></span>
                 </button>
                 
                 <div class="chat-window" id="secure-chat-window">
                     <div class="chat-header">
                         <div class="header-info">
-                            <h3>Nijenhuis Support</h3>
+                            <img src="${avatarPath}" alt="AlBot" class="chatbot-avatar" />
+                            <h3>AlBot</h3>
                             <div class="security-badge" id="security-badge">
                                 <i class="fas fa-shield-alt"></i>
                                 <span>Secure</span>
@@ -75,9 +246,8 @@ class SecureChatbotWidget {
                     <div class="chat-messages" id="secure-chat-messages">
                         <div class="welcome-message">
                             <div class="message bot-message">
-                                <div class="message-content">
-                                    <strong>Hallo! 👋</strong><br>
-                                    Ik ben de Nijenhuis chatbot. Hoe kan ik u helpen met botenverhuur?
+                                <div class="message-content" id="welcome-message-content">
+                                    <!-- Welcome message will be set based on detected language -->
                                 </div>
                                 <div class="message-time">${new Date().toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' })}</div>
                             </div>
@@ -88,7 +258,9 @@ class SecureChatbotWidget {
                         <div class="input-wrapper">
                             <input type="text" id="secure-chat-input" placeholder="Type your message..." maxlength="1000" disabled>
                             <button class="send-button" id="secure-chat-send" disabled>
-                                <i class="fas fa-paper-plane"></i>
+                                <svg class="send-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor"/>
+                                </svg>
                             </button>
                         </div>
                         <div class="input-footer">
@@ -121,346 +293,10 @@ class SecureChatbotWidget {
             charCount: document.getElementById('char-count')
         };
         
-        this.injectStyles();
+        // Styles are loaded from global stylesheet
     }
     
-    injectStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-            .secure-chat-widget {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                z-index: 10000;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            }
-            
-            .chat-toggle {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                border: none;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-                box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-                transition: all 0.3s ease;
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .chat-toggle:hover {
-                transform: scale(1.1);
-                box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
-            }
-            
-            .connection-indicator {
-                position: absolute;
-                top: -2px;
-                right: -2px;
-                width: 16px;
-                height: 16px;
-                border-radius: 50%;
-                border: 2px solid white;
-                background: #ff4444;
-                transition: background-color 0.3s ease;
-            }
-            
-            .connection-indicator.connected {
-                background: #44ff44;
-            }
-            
-            .connection-indicator.degraded {
-                background: #ffaa44;
-            }
-            
-            .chat-window {
-                position: absolute;
-                bottom: 80px;
-                right: 0;
-                width: 380px;
-                max-width: calc(100vw - 40px);
-                height: 500px;
-                background: white;
-                border-radius: 16px;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-                display: none;
-                flex-direction: column;
-                overflow: hidden;
-            }
-            
-            .chat-window.active {
-                display: flex;
-            }
-            
-            .chat-header {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                padding: 16px 20px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-            
-            .header-info {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-            
-            .header-info h3 {
-                margin: 0;
-                font-size: 18px;
-                font-weight: 600;
-            }
-            
-            .security-badge {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                background: rgba(255, 255, 255, 0.2);
-                padding: 4px 8px;
-                border-radius: 12px;
-                font-size: 12px;
-                font-weight: 500;
-            }
-            
-            .chat-close {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-                padding: 4px;
-                border-radius: 4px;
-                transition: background-color 0.2s ease;
-            }
-            
-            .chat-close:hover {
-                background: rgba(255, 255, 255, 0.2);
-            }
-            
-            .connection-status {
-                padding: 8px 16px;
-                background: #f8f9fa;
-                border-bottom: 1px solid #e9ecef;
-                font-size: 14px;
-            }
-            
-            .status-indicator {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-            
-            .status-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: #ff4444;
-                animation: pulse 2s infinite;
-            }
-            
-            .status-dot.connected {
-                background: #44ff44;
-            }
-            
-            .status-dot.degraded {
-                background: #ffaa44;
-            }
-            
-            @keyframes pulse {
-                0% { opacity: 1; }
-                50% { opacity: 0.5; }
-                100% { opacity: 1; }
-            }
-            
-            .chat-messages {
-                flex: 1;
-                padding: 16px;
-                overflow-y: auto;
-                background: #f8f9fa;
-            }
-            
-            .message {
-                margin-bottom: 16px;
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .message.user-message {
-                align-items: flex-end;
-            }
-            
-            .message.bot-message {
-                align-items: flex-start;
-            }
-            
-            .message-content {
-                max-width: 80%;
-                padding: 12px 16px;
-                border-radius: 18px;
-                font-size: 14px;
-                line-height: 1.4;
-                word-wrap: break-word;
-            }
-            
-            .user-message .message-content {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-            }
-            
-            .bot-message .message-content {
-                background: white;
-                color: #333;
-                border: 1px solid #e9ecef;
-            }
-            
-            .message-time {
-                font-size: 11px;
-                color: #6c757d;
-                margin-top: 4px;
-                padding: 0 8px;
-            }
-            
-            .typing-indicator {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                padding: 12px 16px;
-                background: white;
-                border-radius: 18px;
-                border: 1px solid #e9ecef;
-            }
-            
-            .typing-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: #6c757d;
-                animation: typing 1.4s infinite ease-in-out;
-            }
-            
-            .typing-dot:nth-child(2) {
-                animation-delay: 0.2s;
-            }
-            
-            .typing-dot:nth-child(3) {
-                animation-delay: 0.4s;
-            }
-            
-            @keyframes typing {
-                0%, 60%, 100% {
-                    transform: translateY(0);
-                }
-                30% {
-                    transform: translateY(-10px);
-                }
-            }
-            
-            .chat-input-container {
-                padding: 16px;
-                background: white;
-                border-top: 1px solid #e9ecef;
-            }
-            
-            .input-wrapper {
-                display: flex;
-                gap: 8px;
-                align-items: center;
-            }
-            
-            #secure-chat-input {
-                flex: 1;
-                border: 2px solid #e9ecef;
-                border-radius: 24px;
-                padding: 12px 16px;
-                font-size: 14px;
-                outline: none;
-                transition: border-color 0.2s ease;
-            }
-            
-            #secure-chat-input:focus {
-                border-color: #667eea;
-            }
-            
-            #secure-chat-input:disabled {
-                background: #f8f9fa;
-                color: #6c757d;
-            }
-            
-            .send-button {
-                width: 44px;
-                height: 44px;
-                border-radius: 50%;
-                border: none;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.2s ease;
-            }
-            
-            .send-button:hover:not(:disabled) {
-                transform: scale(1.05);
-            }
-            
-            .send-button:disabled {
-                background: #6c757d;
-                cursor: not-allowed;
-                transform: none;
-            }
-            
-            .input-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 8px;
-                font-size: 12px;
-                color: #6c757d;
-            }
-            
-            .security-info {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-            }
-            
-            .char-count {
-                font-weight: 500;
-            }
-            
-            .char-count.warning {
-                color: #ff6b6b;
-            }
-            
-            .char-count.error {
-                color: #ff4444;
-            }
-            
-            /* Mobile responsiveness */
-            @media (max-width: 480px) {
-                .secure-chat-widget {
-                    bottom: 10px;
-                    right: 10px;
-                }
-                
-                .chat-window {
-                    width: calc(100vw - 20px);
-                    height: calc(100vh - 100px);
-                    bottom: 80px;
-                    right: 0;
-                }
-            }
-        `;
-        
-        document.head.appendChild(style);
-    }
+    injectStyles() {}
     
     bindEvents() {
         // Toggle chat
@@ -526,20 +362,80 @@ class SecureChatbotWidget {
         }
         
         // Enable/disable input
-        const isEnabled = data.isConnected;
+        // Only disable if truly offline (no internet), not just if chatbot server is down
+        // If we have internet, allow messages (they'll be queued and retried)
+        const hasInternet = navigator.onLine !== false;
+        const isEnabled = data.isConnected || (hasInternet && data.status !== 'offline');
+        
         this.elements.input.disabled = !isEnabled;
         this.elements.send.disabled = !isEnabled;
         
         if (!isEnabled) {
-            this.elements.input.placeholder = 'Chatbot is offline. Please call 0522 281 528';
+            const offlineMessages = {
+                'nl': 'Chatbot is offline. Bel direct: 0522 281 528',
+                'en': 'Chatbot is offline. Call directly: 0522 281 528',
+                'de': 'Chatbot ist offline. Rufen Sie direkt an: 0522 281 528'
+            };
+            this.elements.input.placeholder = offlineMessages[this.userLanguage] || offlineMessages['nl'];
         } else {
-            this.elements.input.placeholder = 'Type your message...';
+            const placeholders = {
+                'nl': 'Typ uw bericht...',
+                'en': 'Type your message...',
+                'de': 'Geben Sie Ihre Nachricht ein...'
+            };
+            this.elements.input.placeholder = placeholders[this.userLanguage] || placeholders['nl'];
         }
     }
     
-    handleMessage(data) {
+    async handleMessage(data) {
+        // Calculate human-like typing delay based on response length
+        // Average typing speed: ~200 characters per minute = ~3.3 chars/second
+        // Add base delay of 500ms + variable delay based on length
+        const responseLength = data && data.response ? data.response.length : 0;
+        const baseDelay = 800; // Base delay in ms (simulates thinking time)
+        const typingSpeed = 30; // Characters per second (slightly slower than human average for realism)
+        const variableDelay = Math.min(responseLength / typingSpeed * 1000, 4000); // Max 4 seconds
+        const randomVariation = Math.random() * 500 - 250; // ±250ms randomization
+        const totalDelay = Math.max(baseDelay + variableDelay + randomVariation, 500); // Minimum 500ms
+        
+        // Keep typing indicator visible during delay
+        await this.delay(totalDelay);
+        
+        // Hide typing indicator and show response
         this.hideTypingIndicator();
+        
+        // Add assistant response to conversation history if not already added
+        if (data && data.response) {
+            const assistantMessage = { role: 'assistant', content: data.response };
+            // Check if this message is already in history (avoid duplicates)
+            const lastMessage = this.conversationHistory[this.conversationHistory.length - 1];
+            if (!lastMessage || lastMessage.content !== data.response) {
+                this.conversationHistory.push(assistantMessage);
+                
+                // Limit conversation history size to prevent memory leaks
+                if (this.conversationHistory.length > this.maxConversationHistory) {
+                    // Remove oldest messages (keep most recent)
+                    const removeCount = this.conversationHistory.length - this.maxConversationHistory;
+                    this.conversationHistory.splice(0, removeCount);
+                }
+            }
+            
+            // Update session ID if server returned a new one
+            if (data.session_id) {
+                this.sessionId = data.session_id;
+            }
+        }
+        
         this.addMessage(data.response, 'bot', data);
+        
+        // Scroll to bottom to show new message (if chat is open)
+        if (this.isOpen) {
+            this.scrollToBottom();
+        }
+    }
+    
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
     
     handleError(data) {
@@ -578,10 +474,8 @@ class SecureChatbotWidget {
         if (this.isOpen) {
             this.elements.window.classList.add('active');
             this.elements.input.focus();
-            this.elements.toggle.innerHTML = '<i class="fas fa-times"></i>';
         } else {
             this.elements.window.classList.remove('active');
-            this.elements.toggle.innerHTML = '<i class="fas fa-comments"></i>';
         }
     }
     
@@ -589,7 +483,18 @@ class SecureChatbotWidget {
         const message = this.elements.input.value.trim();
         if (!message || this.isTyping) return;
         
-        // Add user message
+        // Add user message to conversation history
+        const userMessage = { role: 'user', content: message };
+        this.conversationHistory.push(userMessage);
+        
+        // Limit conversation history size to prevent memory leaks
+        if (this.conversationHistory.length > this.maxConversationHistory) {
+            // Remove oldest messages (keep most recent)
+            const removeCount = this.conversationHistory.length - this.maxConversationHistory;
+            this.conversationHistory.splice(0, removeCount);
+        }
+        
+        // Add user message to UI
         this.addMessage(message, 'user');
         this.elements.input.value = '';
         this.elements.charCount.textContent = '0/1000';
@@ -599,12 +504,57 @@ class SecureChatbotWidget {
         this.showTypingIndicator();
         
         try {
-            await this.client.sendMessage(message);
+            // Send message with conversation history, session ID, and user language
+            // The client will emit a 'message' event which will trigger handleMessage
+            // handleMessage will add the delay and typing simulation
+            await this.client.sendMessage(message, {
+                conversation_history: this.conversationHistory.slice(0, -1),  // Exclude current message
+                session_id: this.sessionId,
+                use_token_prediction: true,
+                language: this.userLanguage  // Pass user's selected language to backend
+            });
+            // Note: handleMessage is called automatically via the 'message' event listener
         } catch (error) {
             console.error('Failed to send message:', error);
             this.hideTypingIndicator();
-            this.addMessage('Failed to send message. Please try again.', 'bot');
+            const errorMessages = {
+                'nl': 'Bericht verzenden mislukt. Probeer het opnieuw.',
+                'en': 'Failed to send message. Please try again.',
+                'de': 'Nachricht senden fehlgeschlagen. Bitte versuchen Sie es erneut.'
+            };
+            this.addMessage(errorMessages[this.userLanguage] || errorMessages['nl'], 'bot');
         }
+    }
+    
+    generateSessionId() {
+        // Generate a cryptographically secure session ID using crypto.getRandomValues
+        // This prevents session ID prediction and hijacking attacks
+        if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+            const array = new Uint32Array(4);
+            crypto.getRandomValues(array);
+            // Use only cryptographically secure random values, no timestamp
+            return 'session_' + Array.from(array, dec => dec.toString(36)).join('');
+        } else {
+            // Fallback for older browsers - still use crypto if available
+            if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+                const array = new Uint8Array(16);
+                crypto.getRandomValues(array);
+                return 'session_' + Array.from(array, byte => byte.toString(36)).join('');
+            }
+            // Last resort fallback (should not happen in modern browsers)
+            console.warn('Using insecure session ID generation - browser does not support crypto.getRandomValues');
+            const array = new Uint32Array(4);
+            for (let i = 0; i < array.length; i++) {
+                array[i] = Math.floor(Math.random() * 0xFFFFFFFF);
+            }
+            return 'session_' + Array.from(array, dec => dec.toString(36)).join('');
+        }
+    }
+    
+    clearConversationHistory() {
+        // Clear conversation history (for new conversation)
+        this.conversationHistory = [];
+        this.sessionId = this.generateSessionId();
     }
     
     addMessage(content, sender, data = {}) {
@@ -629,10 +579,17 @@ class SecureChatbotWidget {
             }
         }
         
-        messageDiv.innerHTML = `
-            <div class="message-content">${this.escapeHtml(messageContent)}</div>
-            <div class="message-time">${time}</div>
-        `;
+        // Safely create message content
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'message-content';
+        contentDiv.textContent = messageContent; // Already escaped by escapeHtml, use textContent for safety
+        
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = time;
+        
+        messageDiv.appendChild(contentDiv);
+        messageDiv.appendChild(timeDiv);
         
         this.elements.messages.appendChild(messageDiv);
         this.scrollToBottom();
@@ -650,13 +607,30 @@ class SecureChatbotWidget {
         this.isTyping = true;
         const typingDiv = document.createElement('div');
         typingDiv.className = 'message bot-message typing-indicator-message';
-        typingDiv.innerHTML = `
-            <div class="typing-indicator">
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            </div>
-        `;
+        
+        // Create typing indicator container
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        
+        // Add "AlBot is typing..." text
+        const typingText = document.createElement('span');
+        typingText.className = 'typing-text';
+        typingText.textContent = 'AlBot is typing';
+        typingIndicator.appendChild(typingText);
+        
+        // Create dots container
+        const dotsContainer = document.createElement('div');
+        dotsContainer.className = 'typing-dots-container';
+        
+        // Add three typing dots
+        for (let i = 0; i < 3; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'typing-dot';
+            dotsContainer.appendChild(dot);
+        }
+        
+        typingIndicator.appendChild(dotsContainer);
+        typingDiv.appendChild(typingIndicator);
         
         this.elements.messages.appendChild(typingDiv);
         this.scrollToBottom();
@@ -721,8 +695,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create global instance
     window.secureChatbotWidget = new SecureChatbotWidget();
     
-    console.log('🔒 Secure Chatbot Widget initialized!');
-    console.log('💡 Use window.secureChatbotWidget to interact with the widget');
+    // Secure Chatbot Widget initialized
 });
 
 // Export for module systems

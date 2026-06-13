@@ -1,0 +1,14 @@
+/* TEAM */
+Company: Nijenhuis Botenverhuur
+Site: https://nijenhuis-botenverhuur.com
+Location: Veneweg 199, 7946 LP Wanneperveen, Overijssel, Netherlands
+Contact: info [at] nijenhuis-botenverhuur.com
+Phone: +31 522 281 528
+
+/* SITE */
+Standards: HTML5, CSS3, PHP 8, JavaScript ES2020
+Components: Schema.org JSON-LD, Open Graph, llms.txt
+Languages: Dutch (nl), English (en), German (de)
+
+/* THANKS */
+Powered by: Nijenhuis Botenverhuur — family business since 1970

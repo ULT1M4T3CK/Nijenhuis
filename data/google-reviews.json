@@ -1,0 +1,44 @@
+{
+    "fetchedAt": "2026-05-03T09:36:11+00:00",
+    "aggregateRating": {
+        "ratingValue": "4.2",
+        "reviewCount": "160"
+    },
+    "reviews": [
+        {
+            "author_name": "Dennis Greving",
+            "rating": 5,
+            "text": "Wij hebben de 10/12 persoons boot gehuurd. We hebben het heel erg naar onze zin gehad. De boot was echt heel erg netjes en super comfortabel. Perfect voor elkaar! Heel erg bedankt!",
+            "date": "2025-08-22",
+            "language": "nl"
+        },
+        {
+            "author_name": "Cor Lub",
+            "rating": 5,
+            "text": "Weekend weg met familie. Zeer geslaagd in een mooi huis aan de rand van de Weerribben. Wat een prachtig uitzicht.",
+            "date": "2022-12-11",
+            "language": "nl"
+        },
+        {
+            "author_name": "Niels Perik",
+            "rating": 5,
+            "text": "Heerlijk gevaren met mijn gezin in een uitstekende Polyvalk. Zeilt prachtig. We hebben een mooie route naar Blokzijl gevaren: brug, sluis, terrasje en natuurlijk een groot meer. Het schip was goed onderhouden en de buitenboordmotor liep als een zonnetje. Zowel bij vertrek als bij ontvangst zijn we vriendelijk geholpen en begeleid. Wij komen zeker nog een keertje terug :)",
+            "date": "2023-08-18",
+            "language": "nl"
+        },
+        {
+            "author_name": "H Kootkar",
+            "rating": 4,
+            "text": "Prima verhuur bedrijf, de bootjes altijd in orde we komen er regelmatig voor een E-punter om er in de buurt te vissen",
+            "date": "2025-12-11",
+            "language": "nl"
+        },
+        {
+            "author_name": "Ronald Ardesch",
+            "rating": 1,
+            "text": "Wij zouden bijna 2 weken geleden een 10/12 persoon sloep huren. Dit kon echter niet doorgaan, wegens medische redenen.\nNa 3 x gebeld te hebben nog steeds niet het volledige bedrag terug gekregen. Dit hadden wij bij het reserveren in juli betaald.\nAardige mensen, ze komen echter hun afspraken niet na.",
+            "date": "2025-09-17",
+            "language": "nl"
+        }
+    ]
+}

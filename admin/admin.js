@@ -3,20 +3,109 @@
 // Handles authentication, calendar, and booking management
 // ========================================================================
 
+function bookingReservationKey(b) {
+    const start = b.date || '';
+    const end = b.endDate || b.date || '';
+    const boat = b.boatType || b.boatId || '';
+    const email = (b.customerEmail || '').toLowerCase().trim();
+    const isManual = b.status === 'manual' || b.source === 'manual';
+    if (isManual) {
+        return `manual:${start}|${end}|${boat}|${email}|${b.createdAt || ''}`;
+    }
+    if (b.cartId) {
+        return `cart:${b.cartId}|${boat}|${start}|${end}`;
+    }
+    return `id:${b.id || `${start}|${end}|${boat}`}`;
+}
+
+function countUniqueReservationKeys(bookings, predicate) {
+    const keys = new Set();
+    for (const b of bookings) {
+        if (predicate && !predicate(b)) continue;
+        keys.add(bookingReservationKey(b));
+    }
+    return keys.size;
+}
+
+function isConfirmedDashboardStatus(b) {
+    const s = b.status;
+    return s === 'paid' || s === 'confirmed' || s === 'confirmed-paid' || s === 'confirmed-not-paid' || s === 'success';
+}
+
+function isCancelledDashboardStatus(b) {
+    const s = b.status;
+    return s === 'canceled' || s === 'cancelled' || s === 'payment-rejected';
+}
+
+function isManualDashboardStatus(b) {
+    return b.status === 'manual' || b.source === 'manual';
+}
+
+function countsTowardTotalBookings(b) {
+    const s = b.status;
+    return s !== 'not-confirmed' && s !== 'open' && s !== 'pending';
+}
+
 class AdminDashboard {
     constructor() {
         this.currentDate = new Date();
         this.bookings = [];
         this.currentUser = null;
         this.isAuthenticated = false;
+        this.csrfToken = '';
         
         this.init();
     }
     
     async init() {
         this.setupEventListeners();
+        this.setBookingSeasonDates();
         this.checkAuthentication();
         await this.loadBookingsData();
+    }
+    
+    setBookingSeasonDates() {
+        const dateInput = document.getElementById('modalDate');
+        if (!dateInput) return;
+
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth();
+        const currentDate = today.getDate();
+
+        let minYear = currentYear;
+
+        if (currentMonth < 3 || (currentMonth === 3 && currentDate < 1)) {
+            minYear = currentYear;
+        } else if (currentMonth > 9 || (currentMonth === 9 && currentDate > 31)) {
+            minYear = currentYear + 1;
+        } else {
+            minYear = currentYear;
+        }
+
+        const minDate = `${minYear}-04-01`;
+        const maxDate = `${minYear}-10-31`;
+
+        dateInput.setAttribute('min', minDate);
+        dateInput.setAttribute('max', maxDate);
+    }
+    
+    detectServerEndpoint() {
+        // Check if we're running locally (file:// or localhost)
+        const isLocal = window.location.protocol === 'file:' || 
+                       window.location.hostname === 'localhost' || 
+                       window.location.hostname === '127.0.0.1' ||
+                       window.location.hostname === '';
+        
+        if (isLocal) {
+            // Use Python server for local development
+            return 'http://localhost:8000/admin/booking-handler.py';
+        } else {
+            // Use PHP server for production (private server)
+            // Use absolute path to ensure it works correctly
+            const basePath = window.location.origin;
+            return `${basePath}/admin/booking-handler.php`;
+        }
     }
     
     async loadBookingsData() {
@@ -73,20 +162,45 @@ class AdminDashboard {
     }
     
     async checkAuthentication() {
+        const isAuthenticated = await this.refreshAdminSession();
+        if (isAuthenticated) {
+            this.isAuthenticated = true;
+            this.showDashboard();
+            return;
+        }
+        this.showLogin();
+    }
+
+    async refreshAdminSession() {
         try {
-            const response = await fetch('booking-handler.php?action=session', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
+            const endpoint = this.detectServerEndpoint();
+            const sessionUrl = endpoint.includes('.php') 
+                ? endpoint.replace('booking-handler.php', 'booking-handler.php?action=session')
+                : endpoint.replace('booking-handler.py', 'booking-handler.py?action=session');
+            const response = await fetch(sessionUrl, { 
+                method: 'GET', 
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include'
+            });
             if (response.ok) {
                 const data = await response.json();
-                if (data.authenticated) {
-                    this.isAuthenticated = true;
-                    localStorage.setItem('csrfToken', data.csrfToken || '');
-                    this.currentUser = { username: localStorage.getItem('adminUser') || 'admin', loginTime: new Date().toISOString() };
-                    this.showDashboard();
-                    return;
+                if (data.success && data.authenticated) {
+                    this.csrfToken = data.csrfToken || '';
+                    this.currentUser = { username: data.username || 'admin', loginTime: new Date().toISOString() };
+                    return true;
                 }
             }
-        } catch (e) {}
-        this.showLogin();
+        } catch (e) {
+            console.error('Authentication check failed:', e);
+        }
+        return false;
+    }
+
+    async getCsrfToken() {
+        if (!this.csrfToken) {
+            await this.refreshAdminSession();
+        }
+        return this.csrfToken || '';
     }
     
     async handleLogin(e) {
@@ -94,16 +208,18 @@ class AdminDashboard {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         try {
-            const response = await fetch('booking-handler.php', {
+            const endpoint = this.detectServerEndpoint();
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify({ action: 'login', username, password })
             });
             const result = await response.json();
             if (response.ok && result.success) {
-                this.currentUser = { username, loginTime: new Date().toISOString() };
-                localStorage.setItem('adminUser', JSON.stringify(this.currentUser));
-                if (result.csrfToken) localStorage.setItem('csrfToken', result.csrfToken);
+                const loginTime = new Date().toISOString();
+                this.currentUser = { username, loginTime: loginTime };
+                this.csrfToken = result.csrfToken || '';
                 this.isAuthenticated = true;
                 await this.showDashboard();
             } else {
@@ -116,11 +232,18 @@ class AdminDashboard {
     
     async handleLogout() {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
-            await fetch('booking-handler.php', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf }, body: JSON.stringify({ action: 'logout', csrfToken: csrf }) });
-        } catch (e) {}
-        localStorage.removeItem('adminUser');
-        localStorage.removeItem('csrfToken');
+            const csrf = await this.getCsrfToken();
+            const endpoint = this.detectServerEndpoint();
+            await fetch(endpoint, { 
+                method: 'POST', 
+                headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
+                credentials: 'include',
+                body: JSON.stringify({ action: 'logout', csrfToken: csrf }) 
+            });
+        } catch (e) {
+            console.error('Logout request failed:', e);
+        }
+        this.csrfToken = '';
         this.currentUser = null;
         this.isAuthenticated = false;
         this.showLogin();
@@ -173,7 +296,7 @@ class AdminDashboard {
         
         // Update month display
         if (currentMonthElement) {
-            currentMonthElement.textContent = this.currentDate.toLocaleDateString('en-US', {
+            currentMonthElement.textContent = this.currentDate.toLocaleDateString('nl-NL', {
                 month: 'long',
                 year: 'numeric'
             });
@@ -293,7 +416,7 @@ class AdminDashboard {
             bookingElement.addEventListener('click', () => this.openBookingModal(booking));
             
             const date = new Date(booking.date);
-            const formattedDate = date.toLocaleDateString('en-US', {
+            const formattedDate = date.toLocaleDateString('nl-NL', {
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric',
@@ -333,16 +456,16 @@ class AdminDashboard {
     }
     
     updateStats() {
-        const totalBookings = document.getElementById('totalBookings');
-        const pendingBookings = document.getElementById('pendingBookings');
-        
-        if (totalBookings) {
-            totalBookings.textContent = this.bookings.length;
+        const totalEl = document.getElementById('totalBookings');
+        const manualEl = document.getElementById('manualBookings') || document.getElementById('pendingBookings');
+        const all = this.bookings;
+
+        if (totalEl) {
+            totalEl.textContent = countUniqueReservationKeys(all, countsTowardTotalBookings);
         }
-        
-        if (pendingBookings) {
-            const pending = this.bookings.filter(b => b.status === 'not-confirmed').length;
-            pendingBookings.textContent = pending;
+
+        if (manualEl) {
+            manualEl.textContent = countUniqueReservationKeys(all, isManualDashboardStatus);
         }
     }
     
@@ -352,6 +475,9 @@ class AdminDashboard {
         const form = document.getElementById('bookingForm');
         
         if (!modal || !modalTitle || !form) return;
+        
+        // Set date restrictions
+        this.setBookingSeasonDates();
         
         // Set modal title
         modalTitle.textContent = booking ? 'Edit Booking' : 'Add New Booking';
@@ -397,8 +523,21 @@ class AdminDashboard {
         const form = e.target;
         const bookingId = form.dataset.bookingId;
         
+        const date = document.getElementById('modalDate').value;
+        
+        // Validate date is within booking season (April 1 - October 31)
+        const selectedDate = new Date(date);
+        const selectedMonth = selectedDate.getMonth();
+        const selectedDay = selectedDate.getDate();
+
+        if (selectedMonth < 3 || (selectedMonth === 3 && selectedDay < 1) || 
+            selectedMonth > 9 || (selectedMonth === 9 && selectedDay > 31)) {
+            this.showNotification('Boekingen zijn alleen mogelijk van 1 april tot 31 oktober. De bootverhuur is gesloten buiten dit seizoen.', 'error');
+            return;
+        }
+        
         const bookingData = {
-            date: document.getElementById('modalDate').value,
+            date: date,
             boatType: document.getElementById('modalBoatType').value,
             customerName: document.getElementById('modalCustomerName').value,
             customerEmail: document.getElementById('modalCustomerEmail').value,
@@ -420,8 +559,9 @@ class AdminDashboard {
     
     async createBooking(bookingData) {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
-            const response = await fetch('booking-handler.php', {
+            const csrf = await this.getCsrfToken();
+            const endpoint = this.detectServerEndpoint();
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -451,8 +591,9 @@ class AdminDashboard {
     
     async updateBooking(bookingId, bookingData) {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
-            const response = await fetch('booking-handler.php', {
+            const csrf = await this.getCsrfToken();
+            const endpoint = this.detectServerEndpoint();
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -488,8 +629,9 @@ class AdminDashboard {
     async deleteBooking(bookingId) {
         if (confirm('Are you sure you want to delete this booking?')) {
             try {
-                const csrf = localStorage.getItem('csrfToken') || '';
-                const response = await fetch('booking-handler.php', {
+                const csrf = await this.getCsrfToken();
+                const endpoint = this.detectServerEndpoint();
+                const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -523,21 +665,22 @@ class AdminDashboard {
     }
     
     generateId() {
-        return Date.now().toString(36) + Math.random().toString(36).substr(2);
+        return Date.now().toString(36) + Math.random().toString(36).slice(2);
     }
     
     async loadBookings() {
         try {
             try {
-                const csrf = localStorage.getItem('csrfToken') || '';
-                const response = await fetch('booking-handler.php', {
+                const csrf = await this.getCsrfToken();
+                const endpoint = this.detectServerEndpoint();
+                const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
                     body: JSON.stringify({ action: 'getBookings' })
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    if (data.csrfToken) localStorage.setItem('csrfToken', data.csrfToken);
+                    if (data.csrfToken) this.csrfToken = data.csrfToken;
                     return data.bookings || [];
                 }
             } catch (error) {

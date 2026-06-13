@@ -1,0 +1,34 @@
+{
+  "dataset_verification": {
+    "bitext_dataset": true,
+    "multilingual_dataset": true,
+    "enhanced_training_data": true,
+    "dataset_stats": {
+      "bitext": {
+        "total_samples": 26872,
+        "actual_samples": 26872,
+        "non_empty_samples": 0,
+        "file_size_mb": 3.572262763977051
+      },
+      "multilingual": {
+        "total_samples": 15,
+        "actual_samples": 15,
+        "file_size_mb": 0.0028400421142578125
+      },
+      "enhanced_training": {
+        "total_responses": 15,
+        "external_responses": 15,
+        "external_datasets_used": [
+          "bitext",
+          "multilingual"
+        ],
+        "file_size_mb": 4.674516677856445
+      }
+    }
+  },
+  "chatbot_verification": {
+    "success": false,
+    "error": "No module named 'numpy'"
+  },
+  "all_passed": false
+}

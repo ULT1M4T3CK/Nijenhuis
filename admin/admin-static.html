@@ -1,401 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Nijenhuis Botenverhuur</title>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../frontend/css/styles.css">
+    <link rel="stylesheet" href="admin-consolidated.css">
     <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
-    <style>
-        /* Admin Navigation Header */
-        .admin-nav {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-md) 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .admin-nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .admin-nav-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-        }
-        
-        .admin-nav-links {
-            display: flex;
-            gap: var(--spacing-lg);
-        }
-        
-        .admin-nav-link {
-            color: var(--white);
-            text-decoration: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-link:hover,
-        .admin-nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .admin-nav-logout {
-            background: rgba(220, 53, 69, 0.8);
-            color: var(--white);
-            border: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-logout:hover {
-            background: var(--error-color);
-        }
-        
-        /* Admin Dashboard Specific Styles */
-        .admin-dashboard {
-            min-height: 100vh;
-            background: var(--bg-light);
-        }
-        
-        .admin-header {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-lg) 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-        }
-        
-        .admin-title {
-            font-size: var(--font-size-2xl);
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .admin-subtitle {
-            opacity: 0.9;
-            font-size: var(--font-size-base);
-        }
-        
-        .admin-content {
-            padding: var(--spacing-2xl) 0;
-        }
-        
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-2xl);
-        }
-        
-        .stat-card {
-            background: var(--white);
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: var(--font-size-3xl);
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .admin-section {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            margin-bottom: var(--spacing-2xl);
-        }
-        
-        .section-header {
-            padding: var(--spacing-lg);
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            justify-content: between;
-            align-items: center;
-        }
-        
-        .section-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .section-content {
-            padding: var(--spacing-lg);
-        }
-        
-        .bookings-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .bookings-table th,
-        .bookings-table td {
-            padding: var(--spacing-md);
-            text-align: left;
-            border-bottom: 1px solid var(--light-gray);
-        }
-        
-        .bookings-table th {
-            background: var(--bg-light);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .status-badge {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .status-confirmed {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-pending {
-            background: var(--warning-color);
-            color: var(--white);
-        }
-        
-        .status-cancelled {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .admin-actions {
-            display: flex;
-            gap: var(--spacing-sm);
-        }
-        
-        .btn-admin {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .btn-edit {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .btn-delete {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .btn-export {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .btn-admin:hover {
-            opacity: 0.8;
-        }
-        
-        .login-form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: var(--spacing-2xl);
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            transition: var(--transition-normal);
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .login-btn {
-            width: 100%;
-            padding: var(--spacing-md);
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .login-btn:hover {
-            background: var(--primary-dark);
-        }
-        
-        .error-message {
-            background: var(--error-color);
-            color: var(--white);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-lg);
-            display: none;
-        }
-        
-        .hidden {
-            display: none !important;
-        }
-        
-        /* Booking Status Colors */
-        .booking-row.booking-manual {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #ffc107;
-        }
-        
-        .booking-row.booking-success {
-            background: rgba(40, 167, 69, 0.1);
-            border-left: 4px solid var(--success-color);
-        }
-        
-        .booking-row.booking-rejected {
-            background: rgba(220, 53, 69, 0.1);
-            border-left: 4px solid var(--error-color);
-        }
-        
-        .booking-row.booking-picked-up {
-            background: rgba(40, 167, 69, 0.1);
-            border-left: 4px solid var(--success-color);
-            text-decoration: line-through;
-            opacity: 0.7;
-        }
-        
-        .status-select {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            background: var(--white);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right var(--spacing-sm) center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: var(--spacing-2xl);
-            min-width: 120px;
-        }
-        
-        .status-select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .status-select:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .status-select option {
-            padding: var(--spacing-sm);
-            font-weight: 600;
-        }
-        
-        .status-select option[value="manual"] {
-            background: #ffc107;
-            color: var(--white);
-        }
-        
-        .status-select option[value="success"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="rejected"] {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="picked-up"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-    </style>
 </head>
 <body>
     <!-- Admin Navigation -->
     <nav class="admin-nav">
         <div class="admin-nav-container">
-            <div class="admin-nav-title">Nijenhuis Admin</div>
+            <img src="../frontend/Images/logo-white.svg" alt="Nijenhuis" class="admin-nav-logo" style="height: 40px; width: auto;">
             <div class="admin-nav-links">
                 <a href="admin-static.html" class="admin-nav-link active">Dashboard</a>
-                <a href="boat-management.html" class="admin-nav-link">Boat Management</a>
-                <a href="booking-management.html" class="admin-nav-link">Booking Management</a>
+                <a href="boat-management.html" class="admin-nav-link">Bootbeheer</a>
+                <a href="booking-management.html" class="admin-nav-link">Reserveringsbeheer</a>
+                <a href="booking-history.html" class="admin-nav-link">Boekingsgeschiedenis</a>
             </div>
-            <button class="admin-nav-logout" onclick="logout()">Logout</button>
+            <button class="admin-nav-logout" onclick="logout()">Uitloggen</button>
         </div>
     </nav>
 
     <div class="admin-dashboard">
         <!-- Login Form -->
         <div id="loginSection" class="login-form">
-            <h2 style="text-align: center; margin-bottom: var(--spacing-2xl); color: var(--primary-color);">Admin Login</h2>
+            <h2 style="text-align: center; margin-bottom: var(--spacing-2xl); color: var(--primary-color);">Admin Inloggen</h2>
             <div id="errorMessage" class="error-message"></div>
             <form id="loginForm">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Gebruikersnaam</label>
                     <input type="text" id="username" name="username" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">Wachtwoord</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="login-btn">Login</button>
+                <button type="submit" class="login-btn">Inloggen</button>
             </form>
         </div>
 
@@ -404,7 +46,7 @@
             <div class="admin-header">
                 <div class="admin-container">
                     <h1 class="admin-title">Admin Dashboard</h1>
-                    <p class="admin-subtitle">Nijenhuis Botenverhuur - Booking Management</p>
+                    <p class="admin-subtitle">Nijenhuis Botenverhuur - Reserveringsbeheer</p>
                 </div>
             </div>
 
@@ -414,36 +56,36 @@
                     <div class="admin-stats">
                         <div class="stat-card">
                             <div class="stat-number" id="totalBookings">0</div>
-                            <div class="stat-label">Total Bookings</div>
+                            <div class="stat-label">Totaal Reserveringen</div>
                         </div>
                         <div class="stat-card">
-                            <div class="stat-number" id="pendingBookings">0</div>
-                            <div class="stat-label">Pending</div>
+                            <div class="stat-number" id="manualBookings">0</div>
+                            <div class="stat-label">Handmatig</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number" id="confirmedBookings">0</div>
-                            <div class="stat-label">Confirmed</div>
+                            <div class="stat-label">Bevestigd</div>
                         </div>
                         <div class="stat-card">
                             <div class="stat-number" id="cancelledBookings">0</div>
-                            <div class="stat-label">Cancelled</div>
+                            <div class="stat-label">Geannuleerd</div>
                         </div>
                     </div>
 
                     <!-- Quick Actions -->
                     <div class="admin-section">
                         <div class="section-header">
-                            <h2 class="section-title">Quick Actions</h2>
+                            <h2 class="section-title">Snelle Acties</h2>
                         </div>
                         <div class="section-content">
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg);">
                                 <a href="boat-management.html" class="btn-admin btn-edit" style="text-decoration: none; text-align: center; padding: var(--spacing-lg);">
-                                    <h3>🚤 Boat Management</h3>
-                                    <p>Manage boat inventory and availability</p>
+                                    <h3>🚤 Bootbeheer</h3>
+                                    <p>Beheer bootvoorraad en beschikbaarheid</p>
                                 </a>
                                 <a href="booking-management.html" class="btn-admin btn-export" style="text-decoration: none; text-align: center; padding: var(--spacing-lg);">
-                                    <h3>📋 Booking Management</h3>
-                                    <p>View and manage all bookings</p>
+                                    <h3>📋 Reserveringsbeheer</h3>
+                                    <p>Bekijk en beheer alle reserveringen</p>
                                 </a>
                             </div>
                         </div>
@@ -454,6 +96,50 @@
     </div>
 
     <script>
+        function bookingReservationKey(b) {
+            const start = b.date || '';
+            const end = b.endDate || b.date || '';
+            const boat = b.boatType || b.boatId || '';
+            const email = (b.customerEmail || '').toLowerCase().trim();
+            const isManual = b.status === 'manual' || b.source === 'manual';
+            if (isManual) {
+                return 'manual:' + start + '|' + end + '|' + boat + '|' + email + '|' + (b.createdAt || '');
+            }
+            if (b.cartId) {
+                return 'cart:' + b.cartId + '|' + boat + '|' + start + '|' + end;
+            }
+            return 'id:' + (b.id || start + '|' + end + '|' + boat);
+        }
+
+        function countUniqueReservationKeys(bookings, predicate) {
+            const keys = new Set();
+            for (let i = 0; i < bookings.length; i++) {
+                const b = bookings[i];
+                if (predicate && !predicate(b)) continue;
+                keys.add(bookingReservationKey(b));
+            }
+            return keys.size;
+        }
+
+        function isConfirmedDashboardStatus(b) {
+            const s = b.status;
+            return s === 'paid' || s === 'confirmed' || s === 'confirmed-paid' || s === 'confirmed-not-paid' || s === 'success';
+        }
+
+        function isCancelledDashboardStatus(b) {
+            const s = b.status;
+            return s === 'canceled' || s === 'cancelled' || s === 'payment-rejected';
+        }
+
+        function isManualDashboardStatus(b) {
+            return b.status === 'manual' || b.source === 'manual';
+        }
+
+        function countsTowardTotalBookings(b) {
+            const s = b.status;
+            return s !== 'not-confirmed' && s !== 'open' && s !== 'pending';
+        }
+
         class StaticAdminSystem {
             constructor() {
                 this.storageKey = 'nijenhuis_bookings';
@@ -474,43 +160,128 @@
                 });
             }
             
-            handleLogin() {
-                const username = document.getElementById('username').value;
+            detectServerEndpoint() {
+                // Check if we're running locally (file:// or localhost)
+                const isLocal = window.location.protocol === 'file:' || 
+                               window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname === '';
+                
+                if (isLocal) {
+                    // Use Python server for local development
+                    return 'http://localhost:8000/admin/booking-handler.py';
+                } else {
+                    // Use PHP server for production (private server)
+                    // Use absolute path to ensure it works correctly
+                    const basePath = window.location.origin;
+                    return `${basePath}/admin/booking-handler.php`;
+                }
+            }
+            
+            async handleLogin() {
+                const username = document.getElementById('username').value.trim();
                 const password = document.getElementById('password').value;
                 
-                // Simple static authentication
-                if (username === 'admin' && password === 'nijenhuis2025') {
-                    localStorage.setItem('adminAuthenticated', 'true');
-                    localStorage.setItem('adminLoginTime', new Date().toISOString());
+                if (!username || !password) {
+                    this.showError('Voer zowel gebruikersnaam als wachtwoord in');
+                    return;
+                }
+                
+                // Check if we're trying to use file:// protocol
+                if (window.location.protocol === 'file:') {
+                    this.showError('Deze pagina moet worden geopend via een webserver. Start een lokale server of gebruik http://localhost');
+                    return;
+                }
+                
+                // For static hosting, allow login with default credentials if server unavailable
+                const defaultUsername = 'admin';
+                const defaultPassword = 'nijenhuis2025';
+                
+                try {
+                    // Try server-side authentication first
+                    const endpoint = this.detectServerEndpoint();
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action: 'login',
+                            username: username,
+                            password: password
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Store session token, not credentials
+                        sessionStorage.setItem('adminSessionToken', result.csrfToken || 'authenticated');
+                        sessionStorage.setItem('adminLoginTime', new Date().toISOString());
+                        this.showAdminSection();
+                        return;
+                    }
+                } catch (error) {
+                    console.log('Server unavailable, using fallback authentication:', error);
+                    // Fall through to fallback authentication
+                }
+                
+                // Fallback: Check credentials locally for static hosting
+                if (username === defaultUsername && password === defaultPassword) {
+                    sessionStorage.setItem('adminSessionToken', 'authenticated');
+                    sessionStorage.setItem('adminLoginTime', new Date().toISOString());
                     this.showAdminSection();
                 } else {
-                    this.showError('Invalid username or password');
+                    this.showError('Ongeldige gebruikersnaam of wachtwoord');
                 }
             }
             
-            checkAuth() {
-                const isAuthenticated = localStorage.getItem('adminAuthenticated') === 'true';
-                const loginTime = localStorage.getItem('adminLoginTime');
+            async checkAuth() {
+                const sessionToken = sessionStorage.getItem('adminSessionToken');
                 
-                if (isAuthenticated && loginTime) {
-                    // Check if login is still valid (24 hours)
-                    const loginDate = new Date(loginTime);
-                    const now = new Date();
-                    const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+                if (!sessionToken) {
+                    return;
+                }
+                
+                // Try to verify session with server, but fall back to localStorage if server unavailable
+                try {
+                    const endpoint = this.detectServerEndpoint();
+                    const sessionUrl = endpoint.includes('.php') 
+                        ? endpoint.replace('booking-handler.php', 'booking-handler.php?action=session')
+                        : endpoint.replace('booking-handler.py', 'booking-handler.py?action=session');
+                    const response = await fetch(sessionUrl, {
+                        method: 'GET',
+                        credentials: 'include'
+                    });
                     
-                    if (hoursDiff < 24) {
+                    const result = await response.json();
+                    if (result.success && result.authenticated) {
+                        if (result.csrfToken) {
+                            sessionStorage.setItem('adminSessionToken', result.csrfToken);
+                        }
                         this.showAdminSection();
                     } else {
-                        this.logout();
+                        if (sessionToken) {
+                            this.showAdminSection();
+                        } else {
+                            this.logout();
+                        }
                     }
+                } catch (error) {
+                    console.error('Session validation error:', error);
+                    if (sessionToken) {
+                        console.log('Server unavailable, using localStorage authentication');
+                        this.showAdminSection();
+                    }
+                    // If no valid token, show login form (already shown by default)
                 }
             }
             
-            showAdminSection() {
+            async showAdminSection() {
                 document.getElementById('loginSection').classList.add('hidden');
                 document.getElementById('adminSection').classList.remove('hidden');
+                await this.loadBookings();
                 this.updateStats();
-                this.renderBookings();
             }
             
             showError(message) {
@@ -522,23 +293,51 @@
                 }, 5000);
             }
             
-            loadBookings() {
-                const stored = localStorage.getItem(this.storageKey);
-                this.bookings = stored ? JSON.parse(stored) : [];
-            }
-            
-            saveBookings() {
-                localStorage.setItem(this.storageKey, JSON.stringify(this.bookings));
+            async loadBookings() {
+                try {
+                    // Try to load from server first
+                    const csrf = sessionStorage.getItem('adminSessionToken') || '';
+                    const endpoint = this.detectServerEndpoint();
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-Token': csrf
+                        },
+                        body: JSON.stringify({ action: 'getBookings' })
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.csrfToken) {
+                            sessionStorage.setItem('adminSessionToken', data.csrfToken);
+                        }
+                        this.bookings = data.bookings || [];
+                        return;
+                    }
+                } catch (error) {
+                    console.log('Server unavailable, loading from localStorage:', error);
+                }
+                
+                // Fallback to localStorage if server unavailable
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    this.bookings = stored ? JSON.parse(stored) : [];
+                } catch (error) {
+                    console.error('Error loading bookings from localStorage:', error);
+                    this.bookings = [];
+                }
             }
             
             updateStats() {
-                const total = this.bookings.length;
-                const pending = this.bookings.filter(b => b.status === 'not-confirmed').length;
-                const confirmed = this.bookings.filter(b => b.status === 'confirmed').length;
-                const cancelled = this.bookings.filter(b => b.status === 'cancelled').length;
-                
+                const all = this.bookings;
+                const total = countUniqueReservationKeys(all, countsTowardTotalBookings);
+                const manual = countUniqueReservationKeys(all, isManualDashboardStatus);
+                const confirmed = countUniqueReservationKeys(all, isConfirmedDashboardStatus);
+                const cancelled = countUniqueReservationKeys(all, isCancelledDashboardStatus);
+
                 document.getElementById('totalBookings').textContent = total;
-                document.getElementById('pendingBookings').textContent = pending;
+                document.getElementById('manualBookings').textContent = manual;
                 document.getElementById('confirmedBookings').textContent = confirmed;
                 document.getElementById('cancelledBookings').textContent = cancelled;
             }
@@ -549,15 +348,37 @@
         }
         
         // Global functions
-        function logout() {
-            localStorage.removeItem('adminAuthenticated');
-            localStorage.removeItem('adminUser');
-            localStorage.removeItem('adminLoginTime');
+        async function logout() {
+            try {
+                const csrf = sessionStorage.getItem('adminSessionToken') || '';
+                // Get endpoint from admin system instance
+                const adminSystem = window.adminSystem;
+                const endpoint = adminSystem ? adminSystem.detectServerEndpoint() : 'booking-handler.php';
+                await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrf
+                    },
+                    body: JSON.stringify({
+                        action: 'logout',
+                        csrfToken: csrf
+                    })
+                });
+            } catch (error) {
+                console.error('Logout error:', error);
+            }
+            
+            sessionStorage.removeItem('adminSessionToken');
+            sessionStorage.removeItem('adminUser');
+            sessionStorage.removeItem('adminLoginTime');
             window.location.href = '../pages/admin-login.html';
         }
         
         // Initialize the admin system
         const adminSystem = new StaticAdminSystem();
+        // Make it globally accessible for logout function
+        window.adminSystem = adminSystem;
     </script>
 </body>
 </html>

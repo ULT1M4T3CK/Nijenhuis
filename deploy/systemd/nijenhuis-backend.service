@@ -1,0 +1,41 @@
+[Unit]
+Description=Nijenhuis Backend API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=andre
+Group=andre
+WorkingDirectory=/home/andre/Desktop/Projects/Nijenhuis
+Environment="PATH=/home/andre/Desktop/Projects/Nijenhuis/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PORT=8080"
+EnvironmentFile=/home/andre/Desktop/Projects/Nijenhuis/.env
+
+# Python executable from virtual environment
+ExecStart=/home/andre/Desktop/Projects/Nijenhuis/venv/bin/python3 /home/andre/Desktop/Projects/Nijenhuis/backend/api/app.py
+
+# Restart configuration
+Restart=always
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=5
+
+# Logging
+StandardOutput=append:/home/andre/Desktop/Projects/Nijenhuis/logs/backend_server.log
+StandardError=append:/home/andre/Desktop/Projects/Nijenhuis/logs/backend_server.log
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/andre/Desktop/Projects/Nijenhuis/logs /home/andre/Desktop/Projects/Nijenhuis/config
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=512M
+CPUQuota=100%
+
+[Install]
+WantedBy=multi-user.target

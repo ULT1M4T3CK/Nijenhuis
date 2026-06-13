@@ -138,10 +138,7 @@
   
   "development": {
     "debug_mode": false,
-    "test_api_keys": [
-      "dev_test_key_12345",
-      "development_key_67890"
-    ],
+    "test_api_keys": [],
     "mock_services": false,
     "verbose_logging": false
   },

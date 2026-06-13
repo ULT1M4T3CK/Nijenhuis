@@ -1,0 +1,37 @@
+[Unit]
+Description=Nijenhuis Backend API Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ec2-user
+Group=ec2-user
+WorkingDirectory=/home/ec2-user/nijenhuis
+Environment="PATH=/home/ec2-user/nijenhuis/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PORT=8080"
+EnvironmentFile=-/home/ec2-user/nijenhuis/.env
+
+# Run as module to support relative imports
+ExecStart=/home/ec2-user/nijenhuis/venv/bin/python3 -m backend.api.app
+
+# Restart configuration
+Restart=always
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=5
+
+# Logging
+StandardOutput=append:/home/ec2-user/nijenhuis/logs/backend_server.log
+StandardError=append:/home/ec2-user/nijenhuis/logs/backend_server.log
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+MemoryMax=512M
+
+[Install]
+WantedBy=multi-user.target

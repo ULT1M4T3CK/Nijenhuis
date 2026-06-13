@@ -1,537 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Management - Nijenhuis Botenverhuur</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>Reserveringsbeheer - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="../frontend/css/styles.css">
+    <link rel="stylesheet" href="admin-consolidated.css">
     <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
-    <style>
-        /* Admin Navigation Header */
-        .admin-nav {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-md) 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .admin-nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .admin-nav-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-        }
-        
-        .admin-nav-links {
-            display: flex;
-            gap: var(--spacing-lg);
-        }
-        
-        .admin-nav-link {
-            color: var(--white);
-            text-decoration: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-link:hover,
-        .admin-nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .admin-nav-logout {
-            background: rgba(220, 53, 69, 0.8);
-            color: var(--white);
-            border: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-logout:hover {
-            background: var(--error-color);
-        }
-        
-        /* Booking Management Styles */
-        .booking-management {
-            min-height: 100vh;
-            background: var(--bg-light);
-        }
-        
-        .management-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-        }
-        
-        .management-header {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            padding: var(--spacing-2xl);
-            margin-bottom: var(--spacing-2xl);
-        }
-        
-        .management-title {
-            font-size: var(--font-size-3xl);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .management-subtitle {
-            color: var(--text-secondary);
-            font-size: var(--font-size-lg);
-        }
-        
-        .management-content {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-        }
-        
-        .section-header {
-            background: var(--bg-light);
-            padding: var(--spacing-lg);
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .section-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .section-content {
-            padding: var(--spacing-lg);
-        }
-        
-        .add-booking-btn {
-            width: 100%;
-            padding: var(--spacing-md);
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: var(--spacing-lg);
-            transition: var(--transition-normal);
-        }
-        
-        .add-booking-btn:hover {
-            background: var(--primary-dark);
-        }
-        
-        /* Booking Status Colors */
-        .booking-item {
-            display: grid;
-            grid-template-columns: auto 1fr auto auto;
-            gap: var(--spacing-lg);
-            align-items: center;
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-md);
-            border-left: 4px solid;
-        }
-        
-        .booking-item.manual {
-            background: rgba(255, 193, 7, 0.1);
-            border-left-color: #ffc107;
-        }
-        
-        .booking-item.success {
-            background: rgba(40, 167, 69, 0.1);
-            border-left-color: var(--success-color);
-        }
-        
-        .booking-item.rejected {
-            background: rgba(220, 53, 69, 0.1);
-            border-left-color: var(--error-color);
-        }
-        
-        .booking-item.picked-up {
-            background: rgba(40, 167, 69, 0.1);
-            border-left-color: var(--success-color);
-            text-decoration: line-through;
-            opacity: 0.7;
-        }
-        
-        .booking-status {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .status-manual {
-            background: #ffc107;
-            color: var(--white);
-        }
-        
-        .status-success {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-rejected {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .status-picked-up {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .booking-info h4 {
-            margin: 0 0 var(--spacing-xs) 0;
-            color: var(--text-primary);
-        }
-        
-        .booking-info p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-        
-        .status-select {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            background: var(--white);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right var(--spacing-sm) center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: var(--spacing-2xl);
-            min-width: 120px;
-        }
-        
-        .status-select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .status-select:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .status-select option {
-            padding: var(--spacing-sm);
-            font-weight: 600;
-        }
-        
-        .status-select option[value="manual"] {
-            background: #ffc107;
-            color: var(--white);
-        }
-        
-        .status-select option[value="success"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="rejected"] {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="picked-up"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .save-btn {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            background: var(--success-color);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-        }
-        
-        /* Modern Calendar Styles */
-        .calendar-container {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: var(--bg-light);
-            border-radius: var(--radius-md);
-        }
-        
-        .calendar-label {
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-        
-        .modern-calendar {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            background: var(--white);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 150px;
-        }
-        
-        .modern-calendar:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .modern-calendar:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .clear-date-btn {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: var(--light-gray);
-            color: var(--text-primary);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .clear-date-btn:hover {
-            background: var(--text-light);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-content {
-            background-color: var(--white);
-            margin: 5% auto;
-            padding: 0;
-            border-radius: var(--radius-lg);
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        .modal-header {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-header h3 {
-            margin: 0;
-        }
-        
-        .close {
-            color: var(--white);
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .close:hover {
-            opacity: 0.7;
-        }
-        
-        .modal-body {
-            padding: var(--spacing-lg);
-        }
-        
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            transition: var(--transition-normal);
-            box-sizing: border-box;
-        }
-        
-        .form-group select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right var(--spacing-md) center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: var(--spacing-2xl);
-            cursor: pointer;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .form-group select:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .form-actions {
-            display: flex;
-            gap: var(--spacing-md);
-            justify-content: flex-end;
-            margin-top: var(--spacing-lg);
-        }
-        
-        .btn {
-            padding: var(--spacing-md) var(--spacing-lg);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .btn-primary {
-            background: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .btn-secondary {
-            background: var(--light-gray);
-            color: var(--text-primary);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .admin-nav-container {
-                flex-direction: column;
-                gap: var(--spacing-md);
-            }
-            
-            .admin-nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .booking-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Admin Navigation -->
     <nav class="admin-nav">
         <div class="admin-nav-container">
-            <div class="admin-nav-title">Nijenhuis Admin</div>
+            <img src="../frontend/Images/logo-white.svg" alt="Nijenhuis" class="admin-nav-logo" style="height: 40px; width: auto;">
             <div class="admin-nav-links">
                 <a href="admin-static.html" class="admin-nav-link">Dashboard</a>
-                <a href="boat-management.html" class="admin-nav-link">Boat Management</a>
-                <a href="booking-management.html" class="admin-nav-link active">Booking Management</a>
+                <a href="boat-management.html" class="admin-nav-link">Bootbeheer</a>
+                <a href="booking-management.html" class="admin-nav-link active">Reserveringsbeheer</a>
+                <a href="booking-history.html" class="admin-nav-link">Boekingsgeschiedenis</a>
             </div>
-            <button class="admin-nav-logout" onclick="logout()">Logout</button>
+            <button class="admin-nav-logout" onclick="logout()">Uitloggen</button>
         </div>
     </nav>
 
     <div class="booking-management">
+    <!-- Admin Header Section -->
+    <div class="admin-header">
+        <div class="admin-container">
+            <h1 class="admin-title">Reserveringsbeheer</h1>
+            <p class="admin-subtitle">Nijenhuis Botenverhuur - Overzicht</p>
+        </div>
+    </div>
+        
         <div class="management-container">
-            <div class="management-header">
-                <h1 class="management-title">Booking Management</h1>
-                <p class="management-subtitle">Manage all customer bookings and reservations</p>
-            </div>
-
-            <div class="management-content">
-                <div class="section-header">
-                    <h2 class="section-title">All Bookings</h2>
+            <!-- Status Box Section -->
+            <div class="status-box-container">
+                <div class="status-box">
+                    <div class="status-text">Momenteel geen nieuwe reserveringen..</div>
+                    <div class="status-time" id="lastUpdateTime">Laatst geupdate: <span id="updateTime"></span></div>
                 </div>
-                <div class="section-content">
-                    <div class="calendar-container">
-                        <label for="bookingCalendar" class="calendar-label">Filter by Date:</label>
-                        <input type="date" id="bookingCalendar" class="modern-calendar">
-                        <button class="clear-date-btn" onclick="clearBookingDateFilter()">Show All</button>
+            </div>
+            
+            <!-- Three-Month Calendar -->
+            <div class="calendar-months-container" id="calendarMonthsContainer">
+                <!-- Calendars will be populated here -->
+            </div>
+            
+            <!-- Day Bookings Section -->
+            <div id="dayBookingsSection" class="day-bookings-section" style="display: none;">
+                <div class="day-bookings-header">
+                    <div class="day-bookings-header-main">
+                        <button type="button" class="day-bookings-nav-btn" id="dayBookingsPrevDay" aria-label="Vorige dag">‹</button>
+                        <h2 class="day-bookings-title" id="dayBookingsTitle">Reserveringen</h2>
+                        <button type="button" class="day-bookings-nav-btn" id="dayBookingsNextDay" aria-label="Volgende dag">›</button>
                     </div>
-                    <button class="add-booking-btn" onclick="showAddBookingModal()">+ Add Manual Booking</button>
-                    <div id="bookingsList">
-                        <!-- Bookings will be populated here -->
-                    </div>
+                    <button type="button" class="close-day-bookings" onclick="closeDayBookings()" aria-label="Sluiten">&times;</button>
+                </div>
+                <div id="dayBookingsContent" class="day-bookings-content">
+                    <!-- Bookings will be populated here -->
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Day Bookings Modal -->
+    <div id="dayBookingsModal" class="day-bookings-modal">
+        <div class="day-bookings-modal-content">
+            <div class="day-bookings-modal-header">
+                <h2 class="day-bookings-modal-title" id="dayBookingsModalTitle">Reserveringen</h2>
+                <button class="close-day-modal" onclick="closeDayBookingsModal()">&times;</button>
+            </div>
+            <div id="dayBookingsModalBody">
+                <!-- Bookings will be populated here -->
+            </div>
+        </div>
+    </div>
+    
     <!-- Add Booking Modal -->
     <div id="addBookingModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Add Manual Booking</h3>
+                <h3>Handmatige reservering toevoegen</h3>
                 <span class="close" onclick="closeAddBookingModal()">&times;</span>
             </div>
             <div class="modal-body">
                 <form id="addBookingForm">
                     <div class="form-group">
-                        <label for="bookingDate">Date</label>
-                        <input type="date" id="bookingDate" name="date" required>
+                        <label for="bookingDate">Datum</label>
+                        <input type="date" id="bookingDate" name="date" required min="" max="">
                     </div>
                     <div class="form-group">
-                        <label for="bookingBoatType">Boat Type</label>
+                        <label for="bookingBoatType">Boottype</label>
                         <select id="bookingBoatType" name="boatType" required>
-                            <option value="">Select Boat Type</option>
+                            <option value="">Selecteer boottype</option>
                             <option value="classic-tender-720">Classic tender 720 10/12 pers</option>
                             <option value="electrosloop-10">Electrosloep voor 10 pers</option>
                             <option value="electrosloop-8">Electrosloep voor 8 pers</option>
@@ -545,24 +106,24 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="bookingCustomerName">Customer Name</label>
+                        <label for="bookingCustomerName">Klantnaam</label>
                         <input type="text" id="bookingCustomerName" name="customerName" required>
                     </div>
                     <div class="form-group">
-                        <label for="bookingCustomerEmail">Email</label>
+                        <label for="bookingCustomerEmail">E-mail</label>
                         <input type="email" id="bookingCustomerEmail" name="customerEmail" required>
                     </div>
                     <div class="form-group">
-                        <label for="bookingCustomerPhone">Phone</label>
+                        <label for="bookingCustomerPhone">Telefoon</label>
                         <input type="tel" id="bookingCustomerPhone" name="customerPhone" required>
                     </div>
                     <div class="form-group">
-                        <label for="bookingNotes">Notes</label>
+                        <label for="bookingNotes">Notities</label>
                         <textarea id="bookingNotes" name="notes" rows="3"></textarea>
                     </div>
                     <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Add Booking</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeAddBookingModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Reservering toevoegen</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeAddBookingModal()">Annuleren</button>
                     </div>
                 </form>
             </div>
@@ -574,18 +135,585 @@
             constructor() {
                 this.bookingsStorageKey = 'nijenhuis_bookings';
                 this.bookings = [];
+                this.currentMonthOffset = 0; // Track month navigation offset
                 this.init();
             }
             
-            init() {
-                this.loadBookings();
+            async init() {
+                console.log('Initializing BookingManagementSystem...');
+                
+                // Setup event listeners first (synchronous)
                 this.setupEventListeners();
-                this.renderBookings();
+                this.setBookingSeasonDates();
+                
+                // Render calendar immediately (don't wait for bookings)
+                const calendarContainer = document.getElementById('calendarMonthsContainer');
+                if (calendarContainer) {
+                    console.log('Calendar container found, rendering calendar...');
+                    calendarContainer.style.display = 'grid';
+                    calendarContainer.style.visibility = 'visible';
+                    calendarContainer.style.opacity = '1';
+                    
+                    // Render calendar structure immediately
+                    this.renderThreeMonthCalendar();
+                    this.updateStatusTime();
+                } else {
+                    console.error('Calendar container not found!');
+                }
+                
+                // Load bookings asynchronously (non-blocking)
+                try {
+                    await this.loadBookings();
+                    console.log('Bookings loaded:', this.bookings.length);
+                } catch (e) {
+                    console.warn('Could not load bookings from server, using localStorage:', e.message);
+                    // Fallback to localStorage is handled in loadBookings()
+                }
+                
+                // Render bookings on calendar after loading
+                setTimeout(() => {
+                    this.renderBookingsOnCalendar();
+                }, 100);
+                
+                // Set up auto-refresh for bookings every 30 seconds
+                setInterval(async () => {
+                    try {
+                        await this.loadBookings();
+                        this.renderThreeMonthCalendar();
+                        setTimeout(() => {
+                            this.renderBookingsOnCalendar();
+                        }, 100);
+                        this.updateStatusBox();
+                    } catch (e) {
+                        console.warn('Auto-refresh failed:', e.message);
+                    }
+                }, 30000);
             }
             
-            loadBookings() {
-                const storedBookings = localStorage.getItem(this.bookingsStorageKey);
-                this.bookings = storedBookings ? JSON.parse(storedBookings) : [];
+            getBoatDisplayName(boatType) {
+                // Try to get from localStorage boats first
+                try {
+                    const storedBoats = localStorage.getItem('nijenhuis_boats');
+                    if (storedBoats) {
+                        const boats = JSON.parse(storedBoats);
+                        const boat = boats.find(b => b.id === boatType);
+                        if (boat && boat.name) {
+                            return boat.name;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading boat name:', e);
+                }
+                
+                // Fallback to default names
+                const boatNames = {
+                    'classic-tender-720': 'Classic tender 720 10/12 pers',
+                    'electrosloop-10': 'Electrosloep 10 pers',
+                    'classic-tender-570': 'Classic tender 570 8 pers',
+                    'electrosloop-8': 'Electrosloep 8 pers',
+                    'sailboat-4-5': 'Zeilboot 4/5 pers',
+                    'sailpunter-3-4': 'Zeilpunter 3/4 pers',
+                    'electroboat-5': 'Electroboot 5 pers',
+                    'canoe-3': 'Canadese kano 3 pers',
+                    'kayak-2': 'Kajak 2 pers',
+                    'kayak-1': 'Kajak 1 pers',
+                    'sup-board': 'SUP board 1 pers'
+                };
+                
+                return boatNames[boatType] || boatType;
+            }
+            
+            updateStatusTime() {
+                const updateTimeElement = document.getElementById('updateTime');
+                if (updateTimeElement) {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    updateTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+                    
+                    // Update every second
+                    setInterval(() => {
+                        const now = new Date();
+                        const hours = String(now.getHours()).padStart(2, '0');
+                        const minutes = String(now.getMinutes()).padStart(2, '0');
+                        const seconds = String(now.getSeconds()).padStart(2, '0');
+                        updateTimeElement.textContent = `${hours}:${minutes}:${seconds}`;
+                    }, 1000);
+                }
+            }
+            
+            renderThreeMonthCalendar() {
+                const container = document.getElementById('calendarMonthsContainer');
+                if (!container) {
+                    console.error('Calendar container not found!');
+                    return;
+                }
+                
+                // Ensure container is visible
+                container.style.display = 'grid';
+                container.style.visibility = 'visible';
+                container.style.opacity = '1';
+                
+                container.innerHTML = '';
+                
+                // Show three months starting from currentMonthOffset
+                const today = new Date();
+                const startMonth = new Date(today.getFullYear(), today.getMonth() + this.currentMonthOffset, 1);
+                const months = [
+                    new Date(startMonth.getFullYear(), startMonth.getMonth(), 1),
+                    new Date(startMonth.getFullYear(), startMonth.getMonth() + 1, 1),
+                    new Date(startMonth.getFullYear(), startMonth.getMonth() + 2, 1)
+                ];
+                
+                console.log('Rendering calendar for months:', months.map(m => `${m.getMonth() + 1}/${m.getFullYear()}`));
+                
+                months.forEach((monthDate, index) => {
+                    const monthCalendar = this.createMonthCalendar(monthDate, index === 0, index === months.length - 1);
+                    if (monthCalendar) {
+                        container.appendChild(monthCalendar);
+                    }
+                });
+                
+                console.log('Calendar rendered. Container children:', container.children.length);
+            }
+            
+            createMonthCalendar(monthDate, isFirst, isLast) {
+                const monthDiv = document.createElement('div');
+                monthDiv.className = 'calendar-month';
+                
+                // Month header
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'calendar-month-header';
+                
+                // Left arrow (previous months) - only show on first month
+                if (isFirst) {
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'calendar-nav-arrow';
+                    prevBtn.textContent = '‹';
+                    prevBtn.onclick = () => {
+                        this.currentMonthOffset -= 1;
+                        this.renderThreeMonthCalendar();
+                        setTimeout(() => {
+                            this.renderBookingsOnCalendar();
+                        }, 100);
+                    };
+                    headerDiv.appendChild(prevBtn);
+                } else {
+                    headerDiv.appendChild(document.createElement('div')); // Spacer
+                }
+                
+                const monthNames = ['januari', 'februari', 'maart', 'april', 'mei', 'juni',
+                    'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+                const monthTitle = document.createElement('div');
+                monthTitle.className = 'calendar-month-title';
+                monthTitle.textContent = `${monthNames[monthDate.getMonth()]} ${monthDate.getFullYear()}`;
+                headerDiv.appendChild(monthTitle);
+                
+                // Right arrow (next months) - only show on last month
+                if (isLast) {
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'calendar-nav-arrow';
+                    nextBtn.textContent = '›';
+                    nextBtn.onclick = () => {
+                        this.currentMonthOffset += 1;
+                        this.renderThreeMonthCalendar();
+                        setTimeout(() => {
+                            this.renderBookingsOnCalendar();
+                        }, 100);
+                    };
+                    headerDiv.appendChild(nextBtn);
+                } else {
+                    headerDiv.appendChild(document.createElement('div')); // Spacer
+                }
+                
+                // Calendar grid
+                const gridDiv = document.createElement('div');
+                gridDiv.className = 'calendar-month-grid';
+                
+                // Day headers
+                const dayNames = ['ma', 'di', 'wo', 'do', 'vr', 'za', 'zo'];
+                dayNames.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.className = 'calendar-day-header';
+                    dayHeader.textContent = day;
+                    gridDiv.appendChild(dayHeader);
+                });
+                
+                // Get first day of month and adjust for Monday = 0
+                const firstDay = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+                const lastDay = new Date(monthDate.getFullYear(), monthDate.getMonth() + 1, 0);
+                const startDate = new Date(firstDay);
+                
+                // Adjust to Monday (Dutch calendar starts with Monday)
+                const dayOfWeek = firstDay.getDay();
+                const daysToSubtract = dayOfWeek === 0 ? 6 : dayOfWeek - 1; // If Sunday, go back 6 days
+                startDate.setDate(startDate.getDate() - daysToSubtract);
+                
+                // Generate 42 days (6 weeks)
+                for (let i = 0; i < 42; i++) {
+                    const currentDate = new Date(startDate);
+                    currentDate.setDate(startDate.getDate() + i);
+                    
+                    const dayCell = document.createElement('div');
+                    dayCell.className = 'calendar-day-cell';
+                    
+                    // Check if day is from other month
+                    const isOtherMonth = currentDate.getMonth() !== monthDate.getMonth();
+                    if (isOtherMonth) {
+                        dayCell.classList.add('other-month');
+                    }
+                    
+                    dayCell.textContent = currentDate.getDate();
+                    
+                    // Add click handler for days (only if not other month)
+                    if (!isOtherMonth) {
+                        dayCell.onclick = () => {
+                            this.showDayBookings(currentDate);
+                        };
+                    }
+                    
+                    gridDiv.appendChild(dayCell);
+                }
+                
+                monthDiv.appendChild(headerDiv);
+                monthDiv.appendChild(gridDiv);
+                
+                return monthDiv;
+            }
+            
+            navigateCalendar(direction) {
+                this.currentMonthOffset += direction;
+                this.renderThreeMonthCalendar();
+                setTimeout(() => {
+                    this.renderBookingsOnCalendar();
+                }, 100);
+            }
+
+            getSeasonCalendarYear() {
+                const today = new Date();
+                const SEASON_END_MONTH = 9;
+                let year = today.getFullYear();
+                if (today.getMonth() > SEASON_END_MONTH) {
+                    year = today.getFullYear() + 1;
+                }
+                return year;
+            }
+
+            ensureCalendarShowsDate(date) {
+                const SEASON_START = 3;
+                const SEASON_END = 9;
+                const maxStart = SEASON_END - 2;
+                const calYear = this.getSeasonCalendarYear();
+                if (date.getFullYear() !== calYear) return;
+
+                const m = date.getMonth();
+                if (m < SEASON_START || m > SEASON_END) return;
+
+                const startMonth = SEASON_START + this.currentMonthOffset;
+                if (m >= startMonth && m <= startMonth + 2) return;
+
+                let newStart = Math.min(Math.max(m - 1, SEASON_START), maxStart);
+                if (m === SEASON_START) newStart = SEASON_START;
+                if (m === SEASON_END) newStart = maxStart;
+                this.currentMonthOffset = newStart - SEASON_START;
+                this.renderThreeMonthCalendar();
+            }
+
+            getSortedReservationDates() {
+                const byKey = new Map();
+                for (const booking of this.bookings) {
+                    if (!booking.date) continue;
+                    try {
+                        const startDate = new Date(booking.date);
+                        startDate.setHours(12, 0, 0, 0);
+                        const endDate = booking.endDate ? new Date(booking.endDate) : new Date(booking.date);
+                        endDate.setHours(12, 0, 0, 0);
+                        let cur = new Date(startDate);
+                        while (cur.getTime() <= endDate.getTime()) {
+                            const key = `${cur.getFullYear()}-${String(cur.getMonth() + 1).padStart(2, '0')}-${String(cur.getDate()).padStart(2, '0')}`;
+                            if (!byKey.has(key)) {
+                                byKey.set(key, new Date(cur));
+                            }
+                            cur = new Date(cur);
+                            cur.setDate(cur.getDate() + 1);
+                            cur.setHours(12, 0, 0, 0);
+                        }
+                    } catch (e) { /* skip */ }
+                }
+                return Array.from(byKey.values()).sort((a, b) => a.getTime() - b.getTime());
+            }
+
+            findNextReservationDay(fromDate) {
+                const sorted = this.getSortedReservationDates();
+                const from = new Date(fromDate);
+                from.setHours(12, 0, 0, 0);
+                const t = from.getTime();
+                for (const d of sorted) {
+                    if (d.getTime() > t) return d;
+                }
+                return null;
+            }
+
+            findPrevReservationDay(fromDate) {
+                const sorted = this.getSortedReservationDates();
+                const from = new Date(fromDate);
+                from.setHours(12, 0, 0, 0);
+                const t = from.getTime();
+                for (let i = sorted.length - 1; i >= 0; i--) {
+                    if (sorted[i].getTime() < t) return sorted[i];
+                }
+                return null;
+            }
+
+            updateDayBookingsNavButtons(forDate) {
+                const dayPrev = document.getElementById('dayBookingsPrevDay');
+                const dayNext = document.getElementById('dayBookingsNextDay');
+                const d = new Date(forDate);
+                d.setHours(12, 0, 0, 0);
+                if (dayPrev) {
+                    dayPrev.disabled = !this.findPrevReservationDay(d);
+                }
+                if (dayNext) {
+                    dayNext.disabled = !this.findNextReservationDay(d);
+                }
+            }
+
+            navigateDayBookings(delta) {
+                const base = window.currentViewingDate ? new Date(window.currentViewingDate) : new Date();
+                base.setHours(12, 0, 0, 0);
+                const target = delta > 0 ? this.findNextReservationDay(base) : this.findPrevReservationDay(base);
+                if (!target) return;
+                this.ensureCalendarShowsDate(target);
+                this.showDayBookings(target);
+                setTimeout(() => {
+                    this.renderBookingsOnCalendar();
+                }, 100);
+            }
+            
+            showDayBookings(date) {
+                window.currentViewingDate = date;
+                const section = document.getElementById('dayBookingsSection');
+                const sectionTitle = document.getElementById('dayBookingsTitle');
+                const sectionContent = document.getElementById('dayBookingsContent');
+                
+                if (!section || !sectionTitle || !sectionContent) return;
+                
+                // Format date
+                const monthNames = ['januari', 'februari', 'maart', 'april', 'mei', 'juni',
+                    'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+                const formattedDate = `${date.getDate()} ${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+                sectionTitle.textContent = `Reserveringen voor ${formattedDate}`;
+                
+                const checkDate = new Date(date);
+                checkDate.setHours(12, 0, 0, 0);
+                const dayBookings = this.bookings.filter(booking => {
+                    if (!booking.date) return false;
+                    try {
+                        const startDate = new Date(booking.date);
+                        startDate.setHours(12, 0, 0, 0);
+                        const endDate = booking.endDate ? new Date(booking.endDate) : new Date(booking.date);
+                        endDate.setHours(12, 0, 0, 0);
+                        return checkDate >= startDate && checkDate <= endDate;
+                    } catch (e) {
+                        return false;
+                    }
+                });
+                
+                sectionContent.innerHTML = '';
+                
+                if (dayBookings.length === 0) {
+                    sectionContent.innerHTML = `<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-xl);">Geen reserveringen voor deze datum.</p>`;
+                } else {
+                    dayBookings.forEach(booking => {
+                        const bookingItem = document.createElement('div');
+                        bookingItem.className = 'day-booking-item';
+                        
+                        const header = document.createElement('div');
+                        header.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);';
+                        
+                        const customer = document.createElement('div');
+                        customer.style.cssText = 'font-weight: 600; font-size: var(--font-size-lg); color: var(--text-primary);';
+                        customer.textContent = this.escapeHTML(booking.customerName || 'Onbekende klant');
+                        header.appendChild(customer);
+                        
+                        const status = document.createElement('span');
+                        status.className = `archive-booking-status status-${this.escapeHTML(booking.status || 'manual')}`;
+                        status.textContent = this.escapeHTML(booking.status || 'manual');
+                        header.appendChild(status);
+                        
+                        bookingItem.appendChild(header);
+                        
+                        const details = document.createElement('div');
+                        details.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); font-size: var(--font-size-base); color: var(--text-secondary);';
+                        
+                        if (booking.boatType) {
+                            const boatDetail = document.createElement('div');
+                            boatDetail.innerHTML = `<strong>Boot:</strong> ${this.escapeHTML(this.getBoatDisplayName(booking.boatType))}`;
+                            details.appendChild(boatDetail);
+                        }
+                        
+                        if (booking.customerEmail) {
+                            const emailDetail = document.createElement('div');
+                            emailDetail.innerHTML = `<strong>Email:</strong> ${this.escapeHTML(booking.customerEmail)}`;
+                            details.appendChild(emailDetail);
+                        }
+                        
+                        if (booking.customerPhone) {
+                            const phoneDetail = document.createElement('div');
+                            phoneDetail.innerHTML = `<strong>Telefoon:</strong> ${this.escapeHTML(booking.customerPhone)}`;
+                            details.appendChild(phoneDetail);
+                        }
+                        
+                        if (booking.notes) {
+                            const notesDetail = document.createElement('div');
+                            notesDetail.style.gridColumn = '1 / -1';
+                            notesDetail.innerHTML = `<strong>Notities:</strong> ${this.escapeHTML(booking.notes)}`;
+                            details.appendChild(notesDetail);
+                        }
+                        
+                        bookingItem.appendChild(details);
+                        sectionContent.appendChild(bookingItem);
+                    });
+                }
+                
+                // Show the section and scroll into view
+                section.style.display = 'block';
+                this.updateDayBookingsNavButtons(date);
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+            
+            setBookingSeasonDates() {
+                const dateInput = document.getElementById('bookingDate');
+                if (!dateInput) return;
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const currentYear = today.getFullYear();
+                const currentMonth = today.getMonth();
+                const currentDate = today.getDate();
+
+                // Admin can add bookings for current or next season
+                // Season: April 1 - October 31
+                // Bookings open March 1 for users, but admin can always add
+                let bookingYear = currentYear;
+                let minDateStr, maxDateStr;
+                
+                if (currentMonth >= 2 && currentMonth <= 9) {
+                    // March - October: current year's season
+                    bookingYear = currentYear;
+                    if (currentMonth === 2) {
+                        // March - allow from April 1
+                        minDateStr = `${bookingYear}-04-01`;
+                    } else {
+                        // April-October - allow from today
+                        minDateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(currentDate).padStart(2, '0')}`;
+                    }
+                    maxDateStr = `${bookingYear}-10-31`;
+                } else if (currentMonth >= 10) {
+                    // November - December: next year's season
+                    bookingYear = currentYear + 1;
+                    minDateStr = `${bookingYear}-04-01`;
+                    maxDateStr = `${bookingYear}-10-31`;
+                } else {
+                    // January - February: current year's season (starting April)
+                    bookingYear = currentYear;
+                    minDateStr = `${bookingYear}-04-01`;
+                    maxDateStr = `${bookingYear}-10-31`;
+                }
+
+                dateInput.setAttribute('min', minDateStr);
+                dateInput.setAttribute('max', maxDateStr);
+                
+                // Store for validation
+                this.bookingYear = bookingYear;
+                this.seasonStartDate = `${bookingYear}-04-01`;
+                this.seasonEndDate = `${bookingYear}-10-31`;
+            }
+            
+            async loadBookings() {
+                // Always load from localStorage first for immediate availability
+                try {
+                    const storedBookings = localStorage.getItem(this.bookingsStorageKey);
+                    if (storedBookings) {
+                        this.bookings = JSON.parse(storedBookings);
+                        console.log('Loaded bookings from localStorage:', this.bookings.length);
+                    }
+                } catch (e) {
+                    console.error('Error loading bookings from localStorage:', e);
+                    this.bookings = [];
+                }
+                
+                // Then try to fetch from server (non-blocking update)
+                try {
+                    const endpoint = this.detectServerEndpoint();
+                    const isLocal = window.location.protocol === 'file:' || 
+                                   window.location.hostname === 'localhost' || 
+                                   window.location.hostname === '127.0.0.1' ||
+                                   window.location.hostname === '';
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+                    
+                    const response = await fetch(endpoint, {
+                        method: 'GET',
+                        credentials: isLocal ? 'omit' : 'include',
+                        mode: 'cors',
+                        signal: controller.signal
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (response.ok) {
+                        const contentType = response.headers.get('content-type');
+                        if (contentType && contentType.includes('application/json')) {
+                            const data = await response.json();
+                            if (data.success && Array.isArray(data.bookings)) {
+                                this.bookings = data.bookings;
+                                // Save to localStorage as backup
+                                localStorage.setItem(this.bookingsStorageKey, JSON.stringify(this.bookings));
+                                console.log('Updated bookings from server:', this.bookings.length);
+                            }
+                        }
+                    }
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        console.warn('Could not fetch bookings from server, using localStorage:', error.message);
+                    }
+                    // Continue with localStorage data already loaded
+                }
+                
+                this.updateStatusBox();
+            }
+            
+            detectServerEndpoint() {
+                const isLocal = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname === '';
+                
+                return isLocal 
+                    ? 'http://localhost:8000/admin/booking-handler.py'
+                    : `${window.location.origin}/admin/booking-handler.php`;
+            }
+            
+            updateStatusBox() {
+                const now = new Date();
+                const recentBookings = this.bookings.filter(booking => {
+                    const bookingDate = new Date(booking.createdAt);
+                    const hoursDiff = (now - bookingDate) / (1000 * 60 * 60);
+                    return hoursDiff < 24; // Bookings from last 24 hours
+                });
+                
+                const statusBox = document.querySelector('.status-box .status-text');
+                if (statusBox) {
+                    if (recentBookings.length > 0) {
+                        statusBox.textContent = `${recentBookings.length} nieuwe reservering(en) in de laatste 24 uur.`;
+                    } else {
+                        statusBox.textContent = 'Momenteel geen nieuwe reserveringen..';
+                    }
+                }
             }
             
             setupEventListeners() {
@@ -605,25 +733,129 @@
                 // Listen for booking status changes
                 window.addEventListener('bookingStatusChanged', (e) => {
                     console.log('Booking status changed:', e.detail);
-                    this.loadBookings();
-                    this.renderBookings();
+                    this.loadBookings().then(() => {
+                        this.renderBookings();
+                        this.renderArchive();
+                    });
                 });
+                
+                // Archive year selector
+                const archiveYearSelect = document.getElementById('archiveYearSelect');
+                if (archiveYearSelect) {
+                    archiveYearSelect.addEventListener('change', () => {
+                        this.renderArchive();
+                    });
+                }
+
+                const dayPrev = document.getElementById('dayBookingsPrevDay');
+                const dayNext = document.getElementById('dayBookingsNextDay');
+                if (dayPrev) {
+                    dayPrev.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.navigateDayBookings(-1);
+                    });
+                }
+                if (dayNext) {
+                    dayNext.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        this.navigateDayBookings(1);
+                    });
+                }
             }
             
-            saveBookings() {
+            async saveBookings() {
+                // Save to localStorage first
                 localStorage.setItem(this.bookingsStorageKey, JSON.stringify(this.bookings));
+                
+                // Also try to save to server if we have the booking ID
+                // Note: This would need server support for individual booking updates
+            }
+            
+            // Helper function to escape HTML and prevent XSS
+            escapeHTML(text) {
+                if (text == null) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
             }
             
             renderBookings() {
-                this.renderBookingsWithFilter();
+                // Note: bookingsList doesn't exist in calendar view, only in list view
+                // For calendar view, we show bookings on calendar days instead
+                this.renderBookingsOnCalendar();
+            }
+            
+            renderBookingsOnCalendar() {
+                // Render bookings as indicators on calendar days
+                const calendarMonths = document.querySelectorAll('.calendar-month');
+                
+                calendarMonths.forEach(monthElement => {
+                    const monthTitle = monthElement.querySelector('.calendar-month-title');
+                    if (!monthTitle) return;
+                    
+                    // Extract month and year from title (e.g., "november 2025")
+                    const titleText = monthTitle.textContent.toLowerCase();
+                    const monthNames = ['januari', 'februari', 'maart', 'april', 'mei', 'juni',
+                        'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+                    const monthIndex = monthNames.findIndex(name => titleText.startsWith(name));
+                    const year = parseInt(titleText.match(/\d{4}/)?.[0] || new Date().getFullYear());
+                    
+                    if (monthIndex === -1) return;
+                    
+                    const dayCells = monthElement.querySelectorAll('.calendar-day-cell:not(.other-month)');
+                    dayCells.forEach(dayCell => {
+                        // Remove existing indicators
+                        const existingIndicators = dayCell.querySelectorAll('[data-booking-indicator]');
+                        existingIndicators.forEach(ind => ind.remove());
+                        
+                        const dayNumber = parseInt(dayCell.textContent);
+                        if (isNaN(dayNumber)) return;
+                        
+                        try {
+                            const cellDate = new Date(year, monthIndex, dayNumber);
+                            cellDate.setHours(12, 0, 0, 0);
+                            
+                            const dayBookings = this.bookings.filter(b => {
+                                if (!b.date) return false;
+                                try {
+                                    const startDate = new Date(b.date);
+                                    startDate.setHours(12, 0, 0, 0);
+                                    const endDate = b.endDate ? new Date(b.endDate) : new Date(b.date);
+                                    endDate.setHours(12, 0, 0, 0);
+                                    return cellDate >= startDate && cellDate <= endDate;
+                                } catch (e) {
+                                    return false;
+                                }
+                            });
+                            
+                            if (dayBookings.length > 0) {
+                                // Add booking indicator
+                                const indicator = document.createElement('div');
+                                indicator.setAttribute('data-booking-indicator', 'true');
+                                indicator.style.cssText = 'background: var(--primary-color); color: white; font-size: 10px; padding: 2px 4px; border-radius: 3px; margin-top: 4px; cursor: pointer;';
+                                indicator.textContent = `${dayBookings.length} reservering(en)`;
+                                indicator.title = `${dayBookings.length} reservering(en) op deze datum`;
+                                dayCell.appendChild(indicator);
+                            }
+                        } catch (error) {
+                            console.error('Error rendering booking for date:', error);
+                        }
+                    });
+                });
             }
             
             renderBookingsWithFilter() {
+                // This method is for list view (if we add one later)
                 const bookingsList = document.getElementById('bookingsList');
+                if (!bookingsList) return; // No list view in calendar page
+                
                 bookingsList.innerHTML = '';
                 
                 if (this.bookings.length === 0) {
-                    bookingsList.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);">No bookings found. Add a manual booking to get started.</p>';
+                    const emptyMsg = document.createElement('p');
+                    emptyMsg.style.cssText = 'text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);';
+                    emptyMsg.textContent = 'Geen reserveringen gevonden. Voeg een handmatige reservering toe om te beginnen.';
+                    bookingsList.appendChild(emptyMsg);
                     return;
                 }
                 
@@ -632,11 +864,14 @@
                 
                 if (filteredBookings.length === 0) {
                     const selectedDate = document.getElementById('bookingCalendar').value;
+                    const emptyMsg = document.createElement('p');
+                    emptyMsg.style.cssText = 'text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);';
                     if (selectedDate) {
-                        bookingsList.innerHTML = `<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);">No bookings found for ${new Date(selectedDate).toLocaleDateString()}.</p>`;
+                        emptyMsg.textContent = `Geen reserveringen gevonden voor ${new Date(selectedDate).toLocaleDateString()}.`;
                     } else {
-                        bookingsList.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-2xl);">No bookings found. Add a manual booking to get started.</p>';
+                        emptyMsg.textContent = 'Geen reserveringen gevonden. Voeg een handmatige reservering toe om te beginnen.';
                     }
+                    bookingsList.appendChild(emptyMsg);
                     return;
                 }
                 
@@ -645,24 +880,86 @@
                 
                 sortedBookings.forEach(booking => {
                     const bookingItem = document.createElement('div');
-                    bookingItem.className = `booking-item ${booking.status}`;
-                    bookingItem.innerHTML = `
-                        <div class="booking-status status-${booking.status}">${booking.status}</div>
-                        <div class="booking-info">
-                            <h4>${booking.customerName}</h4>
-                            <p><strong>Date:</strong> ${booking.date}</p>
-                            <p><strong>Boat:</strong> ${this.getBoatName(booking.boatType)}</p>
-                            <p><strong>Contact:</strong> ${booking.customerEmail} | ${booking.customerPhone}</p>
-                            ${booking.notes ? `<p><strong>Notes:</strong> ${booking.notes}</p>` : ''}
-                        </div>
-                        <select class="status-select" id="status-${booking.id}" onchange="bookingSystem.updateBookingStatus('${booking.id}', this.value)">
-                            <option value="manual" ${booking.status === 'manual' ? 'selected' : ''}>Manual</option>
-                            <option value="success" ${booking.status === 'success' ? 'selected' : ''}>Success</option>
-                            <option value="rejected" ${booking.status === 'rejected' ? 'selected' : ''}>Rejected</option>
-                            <option value="picked-up" ${booking.status === 'picked-up' ? 'selected' : ''}>Picked Up</option>
-                        </select>
-                        <button class="save-btn" onclick="bookingSystem.saveBookingStatus('${booking.id}')">Save</button>
-                    `;
+                    
+                    // Escape all user input to prevent XSS
+                    const safeStatus = this.escapeHTML(booking.status || '');
+                    const safeCustomerName = this.escapeHTML(booking.customerName || '');
+                    const safeDate = this.escapeHTML(booking.date || '');
+                    const safeBoatName = this.escapeHTML(this.getBoatName(booking.boatType));
+                    const safeEmail = this.escapeHTML(booking.customerEmail || '');
+                    const safePhone = this.escapeHTML(booking.customerPhone || '');
+                    const safeNotes = booking.notes ? this.escapeHTML(booking.notes) : '';
+                    const safeId = this.escapeHTML(booking.id || '');
+                    
+                    bookingItem.className = `booking-item ${safeStatus}`;
+                    
+                    // Use DOM manipulation instead of innerHTML for safer rendering
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = `booking-status status-${safeStatus}`;
+                    statusDiv.textContent = safeStatus;
+                    
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'booking-info';
+                    
+                    const nameH4 = document.createElement('h4');
+                    nameH4.textContent = safeCustomerName;
+                    
+                    const dateP = document.createElement('p');
+                    dateP.innerHTML = `<strong>Datum:</strong> ${safeDate}`;
+                    
+                    const boatP = document.createElement('p');
+                    boatP.innerHTML = `<strong>Boot:</strong> ${safeBoatName}`;
+                    
+                    const contactP = document.createElement('p');
+                    contactP.innerHTML = `<strong>Contact:</strong> ${safeEmail} | ${safePhone}`;
+                    
+                    infoDiv.appendChild(nameH4);
+                    infoDiv.appendChild(dateP);
+                    infoDiv.appendChild(boatP);
+                    infoDiv.appendChild(contactP);
+                    
+                    if (safeNotes) {
+                        const notesP = document.createElement('p');
+                        notesP.innerHTML = `<strong>Notities:</strong> ${safeNotes}`;
+                        infoDiv.appendChild(notesP);
+                    }
+                    
+                    const statusSelect = document.createElement('select');
+                    statusSelect.className = 'status-select';
+                    statusSelect.id = `status-${safeId}`;
+                    statusSelect.addEventListener('change', (e) => {
+                        bookingSystem.updateBookingStatus(safeId, e.target.value);
+                    });
+                    
+                    const options = [
+                        { value: 'manual', label: 'Handmatig' },
+                        { value: 'success', label: 'Succesvol' },
+                        { value: 'rejected', label: 'Afgewezen' },
+                        { value: 'picked-up', label: 'Opgehaald' }
+                    ];
+                    
+                    options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt.value;
+                        option.textContent = opt.label;
+                        if (booking.status === opt.value) {
+                            option.selected = true;
+                        }
+                        statusSelect.appendChild(option);
+                    });
+                    
+                    const saveBtn = document.createElement('button');
+                    saveBtn.className = 'save-btn';
+                    saveBtn.textContent = 'Opslaan';
+                    saveBtn.addEventListener('click', () => {
+                        bookingSystem.saveBookingStatus(safeId);
+                    });
+                    
+                    bookingItem.appendChild(statusDiv);
+                    bookingItem.appendChild(infoDiv);
+                    bookingItem.appendChild(statusSelect);
+                    bookingItem.appendChild(saveBtn);
+                    
                     bookingsList.appendChild(bookingItem);
                 });
             }
@@ -699,9 +996,29 @@
                 const form = document.getElementById('addBookingForm');
                 const formData = new FormData(form);
                 
+                const date = formData.get('date');
+                
+                // Validate date is within booking season (April 1 - October 31 of CURRENT YEAR)
+                const selectedDate = new Date(date + 'T00:00:00');
+                const selectedYear = selectedDate.getFullYear();
+                const selectedMonth = selectedDate.getMonth();
+                const currentYear = new Date().getFullYear();
+
+                // Check if date is in current year
+                if (selectedYear !== currentYear) {
+                    alert(`Boekingen zijn alleen mogelijk voor ${currentYear}. Reserveringen voor ${selectedYear} zijn niet beschikbaar.`);
+                    return;
+                }
+
+                // Check if date is within April 1 - October 31
+                if (selectedMonth < 3 || selectedMonth > 9) {
+                    alert(`Boekingen zijn alleen mogelijk van 1 april tot 31 oktober ${currentYear}. De bootverhuur is gesloten buiten dit seizoen.`);
+                    return;
+                }
+                
                 const newBooking = {
                     id: 'manual_' + Date.now(),
-                    date: formData.get('date'),
+                    date: date,
                     boatType: formData.get('boatType'),
                     customerName: formData.get('customerName'),
                     customerEmail: formData.get('customerEmail'),
@@ -752,10 +1069,63 @@
             bookingSystem.closeAddBookingModal();
         }
         
-        function logout() {
+        function closeDayBookingsModal() {
+            const modal = document.getElementById('dayBookingsModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        function closeDayBookings() {
+            const section = document.getElementById('dayBookingsSection');
+            if (section) {
+                section.style.display = 'none';
+            }
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const dayModal = document.getElementById('dayBookingsModal');
+            if (event.target === dayModal) {
+                closeDayBookingsModal();
+            }
+            const addModal = document.getElementById('addBookingModal');
+            if (event.target === addModal) {
+                closeAddBookingModal();
+            }
+        };
+        
+        async function logout() {
+            try {
+                const isLocal = window.location.protocol === 'file:' || 
+                               window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname === '';
+                const endpoint = isLocal 
+                    ? 'http://localhost:8000/admin/booking-handler.py'
+                    : `${window.location.origin}/admin/booking-handler.php`;
+                
+                const csrf = sessionStorage.getItem('adminSessionToken') || '';
+                await fetch(endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrf
+                    },
+                    body: JSON.stringify({
+                        action: 'logout',
+                        csrfToken: csrf
+                    })
+                });
+            } catch (error) {
+                console.error('Logout request failed:', error);
+            }
+            
             localStorage.removeItem('adminAuthenticated');
             localStorage.removeItem('adminUser');
-            localStorage.removeItem('adminLoginTime');
+            sessionStorage.removeItem('adminLoginTime');
+            sessionStorage.removeItem('adminSessionToken');
+            sessionStorage.removeItem('csrfToken');
             window.location.href = '../pages/admin-login.html';
         }
         
@@ -764,8 +1134,17 @@
             bookingSystem.renderBookings();
         }
         
-        // Initialize the booking management system
-        const bookingSystem = new BookingManagementSystem();
+        // Initialize the booking management system when DOM is ready
+        let bookingSystem;
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                bookingSystem = new BookingManagementSystem();
+                window.bookingSystem = bookingSystem;
+            });
+        } else {
+            bookingSystem = new BookingManagementSystem();
+            window.bookingSystem = bookingSystem;
+        }
     </script>
 </body>
 </html>

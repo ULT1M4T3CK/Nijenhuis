@@ -8,6 +8,7 @@ import time
 import threading
 import json
 import os
+import socket
 import requests
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, Callable, List
@@ -118,6 +119,40 @@ class ConnectionMonitor:
         self.logger.addHandler(handler)
         self.logger.setLevel(logging.INFO)
     
+    def check_internet_connectivity(self, timeout: float = 5.0) -> bool:
+        """
+        Check actual internet connectivity by attempting to reach external DNS services.
+        More reliable than checking local health endpoint only.
+        
+        Args:
+            timeout: Connection timeout in seconds
+            
+        Returns:
+            True if internet is available, False otherwise
+        """
+        test_hosts = [
+            ("8.8.8.8", 53),       # Google DNS
+            ("1.1.1.1", 53),       # Cloudflare DNS
+            ("208.67.222.222", 53) # OpenDNS
+        ]
+        
+        for host, port in test_hosts:
+            try:
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.settimeout(timeout)
+                result = sock.connect_ex((host, port))
+                sock.close()
+                
+                if result == 0:
+                    self.logger.debug(f"Internet connectivity confirmed via {host}")
+                    return True
+            except socket.error as e:
+                self.logger.debug(f"Failed to reach {host}: {e}")
+                continue
+        
+        self.logger.warning("No internet connectivity detected")
+        return False
+    
     def start_monitoring(self):
         """Start connection monitoring"""
         if self.is_monitoring:
@@ -138,11 +173,32 @@ class ConnectionMonitor:
         self.logger.info("Connection monitoring stopped")
     
     def _monitoring_loop(self):
-        """Main monitoring loop"""
+        """Main monitoring loop with internet connectivity check"""
         while self.is_monitoring:
             try:
+                # First check actual internet connectivity
+                if not self.check_internet_connectivity():
+                    old_status = self.status
+                    self.status = ConnectionStatus.OFFLINE
+                    self.metrics.status = ConnectionStatus.OFFLINE
+                    self.logger.warning("Internet unavailable - marking as offline")
+                    
+                    # Notify status change callbacks if status changed
+                    if old_status != ConnectionStatus.OFFLINE:
+                        for callback in self.status_change_callbacks:
+                            try:
+                                callback(old_status, ConnectionStatus.OFFLINE, self.metrics)
+                            except Exception as e:
+                                self.logger.error(f"Error in status change callback: {e}")
+                    
+                    # Wait and retry - use shorter interval when offline
+                    time.sleep(min(self.health_check_interval, 10))
+                    continue
+                
+                # If internet is available, perform local health check
                 self._perform_health_check()
                 time.sleep(self.health_check_interval)
+                
             except Exception as e:
                 self.logger.error(f"Error in monitoring loop: {e}")
                 time.sleep(self.health_check_interval)
@@ -317,8 +373,16 @@ class ConnectionMonitor:
         )
     
     def attempt_reconnection(self) -> bool:
-        """Attempt to reconnect to chatbot"""
+        """Attempt to reconnect to chatbot with internet connectivity check"""
         self.logger.info("Attempting reconnection...")
+        
+        # First check if we have internet
+        if not self.check_internet_connectivity():
+            self.logger.warning("No internet connectivity - cannot reconnect")
+            self.status = ConnectionStatus.OFFLINE
+            self.metrics.status = ConnectionStatus.OFFLINE
+            return False
+        
         self.status = ConnectionStatus.RECONNECTING
         self.metrics.status = ConnectionStatus.RECONNECTING
         

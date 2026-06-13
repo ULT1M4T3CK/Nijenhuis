@@ -3,21 +3,22 @@
  * Provides offline functionality, caching, and performance improvements
  */
 
-const CACHE_NAME = 'nijenhuis-cache-v2';
-const STATIC_CACHE = 'nijenhuis-static-v2';
-const DYNAMIC_CACHE = 'nijenhuis-dynamic-v2';
+// Cache version - INCREMENT THIS when deploying new content to force cache invalidation
+// v6: Fix offline fallback to use /offline (offline.html did not exist)
+const CACHE_VERSION = 'v7';
+const CACHE_NAME = `nijenhuis-cache-${CACHE_VERSION}`;
+const STATIC_CACHE = `nijenhuis-static-${CACHE_VERSION}`;
+const DYNAMIC_CACHE = `nijenhuis-dynamic-${CACHE_VERSION}`;
 
-// Files to cache immediately
+// Files to cache immediately (use real paths - site uses PHP, not index.html)
 const STATIC_FILES = [
     '/',
-    '/index.html',
-    '/styles.css',
-    '/script.js',
+    '/offline',
     '/frontend/Images/logo-white.svg',
     '/frontend/Images/banner-img.jpg',
-    '/flags/nl.svg',
-    '/flags/gb.svg',
-    '/flags/de.svg',
+    '/frontend/public/flags/nl.svg',
+    '/frontend/public/flags/gb.svg',
+    '/frontend/public/flags/de.svg',
     'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap'
 ];
 
@@ -56,7 +57,8 @@ self.addEventListener('activate', (event) => {
             .then((cacheNames) => {
                 return Promise.all(
                     cacheNames.map((cacheName) => {
-                        if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
+                        // Delete all caches that don't match current version
+                        if (!cacheName.includes(CACHE_VERSION)) {
                             console.log('Deleting old cache:', cacheName);
                             return caches.delete(cacheName);
                         }
@@ -64,28 +66,70 @@ self.addEventListener('activate', (event) => {
                 );
             })
             .then(() => {
-                console.log('Service Worker activated');
+                console.log('Service Worker activated, cache version:', CACHE_VERSION);
+                // Force immediate activation and claim clients
                 return self.clients.claim();
             })
     );
 });
+
+// Paths that may contain authenticated/session-sensitive data. These must
+// NEVER be intercepted by the service worker, or a cached response could
+// leak between users / sessions.
+const SENSITIVE_PATH_PREFIXES = [
+    '/admin',
+    '/booking-management',
+    '/blog-portal',
+    '/mollie_api.php',
+    '/webhook/',
+    '/webhooks/',
+    '/pages/payment-success',
+    '/pages/payment-failure',
+    '/pages/admin-login',
+    '/pages/employee',
+    '/api/security',
+    '/api/token',
+    '/api/chat',
+];
+
+function isSensitivePath(pathname) {
+    return SENSITIVE_PATH_PREFIXES.some(prefix => pathname.startsWith(prefix));
+}
 
 // Fetch event - handle requests
 self.addEventListener('fetch', (event) => {
     const { request } = event;
     const url = new URL(request.url);
 
-    // Skip non-GET requests
+    // Skip non-GET and cross-origin requests we don't explicitly handle.
     if (request.method !== 'GET') {
         return;
     }
 
+    // Never cache or intercept authenticated / payment / admin routes.
+    // This prevents cross-session data leakage and stale booking state.
+    if (isSensitivePath(url.pathname) || request.headers.get('Authorization')
+        || request.headers.has('Cookie') && isSensitivePath(url.pathname)) {
+        event.respondWith(fetch(request, { cache: 'no-store' }));
+        return;
+    }
+
+    // Requests with query strings that identify a specific user or booking
+    // (bookingId, cartId, payment_id, token) must bypass the cache too.
+    if (url.searchParams.has('bookingId')
+        || url.searchParams.has('cartId')
+        || url.searchParams.has('payment_id')
+        || url.searchParams.has('token')) {
+        event.respondWith(fetch(request, { cache: 'no-store' }));
+        return;
+    }
+
     // Handle different types of requests
-    if (url.pathname === '/' || url.pathname.endsWith('.html')) {
-        // HTML pages - network first, fallback to cache
+    if (url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('.php')) {
+        // HTML/PHP pages - network first, fallback to cache (always get fresh content)
         event.respondWith(handleHTMLRequest(request));
     } else if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
-        // Static assets - cache first, fallback to network
+        // Static assets - network first with cache fallback (ensures fresh content on updates)
         event.respondWith(handleStaticRequest(request));
     } else if (url.pathname.startsWith('/images/')) {
         // Images - cache first, fallback to network
@@ -97,7 +141,7 @@ self.addEventListener('fetch', (event) => {
             event.respondWith(handleAPIRequest(request));
         } else {
             // Do not cache sensitive endpoints
-            event.respondWith(fetch(request));
+            event.respondWith(fetch(request, { cache: 'no-store' }));
         }
     } else if (url.origin === 'https://fonts.googleapis.com') {
         // Google Fonts - cache first
@@ -110,14 +154,17 @@ self.addEventListener('fetch', (event) => {
 
 /**
  * Handle HTML requests - network first, fallback to cache
+ * Always tries to get fresh content from network
  */
 async function handleHTMLRequest(request) {
     try {
-        // Try network first
-        const networkResponse = await fetch(request);
+        // Try network first with no-cache to ensure fresh content
+        const networkResponse = await fetch(request, {
+            cache: 'no-cache' // Force revalidation
+        });
         
         if (networkResponse.ok) {
-            // Cache the response
+            // Cache the fresh response for offline use
             const cache = await caches.open(DYNAMIC_CACHE);
             cache.put(request, networkResponse.clone());
             return networkResponse;
@@ -126,41 +173,44 @@ async function handleHTMLRequest(request) {
         console.log('Network failed for HTML, trying cache:', error);
     }
 
-    // Fallback to cache
+    // Fallback to cache only if network fails
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
         return cachedResponse;
     }
 
-    // Fallback to offline page
-    return caches.match('/offline.html');
+    // Fallback to offline page (/offline -> pages/offline.php)
+    return caches.match('/offline') || caches.match('/');
 }
 
 /**
- * Handle static asset requests - cache first, fallback to network
+ * Handle static asset requests - network first, fallback to cache
+ * This ensures users always get the latest CSS/JS files when available
  */
 async function handleStaticRequest(request) {
-    // Check cache first
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-        return cachedResponse;
-    }
-
     try {
-        // Try network
-        const networkResponse = await fetch(request);
+        // Try network first to get fresh content
+        const networkResponse = await fetch(request, {
+            cache: 'no-cache' // Force revalidation
+        });
         
         if (networkResponse.ok) {
-            // Cache the response
+            // Cache the fresh response
             const cache = await caches.open(STATIC_CACHE);
             cache.put(request, networkResponse.clone());
             return networkResponse;
         }
     } catch (error) {
-        console.log('Network failed for static asset:', error);
+        console.log('Network failed for static asset, trying cache:', error);
     }
 
-    // Return a default response for CSS/JS
+    // Fallback to cache if network fails
+    const cachedResponse = await caches.match(request);
+    if (cachedResponse) {
+        return cachedResponse;
+    }
+
+    // Return a default response for CSS/JS if both network and cache fail
     if (request.url.endsWith('.css')) {
         return new Response('/* Offline */', {
             headers: { 'Content-Type': 'text/css' }

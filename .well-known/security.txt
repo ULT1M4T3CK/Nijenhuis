@@ -1,0 +1,5 @@
+Contact: mailto:info@nijenhuis-botenverhuur.com
+Contact: tel:+31522281528
+Expires: 2027-01-01T00:00:00.000Z
+Preferred-Languages: nl, en, de
+Canonical: https://nijenhuis-botenverhuur.com/.well-known/security.txt

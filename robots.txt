@@ -1,0 +1,135 @@
+# =============================================================================
+# AI Search Engine Crawlers — explicit Allow for each known AI bot
+# =============================================================================
+# Each AI system only reads its own User-agent line. An explicit Allow ensures
+# the bot indexes the site even if its default is to skip sites without a
+# named entry. Crawl-delay: 5 prevents excessive load.
+
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+User-agent: ClaudeBot
+User-agent: Claude-Web
+User-agent: anthropic-ai
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+User-agent: Applebot-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+User-agent: Amazonbot
+User-agent: Bytespider
+User-agent: Meta-ExternalAgent
+User-agent: CCBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Crawl-delay: 5
+
+# =============================================================================
+# Default rules for all other crawlers (Googlebot, Bingbot, etc.)
+# =============================================================================
+User-agent: *
+Allow: /
+
+# AI crawler content
+Allow: /llms.txt
+Allow: /llms-nijenhuis.txt
+Allow: /llms-full.txt
+Allow: /*.md$
+
+# Allow compiled JS/CSS assets for proper page rendering
+Allow: /frontend/src/js/
+
+# Admin and system directories
+Disallow: /admin/
+Disallow: /blog-portal/
+Disallow: /components/
+Disallow: /frontend/src/
+Disallow: /venv/
+Disallow: /scripts/
+Disallow: /documentation/
+Disallow: /markdown/
+
+# Block JSON data files
+Disallow: /*.json$
+
+# Block checkout and payment processing pages from indexing
+Disallow: /checkout
+Disallow: /payment-success
+Disallow: /payment-failure
+Disallow: /pages/checkout.php
+Disallow: /pages/payment-success.php
+Disallow: /pages/payment-failure.php
+Disallow: /pages/admin-login.php
+Disallow: /login
+Disallow: /pages/employee-login.php
+Disallow: /pages/employee-portal.php
+
+# Sitemap location
+Sitemap: https://nijenhuis-botenverhuur.com/sitemap.xml

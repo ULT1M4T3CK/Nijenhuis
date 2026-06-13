@@ -1,0 +1,66 @@
+/* Vaarkaart Page Specific Styles */
+
+/* Route description paragraphs in category cards */
+.category-card .route-desc {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.category-card .card-link {
+    display: block;
+    margin-top: 1rem;
+    color: var(--primary-color, #003366);
+    font-weight: 500;
+    text-decoration: underline;
+    font-size: 0.95rem;
+}
+
+.category-card .card-link:hover {
+    text-decoration: underline;
+}
+
+/* Map fullscreen styles - inline for maximum priority */
+.map-fullscreen {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483647 !important; /* Max safe integer */
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+.map-fullscreen iframe {
+    height: 100vh !important;
+    width: 100vw !important;
+    border-radius: 0 !important;
+}
+
+.map-fullscreen-btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2147483647;
+    background: white;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+    display: none; /* Hidden by default */
+    align-items: center;
+    gap: 8px;
+}
+
+.map-fullscreen .map-fullscreen-btn-close {
+    display: flex !important; /* Visible in fullscreen */
+}

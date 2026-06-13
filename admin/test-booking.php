@@ -6,8 +6,11 @@
 
 header('Content-Type: application/json');
 
+require_once __DIR__ . '/../components/data_access.php';
+loadEnvSafe(__DIR__ . '/../.env');
+
 // Test configuration
-$bookingsFile = 'bookings.json';
+$bookingsFile = nijenhuis_data_path('bookings.json');
 
 // Function to load bookings
 function loadBookings($file) {

@@ -1,0 +1,221 @@
+/* Booking Page Specific Styles */
+
+.booking-page__admin-fee-note {
+    margin-top: var(--spacing-md, 1rem);
+    margin-bottom: 0;
+}
+
+.booking-payment-methods-wrap {
+    margin-top: var(--spacing-xl, 2rem);
+    padding: 1rem 1.15rem;
+    background: rgba(248, 250, 252, 0.95);
+    border: 1px solid rgba(2, 101, 164, 0.15);
+    border-radius: var(--radius-md, 8px);
+}
+
+.booking-payment-methods-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary, #333);
+}
+
+.booking-payment-methods-intro {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-secondary, #666);
+}
+
+.booking-payment-methods.checkout-payment-methods {
+    margin-top: 0.5rem;
+}
+
+/* Match checkout payment option styling */
+.booking-payment-methods-wrap .checkout-payment-methods {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
+}
+
+.booking-payment-methods-wrap .checkout-payment-methods__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.booking-payment-methods-wrap .checkout-payment-method {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid rgba(2, 101, 164, 0.18);
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.booking-payment-methods-wrap .checkout-payment-method:has(.checkout-payment-method__input:checked) {
+    border-color: var(--primary-color, #0071bb);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.booking-payment-methods-wrap .checkout-payment-method__input {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+    accent-color: var(--primary-color, #0071bb);
+}
+
+.booking-payment-methods-wrap .checkout-payment-method__label {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary, #333);
+}
+
+.booking-payment-methods-wrap .checkout-payment-method__text {
+    margin: 0;
+}
+
+.booking-payment-methods-wrap .checkout-payment-method__poa-hint {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary, #64748b);
+}
+
+/* Override form-group flex-direction for quantity field */
+#quantityGroup.form-group {
+    flex-direction: row !important;
+    display: flex !important;
+    align-items: center;
+    gap: 1rem;
+}
+
+#quantityGroup.form-group label {
+    margin-bottom: 0 !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+#quantityGroup.form-group select {
+    width: auto !important;
+    min-width: 80px;
+    flex-shrink: 0;
+}
+
+.booking-payment-methods-wrap .checkout-payment-method--disabled {
+    opacity: 0.48;
+    cursor: not-allowed;
+}
+
+.booking-payment-methods-wrap .checkout-payment-method--disabled .checkout-payment-method__input {
+    cursor: not-allowed;
+}
+
+/* Wallet one-click buttons (Apple Pay, Google Pay) */
+.booking-payment-methods-wrap .checkout-wallet-buttons {
+    display: flex;
+    gap: 0.625rem;
+    margin: 0.5rem 0 0;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md, 8px);
+    border: 1px solid rgba(2, 101, 164, 0.18);
+    cursor: pointer;
+    font: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn:hover {
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.15);
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn:active {
+    opacity: 0.85;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn--applepay {
+    background: #000;
+    color: #fff;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn--applepay .checkout-wallet-btn__icon {
+    height: 1.4rem;
+    width: auto;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn--googlepay {
+    background: #fff;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-btn--googlepay .checkout-wallet-btn__icon {
+    height: 1.75rem;
+    width: auto;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0 0.25rem;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.85rem;
+}
+
+.booking-payment-methods-wrap .checkout-wallet-divider::before,
+.booking-payment-methods-wrap .checkout-wallet-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(2, 101, 164, 0.18);
+}
+
+.booking-payment-methods-wrap .checkout-pay-on-arrival-note {
+    margin: 0.75rem 0 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: #92400e;
+    background: rgba(254, 243, 199, 0.85);
+    border-radius: var(--radius-md, 8px);
+    padding: 0.65rem 0.85rem;
+    border: 1px solid rgba(217, 119, 6, 0.35);
+}
+
+.booking-payment-methods-wrap .checkout-poa-fee-explain {
+    margin-top: 0.5rem;
+}
+
+.booking-summary-poa-rows {
+    margin: 0.35rem 0 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.booking-summary-poa-rows .summary-item {
+    font-size: 0.95rem;
+}
+
+.booking-summary-poa-rows__online {
+    color: var(--primary-color, #0265a4);
+    font-weight: 700;
+}
+
+.booking-summary-poa-rows__trip-total {
+    margin-top: 0.35rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}

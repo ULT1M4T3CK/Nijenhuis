@@ -3,12 +3,46 @@
 // Handles authentication, calendar, and booking management
 // ========================================================================
 
+function bookingReservationKey(b) {
+    const start = b.date || '';
+    const end = b.endDate || b.date || '';
+    const boat = b.boatType || b.boatId || '';
+    const email = (b.customerEmail || '').toLowerCase().trim();
+    const isManual = b.status === 'manual' || b.source === 'manual';
+    if (isManual) {
+        return `manual:${start}|${end}|${boat}|${email}|${b.createdAt || ''}`;
+    }
+    if (b.cartId) {
+        return `cart:${b.cartId}|${boat}|${start}|${end}`;
+    }
+    return `id:${b.id || `${start}|${end}|${boat}`}`;
+}
+
+function countUniqueReservationKeys(bookings, predicate) {
+    const keys = new Set();
+    for (const b of bookings) {
+        if (predicate && !predicate(b)) continue;
+        keys.add(bookingReservationKey(b));
+    }
+    return keys.size;
+}
+
+function isManualDashboardStatus(b) {
+    return b.status === 'manual' || b.source === 'manual';
+}
+
+function countsTowardTotalBookings(b) {
+    const s = b.status;
+    return s !== 'not-confirmed' && s !== 'open' && s !== 'pending';
+}
+
 class AdminDashboard {
     constructor() {
         this.currentDate = new Date();
         this.bookings = [];
         this.currentUser = null;
         this.isAuthenticated = false;
+        this.csrfToken = '';
         
         this.init();
     }
@@ -73,20 +107,35 @@ class AdminDashboard {
     }
     
     async checkAuthentication() {
+        const isAuthenticated = await this.refreshAdminSession();
+        if (isAuthenticated) {
+            this.isAuthenticated = true;
+            this.showDashboard();
+            return;
+        }
+        this.showLogin();
+    }
+
+    async refreshAdminSession() {
         try {
             const response = await fetch('booking-handler.php?action=session', { method: 'GET', headers: { 'Content-Type': 'application/json' } });
             if (response.ok) {
                 const data = await response.json();
-                if (data.authenticated) {
-                    this.isAuthenticated = true;
-                    localStorage.setItem('csrfToken', data.csrfToken || '');
-                    this.currentUser = { username: localStorage.getItem('adminUser') || 'admin', loginTime: new Date().toISOString() };
-                    this.showDashboard();
-                    return;
+                if (data.success && data.authenticated) {
+                    this.csrfToken = data.csrfToken || '';
+                    this.currentUser = { username: data.username || 'admin', loginTime: new Date().toISOString() };
+                    return true;
                 }
             }
         } catch (e) {}
-        this.showLogin();
+        return false;
+    }
+
+    async getCsrfToken() {
+        if (!this.csrfToken) {
+            await this.refreshAdminSession();
+        }
+        return this.csrfToken || '';
     }
     
     async handleLogin(e) {
@@ -102,8 +151,7 @@ class AdminDashboard {
             const result = await response.json();
             if (response.ok && result.success) {
                 this.currentUser = { username, loginTime: new Date().toISOString() };
-                localStorage.setItem('adminUser', JSON.stringify(this.currentUser));
-                if (result.csrfToken) localStorage.setItem('csrfToken', result.csrfToken);
+                this.csrfToken = result.csrfToken || '';
                 this.isAuthenticated = true;
                 await this.showDashboard();
             } else {
@@ -116,11 +164,10 @@ class AdminDashboard {
     
     async handleLogout() {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
+            const csrf = await this.getCsrfToken();
             await fetch('booking-handler.php', { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf }, body: JSON.stringify({ action: 'logout', csrfToken: csrf }) });
         } catch (e) {}
-        localStorage.removeItem('adminUser');
-        localStorage.removeItem('csrfToken');
+        this.csrfToken = '';
         this.currentUser = null;
         this.isAuthenticated = false;
         this.showLogin();
@@ -173,14 +220,16 @@ class AdminDashboard {
         
         // Update month display
         if (currentMonthElement) {
-            currentMonthElement.textContent = this.currentDate.toLocaleDateString('en-US', {
+            currentMonthElement.textContent = this.currentDate.toLocaleDateString('nl-NL', {
                 month: 'long',
                 year: 'numeric'
             });
         }
         
-        // Clear calendar
-        calendarGrid.innerHTML = '';
+        // Safely clear calendar
+        while (calendarGrid.firstChild) {
+            calendarGrid.removeChild(calendarGrid.firstChild);
+        }
         
         // Add day headers
         const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -281,42 +330,74 @@ class AdminDashboard {
         const bookingList = document.getElementById('bookingList');
         if (!bookingList) return;
         
-        bookingList.innerHTML = '';
+        // Safely clear list
+        while (bookingList.firstChild) {
+            bookingList.removeChild(bookingList.firstChild);
+        }
         
         // Sort bookings by date (newest first)
         const sortedBookings = [...this.bookings].sort((a, b) => new Date(b.date) - new Date(a.date));
         
         sortedBookings.forEach(booking => {
-            const escapeHTML = (value) => typeof value === 'string' ? value.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) : value;
             const bookingElement = document.createElement('div');
             bookingElement.className = 'booking-item';
             bookingElement.addEventListener('click', () => this.openBookingModal(booking));
             
             const date = new Date(booking.date);
-            const formattedDate = date.toLocaleDateString('en-US', {
+            const formattedDate = date.toLocaleDateString('nl-NL', {
                 weekday: 'short',
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
             });
             
-            const safeName = escapeHTML(booking.customerName || '');
-            const safeEmail = escapeHTML(booking.customerEmail || '');
-            const safePhone = escapeHTML(booking.customerPhone || '');
-            const safeNotes = booking.notes ? escapeHTML(booking.notes) : '';
-
-            bookingElement.innerHTML = `
-                <div class="booking-item-header">
-                    <div class="booking-customer">${safeName}</div>
-                    <div class="booking-status booking-status-${booking.status}">${this.formatStatus(booking.status)}</div>
-                </div>
-                <div class="booking-details">
-                    <div class="booking-date">${formattedDate}</div>
-                    <div class="booking-boat">${this.getBoatDisplayName(booking.boatType)}</div>
-                    <div>${safeEmail} | ${safePhone}</div>
-                    ${safeNotes ? `<div style=\"margin-top: 8px; font-style: italic;\">${safeNotes}</div>` : ''}
-                </div>
-            `;
+            // Create header
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'booking-item-header';
+            
+            const customerDiv = document.createElement('div');
+            customerDiv.className = 'booking-customer';
+            customerDiv.textContent = booking.customerName || '';
+            
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `booking-status booking-status-${booking.status}`;
+            statusDiv.textContent = this.formatStatus(booking.status);
+            
+            headerDiv.appendChild(customerDiv);
+            headerDiv.appendChild(statusDiv);
+            
+            // Create details
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'booking-details';
+            
+            const dateDiv = document.createElement('div');
+            dateDiv.className = 'booking-date';
+            dateDiv.textContent = formattedDate;
+            
+            const boatDiv = document.createElement('div');
+            boatDiv.className = 'booking-boat';
+            boatDiv.textContent = this.getBoatDisplayName(booking.boatType);
+            
+            const contactDiv = document.createElement('div');
+            const emailText = booking.customerEmail || '';
+            const phoneText = booking.customerPhone || '';
+            contactDiv.textContent = `${emailText} | ${phoneText}`;
+            
+            detailsDiv.appendChild(dateDiv);
+            detailsDiv.appendChild(boatDiv);
+            detailsDiv.appendChild(contactDiv);
+            
+            // Add notes if present
+            if (booking.notes) {
+                const notesDiv = document.createElement('div');
+                notesDiv.style.marginTop = '8px';
+                notesDiv.style.fontStyle = 'italic';
+                notesDiv.textContent = booking.notes;
+                detailsDiv.appendChild(notesDiv);
+            }
+            
+            bookingElement.appendChild(headerDiv);
+            bookingElement.appendChild(detailsDiv);
             
             bookingList.appendChild(bookingElement);
         });
@@ -333,16 +414,16 @@ class AdminDashboard {
     }
     
     updateStats() {
-        const totalBookings = document.getElementById('totalBookings');
-        const pendingBookings = document.getElementById('pendingBookings');
-        
-        if (totalBookings) {
-            totalBookings.textContent = this.bookings.length;
+        const totalEl = document.getElementById('totalBookings');
+        const manualEl = document.getElementById('manualBookings') || document.getElementById('pendingBookings');
+        const all = this.bookings;
+
+        if (totalEl) {
+            totalEl.textContent = countUniqueReservationKeys(all, countsTowardTotalBookings);
         }
-        
-        if (pendingBookings) {
-            const pending = this.bookings.filter(b => b.status === 'not-confirmed').length;
-            pendingBookings.textContent = pending;
+
+        if (manualEl) {
+            manualEl.textContent = countUniqueReservationKeys(all, isManualDashboardStatus);
         }
     }
     
@@ -420,7 +501,7 @@ class AdminDashboard {
     
     async createBooking(bookingData) {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
+            const csrf = await this.getCsrfToken();
             const response = await fetch('booking-handler.php', {
                 method: 'POST',
                 headers: {
@@ -451,7 +532,7 @@ class AdminDashboard {
     
     async updateBooking(bookingId, bookingData) {
         try {
-            const csrf = localStorage.getItem('csrfToken') || '';
+            const csrf = await this.getCsrfToken();
             const response = await fetch('booking-handler.php', {
                 method: 'POST',
                 headers: {
@@ -488,7 +569,7 @@ class AdminDashboard {
     async deleteBooking(bookingId) {
         if (confirm('Are you sure you want to delete this booking?')) {
             try {
-                const csrf = localStorage.getItem('csrfToken') || '';
+                const csrf = await this.getCsrfToken();
                 const response = await fetch('booking-handler.php', {
                     method: 'POST',
                     headers: {
@@ -529,7 +610,7 @@ class AdminDashboard {
     async loadBookings() {
         try {
             try {
-                const csrf = localStorage.getItem('csrfToken') || '';
+                const csrf = await this.getCsrfToken();
                 const response = await fetch('booking-handler.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': csrf },
@@ -537,7 +618,7 @@ class AdminDashboard {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    if (data.csrfToken) localStorage.setItem('csrfToken', data.csrfToken);
+                    if (data.csrfToken) this.csrfToken = data.csrfToken;
                     return data.bookings || [];
                 }
             } catch (error) {
@@ -557,15 +638,24 @@ class AdminDashboard {
     }
     
     showNotification(message, type = 'info') {
-        // Create notification element
+        // Create notification element safely using DOM manipulation
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <div class="notification-content">
-                <div class="notification-message">${message}</div>
-                <button class="notification-close">&times;</button>
-            </div>
-        `;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'notification-content';
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'notification-message';
+        messageDiv.textContent = message; // textContent automatically escapes HTML
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'notification-close';
+        closeBtn.textContent = '×';
+        
+        contentDiv.appendChild(messageDiv);
+        contentDiv.appendChild(closeBtn);
+        notification.appendChild(contentDiv);
         
         // Add to page
         document.body.appendChild(notification);
@@ -577,7 +667,7 @@ class AdminDashboard {
         }, 100);
         
         // Auto remove after 3 seconds
-        setTimeout(() => {
+        const removeNotification = () => {
             notification.style.opacity = '0';
             notification.style.transform = 'translateY(-100%)';
             setTimeout(() => {
@@ -585,21 +675,12 @@ class AdminDashboard {
                     notification.parentNode.removeChild(notification);
                 }
             }, 300);
-        }, 3000);
+        };
+        
+        setTimeout(removeNotification, 3000);
         
         // Close button functionality
-        const closeBtn = notification.querySelector('.notification-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translateY(-100%)';
-                setTimeout(() => {
-                    if (notification.parentNode) {
-                        notification.parentNode.removeChild(notification);
-                    }
-                }, 300);
-            });
-        }
+        closeBtn.addEventListener('click', removeNotification);
     }
 }
 

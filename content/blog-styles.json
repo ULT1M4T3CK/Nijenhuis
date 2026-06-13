@@ -1,0 +1,10 @@
+{
+  "articleLinkColor": "#0071BB",
+  "articleH1Size": "1.75rem",
+  "articleH2Size": "1.35rem",
+  "articleH3Size": "1.15rem",
+  "articleBodyLineHeight": "1.7",
+  "articleMaxWidth": "800px",
+  "articleTextColor": "#333333",
+  "articleBlockquoteBg": "#f8f9fa"
+}

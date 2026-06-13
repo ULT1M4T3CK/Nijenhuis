@@ -1,0 +1,56 @@
+# Logrotate configuration for Nijenhuis services
+# Installation:
+#   sudo cp nijenhuis /etc/logrotate.d/nijenhuis
+#   sudo chown root:root /etc/logrotate.d/nijenhuis
+#   sudo chmod 644 /etc/logrotate.d/nijenhuis
+#
+# Test with: sudo logrotate -d /etc/logrotate.d/nijenhuis
+
+/home/andre/Desktop/Projects/Nijenhuis/logs/*.log {
+    # Rotate logs daily
+    daily
+    
+    # Keep 14 days of logs
+    rotate 14
+    
+    # Don't error if log file is missing
+    missingok
+    
+    # Compress old logs
+    compress
+    
+    # Don't compress the most recent rotated file
+    delaycompress
+    
+    # Don't rotate empty files
+    notifempty
+    
+    # Create new log files with these permissions
+    create 0640 andre andre
+    
+    # Run postrotate script only once for all logs
+    sharedscripts
+    
+    # After rotation, notify services to reopen log files
+    postrotate
+        # Reload Gunicorn workers to reopen log files
+        systemctl reload nijenhuis-chatbot.service > /dev/null 2>&1 || true
+        systemctl reload nijenhuis-backend.service > /dev/null 2>&1 || true
+    endscript
+}
+
+# Separate configuration for access logs with more aggressive rotation
+/home/andre/Desktop/Projects/Nijenhuis/logs/*_access.log {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    notifempty
+    create 0640 andre andre
+    sharedscripts
+    postrotate
+        systemctl reload nijenhuis-chatbot.service > /dev/null 2>&1 || true
+    endscript
+}
+

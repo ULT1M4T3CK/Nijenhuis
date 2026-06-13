@@ -124,9 +124,9 @@ class MolliePaymentSystem {
     // Get redirect URL for payment success
     getRedirectUrl(bookingId) {
         if (window.location.hostname === '85.215.195.147' || window.location.hostname.includes('85.215.195.147')) {
-            return `http://85.215.195.147/pages/payment-success.html?booking_id=${bookingId}`;
+            return `http://85.215.195.147/pages/payment-success.php?bookingId=${bookingId}`;
         } else {
-            return `${window.location.origin}/pages/payment-success.html?booking_id=${bookingId}`;
+            return `${window.location.origin}/pages/payment-success.php?bookingId=${bookingId}`;
         }
     }
     
@@ -173,20 +173,14 @@ class MolliePaymentSystem {
     }
     
     // Update booking with payment ID
+    // SECURITY: Bookings are no longer mirrored in localStorage because they
+    // contained customer PII. The server (via mollie_api.php) is now the sole
+    // source of truth. This helper is kept as a no-op so legacy callers
+    // don't break during the transition.
     updateBookingWithPaymentId(bookingId, paymentId) {
-        try {
-            const bookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
-            const bookingIndex = bookings.findIndex(b => b.id === bookingId);
-            
-            if (bookingIndex !== -1) {
-                bookings[bookingIndex].paymentId = paymentId;
-                bookings[bookingIndex].updatedAt = new Date().toISOString();
-                localStorage.setItem('nijenhuis_bookings', JSON.stringify(bookings));
-                console.log('Booking updated with payment ID:', paymentId);
-            }
-        } catch (error) {
-            console.error('Error updating booking with payment ID:', error);
-        }
+        /* intentional no-op */
+        void bookingId;
+        void paymentId;
     }
     
     // Get payment status
@@ -208,51 +202,28 @@ class MolliePaymentSystem {
     }
     
     // Handle payment status update
+    // SECURITY: Booking status is now resolved exclusively via the server
+    // (see mollie_api.php::getBookingStatus / getCartStatus). We keep the
+    // event dispatch so any UI that listens for paymentStatusUpdated still
+    // fires, but we no longer mirror customer PII in localStorage.
     handlePaymentStatusUpdate(paymentId, status) {
-        try {
-            const bookings = JSON.parse(localStorage.getItem('nijenhuis_bookings') || '[]');
-            const bookingIndex = bookings.findIndex(b => b.paymentId === paymentId);
-            
-            if (bookingIndex !== -1) {
-                const booking = bookings[bookingIndex];
-                let newStatus;
-                
-                switch (status) {
-                    case 'paid':
-                        newStatus = 'confirmed-paid';
-                        break;
-                    case 'failed':
-                    case 'expired':
-                    case 'canceled':
-                        newStatus = 'payment-rejected';
-                        break;
-                    case 'pending':
-                        newStatus = 'confirmed-not-paid';
-                        break;
-                    default:
-                        newStatus = booking.status; // Keep current status
-                }
-                
-                // Update booking status
-                bookings[bookingIndex].status = newStatus;
-                bookings[bookingIndex].paymentStatus = status;
-                bookings[bookingIndex].updatedAt = new Date().toISOString();
-                
-                localStorage.setItem('nijenhuis_bookings', JSON.stringify(bookings));
-                
-                // Dispatch event for admin system to update
-                window.dispatchEvent(new CustomEvent('paymentStatusUpdated', {
-                    detail: { bookingId: booking.id, newStatus, paymentStatus: status }
-                }));
-                
-                console.log(`Payment status updated for booking ${booking.id}: ${status} -> ${newStatus}`);
-                
-                return booking;
-            }
-            
-        } catch (error) {
-            console.error('Error handling payment status update:', error);
+        let newStatus;
+        switch (status) {
+            case 'paid':
+                newStatus = 'confirmed-paid'; break;
+            case 'failed':
+            case 'expired':
+            case 'canceled':
+                newStatus = 'payment-rejected'; break;
+            case 'pending':
+                newStatus = 'confirmed-not-paid'; break;
+            default:
+                newStatus = status;
         }
+        window.dispatchEvent(new CustomEvent('paymentStatusUpdated', {
+            detail: { paymentId, newStatus, paymentStatus: status }
+        }));
+        return null;
     }
     
     // Setup webhook listener for local development

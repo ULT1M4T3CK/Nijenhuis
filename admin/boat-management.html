@@ -1,590 +1,178 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boat Management - Nijenhuis Botenverhuur</title>
-    <link rel="stylesheet" href="../styles.css">
+    <title>Bootbeheer - Nijenhuis Botenverhuur</title>
+    <link rel="stylesheet" href="../frontend/css/styles.css">
+    <link rel="stylesheet" href="admin-consolidated.css">
     <link rel="icon" type="image/svg+xml" href="../frontend/Images/logo-white.svg">
-    <style>
-        /* Admin Navigation Header */
-        .admin-nav {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-md) 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .admin-nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .admin-nav-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-        }
-        
-        .admin-nav-links {
-            display: flex;
-            gap: var(--spacing-lg);
-        }
-        
-        .admin-nav-link {
-            color: var(--white);
-            text-decoration: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-link:hover,
-        .admin-nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .admin-nav-logout {
-            background: rgba(220, 53, 69, 0.8);
-            color: var(--white);
-            border: none;
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .admin-nav-logout:hover {
-            background: var(--error-color);
-        }
-        
-        /* Boat Management Specific Styles */
-        .boat-management {
-            min-height: 100vh;
-            background: var(--bg-light);
-        }
-        
-        .management-header {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: var(--spacing-lg) 0;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .management-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-lg);
-        }
-        
-        .management-title {
-            font-size: var(--font-size-2xl);
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .management-subtitle {
-            opacity: 0.9;
-            font-size: var(--font-size-base);
-        }
-        
-        .management-content {
-            padding: var(--spacing-2xl) 0;
-        }
-        
-        .management-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-2xl);
-            margin-bottom: var(--spacing-2xl);
-        }
-        
-        .management-section {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-        }
-        
-        .section-header {
-            background: var(--bg-light);
-            padding: var(--spacing-lg);
-            border-bottom: 1px solid var(--light-gray);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .section-title {
-            font-size: var(--font-size-xl);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .section-content {
-            padding: var(--spacing-lg);
-        }
-        
-        /* Real-time Updates Section */
-        .realtime-boats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-md);
-        }
-        
-        .realtime-boat-card {
-            background: var(--white);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            padding: var(--spacing-md);
-            text-align: center;
-            transition: var(--transition-normal);
-        }
-        
-        .realtime-boat-card.available {
-            border-color: var(--success-color);
-            background: rgba(40, 167, 69, 0.1);
-        }
-        
-        .realtime-boat-card.unavailable {
-            border-color: var(--error-color);
-            background: rgba(220, 53, 69, 0.1);
-        }
-        
-        .boat-name {
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-        }
-        
-        .boat-availability {
-            font-size: var(--font-size-2xl);
-            font-weight: 700;
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .boat-availability.available {
-            color: var(--success-color);
-        }
-        
-        .boat-availability.unavailable {
-            color: var(--error-color);
-        }
-        
-        .boat-label {
-            font-size: var(--font-size-sm);
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Manual Boat Management */
-        .boat-list {
-            display: grid;
-            gap: var(--spacing-lg);
-        }
-        
-        .boat-item {
-            display: grid;
-            grid-template-columns: 120px 1fr auto;
-            gap: var(--spacing-lg);
-            align-items: center;
-            padding: var(--spacing-lg);
-            border: 1px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            background: var(--white);
-        }
-        
-        .boat-image {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: var(--radius-sm);
-        }
-        
-        .boat-info h3 {
-            margin: 0 0 var(--spacing-sm) 0;
-            color: var(--text-primary);
-            font-size: var(--font-size-lg);
-        }
-        
-        .boat-info p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-        
-        .boat-controls {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-        }
-        
-        .availability-input {
-            width: 80px;
-            padding: var(--spacing-sm);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-sm);
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .availability-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        
-        .update-btn {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .update-btn:hover {
-            background: var(--primary-dark);
-        }
-        
-        /* Booking Management */
-        .booking-item {
-            display: grid;
-            grid-template-columns: auto 1fr auto auto;
-            gap: var(--spacing-lg);
-            align-items: center;
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-md);
-            border-left: 4px solid;
-        }
-        
-        .booking-item.manual {
-            background: rgba(255, 193, 7, 0.1);
-            border-left-color: #ffc107;
-        }
-        
-        .booking-item.success {
-            background: rgba(40, 167, 69, 0.1);
-            border-left-color: var(--success-color);
-        }
-        
-        .booking-item.rejected {
-            background: rgba(220, 53, 69, 0.1);
-            border-left-color: var(--error-color);
-        }
-        
-        .booking-item.picked-up {
-            background: rgba(40, 167, 69, 0.1);
-            border-left-color: var(--success-color);
-            text-decoration: line-through;
-            opacity: 0.7;
-        }
-        
-        .booking-status {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-xs);
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .status-manual {
-            background: #ffc107;
-            color: var(--white);
-        }
-        
-        .status-success {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-rejected {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .status-picked-up {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .booking-info h4 {
-            margin: 0 0 var(--spacing-xs) 0;
-            color: var(--text-primary);
-        }
-        
-        .booking-info p {
-            margin: 0;
-            color: var(--text-secondary);
-            font-size: var(--font-size-sm);
-        }
-        
-        .status-select {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            background: var(--white);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right var(--spacing-sm) center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: var(--spacing-2xl);
-            min-width: 120px;
-        }
-        
-        .status-select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .status-select:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .status-select option {
-            padding: var(--spacing-sm);
-            font-weight: 600;
-        }
-        
-        .status-select option[value="manual"] {
-            background: #ffc107;
-            color: var(--white);
-        }
-        
-        .status-select option[value="success"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="rejected"] {
-            background: var(--error-color);
-            color: var(--white);
-        }
-        
-        .status-select option[value="picked-up"] {
-            background: var(--success-color);
-            color: var(--white);
-        }
-        
-        .save-btn {
-            padding: var(--spacing-xs) var(--spacing-sm);
-            background: var(--success-color);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-size: var(--font-size-sm);
-            cursor: pointer;
-        }
-        
-        /* Modern Calendar Styles */
-        .calendar-container {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-            padding: var(--spacing-md);
-            background: var(--bg-light);
-            border-radius: var(--radius-md);
-        }
-        
-        .calendar-label {
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-        
-        .modern-calendar {
-            padding: var(--spacing-sm) var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            font-weight: 600;
-            background: var(--white);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            min-width: 150px;
-        }
-        
-        .modern-calendar:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .modern-calendar:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-        
-        .clear-date-btn {
-            padding: var(--spacing-sm) var(--spacing-md);
-            background: var(--light-gray);
-            color: var(--text-primary);
-            border: none;
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-normal);
-        }
-        
-        .clear-date-btn:hover {
-            background: var(--text-light);
-        }
-        
-        .boat-booked {
-            font-size: var(--font-size-xs);
-            color: var(--text-secondary);
-            margin-top: var(--spacing-xs);
-        }
-        
-        .boat-total {
-            font-size: var(--font-size-xs);
-            color: var(--text-secondary);
-            margin-top: var(--spacing-xs);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .management-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .boat-item {
-                grid-template-columns: 1fr;
-            text-align: center;
-            }
-            
-            .booking-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-        
-        /* Form Styles */
-        .form-group {
-            margin-bottom: var(--spacing-lg);
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: var(--spacing-sm);
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-                width: 100%;
-            padding: var(--spacing-md);
-            border: 2px solid var(--light-gray);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-base);
-            transition: var(--transition-normal);
-            box-sizing: border-box;
-        }
-        
-        .form-group select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right var(--spacing-md) center;
-            background-repeat: no-repeat;
-            background-size: 16px;
-            padding-right: var(--spacing-2xl);
-            cursor: pointer;
-        }
-        
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 113, 187, 0.1);
-        }
-        
-        .form-group select:hover {
-            border-color: var(--primary-color);
-            background-color: rgba(0, 113, 187, 0.05);
-        }
-    </style>
+    <!-- Boat Data Service (Single Source of Truth) -->
+    <script src="../js/boat-data-service.js"></script>
+    <script src="../js/image-compress.js"></script>
 </head>
 <body>
     <!-- Admin Navigation -->
     <nav class="admin-nav">
         <div class="admin-nav-container">
-            <div class="admin-nav-title">Nijenhuis Admin</div>
+            <img src="../frontend/Images/logo-white.svg" alt="Nijenhuis" class="admin-nav-logo">
             <div class="admin-nav-links">
                 <a href="admin-static.html" class="admin-nav-link">Dashboard</a>
-                <a href="boat-management.html" class="admin-nav-link active">Boat Management</a>
-                <a href="booking-management.html" class="admin-nav-link">Booking Management</a>
+                <a href="boat-management.html" class="admin-nav-link active">Bootbeheer</a>
+                <a href="booking-management.html" class="admin-nav-link">Reserveringsbeheer</a>
+                <a href="booking-history.html" class="admin-nav-link">Boekingsgeschiedenis</a>
                 </div>
-            <button class="admin-nav-logout" onclick="logout()">Logout</button>
+            <button class="admin-nav-logout" onclick="logout()">Uitloggen</button>
                 </div>
     </nav>
 
-    <div class="boat-management">
-        <div class="management-header">
-            <div class="management-container">
-                <h1 class="management-title">Boat Management</h1>
-                <p class="management-subtitle">Real-time boat availability and inventory management</p>
-                    </div>
-                </div>
-
-        <div class="management-container">
-            <div class="management-content">
-                <div class="management-grid">
-                    <!-- Real-time Boat Availability -->
-                    <div class="management-section">
-                        <div class="section-header">
-                            <h2 class="section-title">Real-time Availability</h2>
-                            <span id="lastUpdate" class="text-muted"></span>
-                    </div>
-                        <div class="section-content">
-                            <div class="calendar-container">
-                                <label for="boatCalendar" class="calendar-label">Select Date:</label>
-                                <input type="date" id="boatCalendar" class="modern-calendar">
-                                <button class="clear-date-btn" onclick="clearDateFilter()">Show All</button>
-                </div>
-                            <div class="realtime-boats" id="realtimeBoats">
-                                <!-- Real-time boat cards will be populated here -->
-                </div>
-            </div>
+    <!-- Admin Header Section -->
+    <div class="admin-header">
+        <div class="admin-container">
+            <h1 class="admin-title">Bootbeheer</h1>
+            <p class="admin-subtitle">Nijenhuis Botenverhuur - Beheer boten en beschikbaarheid</p>
+        </div>
     </div>
-
-                    <!-- Manual Boat Management -->
-                    <div class="management-section">
-                        <div class="section-header">
-                            <h2 class="section-title">Boat Inventory</h2>
+    
+    <div class="boat-management">
+        <div class="management-container">
+            <!-- Navigation Links -->
+            <div class="nav-links-section">
+                <div class="nav-links">
+                    <a href="#" class="nav-link">Overzicht</a>
+                    <span class="nav-separator">|</span>
+                    <a href="#" class="nav-link" onclick="showAddBoatModal(); return false;">Nieuw item toevoegen.</a>
+                    <span class="nav-separator">|</span>
+                    <a href="#" class="nav-link">Volgorde aanpassen</a>
+                </div>
             </div>
-                        <div class="section-content">
-                            <div class="boat-list" id="boatList">
-                                <!-- Boat management items will be populated here -->
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-
-                    </div>
+            
+            <!-- Boat Grid -->
+            <div class="boat-grid" id="boatGrid">
+                <!-- Boats will be populated here -->
+            </div>
         </div>
     </div>
 
+    <!-- Add Boat Modal -->
+    <div id="addBoatModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2>Nieuwe boot toevoegen</h2>
+                <span class="close" onclick="closeAddBoatModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addBoatForm">
+                    <div class="edit-form-container" style="display: block;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-xl);">
+                            <!-- Left Column - Images -->
+                            <div class="image-section">
+                                <div class="image-upload-group">
+                                    <label class="image-upload-label">Header Afbeelding</label>
+                                    <img id="addHeaderImagePreview" src="../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg" alt="Header" class="image-display">
+                                    <div class="file-input-wrapper">
+                                        <label for="addHeaderImageInput" class="file-input-label">Bestand kiezen</label>
+                                        <input type="file" id="addHeaderImageInput" class="file-input" accept="image/*">
+                                        <span class="file-name" id="addHeaderImageName">Geen bestand gekozen</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="image-upload-group">
+                                    <label class="image-upload-label">Afbeelding</label>
+                                    <img id="addMainImagePreview" src="../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg" alt="Main" class="image-display">
+                                    <div class="file-input-wrapper">
+                                        <label for="addMainImageInput" class="file-input-label">Bestand kiezen</label>
+                                        <input type="file" id="addMainImageInput" class="file-input" accept="image/*">
+                                        <span class="file-name" id="addMainImageName">Geen bestand gekozen</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Column - Form Fields -->
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label for="addBoatName" class="form-label">Naam *</label>
+                                    <input type="text" id="addBoatName" name="name" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addBoatCategory" class="form-label">Categorie *</label>
+                                    <select id="addBoatCategory" name="category" class="form-input" required>
+                                        <option value="electric">Elektrische boten</option>
+                                        <option value="sailing">Zeilboten</option>
+                                        <option value="canoe">Kano's & Kajaks</option>
+                                        <option value="sup">SUP boards</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addBoatDeposit" class="form-label">Borg</label>
+                                    <input type="number" id="addBoatDeposit" name="deposit" class="form-input" value="0">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addBoatPricePerDay" class="form-label">Prijs per dag *</label>
+                                    <input type="number" id="addBoatPricePerDay" name="pricePerDay" class="form-input" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addBoatDescription" class="form-label">Omschrijving *</label>
+                                    <textarea id="addBoatDescription" name="description" class="form-textarea" rows="4" required></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="addAvailableDaysSelect" class="form-label">Beschikbare huurdagen selecteren</label>
+                                    <select id="addAvailableDaysSelect" name="availableDays" class="form-input">
+                                        <option value="1">1 dag</option>
+                                        <option value="2">2 dagen</option>
+                                        <option value="3">3 dagen</option>
+                                        <option value="4">4 dagen</option>
+                                        <option value="5">5 dagen</option>
+                                        <option value="6">6 dagen</option>
+                                        <option value="7" selected>7 dagen</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">Meerdaagse prijzen</label>
+                                    <div id="addPricingGrid" class="pricing-grid">
+                                        <!-- Dynamic pricing inputs will be generated here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group" id="addEnginePricingSection" style="display: none;">
+                                    <label class="form-label">Meerdaagse prijzen (met motor)</label>
+                                    <div id="addEnginePricingGrid" class="pricing-grid">
+                                        <!-- Dynamic pricing inputs for engine will be generated here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="info-grid">
+                                    <div class="form-group">
+                                        <label for="addPassengerCount" class="form-label">Aantal passagiers</label>
+                                        <input type="text" id="addPassengerCount" name="passengerCount" class="form-input" placeholder="bijv. 1 persoon">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addBoatCount" class="form-label">Aantal boten *</label>
+                                        <input type="number" id="addBoatCount" name="boatCount" class="form-input" value="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="addOrderId" class="form-label">Order_id</label>
+                                        <input type="number" id="addOrderId" name="orderId" class="form-input" value="99">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" onclick="closeAddBoatModal()">Annuleren</button>
+                                    <button type="submit" class="btn btn-primary">Boot toevoegen</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script>
         class BoatManagementSystem {
@@ -598,10 +186,17 @@
             
             init() {
                 this.loadData();
+                
+                // Auto-save default boats to localStorage and server on first load
+                // This ensures boats are always available even if localStorage is cleared
+                if (!localStorage.getItem(this.boatsStorageKey) || this.boats.length === 0) {
+                    console.log('No boats found in localStorage, initializing with defaults and saving...');
+                    this.boats = this.getDefaultBoats();
+                    this.saveData(); // This will save to localStorage AND push to server
+                }
+                
                 this.setupEventListeners();
                 this.renderBoats();
-                this.renderBookings();
-                this.startRealTimeUpdates();
                 this.testImageLoading();
             }
             
@@ -625,89 +220,9 @@
                 this.bookings = storedBookings ? JSON.parse(storedBookings) : [];
             }
             
+            // Use centralized boat data from BoatDataService (../js/boat-data-service.js)
             getDefaultBoats() {
-                return [
-                    {
-                        id: 'classic-tender-720',
-                        name: 'Classic Tender 720',
-                        image: '../frontend/Images/Boats/tender-720/tender-720-10-12.jpg',
-                        total: 2,
-                        available: 2,
-                        description: '10/12 person boat'
-                    },
-                    {
-                        id: 'electrosloop-10',
-                        name: 'Electrosloep 10 pers',
-                        image: '../frontend/Images/Boats/electrosloep-10/electrosloop-10.jpg',
-                        total: 1,
-                        available: 1,
-                        description: 'Electric boat for 10 people'
-                    },
-                    {
-                        id: 'electrosloop-8',
-                        name: 'Electrosloep 8 pers',
-                        image: '../frontend/Images/Boats/electrosloep-8/electrosloop-8.jpg',
-                        total: 2,
-                        available: 2,
-                        description: 'Electric boat for 8 people'
-                    },
-                    {
-                        id: 'electroboat-5',
-                        name: 'Electroboat 5 pers',
-                        image: '../frontend/Images/Boats/electroboat-5.jpg',
-                        total: 3,
-                        available: 3,
-                        description: 'Electric boat for 5 people'
-                    },
-                    {
-                        id: 'sailboat-4-5',
-                        name: 'Zeilboot',
-                        image: '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg',
-                        total: 1,
-                        available: 1,
-                        description: 'Sailboat for 4-5 people'
-                    },
-                    {
-                        id: 'sailpunter-3-4',
-                        name: 'Zeilpunter',
-                        image: '../frontend/Images/Boats/zeilpunter/sailpunter-3-4.jpg',
-                        total: 2,
-                        available: 2,
-                        description: 'Sailpunter for 3-4 people'
-                    },
-                    {
-                        id: 'canoe-3',
-                        name: 'Canadese Kano',
-                        image: '../frontend/Images/Boats/canoe/canoe-3.jpg',
-                        total: 4,
-                        available: 4,
-                        description: 'Canadian canoe for 3 people'
-                    },
-                    {
-                        id: 'kayak-2',
-                        name: 'Kajak 2 pers',
-                        image: '../frontend/Images/Boats/kayak-2/kayak-2.jpg',
-                        total: 6,
-                        available: 6,
-                        description: 'Kayak for 2 people'
-                    },
-                    {
-                        id: 'kayak-1',
-                        name: 'Kajak 1 pers',
-                        image: '../frontend/Images/Boats/Kayak-1/kayak-1.jpg',
-                        total: 8,
-                        available: 8,
-                        description: 'Single person kayak'
-                    },
-                    {
-                        id: 'sup-board',
-                        name: 'SUP Board',
-                        image: '../frontend/Images/Boats/Sup/sub-1.jpg',
-                        total: 5,
-                        available: 5,
-                        description: 'Stand-up paddleboard'
-                    }
-                ];
+                return window.BoatDataService ? window.BoatDataService.getDefaultBoats() : [];
             }
             
             setupEventListeners() {
@@ -723,29 +238,182 @@
             saveData() {
                 localStorage.setItem(this.boatsStorageKey, JSON.stringify(this.boats));
                 localStorage.setItem(this.bookingsStorageKey, JSON.stringify(this.bookings));
+                
+                // Trigger custom event to notify booking forms of boat updates (same-tab)
+                window.dispatchEvent(new CustomEvent('boatsUpdated', { detail: this.boats }));
+                
+                // Also trigger a custom storage event for cross-tab communication
+                window.dispatchEvent(new CustomEvent('boatsStorageUpdated'));
+                
+                // Note: StorageEvent can only be dispatched by the browser when localStorage actually changes
+                // Custom events work for same-window updates, and actual localStorage changes trigger storage events in other tabs
+                
+                // Force a storage event by reading and writing (workaround for same-tab updates)
+                const currentValue = localStorage.getItem(this.boatsStorageKey);
+                localStorage.removeItem(this.boatsStorageKey);
+                localStorage.setItem(this.boatsStorageKey, currentValue);
+                
+                // Push boats to server so all devices see updates
+                this.pushBoatsToServer().catch(() => {});
+                
+                // Force immediate update by dispatching another event after a tiny delay
+                // This ensures all listeners have processed the localStorage change
+                setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('boatsUpdated', { detail: this.boats }));
+                    window.dispatchEvent(new CustomEvent('boatsStorageUpdated'));
+                }, 50);
+                
+                console.log('Boats saved successfully. Total boats:', this.boats.length);
+            }
+            
+            async pushBoatsToServer() {
+                try {
+                    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '';
+                    const endpoint = isLocal
+                        ? 'http://localhost:8000/admin/booking-handler.py'
+                        : `${window.location.origin}/admin/booking-handler.php`;
+                    
+                    const response = await fetch(endpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'include',
+                        body: JSON.stringify({ action: 'saveBoats', boats: this.boats })
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        if (result.success) {
+                            console.log(`✅ Successfully saved ${this.boats.length} boats to server`);
+                        } else {
+                            console.warn('Server returned error:', result.message || 'Unknown error');
+                        }
+                    } else {
+                        console.warn(`Failed to save boats to server: HTTP ${response.status}`);
+                    }
+                } catch (e) {
+                    console.warn('Failed to push boats to server:', e);
+                    // Don't throw - localStorage is still updated, server sync can happen later
+                }
             }
             
             renderBoats() {
-                const boatList = document.getElementById('boatList');
-                boatList.innerHTML = '';
+                const boatGrid = document.getElementById('boatGrid');
+                if (!boatGrid) return;
                 
-                this.boats.forEach(boat => {
-                    const boatItem = document.createElement('div');
-                    boatItem.className = 'boat-item';
-                    boatItem.innerHTML = `
-                        <img src="${boat.image}" alt="${boat.name}" class="boat-image" onerror="this.onerror=null; this.src='../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg'; console.log('Image failed to load:', '${boat.image}')">
-                        <div class="boat-info">
-                            <h3>${boat.name}</h3>
-                            <p>${boat.description}</p>
-                            <p>Total: ${boat.total} boats</p>
-                            </div>
-                        <div class="boat-controls">
-                            <input type="number" class="availability-input" value="${boat.available}" min="0" id="available-${boat.id}">
-                            <button class="update-btn" onclick="boatSystem.updateBoatAvailability('${boat.id}')">Update</button>
-                    </div>
-                `;
-                    boatList.appendChild(boatItem);
+                boatGrid.innerHTML = '';
+                
+                // Sort boats by category and orderId
+                const categoryOrder = ['electric', 'sailing', 'canoe', 'sup'];
+                const sortedBoats = [...this.boats].sort((a, b) => {
+                    const categoryA = categoryOrder.indexOf(a.category || 'other');
+                    const categoryB = categoryOrder.indexOf(b.category || 'other');
+                    
+                    if (categoryA !== categoryB) {
+                        return categoryA - categoryB;
+                    }
+                    
+                    return (a.orderId || 999) - (b.orderId || 999);
                 });
+                
+                let currentCategory = null;
+                
+                sortedBoats.forEach(boat => {
+                    // Add category header if category changed
+                    if (boat.category && boat.category !== currentCategory) {
+                        currentCategory = boat.category;
+                        const categoryHeader = document.createElement('div');
+                        categoryHeader.className = 'boat-category-header';
+                        categoryHeader.style.cssText = 'grid-column: 1 / -1; font-size: var(--font-size-lg); font-weight: 600; color: var(--secondary-color); padding: var(--spacing-lg) 0 var(--spacing-md) 0; border-bottom: 2px solid var(--light-gray); margin-top: var(--spacing-lg);';
+                        
+                        const categoryNames = {
+                            electric: '🚤 Elektrische boten',
+                            sailing: '⛵ Zeilboten',
+                            canoe: '🛶 Kano\'s & Kajaks',
+                            sup: '🏄 SUP boards'
+                        };
+                        
+                        categoryHeader.textContent = categoryNames[currentCategory] || currentCategory;
+                        
+                        if (currentCategory === 'electric') {
+                            categoryHeader.style.marginTop = '0';
+                        }
+                        
+                        boatGrid.appendChild(categoryHeader);
+                    }
+                    // Escape user input to prevent XSS
+                    const safeImage = this.escapeHTML(boat.image || '');
+                    const safeName = this.escapeHTML(boat.name || '');
+                    const safeId = this.escapeHTML(boat.id || '');
+                    
+                    const boatCard = document.createElement('div');
+                    boatCard.className = 'boat-card';
+                    
+                    // Image
+                    const img = document.createElement('img');
+                    img.src = safeImage;
+                    img.alt = safeName;
+                    img.className = 'boat-card-image';
+                    img.onerror = function() {
+                        this.onerror = null;
+                        this.src = '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg';
+                        console.log('Image failed to load:', safeImage);
+                    };
+                    
+                    // Content
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = 'boat-card-content';
+                    
+                    const titleDiv = document.createElement('div');
+                    titleDiv.className = 'boat-card-title';
+                    titleDiv.textContent = safeName;
+                    
+                    // Actions
+                    const actionsDiv = document.createElement('div');
+                    actionsDiv.className = 'boat-card-actions';
+                    
+                    const fotoLink = document.createElement('a');
+                    fotoLink.href = '#';
+                    fotoLink.className = 'boat-action-link';
+                    fotoLink.textContent = "foto's";
+                    fotoLink.onclick = (e) => {
+                        e.preventDefault();
+                        showBoatPhotos(safeId);
+                    };
+                    
+                    const editLink = document.createElement('a');
+                    editLink.href = `boat-edit.html?id=${safeId}`;
+                    editLink.className = 'boat-action-link';
+                    editLink.textContent = 'bewerk';
+                    
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = '#';
+                    deleteLink.className = 'boat-action-link';
+                    deleteLink.textContent = 'verwijder';
+                    deleteLink.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm(`Weet je zeker dat je "${safeName}" wilt verwijderen?`)) {
+                            this.deleteBoat(safeId);
+                        }
+                    };
+                    
+                    actionsDiv.appendChild(fotoLink);
+                    actionsDiv.appendChild(editLink);
+                    actionsDiv.appendChild(deleteLink);
+                    
+                    contentDiv.appendChild(titleDiv);
+                    contentDiv.appendChild(actionsDiv);
+                    
+                    boatCard.appendChild(img);
+                    boatCard.appendChild(contentDiv);
+                    
+                    boatGrid.appendChild(boatCard);
+                });
+            }
+            
+            deleteBoat(boatId) {
+                this.boats = this.boats.filter(b => b.id !== boatId);
+                this.saveData();
+                this.renderBoats();
             }
             
             renderRealTimeBoats() {
@@ -758,7 +426,10 @@
                 realtimeBoats.innerHTML = '';
                 
                 if (this.boats.length === 0) {
-                    realtimeBoats.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: var(--spacing-lg);">No boats available. Please add boats to inventory.</p>';
+                    const emptyMsg = document.createElement('p');
+                    emptyMsg.style.cssText = 'text-align: center; color: var(--text-secondary); padding: var(--spacing-lg);';
+                    emptyMsg.textContent = 'No boats available. Please add boats to inventory.';
+                    realtimeBoats.appendChild(emptyMsg);
                     return;
                 }
                 
@@ -766,12 +437,31 @@
                     const isAvailable = boat.available > 0;
                     const boatCard = document.createElement('div');
                     boatCard.className = `realtime-boat-card ${isAvailable ? 'available' : 'unavailable'}`;
-                    boatCard.innerHTML = `
-                        <div class="boat-name">${boat.name}</div>
-                        <div class="boat-availability ${isAvailable ? 'available' : 'unavailable'}">${boat.available}</div>
-                        <div class="boat-label">Available</div>
-                        <div class="boat-total">/ ${boat.total} total</div>
-                    `;
+                    
+                    // Escape user input
+                    const safeName = this.escapeHTML(boat.name || '');
+                    
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'boat-name';
+                    nameDiv.textContent = safeName;
+                    
+                    const availDiv = document.createElement('div');
+                    availDiv.className = `boat-availability ${isAvailable ? 'available' : 'unavailable'}`;
+                    availDiv.textContent = boat.available;
+                    
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = 'boat-label';
+                    labelDiv.textContent = 'Available';
+                    
+                    const totalDiv = document.createElement('div');
+                    totalDiv.className = 'boat-total';
+                    totalDiv.textContent = `/ ${boat.total} total`;
+                    
+                    boatCard.appendChild(nameDiv);
+                    boatCard.appendChild(availDiv);
+                    boatCard.appendChild(labelDiv);
+                    boatCard.appendChild(totalDiv);
+                    
                     realtimeBoats.appendChild(boatCard);
                 });
                 
@@ -780,6 +470,14 @@
                 if (lastUpdate) {
                     lastUpdate.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
                 }
+            }
+            
+            // Helper function to escape HTML and prevent XSS
+            escapeHTML(text) {
+                if (text == null) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
             }
             
             renderBookings() {
@@ -791,24 +489,85 @@
                 
                 sortedBookings.forEach(booking => {
                     const bookingItem = document.createElement('div');
-                    bookingItem.className = `booking-item ${booking.status}`;
-                    bookingItem.innerHTML = `
-                        <div class="booking-status status-${booking.status}">${booking.status}</div>
-                        <div class="booking-info">
-                            <h4>${booking.customerName}</h4>
-                            <p><strong>Date:</strong> ${booking.date}</p>
-                            <p><strong>Boat:</strong> ${this.getBoatName(booking.boatType)}</p>
-                            <p><strong>Contact:</strong> ${booking.customerEmail} | ${booking.customerPhone}</p>
-                            ${booking.notes ? `<p><strong>Notes:</strong> ${booking.notes}</p>` : ''}
-                        </div>
-                        <select class="status-select" id="status-${booking.id}" onchange="boatSystem.updateBookingStatus('${booking.id}', this.value)">
-                            <option value="manual" ${booking.status === 'manual' ? 'selected' : ''}>Manual</option>
-                            <option value="success" ${booking.status === 'success' ? 'selected' : ''}>Success</option>
-                            <option value="rejected" ${booking.status === 'rejected' ? 'selected' : ''}>Rejected</option>
-                            <option value="picked-up" ${booking.status === 'picked-up' ? 'selected' : ''}>Picked Up</option>
-                        </select>
-                        <button class="save-btn" onclick="boatSystem.saveBookingStatus('${booking.id}')">Save</button>
-                    `;
+                    bookingItem.className = `booking-item ${this.escapeHTML(booking.status)}`;
+                    
+                    // Escape all user input to prevent XSS
+                    const safeStatus = this.escapeHTML(booking.status);
+                    const safeCustomerName = this.escapeHTML(booking.customerName || '');
+                    const safeDate = this.escapeHTML(booking.date || '');
+                    const safeBoatName = this.escapeHTML(this.getBoatName(booking.boatType));
+                    const safeEmail = this.escapeHTML(booking.customerEmail || '');
+                    const safePhone = this.escapeHTML(booking.customerPhone || '');
+                    const safeNotes = booking.notes ? this.escapeHTML(booking.notes) : '';
+                    const safeId = this.escapeHTML(booking.id || '');
+                    
+                    // Use DOM manipulation instead of innerHTML for safer rendering
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = `booking-status status-${safeStatus}`;
+                    statusDiv.textContent = safeStatus;
+                    
+                    const infoDiv = document.createElement('div');
+                    infoDiv.className = 'booking-info';
+                    
+                    const nameH4 = document.createElement('h4');
+                    nameH4.textContent = safeCustomerName;
+                    
+                    const dateP = document.createElement('p');
+                    dateP.innerHTML = `<strong>Date:</strong> ${safeDate}`;
+                    
+                    const boatP = document.createElement('p');
+                    boatP.innerHTML = `<strong>Boat:</strong> ${safeBoatName}`;
+                    
+                    const contactP = document.createElement('p');
+                    contactP.innerHTML = `<strong>Contact:</strong> ${safeEmail} | ${safePhone}`;
+                    
+                    infoDiv.appendChild(nameH4);
+                    infoDiv.appendChild(dateP);
+                    infoDiv.appendChild(boatP);
+                    infoDiv.appendChild(contactP);
+                    
+                    if (safeNotes) {
+                        const notesP = document.createElement('p');
+                        notesP.innerHTML = `<strong>Notes:</strong> ${safeNotes}`;
+                        infoDiv.appendChild(notesP);
+                    }
+                    
+                    const statusSelect = document.createElement('select');
+                    statusSelect.className = 'status-select';
+                    statusSelect.id = `status-${safeId}`;
+                    statusSelect.addEventListener('change', (e) => {
+                        boatSystem.updateBookingStatus(safeId, e.target.value);
+                    });
+                    
+                    const options = [
+                        { value: 'manual', label: 'Manual' },
+                        { value: 'success', label: 'Success' },
+                        { value: 'rejected', label: 'Rejected' },
+                        { value: 'picked-up', label: 'Picked Up' }
+                    ];
+                    
+                    options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt.value;
+                        option.textContent = opt.label;
+                        if (booking.status === opt.value) {
+                            option.selected = true;
+                        }
+                        statusSelect.appendChild(option);
+                    });
+                    
+                    const saveBtn = document.createElement('button');
+                    saveBtn.className = 'save-btn';
+                    saveBtn.textContent = 'Save';
+                    saveBtn.addEventListener('click', () => {
+                        boatSystem.saveBookingStatus(safeId);
+                    });
+                    
+                    bookingItem.appendChild(statusDiv);
+                    bookingItem.appendChild(infoDiv);
+                    bookingItem.appendChild(statusSelect);
+                    bookingItem.appendChild(saveBtn);
+                    
                     bookingsList.appendChild(bookingItem);
                 });
             }
@@ -887,17 +646,39 @@
                     const isAvailable = boat.availableForDate > 0;
                     const boatCard = document.createElement('div');
                     boatCard.className = `realtime-boat-card ${isAvailable ? 'available' : 'unavailable'}`;
-                    boatCard.innerHTML = `
-                        <div class="boat-name">${boat.name}</div>
-                        <div class="boat-availability ${isAvailable ? 'available' : 'unavailable'}">${boat.availableForDate}</div>
-                        <div class="boat-label">Available</div>
-                        <div class="boat-booked">${boat.bookedForDate} booked</div>
-                    `;
+                    
+                    // Escape user input
+                    const safeName = this.escapeHTML(boat.name || '');
+                    
+                    const nameDiv = document.createElement('div');
+                    nameDiv.className = 'boat-name';
+                    nameDiv.textContent = safeName;
+                    
+                    const availDiv = document.createElement('div');
+                    availDiv.className = `boat-availability ${isAvailable ? 'available' : 'unavailable'}`;
+                    availDiv.textContent = boat.availableForDate;
+                    
+                    const labelDiv = document.createElement('div');
+                    labelDiv.className = 'boat-label';
+                    labelDiv.textContent = 'Available';
+                    
+                    const bookedDiv = document.createElement('div');
+                    bookedDiv.className = 'boat-booked';
+                    bookedDiv.textContent = `${boat.bookedForDate} booked`;
+                    
+                    boatCard.appendChild(nameDiv);
+                    boatCard.appendChild(availDiv);
+                    boatCard.appendChild(labelDiv);
+                    boatCard.appendChild(bookedDiv);
+                    
                     realtimeBoats.appendChild(boatCard);
                 });
                 
                 // Update last update time
-                document.getElementById('lastUpdate').textContent = `Availability for ${new Date(selectedDate).toLocaleDateString()}`;
+                const lastUpdate = document.getElementById('lastUpdate');
+                if (lastUpdate) {
+                    lastUpdate.textContent = `Availability for ${new Date(selectedDate).toLocaleDateString()}`;
+                }
             }
             
             handleBoatRental(boatType, date) {
@@ -947,14 +728,447 @@
         function logout() {
             localStorage.removeItem('adminAuthenticated');
             localStorage.removeItem('adminUser');
-            localStorage.removeItem('adminLoginTime');
+            sessionStorage.removeItem('adminLoginTime');
             window.location.href = '../pages/admin-login.html';
         }
         
-        function clearDateFilter() {
-            document.getElementById('boatCalendar').value = '';
-            boatSystem.renderRealTimeBoats();
+        function showBoatPhotos(boatId) {
+            const boat = boatSystem.boats.find(b => b.id === boatId);
+            if (!boat) {
+                alert('Boot niet gevonden.');
+                return;
+            }
+            
+            // Create photo management modal
+            const modal = document.createElement('div');
+            modal.id = 'photoModal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 10000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 8px; padding: 2rem; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h2 style="margin: 0; color: var(--primary-color);">Foto's beheren: ${boatSystem.escapeHTML(boat.name)}</h2>
+                        <button onclick="closePhotoModal()" style="background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--text-secondary);">&times;</button>
+                    </div>
+                    
+                    <!-- Current Photos -->
+                    <div id="currentPhotos" style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Huidige foto's</h3>
+                        <div id="photosGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem;"></div>
+                    </div>
+                    
+                    <!-- Upload New Photo -->
+                    <div style="border-top: 2px solid var(--light-gray); padding-top: 1.5rem;">
+                        <h3 style="margin-bottom: 1rem;">Nieuwe foto uploaden</h3>
+                        <input type="file" id="photoUpload" accept="image/*" multiple style="margin-bottom: 1rem; width: 100%; padding: 0.5rem; border: 2px solid var(--light-gray); border-radius: 4px;">
+                        <button onclick="uploadBoatPhotos('${boatSystem.escapeHTML(boatId)}')" style="background: var(--primary-color); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 4px; cursor: pointer; font-weight: 600;">Upload foto's</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            loadBoatPhotos(boatId);
         }
+        
+        function closePhotoModal() {
+            const modal = document.getElementById('photoModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function loadBoatPhotos(boatId) {
+            const boat = boatSystem.boats.find(b => b.id === boatId);
+            if (!boat) return;
+            
+            const photosGrid = document.getElementById('photosGrid');
+            if (!photosGrid) return;
+            
+            photosGrid.innerHTML = '';
+            
+            // Get photos from boat data (stored in localStorage)
+            const boatPhotos = boat.photos || [];
+            
+            if (boatPhotos.length === 0) {
+                photosGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary);">Geen foto\'s beschikbaar.</p>';
+                return;
+            }
+            
+            boatPhotos.forEach((photo, index) => {
+                const photoDiv = document.createElement('div');
+                photoDiv.style.cssText = 'position: relative; border: 1px solid var(--light-gray); border-radius: 4px; overflow: hidden;';
+                
+                const img = document.createElement('img');
+                img.src = photo.url || photo;
+                img.style.cssText = 'width: 100%; height: 150px; object-fit: cover; display: block;';
+                img.onerror = function() {
+                    this.src = '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg';
+                };
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = '×';
+                deleteBtn.style.cssText = `
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    background: var(--error-color);
+                    color: white;
+                    border: none;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                `;
+                deleteBtn.onclick = () => deleteBoatPhoto(boatId, index);
+                
+                photoDiv.appendChild(img);
+                photoDiv.appendChild(deleteBtn);
+                photosGrid.appendChild(photoDiv);
+            });
+        }
+        
+        async function uploadBoatPhotos(boatId) {
+            const input = document.getElementById('photoUpload');
+            if (!input || !input.files || input.files.length === 0) {
+                alert('Selecteer eerst een of meerdere foto\'s.');
+                return;
+            }
+            
+            const boat = boatSystem.boats.find(b => b.id === boatId);
+            if (!boat) return;
+            
+            const files = Array.from(input.files).filter(f => f.type.startsWith('image/'));
+            const photos = boat.photos || [];
+            input.value = '';
+            
+            for (const file of files) {
+                try {
+                    const dataUrl = typeof compressToDataURL === 'function'
+                        ? await compressToDataURL(file)
+                        : await new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result);
+                            reader.onerror = () => reject(reader.error);
+                            reader.readAsDataURL(file);
+                        });
+                    photos.push({
+                        url: dataUrl,
+                        name: file.name,
+                        uploadedAt: new Date().toISOString()
+                    });
+                } catch (err) {
+                    console.error('Photo compress/read failed', err);
+                }
+            }
+            
+            boat.photos = photos;
+            boatSystem.saveData();
+            loadBoatPhotos(boatId);
+        }
+        
+        function deleteBoatPhoto(boatId, photoIndex) {
+            if (!confirm('Weet je zeker dat je deze foto wilt verwijderen?')) {
+                return;
+            }
+            
+            const boat = boatSystem.boats.find(b => b.id === boatId);
+            if (!boat) return;
+            
+            const photos = boat.photos || [];
+            photos.splice(photoIndex, 1);
+            boat.photos = photos;
+            
+            boatSystem.saveData();
+            loadBoatPhotos(boatId);
+        }
+        
+        function showAddBoatModal() {
+            const modal = document.getElementById('addBoatModal');
+            if (modal) {
+                modal.style.display = 'block';
+                // Reset form
+                document.getElementById('addBoatForm').reset();
+                document.getElementById('addHeaderImagePreview').src = '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg';
+                document.getElementById('addMainImagePreview').src = '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg';
+                document.getElementById('addHeaderImageName').textContent = 'Geen bestand gekozen';
+                document.getElementById('addMainImageName').textContent = 'Geen bestand gekozen';
+                addHeaderImageData = null;
+                addMainImageData = null;
+                
+                // Reset day selection to 7 days
+                const addDaysSelect = document.getElementById('addAvailableDaysSelect');
+                if (addDaysSelect) {
+                    addDaysSelect.value = '7';
+                }
+                
+                // Hide engine pricing section initially
+                document.getElementById('addEnginePricingSection').style.display = 'none';
+                
+                // Regenerate pricing inputs
+                updatePricingInputs();
+            }
+        }
+        
+        function closeAddBoatModal() {
+            const modal = document.getElementById('addBoatModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        let addHeaderImageData = null;
+        let addMainImageData = null;
+        
+        // Function to generate dynamic pricing inputs
+        function generatePricingInputs(containerId, prefix, selectedDays) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            selectedDays.forEach(day => {
+                const pricingItem = document.createElement('div');
+                pricingItem.className = 'pricing-item';
+                
+                const label = document.createElement('label');
+                label.className = 'pricing-label';
+                label.textContent = `Prijs ${day} ${day === 1 ? 'dag' : 'dagen'}`;
+                label.setAttribute('for', `${prefix}Price${day}Days`);
+                
+                const input = document.createElement('input');
+                input.type = 'number';
+                input.id = `${prefix}Price${day}Days`;
+                input.name = `price${day}Days`;
+                input.className = 'pricing-input';
+                input.value = '0';
+                input.min = '0';
+                input.step = '0.01';
+                
+                pricingItem.appendChild(label);
+                pricingItem.appendChild(input);
+                container.appendChild(pricingItem);
+            });
+        }
+        
+        function addBoatSlugFromName(name) {
+            return (name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        }
+        function addFormEnginePricingEligible() {
+            const category = document.getElementById('addBoatCategory')?.value;
+            return category === 'sailing' && addBoatSlugFromName(document.getElementById('addBoatName')?.value) === 'sailboat-4-5';
+        }
+
+        // Function to update pricing inputs based on selected days
+        function updatePricingInputs() {
+            const addDaysSelect = document.getElementById('addAvailableDaysSelect');
+            const maxDays = parseInt(addDaysSelect.value) || 1;
+            const selectedDays = Array.from({ length: maxDays }, (_, i) => i + 1);
+            
+            generatePricingInputs('addPricingGrid', 'add', selectedDays);
+            
+            if (addFormEnginePricingEligible()) {
+                generatePricingInputs('addEnginePricingGrid', 'addEngine', selectedDays);
+            }
+        }
+        
+        // Image preview handlers for add modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const addHeaderInput = document.getElementById('addHeaderImageInput');
+            const addMainInput = document.getElementById('addMainImageInput');
+            
+            if (addHeaderInput) {
+                addHeaderInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        (async function () {
+                            try {
+                                const dataUrl = typeof compressToDataURL === 'function'
+                                    ? await compressToDataURL(file)
+                                    : await new Promise((resolve, reject) => {
+                                        const reader = new FileReader();
+                                        reader.onload = () => resolve(reader.result);
+                                        reader.onerror = () => reject(reader.error);
+                                        reader.readAsDataURL(file);
+                                    });
+                                addHeaderImageData = dataUrl;
+                                document.getElementById('addHeaderImagePreview').src = addHeaderImageData;
+                                document.getElementById('addHeaderImageName').textContent = file.name;
+                            } catch (err) {
+                                console.error(err);
+                            }
+                        })();
+                    }
+                });
+            }
+            
+            if (addMainInput) {
+                addMainInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        (async function () {
+                            try {
+                                const dataUrl = typeof compressToDataURL === 'function'
+                                    ? await compressToDataURL(file)
+                                    : await new Promise((resolve, reject) => {
+                                        const reader = new FileReader();
+                                        reader.onload = () => resolve(reader.result);
+                                        reader.onerror = () => reject(reader.error);
+                                        reader.readAsDataURL(file);
+                                    });
+                                addMainImageData = dataUrl;
+                                document.getElementById('addMainImagePreview').src = addMainImageData;
+                                document.getElementById('addMainImageName').textContent = file.name;
+                            } catch (err) {
+                                console.error(err);
+                            }
+                        })();
+                    }
+                });
+            }
+            
+            // Day selection change handlers
+            const addDaysSelect = document.getElementById('addAvailableDaysSelect');
+            if (addDaysSelect) {
+                addDaysSelect.addEventListener('change', updatePricingInputs);
+            }
+            
+            const categorySelect = document.getElementById('addBoatCategory');
+            if (categorySelect) {
+                categorySelect.addEventListener('change', function() {
+                    const engineSection = document.getElementById('addEnginePricingSection');
+                    if (addFormEnginePricingEligible()) {
+                        engineSection.style.display = 'block';
+                        updatePricingInputs();
+                    } else {
+                        engineSection.style.display = 'none';
+                        updatePricingInputs();
+                    }
+                });
+            }
+            
+            const boatNameInput = document.getElementById('addBoatName');
+            if (boatNameInput) {
+                boatNameInput.addEventListener('input', function() {
+                    const engineSection = document.getElementById('addEnginePricingSection');
+                    if (addFormEnginePricingEligible()) {
+                        engineSection.style.display = 'block';
+                        updatePricingInputs();
+                    } else {
+                        engineSection.style.display = 'none';
+                        updatePricingInputs();
+                    }
+                });
+            }
+            
+            // Initialize pricing inputs on page load
+            updatePricingInputs();
+            
+            // Add boat form submission
+            const addBoatForm = document.getElementById('addBoatForm');
+            if (addBoatForm) {
+                addBoatForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const boatName = document.getElementById('addBoatName').value;
+                    if (!boatName) {
+                        alert('Naam is verplicht.');
+                        return;
+                    }
+                    
+                    // Generate a unique ID from the boat name
+                    const boatId = boatName.toLowerCase()
+                        .replace(/[^a-z0-9]+/g, '-')
+                        .replace(/^-|-$/g, '');
+                    
+                    // Check if ID already exists
+                    let uniqueId = boatId;
+                    let counter = 1;
+                    while (boatSystem.boats.some(b => b.id === uniqueId)) {
+                        uniqueId = `${boatId}-${counter}`;
+                        counter++;
+                    }
+                    
+                    // Get selected available days - generate array from 1 to selected value
+                    const addDaysSelect = document.getElementById('addAvailableDaysSelect');
+                    const maxDays = parseInt(addDaysSelect.value) || 7;
+                    const selectedDays = Array.from({ length: maxDays }, (_, i) => i + 1);
+                    
+                    if (selectedDays.length === 0) {
+                        alert('Selecteer minimaal één huurdag.');
+                        return;
+                    }
+                    
+                    // Build pricing object (keys are 0-indexed: 0=1 day, 1=2 days, etc.)
+                    const pricing = {};
+                    selectedDays.forEach(day => {
+                        const input = document.getElementById(`addPrice${day}Days`);
+                        if (input) {
+                            pricing[day - 1] = parseFloat(input.value) || 0;
+                        }
+                    });
+                    
+                    const category = document.getElementById('addBoatCategory').value || 'electric';
+                    let pricingWithEngine = null;
+                    if (uniqueId === 'sailboat-4-5') {
+                        pricingWithEngine = {};
+                        selectedDays.forEach(day => {
+                            const input = document.getElementById(`addEnginePrice${day}Days`);
+                            if (input) {
+                                pricingWithEngine[day - 1] = parseFloat(input.value) || 0;
+                            }
+                        });
+                    }
+                    
+                    const newBoat = {
+                        id: uniqueId,
+                        name: boatName,
+                        category: category,
+                        deposit: parseFloat(document.getElementById('addBoatDeposit').value) || 0,
+                        pricePerDay: parseFloat(document.getElementById('addBoatPricePerDay').value) || 0,
+                        description: document.getElementById('addBoatDescription').value || '',
+                        passengerCount: document.getElementById('addPassengerCount').value || '',
+                        total: parseInt(document.getElementById('addBoatCount').value) || 1,
+                        available: parseInt(document.getElementById('addBoatCount').value) || 1,
+                        orderId: parseInt(document.getElementById('addOrderId').value) || 99,
+                        image: addMainImageData || '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg',
+                        headerImage: addHeaderImageData || '../frontend/Images/Boats/zeilboot/zeilboot-4-5.jpg',
+                        availableDays: selectedDays,
+                        pricing: pricing,
+                        pricingWithEngine: pricingWithEngine,
+                        photos: []
+                    };
+                    
+                    boatSystem.boats.push(newBoat);
+                    boatSystem.saveData();
+                    boatSystem.renderBoats();
+                    
+                    // The saveData() method already triggers both CustomEvent and StorageEvent
+                    alert('Boot succesvol toegevoegd!');
+                    closeAddBoatModal();
+                });
+            }
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                const modal = document.getElementById('addBoatModal');
+                if (event.target === modal) {
+                    closeAddBoatModal();
+                }
+            }
+        });
         
         // Global function to handle boat rentals from other pages
         function handleBoatRental(boatType, date) {
@@ -965,6 +1179,212 @@
         
         // Initialize the boat management system
         const boatSystem = new BoatManagementSystem();
+        
+        /**
+         * ========================================================================
+         * BOAT DATA SERVICE - SINGLE SOURCE OF TRUTH
+         * ========================================================================
+         * 
+         * This service provides centralized access to boat data across the entire website.
+         * The authoritative source is boat-management.html (this file).
+         * 
+         * All boat data changes made here automatically propagate to:
+         * - All pages where boats are referenced
+         * - The booking system (availability, pricing, metadata)
+         * - Boat detail modals and UI components
+         * 
+         * USAGE (from other pages):
+         *   const boats = await BoatDataService.getAllBoats();
+         *   const boat = await BoatDataService.getBoatById('classic-tender-720');
+         *   BoatDataService.subscribe((boats) => { console.log('Updated:', boats); });
+         * 
+         * ========================================================================
+         */
+        class BoatDataService {
+            constructor() {
+                this.storageKey = 'nijenhuis_boats';
+                this.cache = null;
+                this.cacheTime = 0;
+                this.cacheDuration = 2000;
+                this.subscribers = [];
+                this.init();
+            }
+
+            init() {
+                window.addEventListener('storage', (e) => {
+                    if (e.key === this.storageKey) {
+                        this.cache = null;
+                        this.notifySubscribers();
+                    }
+                });
+
+                window.addEventListener('boatsUpdated', () => {
+                    this.cache = null;
+                    this.notifySubscribers();
+                });
+
+                window.addEventListener('boatsStorageUpdated', () => {
+                    this.cache = null;
+                    this.notifySubscribers();
+                });
+            }
+
+            async loadBoats(forceRefresh = false) {
+                const now = Date.now();
+                if (!forceRefresh && this.cache && (now - this.cacheTime) < this.cacheDuration) {
+                    return this.cache;
+                }
+
+                let boats = [];
+                try {
+                    const stored = localStorage.getItem(this.storageKey);
+                    if (stored) {
+                        boats = JSON.parse(stored);
+                        if (boats.length > 0) {
+                            this.cache = boats;
+                            this.cacheTime = now;
+                            if (!forceRefresh) return boats;
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error loading boats:', e);
+                }
+
+                if (!boats.length || forceRefresh) {
+                    try {
+                        boats = await this.fetchBoatsFromServer();
+                        if (boats.length > 0) {
+                            localStorage.setItem(this.storageKey, JSON.stringify(boats));
+                            this.cache = boats;
+                            this.cacheTime = now;
+                        }
+                    } catch (e) {
+                        console.warn('Server fetch failed:', e);
+                        if (this.cache && this.cache.length > 0) return this.cache;
+                    }
+                }
+
+                if (!boats.length) {
+                    boats = boatSystem.getDefaultBoats();
+                    localStorage.setItem(this.storageKey, JSON.stringify(boats));
+                }
+
+                this.cache = boats;
+                this.cacheTime = now;
+                return boats;
+            }
+
+            async fetchBoatsFromServer() {
+                const isLocal = window.location.hostname === 'localhost' || 
+                                window.location.hostname === '127.0.0.1' || 
+                                window.location.hostname === '';
+                const endpoint = isLocal
+                    ? 'http://localhost:8000/admin/booking-handler.py'
+                    : `${window.location.origin}/admin/booking-handler.php`;
+
+                try {
+                    const endpointUrl = new URL(endpoint, window.location.href);
+                    const sameOriginHttp = (window.location.protocol === 'http:' || window.location.protocol === 'https:') &&
+                                           (endpointUrl.origin === window.location.origin);
+
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 2000);
+
+                    let res = await fetch(`${endpoint}?action=boats`, {
+                        credentials: sameOriginHttp ? 'include' : 'omit',
+                        mode: 'cors',
+                        headers: { 'Accept': 'application/json' },
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+
+                    if (!res.ok) {
+                        const controller2 = new AbortController();
+                        const timeoutId2 = setTimeout(() => controller2.abort(), 2000);
+                        res = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            credentials: sameOriginHttp ? 'include' : 'omit',
+                            body: JSON.stringify({ action: 'getBoats' }),
+                            signal: controller2.signal
+                        });
+                        clearTimeout(timeoutId2);
+                    }
+
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.success && Array.isArray(data.boats)) {
+                            return data.boats;
+                        }
+                    }
+                } catch (e) {
+                    if (e.name !== 'AbortError') console.warn('Server fetch failed:', e);
+                }
+                return [];
+            }
+
+            async getAllBoats(forceRefresh = false) {
+                return await this.loadBoats(forceRefresh);
+            }
+
+            async getBoatById(boatId) {
+                const boats = await this.loadBoats();
+                return boats.find(b => b.id === boatId) || null;
+            }
+
+            async getBoatsByCategory(category) {
+                const boats = await this.loadBoats();
+                return boats.filter(b => b.category === category);
+            }
+
+            async getBoatDisplayName(boatId, engineOption = null) {
+                const boat = await this.getBoatById(boatId);
+                if (!boat) return boatId;
+                let name = boat.name;
+                if (boatId === 'sailboat-4-5' && engineOption) {
+                    name += engineOption === 'with' ? ' (met motor)' : ' (zonder motor)';
+                }
+                return name;
+            }
+
+            async getBoatPrice(boatId, days = 1) {
+                const boat = await this.getBoatById(boatId);
+                if (!boat) return 0;
+                if (boat.pricing && typeof boat.pricing === 'object') {
+                    const pricingKey = days - 1;
+                    if (boat.pricing[pricingKey] !== undefined) {
+                        return boat.pricing[pricingKey];
+                    }
+                }
+                return (boat.pricePerDay || 0) * days;
+            }
+
+            subscribe(callback) {
+                if (typeof callback !== 'function') {
+                    throw new Error('Callback must be a function');
+                }
+                this.subscribers.push(callback);
+                this.loadBoats().then(boats => callback(boats));
+                return () => {
+                    const index = this.subscribers.indexOf(callback);
+                    if (index > -1) this.subscribers.splice(index, 1);
+                };
+            }
+
+            async notifySubscribers() {
+                const boats = await this.loadBoats(true);
+                this.subscribers.forEach(callback => {
+                    try {
+                        callback(boats);
+                    } catch (e) {
+                        console.error('Error in subscriber:', e);
+                    }
+                });
+            }
+        }
+
+        // Create global BoatDataService instance
+        window.BoatDataService = new BoatDataService();
     </script>
 </body>
 </html> 
