@@ -162,6 +162,7 @@ if (!headers_sent()) {
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <?php include __DIR__ . '/../components/gtag.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#0071BB">
@@ -218,15 +219,6 @@ if (!headers_sent()) {
     <meta name="twitter:image" content="<?php echo htmlspecialchars($ogImageUrl, ENT_QUOTES, 'UTF-8'); ?>">
     <meta name="twitter:image:alt" content="<?php echo htmlspecialchars($ogDesc, ENT_QUOTES, 'UTF-8'); ?>">
     
-    <?php if (defined('GA4_MEASUREMENT_ID') && GA4_MEASUREMENT_ID !== ''): ?>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars(GA4_MEASUREMENT_ID); ?>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<?php echo htmlspecialchars(GA4_MEASUREMENT_ID); ?>');
-    </script>
-    <?php endif; ?>
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="<?php echo assetPath('frontend/Images/logo-white.svg'); ?>">
     <link rel="apple-touch-icon" href="<?php echo assetPath('frontend/Images/logo-white.svg'); ?>">

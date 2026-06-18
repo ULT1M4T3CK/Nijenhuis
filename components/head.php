@@ -66,6 +66,7 @@ if (empty($hreflangLinks)) {
 }
 ?>
 <head>
+    <?php include __DIR__ . '/gtag.php'; ?>
     <meta charset="UTF-8">
     <script>
     (function(){var i=new Image();i.onload=function(){if(i.width>0)document.documentElement.classList.add('webp')};i.onerror=function(){document.documentElement.classList.add('no-webp')};i.src='data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/v3AgAA='})();
@@ -165,16 +166,6 @@ if (empty($hreflangLinks)) {
     <?php endforeach; ?>
     <?php endif; ?>
     
-    <?php if (defined('GA4_MEASUREMENT_ID') && GA4_MEASUREMENT_ID !== ''): ?>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars(GA4_MEASUREMENT_ID); ?>"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '<?php echo htmlspecialchars(GA4_MEASUREMENT_ID); ?>');
-    </script>
-    <?php endif; ?>
     <!-- Critical JavaScript (security/config only - other scripts loaded in footer) -->
     <script src="<?php echo assetPath(ltrim(PATH_JS_SECURITY, '/')); ?>" defer></script>
     <script src="<?php echo assetPath(ltrim(PATH_JS_SHARED, '/')); ?>" defer></script>

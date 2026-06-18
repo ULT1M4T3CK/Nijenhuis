@@ -21,6 +21,7 @@ $userName = $_SESSION['employee_user'] ?? $_SESSION['admin_user'] ?? 'Medewerker
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <?php include __DIR__ . '/../components/gtag.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">

@@ -15,7 +15,7 @@ if (!defined('NIJENHUIS_SITE')) {
 define('SITE_URL', 'https://nijenhuis-botenverhuur.com');
 define('INDEXNOW_API_KEY', 'b4d8e2f1a0c34567890abcdef1234567');
 // GA4 Measurement ID for analytics (set to enable; create custom dimension "Language" as dimension1)
-define('GA4_MEASUREMENT_ID', ''); // e.g. 'G-XXXXXXXXXX'
+define('GA4_MEASUREMENT_ID', 'G-MDC7XSWBSX');
 define('SITE_NAME', 'Nijenhuis Botenverhuur');
 define('SITE_TAGLINE', 'Botenverhuur & Camping');
 define('SITE_DESCRIPTION', 'Botenverhuur in het prachtige natuurgebied Weerribben bij Giethoorn.');

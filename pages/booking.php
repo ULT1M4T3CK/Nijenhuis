@@ -15,6 +15,7 @@ $canonicalUrl = SITE_URL . '/booking';
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+    <?php include __DIR__ . '/../components/gtag.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title><?php echo $pageTitle; ?> - <?php echo SITE_NAME; ?></title>
