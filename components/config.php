@@ -179,6 +179,38 @@ function isDevelopment() {
     return $hostLooksLocal || in_array($serverPort, ['8000', '8888'], true);
 }
 
+/**
+ * Redirect non-canonical scheme/host to SITE_URL (production web requests only).
+ * Belt-and-suspenders alongside nginx 301s for www/http variants.
+ */
+function enforceCanonicalHost(): void {
+    if (PHP_SAPI === 'cli' || isDevelopment() || headers_sent()) {
+        return;
+    }
+
+    $canonicalHost = parse_url(SITE_URL, PHP_URL_HOST);
+    if ($canonicalHost === null || $canonicalHost === '') {
+        return;
+    }
+
+    $requestHost = strtolower(preg_replace('/:\d+$/', '', (string)($_SERVER['HTTP_HOST'] ?? '')));
+    $forwardedProto = strtolower((string)($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ''));
+    $requestScheme = strtolower((string)($_SERVER['REQUEST_SCHEME'] ?? ''));
+    $isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || $forwardedProto === 'https'
+        || $requestScheme === 'https';
+
+    if ($requestHost === strtolower($canonicalHost) && $isHttps) {
+        return;
+    }
+
+    $uri = $_SERVER['REQUEST_URI'] ?? '/';
+    header('Location: ' . SITE_URL . $uri, true, 301);
+    exit;
+}
+
+enforceCanonicalHost();
+
 require_once __DIR__ . '/../lib/blog-helpers.php';
 require_once __DIR__ . '/../lib/responsive-image.php';
 $BLOG_NAV = ['href' => '/blog', 'i18n' => 'nav_blog', 'label' => 'Blog'];
