@@ -261,6 +261,7 @@ include __DIR__ . '/../components/head.php';
 ?>
 
 <body class="blog-article-page">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <?php
 $_articleDateModified = $articleModifiedTime;
 ?>

@@ -26,6 +26,7 @@ $additionalStyles = ['/frontend/css/pages/destination-pages.css?v=3', '/frontend
 <?php include __DIR__ . '/../components/head.php'; ?>
 
 <body data-page="giethoorn">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <!-- Place Schema.org Structured Data for Giethoorn -->
 <script type="application/ld+json">
 {

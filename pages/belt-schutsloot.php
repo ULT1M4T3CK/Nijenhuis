@@ -26,6 +26,7 @@ $additionalStyles = ['/frontend/css/pages/destination-pages.css?v=2', '/frontend
 <?php include __DIR__ . '/../components/head.php'; ?>
 
 <body data-page="belt-schutsloot">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <!-- Place Schema.org Structured Data for Belt-schutsloot -->
 <script type="application/ld+json">
 {

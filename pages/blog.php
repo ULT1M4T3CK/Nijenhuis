@@ -64,6 +64,7 @@ $langLabels = ['nl' => 'Nederlands', 'en' => 'English', 'de' => 'Deutsch'];
 <?php include __DIR__ . '/../components/head.php'; ?>
 
 <body class="blog-index-page">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",

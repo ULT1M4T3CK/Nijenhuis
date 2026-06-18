@@ -33,6 +33,7 @@ $breadcrumbs = [
 <?php include __DIR__ . '/../components/head.php'; ?>
 
 <body data-page="tarieven">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",

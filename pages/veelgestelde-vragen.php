@@ -33,6 +33,7 @@ $additionalScripts = ['/frontend/src/js/pages/faq-prices.js'];
 <?php include __DIR__ . '/../components/head.php'; ?>
 
 <body data-page="faq">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <!-- FAQ Structured Data for AI and Search Engines -->
 <script type="application/ld+json">
 {

@@ -23,6 +23,7 @@ $additionalStyles = ['/frontend/css/pages/vaarkaart.css'];
 <html lang="nl">
 <?php include __DIR__ . '/../components/head.php'; ?>
 <body data-page="vaarkaart">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
 <!-- HowTo Schema: Sail from Wanneperveen to Giethoorn -->
 <script type="application/ld+json">
 {
