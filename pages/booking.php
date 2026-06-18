@@ -46,6 +46,7 @@ $canonicalUrl = SITE_URL . '/booking';
     <script src="<?php echo assetPath('frontend/src/js/core/translation.js'); ?>"></script>
 </head>
 <body data-page="booking">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <div class="booking-page">
         <article class="booking-seo-intro" style="max-width: 560px; margin: 0 auto 1.25rem; padding: 0 1rem; color: rgba(255,255,255,0.92); font-size: 0.95rem; line-height: 1.6; text-align: center;">
             <h2 style="margin: 0 0 0.5rem; font-size: 1.1rem; font-weight: 600; color: #fff;">Online reserveren bij Nijenhuis Botenverhuur</h2>

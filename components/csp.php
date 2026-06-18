@@ -15,7 +15,7 @@ function nijenhuis_csp_directives(): array {
         "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.mollie.com",
         "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://js.mollie.com",
         "connect-src 'self' https://www.google-analytics.com https://api.mollie.com https://js.mollie.com",
-        "frame-src 'self' https://*.mollie.com https://www.google.com https://maps.googleapis.com",
+        "frame-src 'self' https://*.mollie.com https://www.google.com https://www.googletagmanager.com https://maps.googleapis.com",
         "worker-src 'self' blob:",
         "manifest-src 'self'",
     ];

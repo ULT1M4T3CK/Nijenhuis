@@ -19,6 +19,7 @@ $basePath = '..';
     <link rel="stylesheet" href="<?php echo assetPath('pages/pages-consolidated.css'); ?>">
 </head>
 <body>
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <div class="admin-login-container">
         <div class="admin-login-card">
             <div class="admin-login-logo">

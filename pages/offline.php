@@ -142,6 +142,7 @@ $basePath = '..';
     <script src="<?php echo assetPath('frontend/src/js/booking/mollie-payment.js'); ?>"></script>
 </head>
 <body>
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <div class="offline-container">
         <div class="offline-icon">📡</div>
         

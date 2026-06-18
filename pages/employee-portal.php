@@ -103,6 +103,7 @@ $userName = $_SESSION['employee_user'] ?? $_SESSION['admin_user'] ?? 'Medewerker
     <script src="<?php echo assetPath('frontend/src/js/pages/home.js'); ?>"></script>
 </head>
 <body>
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <?php if (!$isLoggedIn): ?>
         <div class="modal portal-login-modal active">
             <div class="modal-content">

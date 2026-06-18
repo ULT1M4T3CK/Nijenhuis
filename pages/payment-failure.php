@@ -21,6 +21,7 @@ $basePath = '..';
     <script src="<?php echo assetPath('frontend/src/js/booking/mollie-payment.js'); ?>" defer></script>
 </head>
 <body>
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <div class="payment-failure-page">
         <div class="failure-card">
             <div class="failure-icon">

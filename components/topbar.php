@@ -2,6 +2,7 @@
 /**
  * TOP BAR Component - Contact info and language switcher
  */
+include __DIR__ . '/gtm-body.php';
 ?>
 <!-- Top Bar -->
 <div class="top-bar">

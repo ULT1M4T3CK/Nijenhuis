@@ -115,6 +115,7 @@ if (empty($hreflangLinks)) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.google.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://ultimaitech.com">
     <link rel="dns-prefetch" href="https://api.mollie.com">
     <link rel="dns-prefetch" href="https://js.mollie.com">

@@ -25,6 +25,7 @@ $arrivalLocation = SITE_NAME . ', ' . SITE_ADDRESS . ', ' . SITE_POSTAL . ' ' . 
     <script src="<?php echo assetPath('frontend/src/js/core/translation.js'); ?>"></script>
 </head>
 <body class="page-checkout page-payment-success" data-page="payment-success">
+    <?php include __DIR__ . '/../components/gtm-body.php'; ?>
     <script type="application/json" id="siteBrandForPdf"><?php
         echo json_encode([
             'name' => SITE_NAME,

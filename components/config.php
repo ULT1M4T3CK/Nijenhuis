@@ -14,7 +14,9 @@ if (!defined('NIJENHUIS_SITE')) {
 // Site Information
 define('SITE_URL', 'https://nijenhuis-botenverhuur.com');
 define('INDEXNOW_API_KEY', 'b4d8e2f1a0c34567890abcdef1234567');
-// GA4 Measurement ID for analytics (set to enable; create custom dimension "Language" as dimension1)
+// Google Tag Manager container (primary analytics entry point)
+define('GTM_CONTAINER_ID', 'GTM-PDQZ4RQZ');
+// GA4 Measurement ID — used only when GTM_CONTAINER_ID is empty (configure GA4 inside GTM when using GTM)
 define('GA4_MEASUREMENT_ID', 'G-MDC7XSWBSX');
 define('SITE_NAME', 'Nijenhuis Botenverhuur');
 define('SITE_TAGLINE', 'Botenverhuur & Camping');
